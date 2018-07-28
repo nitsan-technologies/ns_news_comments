@@ -1,5 +1,5 @@
 {
-  "name": "Nitsan/ns-news-comments",
+  "name": "nitsan/ns-news-comments",
   "type": "typo3-cms-extension",
   "description": "This extension allows user to post comment on particular news, reply to the comments. This extension is compatible only with News system Extension.",
   "homepage": "https://extensions.typo3.org/extension/ns_news_comments/",

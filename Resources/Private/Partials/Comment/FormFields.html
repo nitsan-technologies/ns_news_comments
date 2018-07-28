@@ -1,0 +1,64 @@
+
+<f:comment>
+    Care about the Id and Class attibutes value 
+    It is used for form validation
+</f:comment>
+
+<div class="ns-form-group-main">
+    <div class="ns-form-group">
+        <label for="name"><f:translate key="tx_nsnewscomments_domain_model_comment.username" /> *</label>
+        <f:form.textfield property="username" id="name" placeholder="{f:translate(key:'name')}" class="validatethis"/>
+        <div class="error-msg" id="name_error"><p><f:translate key="name_required" /></p></div>
+        <div class="error-msg" id="name_error_msg"><p><f:translate key="form.nameError" /></p></div>
+    </div>
+</div>
+<div class="ns-form-group-main">
+    <div class="ns-form-group">
+        <label for="email"><f:translate key="tx_nsnewscomments_domain_model_comment.usermail" /> *</label>
+        <f:form.textfield property="usermail" type="text" id="email" placeholder="{f:translate(key:'email')}" class="validatethis"/>
+        <div class="error-msg" id="email_error"><p><f:translate key="email_required" /></p></div>
+        <div class="error-msg" id="email_error_msg"><p><f:translate key="form.emailError" /></p></div>
+    </div> 
+</div> 
+<div class="ns-form-group-main">
+    <div class="ns-form-group">
+        <label for="comment"><f:translate key="tx_nsnewscomments_domain_model_comment.comment" /> *</label>
+        <f:form.textarea property="description" id="comment" value="{requestData.newComment.description}" placeholder="{f:translate(key:'comment')}" class="validatethis"/>
+        <div class="error-msg" id="comment_error"><p><f:translate key="comment_required" /></p></div>
+    </div>
+</div>
+<f:if condition="{settings.captcha}==0">
+    <div class="ns-form-group-main">
+        <div class="ns-form-group">
+            <div class="ns-captch">
+                <img src="{captcha_path}" id='captchaimg' alt="Captcha Code" /> <f:translate key="form.captchaRefresh" /> 
+                <a href='javascript: refreshCaptcha();' class="captchaLink"><f:translate key="form.captchaRefreshButton" /></a>
+            </div>
+            <div class="ns-captch-input">
+                <label for="captcha"><f:translate key="tx_nsnewscomments_domain_model_comment.captcha" /> * </label>
+                <f:form.textfield name="captcha_code" class="validatethis" id="captcha" placeholder="{f:translate(key:'captcha')}"/>
+                <div class="error-msg" id="captcha_error"><p><f:translate key="captcha_required" /></p></div>
+                <div class="error-msg" id="captcha_valid_error"><p><f:translate key="form.captchaValidationError" /></p></div>
+            </div>
+        </div>
+    </div>
+    <f:form.hidden name="captcha" value="{captcha}" class="captcha"/>
+    <f:form.hidden name="captchapath" value="{captcha_path}" class="captcha_path"/>
+    <f:form.hidden name="verification" value="{verification}" class="verification"/>
+</f:if>
+<div class="ns-form-group-main">
+    <div class="ns-form-group">
+        <f:form.submit class="ns-btn ns-btn-send" id="submit" value="{f:translate(key:'form.submitButton')}" />
+    </div>
+</div>
+<div class="ns-form-group-main">
+    <div class="ns-form-group">
+        <p class="text-muted"><strong>*</strong> <f:translate key="mandatory" /></p>
+    </div>
+</div>
+
+<f:form.hidden property="newsuid" value="{newsID}"/>
+<f:form.hidden name="parentId" id="parentId" value=""/>
+<f:form.hidden property="pageid" id="pageid" value="{pageid}"/>
+<f:form.hidden name="approval" id="approval" value="{settings.approveComment}"/>
+<f:form.hidden name="dataType" id="dataType" value="{f:if(condition:settings.approveComment,then:'html',else:'json')}" />

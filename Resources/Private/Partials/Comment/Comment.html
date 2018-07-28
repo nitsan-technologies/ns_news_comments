@@ -1,0 +1,61 @@
+<div class="comment-main-level">
+    <!-- Comment Image -->
+    <div class="messages thanksmsg-{comment.uid}" style="display: none;">
+        <div class="ns-alert ns-alert-success"><f:translate key="form.thankyouMessage"/></div>
+    </div>
+    <div class="comment-avatar">
+        <f:if condition="{Image}">
+            <f:then>
+                <f:image src="{Image.uid}"  treatIdAsReference="TRUE" alt="{Image.title}" height="" width="" />
+            </f:then>
+            <f:else>
+                <f:image src="EXT:ns_news_comments/Resources/Public/Icons/user-icon.png" alt="user" />
+            </f:else>
+        </f:if>
+    </div>
+
+    <!-- Comment -->
+    <div class="comment-box">
+        <div class="comment-head">
+            <div class="comment-author">
+                <strong>{comment.username}</strong> 
+                <span class="text-muted">
+                    <f:if condition="{settings.custom}">
+                        <f:then>
+                            <f:format.date format="{settings.customdate}">{comment.crdate}</f:format.date> <f:translate key='at'/> <f:format.date format="{settings.customtime}">{comment.crdate}</f:format.date>
+                        </f:then>
+                        <f:else>
+                            <f:format.date format="{settings.dateFormat}">{comment.crdate}</f:format.date> <f:translate key='at'/> <f:format.date format="{settings.timeFormat}">{comment.crdate}</f:format.date>
+                        </f:else>
+                    </f:if>
+                </span>
+            </div>
+            <div class="comment-link">
+                <a href="#" onclick='window.open("{comment.paramlink}");return false;'>
+                </a>
+            </div>
+        </div>
+        
+        <div class="comment-content">
+            <f:format.nl2br><f:format.raw>{comment.description}</f:format.raw></f:format.nl2br>
+        </div>
+        
+        <div class="comment-footer" id="{comment.uid}">
+            <a href="javascript:;" class="comment-btn reply" >
+                <i class="ns-icon-reply"></i><f:translate key='tx_nsnewscomments_domain_model_comment.replylabel' />
+            </a>
+            <div class="reply-form" id="reply-form-{comment.uid}"></div>
+        </div>
+    </div>
+</div>
+
+<!-- Child Comment -->
+<f:if condition="{comment.childcomment}">
+    <f:for each="{comment.childcomment}" as="prcomment">
+        <ul class="comments-list reply-list" id="children-{prcomment.uid}">
+            <li id="comments-{prcomment.uid}" class="comment">
+                <f:render partial="Comment/Comment" arguments="{comment:prcomment,Image:'{Image}'}" />  
+            </li>
+        </ul>
+    </f:for>
+</f:if>

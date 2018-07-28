@@ -1,0 +1,159 @@
+<T3DataStructure>
+	<meta>
+		<langDisable>1</langDisable>
+	</meta>
+	<sheets>
+		<!--
+			################################
+			  SHEET General Settings
+			################################
+		-->
+		<sDEF>
+			<ROOT>
+				<TCEforms>
+					<sheetTitle>LLL:EXT:ns_news_comments/Resources/Private/Language/locallang_db.xlf:flexform.setting</sheetTitle>
+				</TCEforms>
+				<type>array</type>
+				<el>
+					<settings.custom>
+						<TCEforms>
+							<label>LLL:EXT:ns_news_comments/Resources/Private/Language/locallang_db.xlf:flexform.custom</label>
+		                    <onChange>reload</onChange>
+		                    <config>
+		                        <type>check</type>
+		                    </config>
+		                 </TCEforms>
+					</settings.custom>
+					<settings.customdate>
+						<TCEforms>
+							<label>LLL:EXT:ns_news_comments/Resources/Private/Language/locallang_db.xlf:flexform.customDateFormat</label>
+							<displayCond>FIELD:settings.custom:=:1</displayCond>
+		                    <config>
+		                        <type>input</type>
+		                        <eval>trim,required</eval>
+		                    </config>
+		                </TCEforms>
+					</settings.customdate>
+					<settings.customtime>
+						<TCEforms>
+							<label>LLL:EXT:ns_news_comments/Resources/Private/Language/locallang_db.xlf:flexform.customTimeFormat</label>
+							<displayCond>FIELD:settings.custom:=:1</displayCond>
+		                    <config>
+		                        <type>input</type>
+		                        <eval>trim,required</eval>
+		                    </config>
+		                </TCEforms>
+					</settings.customtime>
+					<settings.dateFormat>
+						<TCEforms>
+							<label>LLL:EXT:ns_news_comments/Resources/Private/Language/locallang_db.xlf:flexform.dateFormat</label>
+							<displayCond>FIELD:settings.custom:!=:1</displayCond>
+		                    <config>
+		                        <type>radio</type>
+								<items>
+									<numIndex index="0">
+									  <numIndex index="0">LLL:EXT:ns_news_comments/Resources/Private/Language/locallang_db.xlf:flexform.dateFormat.0</numIndex>
+									  <numIndex index="1">F j, Y</numIndex>
+									</numIndex>
+									<numIndex index="1">
+									  <numIndex index="0">LLL:EXT:ns_news_comments/Resources/Private/Language/locallang_db.xlf:flexform.dateFormat.1</numIndex>
+									  <numIndex index="1">Y-m-d</numIndex>
+									</numIndex>
+									<numIndex index="2">
+									  <numIndex index="0">LLL:EXT:ns_news_comments/Resources/Private/Language/locallang_db.xlf:flexform.dateFormat.2</numIndex>
+									  <numIndex index="1">m/d/Y</numIndex>
+									</numIndex>
+									<numIndex index="3">
+									  <numIndex index="0">LLL:EXT:ns_news_comments/Resources/Private/Language/locallang_db.xlf:flexform.dateFormat.3</numIndex>
+									  <numIndex index="1">d/m/Y</numIndex>
+									</numIndex>
+								</items>
+								<default>F j, Y</default>
+	                    	</config>
+	                    </TCEforms>
+					</settings.dateFormat>
+					<settings.timeFormat>
+						<TCEforms>
+							<label>LLL:EXT:ns_news_comments/Resources/Private/Language/locallang_db.xlf:flexform.timeFormat</label>
+							<displayCond>FIELD:settings.custom:!=:1</displayCond>
+		                    <config>
+		                        <type>radio</type>
+								<items>
+									<numIndex index="0">
+									  <numIndex index="0">LLL:EXT:ns_news_comments/Resources/Private/Language/locallang_db.xlf:flexform.timeFormat.0</numIndex>
+									  <numIndex index="1">g:i a</numIndex>
+									</numIndex>
+									<numIndex index="1">
+									  <numIndex index="0">LLL:EXT:ns_news_comments/Resources/Private/Language/locallang_db.xlf:flexform.timeFormat.1</numIndex>
+									  <numIndex index="1">g:i A</numIndex>
+									</numIndex>
+									<numIndex index="2">
+									  <numIndex index="0">LLL:EXT:ns_news_comments/Resources/Private/Language/locallang_db.xlf:flexform.timeFormat.2</numIndex>
+									  <numIndex index="1">H:i</numIndex>
+									</numIndex>
+								</items>
+								<default>g:i a</default>
+		                    </config>
+		                </TCEforms>
+					</settings.timeFormat>
+					<settings.captcha>
+						<TCEforms>
+							<label>LLL:EXT:ns_news_comments/Resources/Private/Language/locallang_db.xlf:flexform.captcha</label>
+		                    <config>
+		                        <type>check</type>
+		                        <default>1</default>
+		                    </config>
+		                 </TCEforms>
+					</settings.captcha>
+					<settings.usrimage>
+		                <TCEforms>
+				            <label>LLL:EXT:ns_news_comments/Resources/Private/Language/locallang_db.xlf:addCommentUserImage</label>
+				            <config>
+				                <type>inline</type>
+				                <maxitems>1</maxitems>
+				                <foreign_table>sys_file_reference</foreign_table>
+				                <foreign_table_field>tablenames</foreign_table_field>
+				                <foreign_label>uid_local</foreign_label>
+				                <foreign_sortby>sorting_foreign</foreign_sortby>
+				                <foreign_selector>uid_local</foreign_selector>
+				                <foreign_selector_fieldTcaOverride type="array">
+				                    <config>
+				                        <appearance>
+				                            <elementBrowserType>file</elementBrowserType>
+				                            <elementBrowserAllowed>jpg,png,svg,jpeg,gif</elementBrowserAllowed>
+				                        </appearance>
+				                    </config>
+				                </foreign_selector_fieldTcaOverride>
+				                <foreign_types type="array">
+									<numIndex index="2">
+										<showitem>--palette--;LLL:EXT:lang/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;imageoverlayPalette,--palette--;;filePalette</showitem>
+									</numIndex>
+								</foreign_types>
+				                <foreign_match_fields type="array">
+				                    <fieldname>image</fieldname>
+				                </foreign_match_fields>
+				                <appearance type="array">
+				                    <newRecordLinkAddTitle>1</newRecordLinkAddTitle>
+				                    <headerThumbnail>
+				                        <field>uid_local</field>
+				                        <height>64</height>
+				                        <width>64</width>
+				                    </headerThumbnail>
+				                    <enabledControls>
+										<info>1</info>
+										<new>0</new>
+										<dragdrop>0</dragdrop>
+										<sort>1</sort>
+										<hide>0</hide>
+										<delete>1</delete>
+										<localize>1</localize>
+									</enabledControls>
+				                </appearance>
+				            </config>
+				        </TCEforms>
+		            </settings.usrimage>
+				</el>
+			</ROOT>
+		</sDEF>
+	</sheets>
+</T3DataStructure>

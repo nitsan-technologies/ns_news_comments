@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2016-11-08T11:15:02Z" product-name="ns_news_comments">
+		<header/>
+		<body>
+			<trans-unit id="newsuid.description">
+				<source>newsuid</source>
+			</trans-unit>
+			<trans-unit id="username.description">
+				<source>username</source>
+			</trans-unit>
+			<trans-unit id="usermail.description">
+				<source>usermail</source>
+			</trans-unit>
+			<trans-unit id="comment.description">
+				<source>comment</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

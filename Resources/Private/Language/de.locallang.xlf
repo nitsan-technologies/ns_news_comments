@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" target-language="de" datatype="plaintext" original="messages" date="2016-11-08T11:15:02Z" product-name="ns_news_comments">
+		<header/>
+		<body>
+			<trans-unit id="pi1_title" xml:space="preserve">
+				<target>News Kommentar</target>
+			</trans-unit>
+			<trans-unit id="backend.dateformate" xml:space="preserve">
+				<target>Datumsformat</target>
+			</trans-unit>
+			<trans-unit id="backend.timeformate" xml:space="preserve">
+				<target>Zeitformat</target>
+			</trans-unit>
+			<trans-unit id="backend.Image" xml:space="preserve">
+				<target>Kommentar Benutzerbild</target>
+			</trans-unit>
+			<trans-unit id="backend.captcha" xml:space="preserve">
+				<target>Deaktivieren Sie das Captcha</target>
+			</trans-unit>
+			<trans-unit id="tx_nsnewscomments_domain_model_comment">
+				<target>Kommentar</target>
+			</trans-unit>
+			<trans-unit id="tx_nsnewscomments_domain_model_comment.newsuid">
+				<target>Newsuid</target>
+			</trans-unit>
+			<trans-unit id="tx_nsnewscomments_domain_model_comment.username">
+				<target>Name</target>
+			</trans-unit>
+			<trans-unit id="tx_nsnewscomments_domain_model_comment.usermail">
+				<target>Email</target>
+			</trans-unit>
+			<trans-unit id="tx_nsnewscomments_domain_model_comment.comment">
+				<target>Kommentar</target>
+			</trans-unit>
+			<trans-unit id="tx_nsnewscomments_domain_model_comment.lblcomments">
+				<target>Bemerkungen</target>
+			</trans-unit>
+			<trans-unit id="tx_nsnewscomments_domain_model_comment.name">
+				<target>Name</target>
+			</trans-unit>
+			<trans-unit id="tx_nsnewscomments_domain_model_comment.email">
+				<target>Email</target>
+			</trans-unit>
+			<trans-unit id="email">
+				<target>Bitte geben Sie Ihre gültige E-Mail Adresse ein</target>
+			</trans-unit>
+			<trans-unit id="email_required">
+				<target>Gültige E-Mail ist erforderlich!</target>
+			</trans-unit>
+			<trans-unit id="name">
+				<target>Bitte geben Sie Ihren Namen ein</target>
+			</trans-unit>
+			<trans-unit id="name_required">
+				<target>Name ist erforderlich!</target>
+			</trans-unit>
+			<trans-unit id="comment">
+				<target>Bitte geben Sie Ihren Kommentar ein</target>
+			</trans-unit>
+			<trans-unit id="comment_required">
+				<target>Kommentar ist erforderlich!</target>
+			</trans-unit>
+			<trans-unit id="captcha">
+				<target>Geben Sie den obigen Code hier ein</target>
+			</trans-unit>
+			<trans-unit id="captcha_required">
+				<target>Captcha ist erforderlich!</target>
+			</trans-unit>
+			<trans-unit id="tx_nsnewscomments_domain_model_comment.captcha">
+				<target>Geben Sie den obigen Code hier ein</target>
+			</trans-unit>
+			<trans-unit id="tx_nsnewscomments_domain_model_comment.replylabel">
+				<target>Antworten</target>
+			</trans-unit>
+			<trans-unit id="tx_nsnewscomments_domain_model_comment.nocommentsfound">
+				<target>Sei der erste der kommentiert</target>
+			</trans-unit>
+			<trans-unit id="at">
+				<target>Beim</target>
+			</trans-unit>
+			<trans-unit id="tx_nsnewscomments_domain_model_comment.mailmessage">
+				<target>Neuer Kommentar wird zu News hinzugefügt</target>
+			</trans-unit>
+			<trans-unit id="form.submitButton">
+				<target>Kommentar hinzufügen</target>
+			</trans-unit>
+			<trans-unit id="tx_nsnewscomments_domain_model_comment.newsTitle">
+				<target>News</target>
+			</trans-unit>
+			<trans-unit id="mandatory">
+				<target>Diese Felder sind erforderlich.</target>
+			</trans-unit>
+			<trans-unit id="replytext">
+				<target>Antworte auf Kommentar</target>
+			</trans-unit>
+			<trans-unit id="form.emailError">
+				<target>Gib eine gültige E-Mail Adresse ein</target>
+			</trans-unit>
+			<trans-unit id="form.nameError">
+				<target>Geben Sie einen gültigen Namen ein</target>
+			</trans-unit>
+			<trans-unit id="form.captchaValidationError">
+				<target>Code stimmt nicht überein!</target>
+			</trans-unit>
+			<trans-unit id="tx_nsnewscomments_domain_model_comment.validationMessage">
+				<target>Code stimmt nicht überein</target>
+			</trans-unit>
+			<trans-unit id="form.captchaRefresh">
+				<target>Kann das Bild nicht gelesen werden? </target>
+			</trans-unit>
+			<trans-unit id="form.captchaRefreshButton">
+				<target>Klicken Sie hier, um zu aktualisieren</target>
+			</trans-unit>
+			<trans-unit id="form.approveMessage">
+				<target>Danke für deinen Kommentar. Dein Kommentar wird nach der Überprüfung sichtbar.</target>
+			</trans-unit>
+			<trans-unit id="form.thankyouMessage">
+				<target>Danke für deinen Kommentar. Ihr Kommentar wurde erfolgreich hinzugefügt.</target>
+			</trans-unit>
+			<trans-unit id="tx_nsnewscomments_domain_model_comment.errorMessage">
+				<target>Kein Nachrichteneintrag gefunden</target>
+			</trans-unit>
+			<trans-unit id="CommentsandResponses">
+				<target>Kommentare und Antworten</target>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

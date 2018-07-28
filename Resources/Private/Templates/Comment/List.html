@@ -1,0 +1,46 @@
+
+<f:layout name="Default" />
+
+<f:section name="main">
+    <f:flashMessages />
+    <f:if condition="{newsID}">
+        <div class="ns-news-comment-wrapper">
+            <div class="ns-headline">
+                <h2><f:translate key="CommentsandResponses"/></h2>
+            </div>
+            <div class="active-comment-form" id="form-comment-view">
+                <f:form name="newComment" action="create" object="{newComment}" arguments="{newComment : newComment, Storagepid: '{pid}'}" id="comment-form" class="comment-form" addQueryString="1" pageType='99'>
+                    <a href="javascript:;" class="comment-form-close-btn" id="comment-form-close-btn">&times;</a>
+                    <div class="controls">
+                        <f:render partial="Comment/FormFields" arguments="{_all}" />
+                    </div>
+                </f:form>
+            </div>
+            <div class="comments-container">
+                <div class="messages thanksmsg" style="display: none;">
+                    <div class="ns-alert ns-alert-success"><f:translate key="form.thankyouMessage"/></div>
+                </div>
+                <div class="messages approve" style="display: none;">
+                    <div class="ns-alert ns-alert-success"><f:translate key="form.approveMessage"/></div>
+                </div>
+                <f:if condition="{comments}">
+                    <f:then>
+                        <div class="ns-headline">
+                            <h2><f:translate key="tx_nsnewscomments_domain_model_comment.lblcomments" /> : </h2>
+                        </div>
+                    </f:then>
+                    <f:else>
+                        <h5><strong><f:translate key='tx_nsnewscomments_domain_model_comment.nocommentsfound'/></h5></strong>
+                    </f:else>
+                </f:if>
+                <ul class="comments-list" id="comments-list">
+                    <f:for each="{comments}" as="comment">
+                        <li id="comments-{comment.uid}">
+                            <f:render partial="Comment/Comment" arguments="{_all}" />
+                        </li>
+                    </f:for>
+                </ul>
+            </div>	
+        </div>
+    </f:if>
+</f:section>

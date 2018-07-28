@@ -1,0 +1,55 @@
+
+plugin.tx_nsnewscomments {
+	view {
+		templateRootPaths.0 = {$plugin.tx_nsnewscomments.view.templateRootPath}
+		partialRootPaths.0 = {$plugin.tx_nsnewscomments.view.partialRootPath}
+		layoutRootPaths.0 = {$plugin.tx_nsnewscomments.view.layoutRootPath}
+	}
+	settings {
+		approveComment = {$plugin.tx_nsnewscomments.settings.approveComment}
+
+		notification {
+			
+			siteadmin {
+				sendMailToAdmin = {$plugin.tx_nsnewscomments.settings.notification.siteadmin.sendMailToAdmin}
+
+				adminEmail = {$plugin.tx_nsnewscomments.settings.notification.siteadmin.adminEmail}
+
+				adminName = {$plugin.tx_nsnewscomments.settings.notification.siteadmin.adminName}
+
+				adminMailSubject = {$plugin.tx_nsnewscomments.settings.notification.siteadmin.adminMailSubject}
+			}
+		}
+		
+	}
+}
+
+page {
+	includeCSS {
+		nsnewscomment_StyleCss = {$plugin.tx_nsnewscomments.settings.StyleCss}
+		nsnewscomment_StyleCss.if.isTrue = {$plugin.tx_nsnewscomments.settings.StyleCss}
+		nsnewscomment_FontAwesomeCss = {$plugin.tx_nsnewscomments.settings.FontAwesomeCss}
+		nsnewscomment_FontAwesomeCss.if.isTrue = {$plugin.tx_nsnewscomments.settings.FontAwesomeCss}
+	}
+	includeJS{
+		nsnewscomment_Minjs = {$plugin.tx_nsnewscomments.settings.Minjs}
+		nsnewscomment_Minjs.if.isTrue = {$plugin.tx_nsnewscomments.settings.Minjs}
+	}
+	includeJSFooter{
+		nsnewscomment_CustomJS = {$plugin.tx_nsnewscomments.settings.CustomJS}
+		nsnewscomment_CustomJS.if.isTrue = {$plugin.tx_nsnewscomments.settings.CustomJS}
+	}
+}
+
+ajaxCall = PAGE
+ajaxCall{
+	typeNum = 99
+	config{
+		disableAllHeaderCode = 1
+		xhtml_cleaning = 0
+		debug = 0
+		no_cache = 1
+		admPanel = 0
+	}
+	10 < tt_content.list.20.nsnewscomments_newscomment
+}

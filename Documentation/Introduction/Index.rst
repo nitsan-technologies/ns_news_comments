@@ -31,7 +31,7 @@ This extension allows user to post comment on particular news, reply to the comm
 - Manage Comments from TYPO3 Backend
 - Comment Approval by site Admin.
 - Send notification to site admin by posting a new comment.
-- Compatibiltiy from TYPO3 6.x to 8.x
+- Compatibiltiy from TYPO3 6.x to 9.x
 
 .. danger::
    *A quote about EXT:ns_news_comments:* News comment extension going to be placed on detail page of the News. So, It is highly recommended to integrate News System Extension first. And configure this extension at News Detail page only.

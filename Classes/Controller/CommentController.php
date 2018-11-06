@@ -1,6 +1,7 @@
 <?php
 namespace Nitsan\NsNewsComments\Controller;
 
+use TYPO3\CMS\Extbase\Utility\DebuggerUtility as debug;
 /***************************************************************
  *
  *  Copyright notice
@@ -52,6 +53,14 @@ class CommentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
      * @inject
      */
     protected $persistenceManager;
+
+    /**
+    * User Repository
+    *
+    * @var \TYPO3\CMS\Extbase\Domain\Repository\FrontendUserRepository
+    * @inject
+    */
+    protected $userRepository;
 
     /*
      * Inject a news repository to enable DI
@@ -117,6 +126,32 @@ class CommentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
             $this->view->assign('pageid', $this->pageUid);
             $this->view->assign('Image', $Image);
             $this->view->assign('pid', $pid);
+
+            // User Login or not
+            $userIDTest = $this->userRepository->findByUid($GLOBALS['TSFE']->fe_user->user['uid']); 
+            if($userIDTest){
+                if($userIDTest->getName()){
+                    $name = $userIDTest->getName();
+                } else {
+                    $name = $userIDTest->getUsername();
+                }
+
+                if($userIDTest->getEmail()){
+                    $email = $userIDTest->getEmail();
+                }
+
+                if($userIDTest->getImage()){
+                    if (!is_string($userIDTest->getImage())) {
+                        $userimages= $userIDTest->getImage();
+                    }
+                }
+                
+                $this->view->assign('feuserlogin', 1);
+                $this->view->assign('name', $name);
+                $this->view->assign('email', $email);
+                $this->view->assign('feuserImages', $userimages);
+            }
+
         } else {
             $error = LocalizationUtility::translate('tx_nsnewscomments_domain_model_comment.errorMessage', 'NsNewsComments');
             $this->addFlashMessage($error, '', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
@@ -131,6 +166,29 @@ class CommentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
      * @return void
      */
     public function createAction(\Nitsan\NsNewsComments\Domain\Model\Comment $newComment) {
+        $userIDTest = $this->userRepository->findByUid($GLOBALS['TSFE']->fe_user->user['uid']); 
+        if($userIDTest){
+            if($userIDTest->getName()){
+                $name = $userIDTest->getName();
+            } else {
+                $name = $userIDTest->getUsername();
+            }
+            $newComment->setUsername($name);
+
+            if($userIDTest->getEmail()){
+                $email = $userIDTest->getEmail();
+                $newComment->setUsermail($email);
+            }
+
+            if($userIDTest->getImage()){
+                if (is_string($userIDTest->getImage())) {
+                    $userimages = explode(',', $userIDTest->getImage());
+                    $newComment->setUserimage('uploads/pics/'.$userimages[0]);
+                }
+            }
+            $newComment->setFeuserid($userIDTest->getUid());
+        }
+
         $request = $this->request->getArguments();
         $adminEmail = $this->settings['notification']['siteadmin']['adminEmail'];
         $adminName = $this->settings['notification']['siteadmin']['adminName'];

@@ -27,7 +27,7 @@ return array(
 		'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, newsuid, username, usermail,paramlink, description,childcomment',
 	),
 	'types' => array(
-		'1' => array('showitem' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, newsuid,username, usermail,description, childcomment, --div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.access, starttime, endtime'),
+		'1' => array('showitem' => 'feuserid, username, usermail, userimage, description, childcomment, --div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.access, sys_language_uid, l10n_parent, l10n_diffsource, hidden, starttime, endtime'),
 	),
 	'columns' => array(
 	
@@ -132,6 +132,19 @@ return array(
 				'readOnly' => 1,				
 			),
 		),
+		
+		'feuserid' => array(
+			'exclude' => 1,
+			'label' => 'LLL:EXT:ns_news_comments/Resources/Private/Language/locallang_db.xlf:tx_nsnewscomments_domain_model_comment.feuserid',
+			'config' => array(
+				'type' => 'input',
+				'size' => 30,
+				'readOnly' =>1,
+				'eval' => 'trim',
+				'readOnly' => 1
+			),
+		),
+
 		'username' => array(
 			'exclude' => 1,
 			'label' => 'LLL:EXT:ns_news_comments/Resources/Private/Language/locallang_db.xlf:tx_nsnewscomments_domain_model_comment.username',
@@ -163,6 +176,15 @@ return array(
 			    ),
 			    'readOnly' => 1,
 		      	'softref' => 'typolink'
+			),
+		),
+		'userimage' => array(
+			'exclude' => 1,
+			'label' => 'LLL:EXT:ns_news_comments/Resources/Private/Language/locallang_db.xlf:tx_nsnewscomments_domain_model_comment.image',
+			'config' => array(
+				'type' => 'input',
+				'size' => 30,
+				'eval' => 'trim'
 			),
 		),
 		'paramlink' => array(
@@ -231,7 +253,6 @@ return array(
 					)
 				),
 			),
-
 		),
 	),
 );

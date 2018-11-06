@@ -1,5 +1,7 @@
-﻿.. include:: Includes.txt
-
+﻿.. ==================================================
+.. FOR YOUR INFORMATION
+.. --------------------------------------------------
+.. -*- coding: utf-8 -*- with BOM.
 
 .. _start:
 
@@ -16,9 +18,9 @@ Documentation for ext:ns_news_comments
     Do you want to smoothly integrate comment feature in your favourite News extension? In this extension, there are features like post comment, reply to comment, multi-level comment thread, moderation etc., Know more from extension manual.
 
 :Keywords:
-    News, news comments, comments, blog, blog comments, comment
+    TYPO3, Extensions, News, news comments, comments, blog, blog comments, comment
 
-:Author:       Sanjay Chauhan <sanjay@nitsan.in>
+:Author:       Sanjay Chauhan [NITSAN Technologies] <sanjay@nitsan.in>
 
 :Company:
    [NITSAN Technologies] http://www.nitsan.in/ \| http://www.itug.in/
@@ -40,18 +42,13 @@ Documentation for ext:ns_news_comments
 :Rendered:     |today|
 
 
-
 .. |cc-license| image:: license.png
                 :alt: alt="Creative Commons License"
                 :target: http://creativecommons.org/licenses/by/4.0/
 
 
 .. toctree::
-   :hidden:
+    :hidden:
 
-   Sitemap/Index
-   Introduction/Index
-   Installation/Index
-   Configuration/Index
-   Support
-   Targets
+    Documentation
+    Support

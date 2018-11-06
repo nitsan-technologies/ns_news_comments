@@ -18,6 +18,15 @@
 			<trans-unit id="backend.captcha" xml:space="preserve">
 				<source>Disable Captcha</source>
 			</trans-unit>
+			<trans-unit id="backend.userSettings.1" xml:space="preserve">
+				<source>FE-user as well as the Anonymous user can comment on the news</source>
+			</trans-unit>
+			<trans-unit id="backend.userSettings.2" xml:space="preserve">
+				<source>Only FE-users can comment on news</source>
+			</trans-unit>
+			<trans-unit id="backend.feUserloginpid" xml:space="preserve">
+				<source>FE-user login page Id</source>
+			</trans-unit>
 			<trans-unit id="tx_nsnewscomments_domain_model_comment">
 				<source>Comment</source>
 			</trans-unit>
@@ -122,6 +131,15 @@
 			</trans-unit>
 			<trans-unit id="CommentsandResponses">
 				<source>Comments and Responses</source>
+			</trans-unit>
+			<trans-unit id="newsfelogin">
+				<source>Click here</source>
+			</trans-unit>
+			<trans-unit id="newsfeloginmsg">
+				<source>to login and add your comments.</source>
+			</trans-unit>
+			<trans-unit id="commentas">
+				<source>Comment will be added as</source>
 			</trans-unit>
 		</body>
 	</file>

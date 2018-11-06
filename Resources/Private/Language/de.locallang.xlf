@@ -18,6 +18,15 @@
 			<trans-unit id="backend.captcha" xml:space="preserve">
 				<target>Deaktivieren Sie das Captcha</target>
 			</trans-unit>
+			<trans-unit id="backend.userSettings.1" xml:space="preserve">
+				<target>FE-Benutzer sowie der anonyme Benutzer können die Nachrichten kommentieren</target>
+			</trans-unit>
+			<trans-unit id="backend.userSettings.2" xml:space="preserve">
+				<target>Nur FE-Benutzer können Neuigkeiten kommentieren</target>
+			</trans-unit>
+			<trans-unit id="backend.feUserloginpid" xml:space="preserve">
+				<target>FE-Benutzer Anmeldeseite ID</target>
+			</trans-unit>
 			<trans-unit id="tx_nsnewscomments_domain_model_comment">
 				<target>Kommentar</target>
 			</trans-unit>
@@ -122,6 +131,15 @@
 			</trans-unit>
 			<trans-unit id="CommentsandResponses">
 				<target>Kommentare und Antworten</target>
+			</trans-unit>
+			<trans-unit id="newsfelogin">
+				<target>Klick hier</target>
+			</trans-unit>
+			<trans-unit id="newsfeloginmsg">
+				<target>anmelden und Kommentare hinzufügen.</target>
+			</trans-unit>
+			<trans-unit id="commentas">
+				<target>Kommentar wird als hinzugefügt</target>
 			</trans-unit>
 		</body>
 	</file>

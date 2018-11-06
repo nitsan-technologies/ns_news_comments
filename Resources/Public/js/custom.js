@@ -168,15 +168,7 @@ function validateField() {
         $('.tx_nsnewscomments #name_error').show();
         var flag = 0;
     } else {
-        var length = $.trim($(".tx_nsnewscomments #comment").val()).length;
-        if (!validateName($('.tx_nsnewscomments #name').val())) {
-            $(".tx_nsnewscomments #name_error_msg").show();
-            $(".tx_nsnewscomments #name_error").hide();
-            $(".tx_nsnewscomments #name").parent().addClass('has-error');
-            var flag = 0;
-        } else {
-            $(".tx_nsnewscomments #name").parent().removeClass('has-error'); // remove it
-        }
+        $(".tx_nsnewscomments #name").parent().removeClass('has-error'); // remove it
     }
 
     if (!$('.tx_nsnewscomments #email').val()) {

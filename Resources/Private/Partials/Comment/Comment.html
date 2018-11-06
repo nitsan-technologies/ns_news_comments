@@ -4,12 +4,12 @@
         <div class="ns-alert ns-alert-success"><f:translate key="form.thankyouMessage"/></div>
     </div>
     <div class="comment-avatar">
-        <f:if condition="{Image}">
+        <f:if condition="{comment.userimage}">
             <f:then>
-                <f:image src="{Image.uid}"  treatIdAsReference="TRUE" alt="{Image.title}" height="" width="" />
+                <img src="{comment.userimage}" alt="User Image" />
             </f:then>
             <f:else>
-                <f:image src="EXT:ns_news_comments/Resources/Public/Icons/user-icon.png" alt="user" />
+                <f:render section="DefaultImage" arguments="{_all}"/>
             </f:else>
         </f:if>
     </div>
@@ -59,3 +59,14 @@
         </ul>
     </f:for>
 </f:if>
+
+<f:section name="DefaultImage">
+    <f:if condition="{Image}">
+        <f:then>
+            <f:image src="{Image.uid}"  treatIdAsReference="TRUE" alt="{Image.title}" height="100" width="100c" />
+        </f:then>
+        <f:else>
+            <f:image src="EXT:ns_news_comments/Resources/Public/Icons/user-icon.png" alt="user" height="100" width="100c"/>
+        </f:else>
+    </f:if>
+</f:section>

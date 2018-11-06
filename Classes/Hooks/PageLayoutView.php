@@ -46,15 +46,24 @@ class PageLayoutView implements \TYPO3\CMS\Backend\View\PageLayoutViewDrawItemHo
                                     <td style='padding-left: 10px;'><i class='fa fa-check'></i></td>
                                 </tr>";
             } 
-
-            if($ffXml['data']['sDEF']['lDEF']['settings.usrimage']['vDEF']){
+            if($ffXml['data']['userSettings']['lDEF']['settings.userSettings']['vDEF']=='anonymoususer'){
                 $itemContent .= "<tr>
-                                    <th>".LocalizationUtility::translate('backend.Image','ns_news_comments')."</th>
+                                    <th>".LocalizationUtility::translate('backend.userSettings.1','ns_news_comments')."</th>
                                     <td style='padding-left: 10px;'><i class='fa fa-check'></i></td>
                                 </tr>";
-            } 
-
-
+            }
+            if($ffXml['data']['userSettings']['lDEF']['settings.userSettings']['vDEF']=='feuserOnly'){
+                $itemContent .= "<tr>
+                                    <th>".LocalizationUtility::translate('backend.userSettings.2','ns_news_comments')."</th>
+                                    <td style='padding-left: 10px;'><i class='fa fa-check'></i></td>
+                                </tr>";
+                if($ffXml['data']['userSettings']['lDEF']['settings.feUserloginpid']['vDEF']){
+                    $itemContent .= "<tr>
+                                        <th>".LocalizationUtility::translate('backend.feUserloginpid','ns_news_comments')."</th>
+                                        <td style='padding-left: 10px;'>".$ffXml['data']['userSettings']['lDEF']['settings.feUserloginpid']['vDEF']."</td>
+                                    </tr>";
+                }
+            }
             $itemContent .= "</tbody></table>";
         }
     }

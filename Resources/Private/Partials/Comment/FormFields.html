@@ -1,25 +1,45 @@
-
 <f:comment>
     Care about the Id and Class attibutes value 
     It is used for form validation
 </f:comment>
 
+
+<f:if condition="{name}">
+    <p><f:translate key="commentas" /> <strong>{name}</strong>.</p>
+</f:if>
+
 <div class="ns-form-group-main">
     <div class="ns-form-group">
         <label for="name"><f:translate key="tx_nsnewscomments_domain_model_comment.username" /> *</label>
-        <f:form.textfield property="username" id="name" placeholder="{f:translate(key:'name')}" class="validatethis"/>
+        <f:if condition="{name}">
+            <f:then>
+                <f:form.textfield property="username" id="name" placeholder="{f:translate(key:'name')}" class="validatethis" value="{name}" disabled="disabled"/>
+            </f:then>
+            <f:else>
+                <f:form.textfield property="username" id="name" placeholder="{f:translate(key:'name')}" class="validatethis"/>
+            </f:else>
+        </f:if>
         <div class="error-msg" id="name_error"><p><f:translate key="name_required" /></p></div>
         <div class="error-msg" id="name_error_msg"><p><f:translate key="form.nameError" /></p></div>
     </div>
 </div>
-<div class="ns-form-group-main">
+
+ <div class="ns-form-group-main">
     <div class="ns-form-group">
         <label for="email"><f:translate key="tx_nsnewscomments_domain_model_comment.usermail" /> *</label>
-        <f:form.textfield property="usermail" type="text" id="email" placeholder="{f:translate(key:'email')}" class="validatethis"/>
+        <f:if condition="{email}">
+            <f:then>
+                <f:form.textfield property="usermail" type="text" id="email" placeholder="{f:translate(key:'email')}" class="validatethis" value="{email}" disabled="disabled"/>
+            </f:then>
+            <f:else>
+                <f:form.textfield property="usermail" type="text" id="email" placeholder="{f:translate(key:'email')}" class="validatethis"/>
+            </f:else>
+        </f:if>
         <div class="error-msg" id="email_error"><p><f:translate key="email_required" /></p></div>
         <div class="error-msg" id="email_error_msg"><p><f:translate key="form.emailError" /></p></div>
     </div> 
-</div> 
+</div>
+
 <div class="ns-form-group-main">
     <div class="ns-form-group">
         <label for="comment"><f:translate key="tx_nsnewscomments_domain_model_comment.comment" /> *</label>
@@ -27,6 +47,7 @@
         <div class="error-msg" id="comment_error"><p><f:translate key="comment_required" /></p></div>
     </div>
 </div>
+
 <f:if condition="{settings.captcha}==0">
     <div class="ns-form-group-main">
         <div class="ns-form-group">
@@ -46,6 +67,7 @@
     <f:form.hidden name="captchapath" value="{captcha_path}" class="captcha_path"/>
     <f:form.hidden name="verification" value="{verification}" class="verification"/>
 </f:if>
+
 <div class="ns-form-group-main">
     <div class="ns-form-group">
         <f:form.submit class="ns-btn ns-btn-send" id="submit" value="{f:translate(key:'form.submitButton')}" />
@@ -56,6 +78,14 @@
         <p class="text-muted"><strong>*</strong> <f:translate key="mandatory" /></p>
     </div>
 </div>
+
+<f:if condition="feuserImages">
+    <f:for each="{feuserImages}" as="feuserimage" iteration="itr">
+        <f:if condition="{itr.cycle}==1">
+            <f:form.hidden property="userimage" value="{f:uri.image(src:feuserimage.uid, treatIdAsReference:1)}"/>            
+        </f:if>
+    </f:for>
+</f:if>
 
 <f:form.hidden property="newsuid" value="{newsID}"/>
 <f:form.hidden name="parentId" id="parentId" value=""/>

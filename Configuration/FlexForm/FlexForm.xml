@@ -155,5 +155,59 @@
 				</el>
 			</ROOT>
 		</sDEF>
+		<userSettings>
+			<ROOT>
+				<TCEforms>
+					<sheetTitle>LLL:EXT:ns_news_comments/Resources/Private/Language/locallang_db.xlf:flexform.setting_feuser</sheetTitle>
+				</TCEforms>
+				<type>array</type>
+				<el>
+					<settings.userSettings>
+						<TCEforms>
+							<label>LLL:EXT:ns_news_comments/Resources/Private/Language/locallang_db.xlf:flexform.userSettings</label>
+							 <onChange>reload</onChange>
+							<config>
+		                        <type>radio</type>
+								<items>
+									<numIndex index="0">
+									  <numIndex index="0">LLL:EXT:ns_news_comments/Resources/Private/Language/locallang_db.xlf:flexform.fe_user</numIndex>
+									  <numIndex index="1">anonymoususer</numIndex>
+									</numIndex>
+									<numIndex index="1">
+									  <numIndex index="0">LLL:EXT:ns_news_comments/Resources/Private/Language/locallang_db.xlf:flexform.only_fe_user</numIndex>
+									  <numIndex index="1">feuserOnly</numIndex>
+									</numIndex>
+								</items>
+								<default>anonymoususer</default>
+	                    	</config>
+						</TCEforms>
+					</settings.userSettings>
+					
+					<settings.feUserloginpid>
+						<TCEforms>
+							<label>LLL:EXT:ns_news_comments/Resources/Private/Language/locallang_db.xlf:flexform.feUserloginpid</label>
+							<displayCond>FIELD:settings.userSettings:=:feuserOnly</displayCond>
+		                    <config>
+								<type>group</type>
+								<internal_type>db</internal_type>
+								<allowed>pages</allowed>
+								<size>1</size>
+								<maxitems>1</maxitems>
+								<minitems>1</minitems>
+								<show_thumbs>1</show_thumbs>
+								<wizards>
+									<suggest>
+										<type>suggest</type>
+										<default>
+											<searchWholePhrase>1</searchWholePhrase>
+										</default>
+									</suggest>
+								</wizards>
+							</config>
+		                 </TCEforms>
+					</settings.feUserloginpid>
+				</el>
+			</ROOT>
+		</userSettings>
 	</sheets>
 </T3DataStructure>

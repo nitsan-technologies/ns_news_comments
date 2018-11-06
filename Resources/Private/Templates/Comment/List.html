@@ -8,14 +8,24 @@
             <div class="ns-headline">
                 <h2><f:translate key="CommentsandResponses"/></h2>
             </div>
-            <div class="active-comment-form" id="form-comment-view">
-                <f:form name="newComment" action="create" object="{newComment}" arguments="{newComment : newComment, Storagepid: '{pid}'}" id="comment-form" class="comment-form" addQueryString="1" pageType='99'>
-                    <a href="javascript:;" class="comment-form-close-btn" id="comment-form-close-btn">&times;</a>
-                    <div class="controls">
-                        <f:render partial="Comment/FormFields" arguments="{_all}" />
-                    </div>
-                </f:form>
-            </div>
+            <f:if condition="{settings.userSettings}=='feuserOnly'">
+                <f:then>
+                    <f:if condition="{feuserlogin}">
+                        <f:then>
+                            <f:render section="CommentForm" arguments="{_all}"/>
+                        </f:then>
+                        <f:else>
+                        	<f:if condition="{settings.feUserloginpid}">
+                        		<f:link.page pageUid="{settings.feUserloginpid}" class="ns-btn-login ns-btn"><f:translate key="newsfelogin" />
+                        	</f:link.page> <f:translate key="newsfeloginmsg" />   
+                        	</f:if>
+                        </f:else>                       
+                    </f:if>                    
+                </f:then>
+                <f:else>
+                    <f:render section="CommentForm" arguments="{_all}"/>
+                </f:else>
+            </f:if>    
             <div class="comments-container">
                 <div class="messages thanksmsg" style="display: none;">
                     <div class="ns-alert ns-alert-success"><f:translate key="form.thankyouMessage"/></div>
@@ -44,3 +54,16 @@
         </div>
     </f:if>
 </f:section>
+
+<!-- Comment Form -->
+<f:section name="CommentForm">
+    <div class="active-comment-form" id="form-comment-view">
+        <f:form name="newComment" action="create" object="{newComment}" arguments="{newComment : newComment, Storagepid: '{pid}', feUser: '{settings.feUser}'}" id="comment-form" class="comment-form" addQueryString="1" pageType='99'>
+            <a href="javascript:;" class="comment-form-close-btn" id="comment-form-close-btn">&times;</a>
+            <div class="controls">
+                <f:render partial="Comment/FormFields" arguments="{_all}" />
+            </div>
+        </f:form>
+    </div>
+</f:section>
+

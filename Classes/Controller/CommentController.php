@@ -1,7 +1,6 @@
 <?php
 namespace Nitsan\NsNewsComments\Controller;
 
-use TYPO3\CMS\Extbase\Utility\DebuggerUtility as debug;
 /***************************************************************
  *
  *  Copyright notice

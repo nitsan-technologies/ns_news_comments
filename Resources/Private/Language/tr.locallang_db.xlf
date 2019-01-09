@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" target-language="tr" datatype="plaintext" original="messages" date="2016-11-08T11:15:02Z" product-name="ns_news_comments">
+		<header/>
+		<body>
+			<trans-unit id="tx_nsnewscomments_domain_model_comment">
+				<target>Yorum</target>
+			</trans-unit>
+			<trans-unit id="tx_nsnewscomments_domain_model_comment.newsuid">
+				<target>Haber UID</target>
+			</trans-unit>
+			<trans-unit id="tx_nsnewscomments_domain_model_comment.username">
+				<target>İsim</target>
+			</trans-unit>
+			<trans-unit id="tx_nsnewscomments_domain_model_comment.usermail">
+				<target>E-Posta adresi</target>
+			</trans-unit>
+			<trans-unit id="tx_nsnewscomments_domain_model_comment.comment">
+				<target>Yorum</target>
+			</trans-unit>
+			<trans-unit id="tx_nsnewscomments_domain_model_comment.childcomment">
+				<target>Yanıt Yorumu</target>
+			</trans-unit>
+			<trans-unit id="tx_nsnewscomments_domain_model_comment.paramlink">
+				<target>Yorumlara Parametre Bağlantısı</target>
+			</trans-unit>
+			<trans-unit id="tx_nsnewscomments_domain_model_comment.comments">
+				<target>Yorumlar</target>
+			</trans-unit>
+			<trans-unit id="tx_nsnewscomments_domain_model_comment.image">
+				<target>Resim</target>
+			</trans-unit>
+			<trans-unit id="tx_nsnewscomments_domain_model_comment.feuserid">
+				<target>Web Sitesi Kullanıcı ID'si</target>
+			</trans-unit>
+			<trans-unit id="tx_newscomment_domain_model_rating.crdate">
+				<target>Oluşturulma Tarihi</target>
+			</trans-unit>			
+			<trans-unit id="TemplatePath">
+				<target>Şablon Yolu</target>
+			</trans-unit>
+			<trans-unit id="MailConfiguration">
+				<target>Mail Yapılandırması</target>
+			</trans-unit>
+			<trans-unit id="CommentConfiguration">
+				<target>Yorum Yapılandırması</target>
+			</trans-unit>
+			<trans-unit id="CssJsIncludation">
+				<target>Css/Js Dahiliyeti</target>
+			</trans-unit>
+			<trans-unit id="news_comment">
+				<target>Haber Yorumu</target>
+			</trans-unit>
+			<trans-unit id="news_comment.description">
+				<target>Belirli haberlerde yorum yayınlayın</target>
+			</trans-unit>
+			<trans-unit id="addbootstrapCss">
+				<target>Bootstarp Css</target>
+			</trans-unit>
+			<trans-unit id="addstyleCss">
+                <target>Varsayılan Stil Css</target>
+            </trans-unit>
+            <trans-unit id="addfontAwesomeCss">
+                <target>Font Awesome Css</target>
+            </trans-unit>
+            <trans-unit id="addCustomJS">
+                <target>Özel JS</target>
+            </trans-unit>
+            <trans-unit id="addjqueryMinJS">
+                <target>Jquery Min JS Ekle</target>
+            </trans-unit>
+            <trans-unit id="addCommentUserImage">
+                <target>Kullanıcı Resmi Ekle</target>
+            </trans-unit>
+			<trans-unit id="senderEmail">
+				<target>Gönderenin e-posta adresini ayarla</target>
+			</trans-unit>
+			<trans-unit id="senderName">
+				<target>Gönderenin adını ayarla</target>
+			</trans-unit>
+			<trans-unit id="newsComment">
+				<target>Haberlere Yeni Yorum eklendi</target>
+			</trans-unit>
+			<trans-unit id="sendMailToNewsAuthor">
+				<target>Haberin yazarına e-posta bildirimi gönder</target>
+			</trans-unit>
+			<trans-unit id="enableCommentByAdmin">
+				<target>Admin Tarafından Yorum Gönder</target>
+			</trans-unit>
+			<trans-unit id="approveComment">
+				<target>Admin tarafından Onay ayarla</target>
+			</trans-unit>
+			<trans-unit id="dateFormat">
+				<target>Tarih saat formatını ayarla</target>
+			</trans-unit>
+			<trans-unit id="admin">
+				<target>Admin E-posta Adresini Ayarla</target>
+			</trans-unit>
+			<trans-unit id="authorMailSubject">
+				<target>Yorum yazarına gönderilecek mailin konusunu ayarlayın</target>
+			</trans-unit>
+			<trans-unit id="flexform.setting">
+				<target>Temel Yapılandırma</target>
+			</trans-unit>
+			<trans-unit id="flexform.setting_feuser">
+				<target>Yorum Kullanıcısı Yapılandırması</target>
+			</trans-unit>
+			<trans-unit id="flexform.additional">
+				<target>E-Posta Yapılandırması</target>
+			</trans-unit>
+			<trans-unit id="flexform.dateFormat">
+				<target>Tarih Formatı</target>
+			</trans-unit>
+			<trans-unit id="flexform.dateFormat.0">
+				<target>F j, Y (Mayıs 26, 2017)</target>
+			</trans-unit>
+			<trans-unit id="flexform.dateFormat.1">
+				<target>Y-a-g (2017-05-26)</target>
+			</trans-unit>
+			<trans-unit id="flexform.dateFormat.2">
+				<target>a/g/Y (05/26/2017)</target>
+			</trans-unit>
+			<trans-unit id="flexform.dateFormat.3">
+				<target>g/a/Y (26/05/2017)</target>
+			</trans-unit>
+			<trans-unit id="flexform.timeFormat.0">
+				<target>g:i a (11:36 am)</target>
+			</trans-unit>
+			<trans-unit id="flexform.timeFormat.1">
+				<target>g:i A (11:36 AM)</target>
+			</trans-unit>
+			<trans-unit id="flexform.timeFormat.2">
+				<target>H:i (11:36)</target>
+			</trans-unit>
+			<trans-unit id="flexform.timeFormat">
+				<target>Saat Formatı</target>
+			</trans-unit>
+			<trans-unit id="flexform.custom">
+				<target>Özel Tarih Formatı</target>
+			</trans-unit>
+			<trans-unit id="flexform.customDateFormat">
+				<target>Özel Tarih Formatı (Ör: g-A-Y // G,a,Y // g/a/Y ...)</target>
+			</trans-unit>
+			<trans-unit id="flexform.customTimeFormat">
+				<target>Özel Tarih Formatı (Ör: h:i , h:i:s a , h:i:s p....)</target>
+			</trans-unit>
+			<trans-unit id="flexform.CommentUserImage">
+				<target>Varsayılan Yorum Kullanıcı Resmi</target>
+			</trans-unit>
+			<trans-unit id="flexform.captcha">
+				<target>Captcha'yı devre dışı bırak</target>
+			</trans-unit>
+			<trans-unit id="flexform.fe_user">
+				<target>Hem kayıtlı kullanıcılar (FE-users) hem de kayıtlı olmayan kullanıcılar yapabilir</target>
+			</trans-unit>
+			<trans-unit id="flexform.only_fe_user">
+				<target>Sadece kayıtlı kullanıcılar (FE-users) yorum yapabilir</target>
+			</trans-unit>
+			<trans-unit id="flexform.feUserloginpid">
+				<target>FE-user oturum açma sayfasının ID'si</target>
+			</trans-unit>
+			<trans-unit id="flexform.userSettings">
+				<target>Yorum kullanıcısının ayarları</target>
+			</trans-unit>
+			<trans-unit id="sendMailToAdmin">
+				<target>E-Posta Etkinleştir: Admin'e e-postayı etkinleştir</target>
+			</trans-unit>
+			<trans-unit id="adminEmail">
+				<target>E-Posta: Admin e-postası ekle</target>
+			</trans-unit>
+			<trans-unit id="adminName">
+				<target>Admin Adı: Admin Adı Ekleyin</target>
+			</trans-unit>
+			<trans-unit id="adminMailSubject">
+				<target>Konu: Admin'e gönderilen mailin konusunu ayarlayın</target>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

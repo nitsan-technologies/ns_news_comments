@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" target-language="tr" datatype="plaintext" original="messages" date="2016-11-08T11:15:02Z" product-name="ns_news_comments">
+		<header/>
+		<body>
+			<trans-unit id="pi1_title" xml:space="preserve">
+				<target>Haber Yorumu</target>
+			</trans-unit>
+			<trans-unit id="backend.dateformate" xml:space="preserve">
+				<target>Tarih Formatı</target>
+			</trans-unit>
+			<trans-unit id="backend.timeformate" xml:space="preserve">
+				<target>Saat Formatı</target>
+			</trans-unit>
+			<trans-unit id="backend.Image" xml:space="preserve">
+				<target>Yorum Kullanıcı Resmi</target>
+			</trans-unit>
+			<trans-unit id="backend.captcha" xml:space="preserve">
+				<target>Captcha'yı Devre Dışı Bırak</target>
+			</trans-unit>
+			<trans-unit id="backend.userSettings.1" xml:space="preserve">
+				<target>Hem kayıtlı kullanıcılar (FE-users) hem de kayıtlı olmayan kullanıcılar yapabilir</target>
+			</trans-unit>
+			<trans-unit id="backend.userSettings.2" xml:space="preserve">
+				<target>Sadece kayıtlı kullanıcılar (FE-users) yorum yapabilir</target>
+			</trans-unit>
+			<trans-unit id="backend.feUserloginpid" xml:space="preserve">
+				<target>FE-user oturum açma sayfasının ID'si</target>
+			</trans-unit>
+			<trans-unit id="tx_nsnewscomments_domain_model_comment">
+				<target>Yorum</target>
+			</trans-unit>
+			<trans-unit id="tx_nsnewscomments_domain_model_comment.newsuid">
+				<target>Newsuid</target>
+			</trans-unit>
+			<trans-unit id="tx_nsnewscomments_domain_model_comment.username">
+				<target>İsim</target>
+			</trans-unit>
+			<trans-unit id="tx_nsnewscomments_domain_model_comment.usermail">
+				<target>E-Posta Adresi</target>
+			</trans-unit>
+			<trans-unit id="tx_nsnewscomments_domain_model_comment.comment">
+				<target>Yorum</target>
+			</trans-unit>
+			<trans-unit id="tx_nsnewscomments_domain_model_comment.lblcomments">
+				<target>Yorumlar</target>
+			</trans-unit>
+			<trans-unit id="tx_nsnewscomments_domain_model_comment.name">
+				<target>İsim</target>
+			</trans-unit>
+			<trans-unit id="tx_nsnewscomments_domain_model_comment.email">
+				<target>E-Posta Adresi</target>
+			</trans-unit>
+			<trans-unit id="email">
+				<target>Lütfen geçerli e-posta adresinizi giriniz</target>
+			</trans-unit>
+			<trans-unit id="email_required">
+				<target>Geçerli e-posta gerekli!</target>
+			</trans-unit>
+			<trans-unit id="name">
+				<target>Lütfen isminizi giriniz</target>
+			</trans-unit>
+			<trans-unit id="name_required">
+				<target>İsim gerekli!</target>
+			</trans-unit>
+			<trans-unit id="comment">
+				<target>Lütfen yorumunuzu giriniz</target>
+			</trans-unit>
+			<trans-unit id="comment_required">
+				<target>Yorum gerekli!</target>
+			</trans-unit>
+			<trans-unit id="captcha">
+				<target>Yukarıdaki kodu buraya girin</target>
+			</trans-unit>
+			<trans-unit id="captcha_required">
+				<target>Captcha gerekli!</target>
+			</trans-unit>
+			<trans-unit id="tx_nsnewscomments_domain_model_comment.captcha">
+				<target>Yukarıdaki kodu buraya girin</target>
+			</trans-unit>
+			<trans-unit id="tx_nsnewscomments_domain_model_comment.replylabel">
+				<target>Yanıtla</target>
+			</trans-unit>
+			<trans-unit id="tx_nsnewscomments_domain_model_comment.nocommentsfound">
+				<target>İlk yorum yapan siz olun</target>
+			</trans-unit>
+			<trans-unit id="at">
+				<target>Saat</target>
+			</trans-unit>
+			<trans-unit id="tx_nsnewscomments_domain_model_comment.mailmessage">
+				<target>Haberlere yeni Yorum eklendi</target>
+			</trans-unit>
+			<trans-unit id="form.submitButton">
+				<target>Yorumu Gönder</target>
+			</trans-unit>
+			<trans-unit id="tx_nsnewscomments_domain_model_comment.newsTitle">
+				<target>Haberler</target>
+			</trans-unit>
+			<trans-unit id="mandatory">
+				<target>Bu alanlar zorunludur.</target>
+			</trans-unit>
+			<trans-unit id="replytext">
+				<target>Yoruma cevap yaz</target>
+			</trans-unit>
+			<trans-unit id="form.emailError">
+				<target>Geçerli e-posta adresi girin</target>
+			</trans-unit>
+			<trans-unit id="form.nameError">
+				<target>Geçerli isim girin</target>
+			</trans-unit>
+			<trans-unit id="form.captchaValidationError">
+				<target>Kod eşleşmiyor!</target>
+			</trans-unit>
+			<trans-unit id="tx_nsnewscomments_domain_model_comment.validationMessage">
+				<target>Kod eşleşmiyor</target>
+			</trans-unit>
+			<trans-unit id="form.captchaRefresh">
+				<target>Resmi okuyamıyor musunuz? </target>
+			</trans-unit>
+			<trans-unit id="form.captchaRefreshButton">
+				<target>Yenilemek için buraya tıklayın</target>
+			</trans-unit>
+			<trans-unit id="form.approveMessage">
+				<target>Yorumunuz için teşekkür ederiz. Onaylandıktan sonra yorumunuz görüntülenecektir.</target>
+			</trans-unit>
+			<trans-unit id="form.thankyouMessage">
+				<target>Yorumunuz için teşekkür ederiz. Yorumunuz Başarıyla Eklendi.</target>
+			</trans-unit>
+			<trans-unit id="tx_nsnewscomments_domain_model_comment.errorMessage">
+				<target>Hiçbir Haber Kaydı Bulunamadı</target>
+			</trans-unit>
+			<trans-unit id="CommentsandResponses">
+				<target>Yorumlar ve Yanıtlar</target>
+			</trans-unit>
+			<trans-unit id="newsfelogin">
+				<target>Buraya tıklayarak</target>
+			</trans-unit>
+			<trans-unit id="newsfeloginmsg">
+				<target>oturum açıp yorum yapabilirsiniz.</target>
+			</trans-unit>
+			<trans-unit id="commentas">
+				<target>Yorum şu şekilde eklenecektir</target>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

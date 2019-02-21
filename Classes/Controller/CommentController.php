@@ -82,7 +82,7 @@ class CommentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
         $this->newsUid = intval($newsUid);
         $this->pageUid = $GLOBALS['TSFE']->id;
         $extbaseFrameworkConfiguration = $this->configurationManager->getConfiguration(\TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface::CONFIGURATION_TYPE_FRAMEWORK);
-        if(empty($configuration['persistence']['storagePid'])) {
+        if(empty($extbaseFrameworkConfiguration['persistence']['storagePid'])) {
             if($_REQUEST['tx_nsnewscomments_newscomment']){
                 $currentPid['persistence']['storagePid'] = $_REQUEST['tx_nsnewscomments_newscomment']['Storagepid'];
             } else {

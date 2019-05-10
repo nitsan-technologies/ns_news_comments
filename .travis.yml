@@ -3,18 +3,8 @@ language: php
 php:
   - 7.2
 
-sudo: false
-
-addons:
-  apt:
-    packages:
-      - parallel
-
-before_install:
-  - phpenv config-rm xdebug.ini
+install:
+  - composer install
 
 script:
-  - >
-    echo;
-    echo "Running php lint";
-    find . -name \*.php ! -path "./.Build/*" | parallel --gnu php -d display_errors=stderr -l {} > /dev/null \;
+  - php vendor/bin/phpcs --standard=psr2 test/ -n

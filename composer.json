@@ -23,7 +23,6 @@
     }
   },
   "replace": {
-      "ns_news_comments": "self.version",
       "nitsan/ns-news-comments": "self.version"
   },
   "extra": {

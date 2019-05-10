@@ -19,11 +19,11 @@ cache:
     - $HOME/.composer/cache
 
 install:
-  - composer require typo3/minimal "$TYPO3_VERSION" $DEPENDENCIES_PREFERENCE
+  - composer require nitsan/ns-news-comments
   - git checkout .
 
 script:
   - >
     echo;
     echo "Running php lint";
-    find . -name \*.php ! -path "./.Build/*" | parallel --gnu php -d display_errors=stderr -l {} > /dev/null \;
+    find . -name \*.php ! -path "./*" | parallel --gnu php -d display_errors=stderr -l {} > /dev/null \;

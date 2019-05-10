@@ -6,7 +6,6 @@ php:
 env:
   matrix:
     - TYPO3_VERSION="^9.5"
-    - TYPO3_VERSION="^9.5" DEPENDENCIES_PREFERENCE="--prefer-lowest"
 
 sudo: false
 

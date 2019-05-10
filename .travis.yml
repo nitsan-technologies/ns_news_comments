@@ -2,24 +2,29 @@ language: php
 
 php:
   - 7.2
-  - 7.3
 
-sudo: true
+env:
+  matrix:
+    - TYPO3_VERSION="^9.5"
+    - TYPO3_VERSION="^9.5" DEPENDENCIES_PREFERENCE="--prefer-lowest"
+
+sudo: false
+
+addons:
+  apt:
+    packages:
+      - parallel
 
 cache:
   directories:
     - $HOME/.composer/cache
 
-before_script:
-  - Build/Scripts/runTests.sh -s composerInstall -p $TRAVIS_PHP_VERSION
+install:
+  - composer require typo3/minimal "$TYPO3_VERSION" $DEPENDENCIES_PREFERENCE
+  - git checkout .
 
 script:
   - >
-    echo "Running composer validate"
-    Build/Scripts/runTests.sh -s composerValidate -p $TRAVIS_PHP_VERSION
-  - >
-    echo "Running unit tests";
-    Build/Scripts/runTests.sh -s unit -p $TRAVIS_PHP_VERSION
-  - >
+    echo;
     echo "Running php lint";
-    Build/Scripts/runTests.sh -s lint -p $TRAVIS_PHP_VERSION
+    find . -name \*.php ! -path "./.Build/*" | parallel --gnu php -d display_errors=stderr -l {} > /dev/null \;

@@ -23,11 +23,12 @@
     }
   },
   "replace": {
-      "nitsan/ns-news-comments": "self.version"
+    "ns_news_comments": "self.version",
+    "nitsan/ns-news-comments": "self.version"
   },
   "extra": {
-      "typo3/cms": {
-          "extension-key": "ns_news_comments"
-      }
+    "typo3/cms": {
+        "extension-key": "ns_news_comments"
+    }
   }
 }

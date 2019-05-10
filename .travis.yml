@@ -5,7 +5,7 @@ php:
 
 env:
   matrix:
-    - TYPO3_VERSION="^9.5"
+    - TYPO3_VERSION=9.5.*
 
 sudo: false
 
@@ -18,12 +18,20 @@ cache:
   directories:
     - $HOME/.composer/cache
 
-install:
-  - composer require nitsan/ns-news-comments
-  - git checkout .
+before_install:
+  - phpenv config-rm xdebug.ini
+  - composer self-update
+  - composer --version
+
+before_script:
+  - composer require typo3/cms=$TYPO3_VERSION
+  - composer require typo3/testing-framework:1.* --dev
+  # Restore composer.json
+  - git checkout composer.json
+  - export TYPO3_PATH_WEB=$PWD/.Build/Web
 
 script:
   - >
     echo;
     echo "Running php lint";
-    find . -name \*.php ! -path "./*" | parallel --gnu php -d display_errors=stderr -l {} > /dev/null \;
+    find . -name \*.php ! -path "./.Build/*" | parallel --gnu php -d display_errors=stderr -l {} > /dev/null \;

@@ -3,10 +3,6 @@ language: php
 php:
   - 7.2
 
-env:
-  matrix:
-    - TYPO3_VERSION=9.5.*
-
 sudo: false
 
 addons:
@@ -14,8 +10,11 @@ addons:
     packages:
       - parallel
 
+before_install:
+  - phpenv config-rm xdebug.ini
+
 script:
   - >
     echo;
     echo "Running php lint";
-    find . -name \*.php ! -path "./*" | parallel --gnu php -d display_errors=stderr -l {} > /dev/null \;
+    find . -name \*.php ! -path "./.Build/*" | parallel --gnu php -d display_errors=stderr -l {} > /dev/null \;

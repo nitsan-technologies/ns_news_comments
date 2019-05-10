@@ -14,24 +14,8 @@ addons:
     packages:
       - parallel
 
-cache:
-  directories:
-    - $HOME/.composer/cache
-
-before_install:
-  - phpenv config-rm xdebug.ini
-  - composer self-update
-  - composer --version
-
-before_script:
-  - composer require typo3/minimal=$TYPO3_VERSION
-  
-  # Restore composer.json
-  - git checkout composer.json
-  - export TYPO3_PATH_WEB=$PWD/.Build/Web
-
 script:
   - >
     echo;
     echo "Running php lint";
-    find . -name \*.php ! -path "./.Build/*" | parallel --gnu php -d display_errors=stderr -l {} > /dev/null \;
+    find . -name \*.php ! -path "./*" | parallel --gnu php -d display_errors=stderr -l {} > /dev/null \;

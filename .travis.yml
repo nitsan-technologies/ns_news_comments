@@ -19,7 +19,6 @@ jobs:
         - composer require typo3/cms-core="$TYPO3_VERSION"
       script:
         - composer lint:php
-        - composer test
 
     - <<: *test
       name: "Lint & Unit tests: PHP 7.2, TYPO3v9"

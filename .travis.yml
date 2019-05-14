@@ -19,7 +19,7 @@ cache:
     - $HOME/.composer/cache
 
 install:
-  - composer require typo3/minimal "$TYPO3_VERSION" $DEPENDENCIES_PREFERENCE
+  - composer require typo3/minimal "$TYPO3_VERSION"
   - git checkout .
 
 script:

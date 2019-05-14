@@ -20,7 +20,7 @@ cache:
     - .composer/
 
 before_script:
-  - apk add git --update
+  
 
 stages:
   - test

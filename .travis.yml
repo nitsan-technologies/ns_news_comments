@@ -39,7 +39,6 @@ stages:
     - php composer-setup.php --no-ansi --install-dir=/usr/bin --filename=composer
     - php -r "unlink('composer-setup.php'); unlink('installer.sig');"
     - composer require typo3/minimal ${TYPO3_VERSION} --update-with-dependencies
-    - composer require nimut/testing-framework
     - composer require squizlabs/php_codesniffer
   script:
     - .Build/bin/phpcs --standard=PSR2 --extensions=php *

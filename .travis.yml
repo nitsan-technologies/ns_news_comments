@@ -15,16 +15,38 @@ addons:
       - parallel
 
 cache:
-  directories:
-    - $HOME/.composer/cache
+  key: "$CI_COMMIT_REF_NAME-$CI_JOB_STAGE"
+  paths:
+    - .composer/
 
-install:
-  - composer require typo3/minimal "$TYPO3_VERSION"
-  - git checkout .
+before_script:
+  - apk add git --update
 
-script:
-  - >
-    echo;
-    echo "Running php lint";
-    find . -name \*.php ! -path "./.Build/*" | parallel --gnu php -d display_errors=stderr -l {} > /dev/null \;
-  - >
+stages:
+  - test
+
+.test: &testing
+  stage: test
+  image: php:$DOCKER_TAG
+  only:
+    - branches
+  before_script:
+    - export TYPO3_PATH_WEB="$PWD/.Build/Web"
+    - export COMPOSER_CACHE_DIR=.composer
+    - curl -OLs https://composer.github.io/installer.sig
+    - php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+    - php -r "if (hash_file('SHA384', 'composer-setup.php') === trim(file_get_contents('installer.sig'))) { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
+    - php composer-setup.php --no-ansi --install-dir=/usr/bin --filename=composer
+    - php -r "unlink('composer-setup.php'); unlink('installer.sig');"
+    - composer require typo3/minimal ${TYPO3_VERSION} --update-with-dependencies
+    - composer require nimut/testing-framework
+    - composer require squizlabs/php_codesniffer
+  script:
+    - .Build/bin/phpcs --standard=PSR2 --extensions=php *
+
+# Tests in PHP 7.2 and TYPO3 9.5
+test:php72:typo3_95:
+  <<: *testing
+  variables:
+    DOCKER_TAG: 7.2-alpine
+    TYPO3_VERSION: ^9.5

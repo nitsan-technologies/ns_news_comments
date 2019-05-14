@@ -1,0 +1,31 @@
+language: php
+
+php:
+  - 7.2
+
+env:
+  matrix:
+    - TYPO3_VERSION="^8.7"
+    - TYPO3_VERSION="^8.7" DEPENDENCIES_PREFERENCE="--prefer-lowest"
+
+sudo: false
+
+addons:
+  apt:
+    packages:
+      - parallel
+
+cache:
+  directories:
+    - $HOME/.composer/cache
+
+install:
+  - composer require typo3/minimal "$TYPO3_VERSION" $DEPENDENCIES_PREFERENCE
+  - git checkout .
+
+script:
+  - >
+    echo;
+    echo "Running php lint";
+    find . -name \*.php ! -path "./.Build/*" | parallel --gnu php -d display_errors=stderr -l {} > /dev/null \;
+  - >

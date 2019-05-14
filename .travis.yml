@@ -1,51 +1,53 @@
+dist: trusty
+sudo: false
 language: php
 
-php:
-  - 7.2
-
-env:
-  matrix:
-    - TYPO3_VERSION="^8.7"
-
-sudo: false
-
-addons:
-  apt:
-    packages:
-      - parallel
-
 cache:
-  key: "$CI_COMMIT_REF_NAME-$CI_JOB_STAGE"
-  paths:
-    - .composer/
+  directories:
+    - $HOME/.composer/cache
 
-before_script:
-  
+install:
+  - composer install
 
-stages:
-  - test
+jobs:
+  include:
+    - &test
+      name: "Lint & Unit tests: PHP 7.0, TYPO3v8"
+      php: 7.0
+      env: TYPO3_VERSION=^8.7
+      install:
+        - composer require typo3/cms-core="$TYPO3_VERSION"
+      script:
+        - composer lint:php
+        - composer test
 
-.test: &testing
-  stage: test
-  image: php:$DOCKER_TAG
-  only:
-    - branches
-  before_script:
-    - export TYPO3_PATH_WEB="$PWD/.Build/Web"
-    - export COMPOSER_CACHE_DIR=.composer
-    - curl -OLs https://composer.github.io/installer.sig
-    - php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
-    - php -r "if (hash_file('SHA384', 'composer-setup.php') === trim(file_get_contents('installer.sig'))) { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
-    - php composer-setup.php --no-ansi --install-dir=/usr/bin --filename=composer
-    - php -r "unlink('composer-setup.php'); unlink('installer.sig');"
-    - composer require typo3/minimal ${TYPO3_VERSION} --update-with-dependencies
-    - composer require squizlabs/php_codesniffer
-  script:
-    - .Build/bin/phpcs --standard=PSR2 --extensions=php *
+    - <<: *test
+      name: "Lint & Unit tests: PHP 7.2, TYPO3v9"
+      php: 7.2
+      env: TYPO3_VERSION=^9.5
 
-# Tests in PHP 7.2 and TYPO3 9.5
-test:php72:typo3_95:
-  <<: *testing
-  variables:
-    DOCKER_TAG: 7.2-alpine
-    TYPO3_VERSION: ^9.5
+    - <<: *test
+      name: "Lint & Unit tests: PHP 7.1, TYPO3v8"
+      php: 7.1
+
+    - php: 7.1
+      name: TypoScript lint
+      script:
+        - composer lint:typoscript
+
+    - php: 7.1
+      name: XML lint
+      script:
+        - composer lint:xml
+
+    - php: 7.1
+      name: Codestyle
+      script:
+        - composer lint:style
+
+    - php: 7.2
+      name: Static analysis
+      install:
+        - composer require --dev phpstan/phpstan:^0.10
+      script:
+        - composer analyze:php

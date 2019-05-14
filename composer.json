@@ -27,7 +27,8 @@
     "nitsan/ns-news-comments": "self.version"
   },
   "config": {
-    "vendor-dir": ".Build/vendor"
+    "vendor-dir": ".Build/vendor/",
+    "bin-dir": ".Build/bin/"
   },
   "extra": {
     "typo3/cms": {

@@ -15,13 +15,6 @@ cache:
     - $HOME/.composer/cache
 
 before_script:
-  - export TYPO3_PATH_WEB="$PWD/.Build/Web"
-  - export COMPOSER_CACHE_DIR=.composer
-  - curl -OLs https://composer.github.io/installer.sig
-  - php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
-  - php -r "if (hash_file('SHA384', 'composer-setup.php') === trim(file_get_contents('installer.sig'))) { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
-  - php composer-setup.php --no-ansi --install-dir=/usr/bin --filename=composer
-  - php -r "unlink('composer-setup.php'); unlink('installer.sig');"
   - composer require typo3/minimal 9.5 --update-with-dependencies
   - composer require nimut/testing-framework
   - composer require squizlabs/php_codesniffer

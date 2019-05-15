@@ -3,8 +3,8 @@ language: php
 php:
   - 7.2
 
-env:
-  - TYPO3_VERSON="9.5"
+#env:
+#  - TYPO3_VERSON="9.5"
 
 sudo: false
 

@@ -18,8 +18,8 @@ cache:
     - $HOME/.composer/cache
 
 before_script:
-  - composer require typo3/minimal ${TYPO3_VERSON} --update-with-dependencies
-  - composer require nimut/testing-framework
+  #- composer require typo3/minimal ${TYPO3_VERSON} --update-with-dependencies
+  #- composer require nimut/testing-framework
   - composer require squizlabs/php_codesniffer
 
 script:

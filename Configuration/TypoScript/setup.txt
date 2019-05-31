@@ -14,15 +14,15 @@ plugin.tx_nsnewscomments {
 				adminName = {$plugin.tx_nsnewscomments.settings.notification.siteadmin.adminName}
 				adminMailSubject = {$plugin.tx_nsnewscomments.settings.notification.siteadmin.adminMailSubject}
 			}
-			mainConfiguration {
-				recordStoragePage = {$plugin.tx_nsnewscomments.settings.mainConfiguration.recordStoragePage}
-				customDateFormat = {$plugin.tx_nsnewscomments.settings.mainConfiguration.customDateFormat}
-				customTimeFormat = {$plugin.tx_nsnewscomments.settings.mainConfiguration.customTimeFormat}
-				disableCaptcha = {$plugin.tx_nsnewscomments.settings.mainConfiguration.disableCaptcha}
-				userImage = {$plugin.tx_nsnewscomments.settings.mainConfiguration.userImage}
-				commentUserSettings = {$plugin.tx_nsnewscomments.settings.mainConfiguration.commentUserSettings}
-				FEUserLoginPageId = {$plugin.tx_nsnewscomments.settings.mainConfiguration.FEUserLoginPageId}
-			}
+		}
+		mainConfiguration {
+			recordStoragePage = {$plugin.tx_nsnewscomments.settings.mainConfiguration.recordStoragePage}
+			customDateFormat = {$plugin.tx_nsnewscomments.settings.mainConfiguration.customDateFormat}
+			customTimeFormat = {$plugin.tx_nsnewscomments.settings.mainConfiguration.customTimeFormat}
+			disableCaptcha = {$plugin.tx_nsnewscomments.settings.mainConfiguration.disableCaptcha}
+			userImage = {$plugin.tx_nsnewscomments.settings.mainConfiguration.userImage}
+			commentUserSettings = {$plugin.tx_nsnewscomments.settings.mainConfiguration.commentUserSettings}
+			FEUserLoginPageId = {$plugin.tx_nsnewscomments.settings.mainConfiguration.FEUserLoginPageId}
 		}
 	}
 }

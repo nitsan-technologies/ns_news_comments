@@ -96,7 +96,7 @@ class CommentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
                 if($_REQUEST['tx_nsnewscomments_newscomment']){
                     $currentPid['persistence']['storagePid'] = $_REQUEST['tx_nsnewscomments_newscomment']['Storagepid'];
                 } else {
-                    if ($this->settings['relatedComments']) {
+                    if ($this->settings['relatedComments'] && $this->settings['mainConfiguration']['recordStoragePage']) {
                         $currentPid['persistence']['storagePid'] = $this->settings['mainConfiguration']['recordStoragePage'];
                     } else {
                         $currentPid['persistence']['storagePid'] = GeneralUtility::_GP('id');

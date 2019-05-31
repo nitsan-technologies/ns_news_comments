@@ -54,7 +54,7 @@
     <f:for each="{comment.childcomment}" as="prcomment">
         <ul class="comments-list reply-list" id="children-{prcomment.uid}">
             <li id="comments-{prcomment.uid}" class="comment">
-                <f:render partial="Comment/Comment" arguments="{comment:prcomment,Image:'{Image}'}" />  
+                <f:render partial="Comment/Comment" arguments="{comment:prcomment,Image:'{Image}',relatedComments: relatedComments}" />  
             </li>
         </ul>
     </f:for>
@@ -63,7 +63,7 @@
 <f:section name="DefaultImage">
     <f:if condition="{Image}">
         <f:then>
-            <f:image src="{Image.uid}"  treatIdAsReference="TRUE" alt="{Image.title}" height="100" width="100c" />
+            <f:image src="{f:if(condition: relatedComments, then: Image, else: Image.uid)}"  treatIdAsReference="{f:if(condition: relatedComments, then: 'FALSE', else: 'TRUE')}" alt="{Image.title}" height="100" width="100c" />
         </f:then>
         <f:else>
             <f:image src="EXT:ns_news_comments/Resources/Public/Icons/user-icon.png" alt="user" height="100" width="100c"/>

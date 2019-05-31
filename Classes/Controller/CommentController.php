@@ -80,15 +80,30 @@ class CommentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
         $newsArr = GeneralUtility::_GP('tx_news_pi1');
         $newsUid = $newsArr['news'];
         $this->newsUid = intval($newsUid);
+
+        // Storage page configuration
         $this->pageUid = $GLOBALS['TSFE']->id;
         $extbaseFrameworkConfiguration = $this->configurationManager->getConfiguration(\TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface::CONFIGURATION_TYPE_FRAMEWORK);
-        if(empty($extbaseFrameworkConfiguration['persistence']['storagePid'])) {
-            if($_REQUEST['tx_nsnewscomments_newscomment']){
-                $currentPid['persistence']['storagePid'] = $_REQUEST['tx_nsnewscomments_newscomment']['Storagepid'];
+        if($_REQUEST['tx_nsnewscomments_newscomment']['comments-storage-pid']){
+            if($this->settings['mainConfiguration']['recordStoragePage']){
+                $currentPid['persistence']['storagePid'] = $_REQUEST['tx_nsnewscomments_newscomment']['comments-storage-pid'];
             } else {
                 $currentPid['persistence']['storagePid'] = GeneralUtility::_GP('id');
             }
             $this->configurationManager->setConfiguration(array_merge($extbaseFrameworkConfiguration, $currentPid));
+        }else{
+            if(empty($extbaseFrameworkConfiguration['persistence']['storagePid'])) {
+                if($_REQUEST['tx_nsnewscomments_newscomment']){
+                    $currentPid['persistence']['storagePid'] = $_REQUEST['tx_nsnewscomments_newscomment']['Storagepid'];
+                } else {
+                    if ($this->settings['relatedComments']) {
+                        $currentPid['persistence']['storagePid'] = $this->settings['mainConfiguration']['recordStoragePage'];
+                    } else {
+                        $currentPid['persistence']['storagePid'] = GeneralUtility::_GP('id');
+                    }
+                }
+                $this->configurationManager->setConfiguration(array_merge($extbaseFrameworkConfiguration, $currentPid));
+            }
         }
     }
 
@@ -99,11 +114,27 @@ class CommentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
      * @return void
      */
     public function listAction() {
-        $imageUid = $this->settings['usrimage']; 
-        if(!empty($imageUid)){
-           $resourceFactory = GeneralUtility::makeInstance(ResourceFactory::class);
-           $fileReference = $resourceFactory->getFileReferenceObject($imageUid);
-           $Image = $fileReference->getProperties();
+        $relatedComments = $this->settings['relatedComments'];
+        if ($relatedComments) {
+            $this->settings['custom'] = false;
+            $this->settings['dateFormat'] = $this->settings['mainConfiguration']['customDateFormat'];
+            $this->settings['timeFormat'] = $this->settings['mainConfiguration']['customTimeFormat'];
+            $this->settings['captcha'] = $this->settings['mainConfiguration']['disableCaptcha'];
+            if($this->settings['mainConfiguration']['commentUserSettings'] == 'feuserOnly') {
+                $this->settings['userSettings'] = $this->settings['mainConfiguration']['commentUserSettings'];
+                $this->settings['feUserloginpid'] = $this->settings['mainConfiguration']['FEUserLoginPageId'];
+            }else {
+                $this->settings['userSettings'] = $this->settings['mainConfiguration']['commentUserSettings'];
+            }
+            $Image = $this->settings['mainConfiguration']['userImage'];
+            $this->view->assign('relatedComments', TRUE);
+        } else {
+            $imageUid = $this->settings['usrimage']; 
+            if(!empty($imageUid)){
+               $resourceFactory = GeneralUtility::makeInstance(ResourceFactory::class);
+               $fileReference = $resourceFactory->getFileReferenceObject($imageUid);
+               $Image = $fileReference->getProperties();
+            }
         }
 
         $this->contentObj = $this->configurationManager->getContentObject();
@@ -125,6 +156,7 @@ class CommentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
             $this->view->assign('pageid', $this->pageUid);
             $this->view->assign('Image', $Image);
             $this->view->assign('pid', $pid);
+            $this->view->assign('settings', $setting);
 
             // User Login or not
             $userIDTest = $this->userRepository->findByUid($GLOBALS['TSFE']->fe_user->user['uid']); 

@@ -7,20 +7,23 @@ plugin.tx_nsnewscomments {
 	}
 	settings {
 		approveComment = {$plugin.tx_nsnewscomments.settings.approveComment}
-
 		notification {
-			
 			siteadmin {
 				sendMailToAdmin = {$plugin.tx_nsnewscomments.settings.notification.siteadmin.sendMailToAdmin}
-
 				adminEmail = {$plugin.tx_nsnewscomments.settings.notification.siteadmin.adminEmail}
-
 				adminName = {$plugin.tx_nsnewscomments.settings.notification.siteadmin.adminName}
-
 				adminMailSubject = {$plugin.tx_nsnewscomments.settings.notification.siteadmin.adminMailSubject}
 			}
+			mainConfiguration {
+				recordStoragePage = {$plugin.tx_nsnewscomments.settings.mainConfiguration.recordStoragePage}
+				customDateFormat = {$plugin.tx_nsnewscomments.settings.mainConfiguration.customDateFormat}
+				customTimeFormat = {$plugin.tx_nsnewscomments.settings.mainConfiguration.customTimeFormat}
+				disableCaptcha = {$plugin.tx_nsnewscomments.settings.mainConfiguration.disableCaptcha}
+				userImage = {$plugin.tx_nsnewscomments.settings.mainConfiguration.userImage}
+				commentUserSettings = {$plugin.tx_nsnewscomments.settings.mainConfiguration.commentUserSettings}
+				FEUserLoginPageId = {$plugin.tx_nsnewscomments.settings.mainConfiguration.FEUserLoginPageId}
+			}
 		}
-		
 	}
 }
 
@@ -52,4 +55,21 @@ ajaxCall{
 		admPanel = 0
 	}
 	10 < tt_content.list.20.nsnewscomments_newscomment
+}
+
+lib.tx_nsnewscomments.comments = USER
+lib.tx_nsnewscomments.comments {
+    userFunc = TYPO3\CMS\Extbase\Core\Bootstrap->run
+    extensionName = NsNewsComments
+    pluginName = Newscomment
+    vendorName = Nitsan
+    switchableControllerActions {
+        Comment {
+            1 = list
+        }
+    }
+    settings < plugin.tx_nsnewscomments.settings
+    settings{
+    	relatedComments = 1
+    }
 }

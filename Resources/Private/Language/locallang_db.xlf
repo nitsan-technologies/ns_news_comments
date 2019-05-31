@@ -48,6 +48,9 @@
 			<trans-unit id="CssJsIncludation">
 				<source>Css/Js Includation</source>
 			</trans-unit>
+			<trans-unit id="mainConfiguration">
+				<source>[Plugin] Main Configuration</source>
+			</trans-unit>
 			<trans-unit id="news_comment">
 				<source>News Comment</source>
 			</trans-unit>
@@ -173,6 +176,27 @@
 			</trans-unit>
 			<trans-unit id="adminMailSubject">
 				<source>Subject: Set subject of mail sending to Admin</source>
+			</trans-unit>
+			<trans-unit id="recordStoragePage">
+				<source>Record Storage Page</source>
+			</trans-unit>
+			<trans-unit id="customDateFormat">
+				<source>Custom Date Format: [E.g: F j, Y (May 26, 2017) // Y-m-d (2017-05-26) // m/d/Y (05/26/2017) // d/m/Y (26/05/2017)]</source>
+			</trans-unit>
+			<trans-unit id="customTimeFormat">
+				<source>Custom Time Format: [E.g: g:i a (11:36 am)  // g:i A (11:36 AM)  // H:i (11:36)</source>
+			</trans-unit>
+			<trans-unit id="disableCaptcha">
+				<source>Disable Captcha</source>
+			</trans-unit>
+			<trans-unit id="userImage">
+				<source>Add User Image</source>
+			</trans-unit>
+			<trans-unit id="commentUserSettings">
+				<source>Comment user settings</source>
+			</trans-unit>
+			<trans-unit id="FEUserLoginPageId">
+				<source>FE-user login page Id: [This option only works when the first option of comment user settings has selected.]</source>
 			</trans-unit>
 		</body>
 	</file>

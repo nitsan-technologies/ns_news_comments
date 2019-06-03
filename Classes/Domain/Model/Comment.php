@@ -117,6 +117,13 @@ class Comment extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     protected $newsuid = 0;
 
     /**
+     * accesstoken
+     *
+     * @var string
+     */
+    protected $accesstoken;
+
+    /**
      * description
      *
      * @var string
@@ -167,6 +174,27 @@ class Comment extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
         $this->newsuid = $newsuid;
     }
     
+    /**
+     * Returns the accesstoken
+     *
+     * @return string $accesstoken
+     */
+    public function getAccesstoken()
+    {
+        return $this->accesstoken;
+    }
+
+    /**
+     * Sets the accesstoken
+     *
+     * @param string $accesstoken
+     * @return void
+     */
+    public function setAccesstoken($accesstoken)
+    {
+        $this->accesstoken = $accesstoken;
+    }
+
     /**
      * Returns the feuserid
      *

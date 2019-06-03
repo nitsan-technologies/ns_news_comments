@@ -28,5 +28,10 @@
     	</tr>
 
     </table>
+    <f:if condition="{UserData.accessTokenLink}">
+        <p>
+            <f:translate key="LLL:EXT:ns_news_comments/Resources/Private/Language/locallang.xlf:confirm1" /> <a href="{UserData.accessTokenLink}"><f:translate key="LLL:EXT:ns_news_comments/Resources/Private/Language/locallang.xlf:confirm2" /></a> <f:translate key="LLL:EXT:ns_news_comments/Resources/Private/Language/locallang.xlf:confirm3" /> 
+        </p>
+    </f:if>
 </body>
 </html>

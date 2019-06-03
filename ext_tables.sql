@@ -14,6 +14,7 @@ CREATE TABLE tx_nsnewscomments_domain_model_comment (
 	usermail varchar(255) DEFAULT '' NOT NULL,
 	paramlink varchar(255) DEFAULT '' NOT NULL,
 	description text,
+	accesstoken varchar(255) DEFAULT '' NOT NULL,
 	childcomment int(11) unsigned DEFAULT '0' NOT NULL,
 	
 	tstamp int(11) unsigned DEFAULT '0' NOT NULL,

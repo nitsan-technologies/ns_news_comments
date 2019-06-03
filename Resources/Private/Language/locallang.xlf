@@ -39,6 +39,12 @@
 			<trans-unit id="tx_nsnewscomments_domain_model_comment.usermail">
 				<source>Email</source>
 			</trans-unit>
+			<trans-unit id="tx_nsnewscomments_domain_model_comment.approvedmessage">
+				<source>Comment approved successfully. Reload the page to see the comment.</source>
+			</trans-unit>
+			<trans-unit id="tx_nsnewscomments_domain_model_comment.unapprovedmessage">
+				<source>Either comment is already approved or invalid access token.</source>
+			</trans-unit>
 			<trans-unit id="tx_nsnewscomments_domain_model_comment.comment">
 				<source>Comment</source>
 			</trans-unit>
@@ -140,6 +146,15 @@
 			</trans-unit>
 			<trans-unit id="commentas">
 				<source>Comment will be added as</source>
+			</trans-unit>
+			<trans-unit id="confirm1">
+				<source>Currently, this comment is not displayed on the news.</source>
+			</trans-unit>
+			<trans-unit id="confirm2">
+				<source>Click Here</source>
+			</trans-unit>
+			<trans-unit id="confirm3">
+				<source>to display this comment on the news.</source>
 			</trans-unit>
 		</body>
 	</file>

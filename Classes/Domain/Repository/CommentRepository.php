@@ -29,26 +29,45 @@ namespace Nitsan\NsNewsComments\Domain\Repository;
 /**
  * The repository for Comments
  */
-class CommentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
-{
+class CommentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 	/**
-     * 
-     *
-     * @param $newsId
-     * 
-     */
-    public function getCommentsByNews($newsId)
-    {
-        $query = $this->createQuery();
-        $queryArr = array();
-        $queryArr = array(
-            $query->equals('newsuid', $newsId),
-            $query->equals('comment', 0),
-        );
-        $query->matching($query->logicalAnd($queryArr));
-        $query->setOrderings(array('crdate' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_DESCENDING));
-        $result = $query->execute();
-        return $result;
-    }
-    
+	 *
+	 *
+	 * @param $newsId
+	 *
+	 */
+	public function getCommentsByNews($newsId) {
+		$query = $this->createQuery();
+		$queryArr = array();
+		$queryArr = array(
+			$query->equals('newsuid', $newsId),
+			$query->equals('comment', 0),
+		);
+		$query->matching($query->logicalAnd($queryArr));
+		$query->setOrderings(array('crdate' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_DESCENDING));
+		$result = $query->execute();
+		return $result;
+	}
+
+	/**
+	 *
+	 *
+	 * @param $newsId
+	 *
+	 */
+	public function getCommentsByAccesstoken($accesstoken) {
+		$query = $this->createQuery();
+		$queryArr = array();
+		$queryArr = array(
+			$query->equals('accesstoken', $accesstoken),
+		);
+
+		// Here you enable the hidden and deleted Records
+		$query->getQuerySettings()
+			->setIgnoreEnableFields(true);
+
+		$query->matching($query->logicalAnd($queryArr));
+		$result = $query->execute();
+		return $result;
+	}
 }

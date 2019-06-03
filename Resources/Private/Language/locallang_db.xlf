@@ -33,6 +33,9 @@
 			<trans-unit id="tx_nsnewscomments_domain_model_comment.feuserid">
 				<source>Website User Id</source>
 			</trans-unit>
+			<trans-unit id="tx_nsnewscomments_domain_model_comment.accesstoken">
+				<source>Comment Access token</source>
+			</trans-unit>
 			<trans-unit id="tx_newscomment_domain_model_rating.crdate">
 				<source>Created Date</source>
 			</trans-unit>			
@@ -169,10 +172,16 @@
 				<source>Enable Mail: Enable Email to Admin</source>
 			</trans-unit>
 			<trans-unit id="adminEmail">
-				<source>Mail: Add Admin E-mail</source>
+				<source>[TO] E-Mail: Add Admin E-mail (Comma separated for multiple emails)</source>
 			</trans-unit>
 			<trans-unit id="adminName">
-				<source>Admin Name: Add Admin Name</source>
+				<source>[TO] Admin Name: Add Admin Name</source>
+			</trans-unit>
+			<trans-unit id="fromEmail">
+				<source>[FROM] E-Mail: Add E-mail</source>
+			</trans-unit>
+			<trans-unit id="fromName">
+				<source>[FROM] Name: Add Name</source>
 			</trans-unit>
 			<trans-unit id="adminMailSubject">
 				<source>Subject: Set subject of mail sending to Admin</source>

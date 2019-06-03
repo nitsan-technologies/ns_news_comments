@@ -37,12 +37,18 @@ plugin.tx_nsnewscomments{
 				sendMailToAdmin = 0
 
 				# cat=plugin.tx_nsnewscomments/160/11; type=string; label=LLL:EXT:ns_news_comments/Resources/Private/Language/locallang_db.xlf:adminEmail
-				adminEmail = test@test.com
+				adminEmail = test@mail.com
 
 				# cat=plugin.tx_nsnewscomments/160/12; type=string; label=LLL:EXT:ns_news_comments/Resources/Private/Language/locallang_db.xlf:adminName
 				adminName = Admin
 
-				# cat=plugin.tx_nsnewscomments/160/13; type=string; label=LLL:EXT:ns_news_comments/Resources/Private/Language/locallang_db.xlf:adminMailSubject
+				# cat=plugin.tx_nsnewscomments/160/13; type=string; label=LLL:EXT:ns_news_comments/Resources/Private/Language/locallang_db.xlf:fromEmail
+				fromEmail = 
+
+				# cat=plugin.tx_nsnewscomments/160/14; type=string; label=LLL:EXT:ns_news_comments/Resources/Private/Language/locallang_db.xlf:fromName
+				fromName = 
+
+				# cat=plugin.tx_nsnewscomments/160/15; type=string; label=LLL:EXT:ns_news_comments/Resources/Private/Language/locallang_db.xlf:adminMailSubject
 				adminMailSubject = New Comment has been added to news
 			}
 		}

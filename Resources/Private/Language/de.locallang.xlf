@@ -39,6 +39,12 @@
 			<trans-unit id="tx_nsnewscomments_domain_model_comment.usermail">
 				<target>Email</target>
 			</trans-unit>
+			<trans-unit id="tx_nsnewscomments_domain_model_comment.approvedmessage">
+				<target>Kommentar erfolgreich genehmigt. Laden Sie die Seite neu, um den Kommentar zu sehen.</target>
+			</trans-unit>
+			<trans-unit id="tx_nsnewscomments_domain_model_comment.unapprovedmessage">
+				<target>Entweder ist der Kommentar bereits genehmigt oder das Zugriffstoken ist ungültig.</target>
+			</trans-unit>
 			<trans-unit id="tx_nsnewscomments_domain_model_comment.comment">
 				<target>Kommentar</target>
 			</trans-unit>
@@ -140,6 +146,15 @@
 			</trans-unit>
 			<trans-unit id="commentas">
 				<target>Kommentar wird als hinzugefügt</target>
+			</trans-unit>
+			<trans-unit id="confirm1">
+				<target>Derzeit wird dieser Kommentar nicht in den Nachrichten angezeigt.</target>
+			</trans-unit>
+			<trans-unit id="confirm2">
+				<target>Klick hier</target>
+			</trans-unit>
+			<trans-unit id="confirm3">
+				<target>um diesen Kommentar in den Nachrichten anzuzeigen.</target>
 			</trans-unit>
 		</body>
 	</file>

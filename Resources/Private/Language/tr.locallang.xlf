@@ -39,6 +39,12 @@
 			<trans-unit id="tx_nsnewscomments_domain_model_comment.usermail">
 				<target>E-Posta Adresi</target>
 			</trans-unit>
+			<trans-unit id="tx_nsnewscomments_domain_model_comment.approvedmessage">
+				<target>Yorum başarıyla onaylandı. Yorumu görmek için sayfayı tekrar yükleyin.</target>
+			</trans-unit>
+			<trans-unit id="tx_nsnewscomments_domain_model_comment.unapprovedmessage">
+				<target>Ya yorum zaten onaylanmış ya da geçersiz erişim belirteci.</target>
+			</trans-unit>
 			<trans-unit id="tx_nsnewscomments_domain_model_comment.comment">
 				<target>Yorum</target>
 			</trans-unit>
@@ -140,6 +146,15 @@
 			</trans-unit>
 			<trans-unit id="commentas">
 				<target>Yorum şu şekilde eklenecektir</target>
+			</trans-unit>
+			<trans-unit id="confirm1">
+				<target>Şu anda, bu yorum haberlerde görüntülenmiyor.</target>
+			</trans-unit>
+			<trans-unit id="confirm2">
+				<target>Buraya TIKLAYIN</target>
+			</trans-unit>
+			<trans-unit id="confirm3">
+				<target>haberde bu yorumu görüntülemek için.</target>
 			</trans-unit>
 		</body>
 	</file>

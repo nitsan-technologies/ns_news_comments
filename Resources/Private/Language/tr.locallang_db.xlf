@@ -33,6 +33,9 @@
 			<trans-unit id="tx_nsnewscomments_domain_model_comment.feuserid">
 				<target>Web Sitesi Kullanıcı ID'si</target>
 			</trans-unit>
+			<trans-unit id="tx_nsnewscomments_domain_model_comment.accesstoken">
+				<target>Yorum Erişim belirteci</target>
+			</trans-unit>
 			<trans-unit id="tx_newscomment_domain_model_rating.crdate">
 				<target>Oluşturulma Tarihi</target>
 			</trans-unit>			
@@ -47,6 +50,9 @@
 			</trans-unit>
 			<trans-unit id="CssJsIncludation">
 				<target>Css/Js Dahiliyeti</target>
+			</trans-unit>
+			<trans-unit id="mainConfiguration">
+				<target>[Eklenti] Ana Yapılandırma</target>
 			</trans-unit>
 			<trans-unit id="news_comment">
 				<target>Haber Yorumu</target>
@@ -166,13 +172,40 @@
 				<target>E-Posta Etkinleştir: Admin'e e-postayı etkinleştir</target>
 			</trans-unit>
 			<trans-unit id="adminEmail">
-				<target>E-Posta: Admin e-postası ekle</target>
+				<target>[TO] E-Posta: Yönetici E-postası Ekleme (Birden fazla e-posta için virgülle ayrılmış)</target>
 			</trans-unit>
 			<trans-unit id="adminName">
-				<target>Admin Adı: Admin Adı Ekleyin</target>
+				<target>[TO] Admin Adı: Admin Adı Ekleyin</target>
+			</trans-unit>
+			<trans-unit id="fromEmail">
+				<target>[FROM] E-Posta: Yönetici E-postası Ekleme</target>
+			</trans-unit>
+			<trans-unit id="fromName">
+				<target>[FROM] Adı: Adı Ekleyin</target>
 			</trans-unit>
 			<trans-unit id="adminMailSubject">
 				<target>Konu: Admin'e gönderilen mailin konusunu ayarlayın</target>
+			</trans-unit>
+			<trans-unit id="recordStoragePage">
+				<target>Kayıt Depolama Sayfası</target>
+			</trans-unit>
+			<trans-unit id="customDateFormat">
+				<target>Özel Tarih Biçimi: [E.g: F j, Y (May 26, 2017) // Y-m-d (2017-05-26) // m/d/Y (05/26/2017) // d/m/Y (26/05/2017)]</target>
+			</trans-unit>
+			<trans-unit id="customTimeFormat">
+				<target>Özel zaman biçimi: [E.g: g:i a (11:36 am)  // g:i A (11:36 AM)  // H:i (11:36)</target>
+			</trans-unit>
+			<trans-unit id="disableCaptcha">
+				<target>Captcha'yı devre dışı bırak</target>
+			</trans-unit>
+			<trans-unit id="userImage">
+				<target>Kullanıcı Resmi Ekle</target>
+			</trans-unit>
+			<trans-unit id="commentUserSettings">
+				<target>Kullanıcı ayarlarını yorumla</target>
+			</trans-unit>
+			<trans-unit id="FEUserLoginPageId">
+				<target>FE-user login page Id: [Bu seçenek yalnızca, yorum yapan kullanıcı ayarlarının ilk seçeneği seçildiğinde çalışır.]</target>
 			</trans-unit>
 		</body>
 	</file>

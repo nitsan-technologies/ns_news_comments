@@ -33,6 +33,9 @@
 			<trans-unit id="tx_nsnewscomments_domain_model_comment.feuserid">
 				<target>Website Benutzer ID</target>
 			</trans-unit>
+			<trans-unit id="tx_nsnewscomments_domain_model_comment.accesstoken">
+				<target>Kommentar Zugriffstoken</target>
+			</trans-unit>
 			<trans-unit id="tx_newscomment_domain_model_rating.crdate">
 				<target>Erstellungsdatum</target>
 			</trans-unit>			
@@ -47,6 +50,9 @@
 			</trans-unit>
 			<trans-unit id="CssJsIncludation">
 				<target>Css/Js Einbeziehung</target>
+			</trans-unit>
+			<trans-unit id="mainConfiguration">
+				<target>[Plugin] Hauptkonfiguration</target>
 			</trans-unit>
 			<trans-unit id="news_comment">
 				<target>Nachricht Kommentar</target>
@@ -166,13 +172,40 @@
 				<target>E-Mail aktivieren: E-Mail an Admin aktivieren</target>
 			</trans-unit>
 			<trans-unit id="adminEmail">
-				<target>Mail: Admin-E-Mail hinzufügen</target>
+				<target>[TO] E-Mail: Admin-E-Mail hinzufügen (Komma getrennt für mehrere E-Mails)</target>
 			</trans-unit>
 			<trans-unit id="adminName">
-				<target>Admin Name: Admin Name hinzufügen</target>
+				<target>[TO] Admin Name: Admin Name hinzufügen</target>
+			</trans-unit>
+			<trans-unit id="fromEmail">
+				<target>[FROM] E-Mail: E-Mail hinzufügen</target>
+			</trans-unit>
+			<trans-unit id="fromName">
+				<target>[FROM] Name: Name hinzufügen</target>
 			</trans-unit>
 			<trans-unit id="adminMailSubject">
 				<target>Betreff: Betreff der E-Mail-Versendung an Admin festlegen</target>
+			</trans-unit>
+			<trans-unit id="recordStoragePage">
+				<target>Speicherseite aufzeichnen</target>
+			</trans-unit>
+			<trans-unit id="customDateFormat">
+				<target>Benutzerdefiniertes Datumsformat: [E.g: F j, Y (May 26, 2017) // Y-m-d (2017-05-26) // m/d/Y (05/26/2017) // d/m/Y (26/05/2017)]</target>
+			</trans-unit>
+			<trans-unit id="customTimeFormat">
+				<target>Benutzerdefiniertes Zeitformat: [E.g: g:i a (11:36 am)  // g:i A (11:36 AM)  // H:i (11:36)</target>
+			</trans-unit>
+			<trans-unit id="disableCaptcha">
+				<target>Captcha deaktivieren</target>
+			</trans-unit>
+			<trans-unit id="userImage">
+				<target>Benutzerbild hinzufügen</target>
+			</trans-unit>
+			<trans-unit id="commentUserSettings">
+				<target>Benutzereinstellungen kommentieren</target>
+			</trans-unit>
+			<trans-unit id="FEUserLoginPageId">
+				<target>ID der FE-Benutzeranmeldeseite: [Diese Option funktioniert nur, wenn die erste Option der Benutzereinstellungen für Kommentare ausgewählt wurde.]</target>
 			</trans-unit>
 		</body>
 	</file>

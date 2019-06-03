@@ -1,6 +1,11 @@
 
 <f:layout name="Default" />
 
+<f:comment>
+    lib object to add in news detail view without a plugin.
+    <f:cObject typoscriptObjectPath="lib.tx_nsnewscomments.comments">{newsItem.uid}</f:cObject>
+</f:comment>
+
 <f:section name="main">
     <f:flashMessages />
     <f:if condition="{newsID}">
@@ -8,6 +13,8 @@
             <div class="ns-headline">
                 <h2><f:translate key="CommentsandResponses"/></h2>
             </div>
+
+            <!-- Feuser Settings -->
             <f:if condition="{settings.userSettings}=='feuserOnly'">
                 <f:then>
                     <f:if condition="{feuserlogin}">
@@ -25,8 +32,22 @@
                 <f:else>
                     <f:render section="CommentForm" arguments="{_all}"/>
                 </f:else>
-            </f:if>    
+            </f:if>
+
+            <!-- Comments Section Rendring -->
             <div class="comments-container">
+                <f:switch expression="{updated}">
+                    <f:case value="1">
+                        <div class="messages approvedmessage">
+                            <div class="ns-alert ns-alert-success"><f:translate key="tx_nsnewscomments_domain_model_comment.approvedmessage"/></div>
+                        </div>
+                    </f:case>
+                    <f:case value="2">
+                        <div class="messages unapprovedmessage">
+                            <div class="ns-alert ns-alert-error"><f:translate key="tx_nsnewscomments_domain_model_comment.unapprovedmessage"/></div>
+                        </div>
+                    </f:case>
+                </f:switch>
                 <div class="messages thanksmsg" style="display: none;">
                     <div class="ns-alert ns-alert-success"><f:translate key="form.thankyouMessage"/></div>
                 </div>

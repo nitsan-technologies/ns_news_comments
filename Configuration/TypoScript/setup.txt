@@ -12,6 +12,8 @@ plugin.tx_nsnewscomments {
 				sendMailToAdmin = {$plugin.tx_nsnewscomments.settings.notification.siteadmin.sendMailToAdmin}
 				adminEmail = {$plugin.tx_nsnewscomments.settings.notification.siteadmin.adminEmail}
 				adminName = {$plugin.tx_nsnewscomments.settings.notification.siteadmin.adminName}
+				fromEmail = {$plugin.tx_nsnewscomments.settings.notification.siteadmin.fromEmail}
+				fromName = {$plugin.tx_nsnewscomments.settings.notification.siteadmin.fromName}
 				adminMailSubject = {$plugin.tx_nsnewscomments.settings.notification.siteadmin.adminMailSubject}
 			}
 		}

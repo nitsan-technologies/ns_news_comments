@@ -26,21 +26,23 @@ namespace Nitsan\NsNewsComments\Controller;
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
 
+use TYPO3\CMS\Core\Resource\ResourceFactory;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
-use TYPO3\CMS\Core\Resource\ResourceFactory;
+
 /**
  * CommentController
  */
-class CommentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController {
-    
+class CommentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
+{
+
     /**
      * commentRepository
      *
      * @var \Nitsan\NsNewsComments\Domain\Repository\CommentRepository
      * @inject
      */
-    protected $commentRepository = NULL;
+    protected $commentRepository = null;
 
     /**
      * @var \GeorgRinger\News\Domain\Repository\NewsRepository
@@ -54,11 +56,11 @@ class CommentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
     protected $persistenceManager;
 
     /**
-    * User Repository
-    *
-    * @var \TYPO3\CMS\Extbase\Domain\Repository\FrontendUserRepository
-    * @inject
-    */
+     * User Repository
+     *
+     * @var \TYPO3\CMS\Extbase\Domain\Repository\FrontendUserRepository
+     * @inject
+     */
     protected $userRepository;
 
     /*
@@ -66,8 +68,9 @@ class CommentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
      *
      * @param \GeorgRinger\News\Domain\Repository\NewsRepository $newsRepository
      * @return void
-    */
-    public function injectNewsRepository(\GeorgRinger\News\Domain\Repository\NewsRepository $newsRepository) {
+     */
+    public function injectNewsRepository(\GeorgRinger\News\Domain\Repository\NewsRepository $newsRepository)
+    {
         $this->newsRepository = $newsRepository;
     }
 
@@ -76,7 +79,8 @@ class CommentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
      *
      * @return void
      */
-    public function initializeAction() {
+    public function initializeAction()
+    {
         $newsArr = GeneralUtility::_GP('tx_news_pi1');
         $newsUid = $newsArr['news'];
         $this->newsUid = intval($newsUid);
@@ -84,16 +88,16 @@ class CommentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
         // Storage page configuration
         $this->pageUid = $GLOBALS['TSFE']->id;
         $extbaseFrameworkConfiguration = $this->configurationManager->getConfiguration(\TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface::CONFIGURATION_TYPE_FRAMEWORK);
-        if($_REQUEST['tx_nsnewscomments_newscomment']['comments-storage-pid']){
-            if($this->settings['mainConfiguration']['recordStoragePage']){
+        if ($_REQUEST['tx_nsnewscomments_newscomment']['comments-storage-pid']) {
+            if ($this->settings['mainConfiguration']['recordStoragePage']) {
                 $currentPid['persistence']['storagePid'] = $_REQUEST['tx_nsnewscomments_newscomment']['comments-storage-pid'];
             } else {
                 $currentPid['persistence']['storagePid'] = GeneralUtility::_GP('id');
             }
             $this->configurationManager->setConfiguration(array_merge($extbaseFrameworkConfiguration, $currentPid));
-        }else{
-            if(empty($extbaseFrameworkConfiguration['persistence']['storagePid'])) {
-                if($_REQUEST['tx_nsnewscomments_newscomment']){
+        } else {
+            if (empty($extbaseFrameworkConfiguration['persistence']['storagePid'])) {
+                if ($_REQUEST['tx_nsnewscomments_newscomment']) {
                     $currentPid['persistence']['storagePid'] = $_REQUEST['tx_nsnewscomments_newscomment']['Storagepid'];
                 } else {
                     if ($this->settings['relatedComments'] && $this->settings['mainConfiguration']['recordStoragePage']) {
@@ -113,33 +117,47 @@ class CommentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
      *
      * @return void
      */
-    public function listAction() {
+    public function listAction()
+    {
         $relatedComments = $this->settings['relatedComments'];
         if ($relatedComments) {
             $this->settings['custom'] = false;
             $this->settings['dateFormat'] = $this->settings['mainConfiguration']['customDateFormat'];
             $this->settings['timeFormat'] = $this->settings['mainConfiguration']['customTimeFormat'];
             $this->settings['captcha'] = $this->settings['mainConfiguration']['disableCaptcha'];
-            if($this->settings['mainConfiguration']['commentUserSettings'] == 'feuserOnly') {
+            if ($this->settings['mainConfiguration']['commentUserSettings'] == 'feuserOnly') {
                 $this->settings['userSettings'] = $this->settings['mainConfiguration']['commentUserSettings'];
                 $this->settings['feUserloginpid'] = $this->settings['mainConfiguration']['FEUserLoginPageId'];
-            }else {
+            } else {
                 $this->settings['userSettings'] = $this->settings['mainConfiguration']['commentUserSettings'];
             }
             $Image = $this->settings['mainConfiguration']['userImage'];
-            $this->view->assign('relatedComments', TRUE);
+            $this->view->assign('relatedComments', true);
         } else {
-            $imageUid = $this->settings['usrimage']; 
-            if(!empty($imageUid)){
-               $resourceFactory = GeneralUtility::makeInstance(ResourceFactory::class);
-               $fileReference = $resourceFactory->getFileReferenceObject($imageUid);
-               $Image = $fileReference->getProperties();
+            $imageUid = $this->settings['usrimage'];
+            if (!empty($imageUid)) {
+                $resourceFactory = GeneralUtility::makeInstance(ResourceFactory::class);
+                $fileReference = $resourceFactory->getFileReferenceObject($imageUid);
+                $Image = $fileReference->getProperties();
+            }
+        }
+
+        if ($_REQUEST['Accesstoken']) {
+            $comment = $this->commentRepository->getCommentsByAccesstoken($_REQUEST['Accesstoken']);
+            if (count($comment) > 0) {
+                $commentData = $comment[0];
+                $commentData->setAccesstoken('');
+                $commentData->setHidden(0);
+                $this->commentRepository->update($commentData);
+                $this->view->assign('updated', 1);
+            } else {
+                $this->view->assign('updated', 2);
             }
         }
 
         $this->contentObj = $this->configurationManager->getContentObject();
         $pid = $this->contentObj->data['pages'];
-        if(empty($pid)) {
+        if (empty($pid)) {
             $pid = GeneralUtility::_GP('id');
         }
 
@@ -159,30 +177,29 @@ class CommentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
             $this->view->assign('settings', $setting);
 
             // User Login or not
-            $userIDTest = $this->userRepository->findByUid($GLOBALS['TSFE']->fe_user->user['uid']); 
-            if($userIDTest){
-                if($userIDTest->getName()){
+            $userIDTest = $this->userRepository->findByUid($GLOBALS['TSFE']->fe_user->user['uid']);
+            if ($userIDTest) {
+                if ($userIDTest->getName()) {
                     $name = $userIDTest->getName();
                 } else {
                     $name = $userIDTest->getUsername();
                 }
 
-                if($userIDTest->getEmail()){
+                if ($userIDTest->getEmail()) {
                     $email = $userIDTest->getEmail();
                 }
 
-                if($userIDTest->getImage()){
+                if ($userIDTest->getImage()) {
                     if (!is_string($userIDTest->getImage())) {
-                        $userimages= $userIDTest->getImage();
+                        $userimages = $userIDTest->getImage();
                     }
                 }
-                
+
                 $this->view->assign('feuserlogin', 1);
                 $this->view->assign('name', $name);
                 $this->view->assign('email', $email);
                 $this->view->assign('feuserImages', $userimages);
             }
-
         } else {
             $error = LocalizationUtility::translate('tx_nsnewscomments_domain_model_comment.errorMessage', 'NsNewsComments');
             $this->addFlashMessage($error, '', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
@@ -196,33 +213,43 @@ class CommentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
      *
      * @return void
      */
-    public function createAction(\Nitsan\NsNewsComments\Domain\Model\Comment $newComment) {
-        $userIDTest = $this->userRepository->findByUid($GLOBALS['TSFE']->fe_user->user['uid']); 
-        if($userIDTest){
-            if($userIDTest->getName()){
+    public function createAction(\Nitsan\NsNewsComments\Domain\Model\Comment $newComment)
+    {
+        $userIDTest = $this->userRepository->findByUid($GLOBALS['TSFE']->fe_user->user['uid']);
+        if ($userIDTest) {
+            if ($userIDTest->getName()) {
                 $name = $userIDTest->getName();
             } else {
                 $name = $userIDTest->getUsername();
             }
             $newComment->setUsername($name);
 
-            if($userIDTest->getEmail()){
+            if ($userIDTest->getEmail()) {
                 $email = $userIDTest->getEmail();
                 $newComment->setUsermail($email);
             }
 
-            if($userIDTest->getImage()){
+            if ($userIDTest->getImage()) {
                 if (is_string($userIDTest->getImage())) {
                     $userimages = explode(',', $userIDTest->getImage());
-                    $newComment->setUserimage('uploads/pics/'.$userimages[0]);
+                    $newComment->setUserimage('uploads/pics/' . $userimages[0]);
                 }
             }
             $newComment->setFeuserid($userIDTest->getUid());
         }
 
+        if (isset($this->settings['approveComment']) && $this->settings['approveComment'] == 1) {
+            // Access Tocken
+            $token = bin2hex(random_bytes(11));
+            $newComment->setAccesstoken($token);
+            $accessTokenLink = $this->buildUriForAccesstoken($this->pageUid, $arguments = ['Accesstoken' => $token]);
+        }
+
         $request = $this->request->getArguments();
         $adminEmail = $this->settings['notification']['siteadmin']['adminEmail'];
+        $fromEmail = $this->settings['notification']['siteadmin']['fromEmail'];
         $adminName = $this->settings['notification']['siteadmin']['adminName'];
+        $fromName = $this->settings['notification']['siteadmin']['fromName'];
         $emailSubject = $this->settings['notification']['siteadmin']['adminMailSubject'];
         $newComment->setCrdate(time());
         $newComment->set_languageUid($GLOBALS['TSFE']->sys_language_uid);
@@ -242,17 +269,27 @@ class CommentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
         // Configuration for mail template
         $news = $this->newsRepository->findByUid($this->newsUid);
         $newsTitle = $news->getTitle();
-        $translateArguments = array('comments' => $newComment, 'newsTitle' => $news->getTitle());
+        $translateArguments = ['comments' => $newComment, 'newsTitle' => $news->getTitle(), 'accessTokenLink' => $accessTokenLink];
         $variables = array('UserData' => $translateArguments);
-        if (isset($this->settings['notification']['siteadmin']['sendMailToAdmin'])) {
-            $res = $this->sendTemplateEmail(array($adminEmail => $adminName), array($newComment->getUsermail() => $newComment->getUsername()), $emailSubject, 'mailTemplate', $variables);
+        if (isset($this->settings['notification']['siteadmin']['sendMailToAdmin']) && $adminEmail != '') {
+            $emails = explode(',', $adminEmail);
+            if ($fromEmail == '') {
+                $fromEmail = $newComment->getUsermail();
+            }
+            if ($fromName == '') {
+                $fromName = $newComment->getUsername();
+            }
+            foreach ($emails as $mail) {
+                $res = $this->sendTemplateEmail([$mail => $adminName], [$fromEmail => $fromName], $emailSubject, 'mailTemplate', $variables);
+            }
         }
         // Disable comment for approvement
         if (isset($this->settings['approveComment']) && $this->settings['approveComment'] == 1) {
             $newComment->setHidden(1);
+            return true;
         } else {
             $this->persistenceManager->persistAll();
-            $json[$newComment->getUid() ] = array('parentId' => $parentId, 'comment' => 'comment');
+            $json[$newComment->getUid()] = array('parentId' => $parentId, 'comment' => 'comment');
             return json_encode($json);
         }
     }
@@ -264,11 +301,28 @@ class CommentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
      * @param bool $arguments
      * @return string The link
      */
-    private function buildUriByUid($uid, $arguments = array()) {
+    private function buildUriByUid($uid, $arguments = array())
+    {
         $newsUid = $this->newsUid;
         $commentid = $arguments['commentid'];
         $excludeFromQueryString = array('tx_nsnewscomments_newscomment[action]', 'tx_nsnewscomments_newscomment[controller]', 'tx_nsnewscomments_newscomment', 'type');
-        $uri = $this->uriBuilder->reset()->setTargetPageUid($uid)->setAddQueryString(TRUE)->setArgumentsToBeExcludedFromQueryString($excludeFromQueryString)->setSection("comments-" . $commentid)->build();
+        $uri = $this->uriBuilder->reset()->setTargetPageUid($uid)->setAddQueryString(true)->setArgumentsToBeExcludedFromQueryString($excludeFromQueryString)->setSection("comments-" . $commentid)->build();
+        $uri = $this->addBaseUriIfNecessary($uri);
+        return $uri;
+    }
+
+    /**
+     * Returns a built URI by buildUriForAccesstoken
+     *
+     * @param int $uid The uid to use for building link
+     * @param bool $arguments
+     * @return string The link
+     */
+    private function buildUriForAccesstoken($uid, $arguments = array())
+    {
+        $newsUid = $this->newsUid;
+        $excludeFromQueryString = array('tx_nsnewscomments_newscomment[action]', 'tx_nsnewscomments_newscomment[controller]', 'tx_nsnewscomments_newscomment', 'type');
+        $uri = $this->uriBuilder->reset()->setTargetPageUid($uid)->setAddQueryString(true)->setArgumentsToBeExcludedFromQueryString($excludeFromQueryString)->setArguments($arguments)->build();
         $uri = $this->addBaseUriIfNecessary($uri);
         return $uri;
     }
@@ -280,7 +334,8 @@ class CommentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
      * @param string $templateName template name (UpperCamelCase)
      * @param array $variables variables to be passed to the Fluid view
      */
-    protected function sendTemplateEmail(array $recipient, array $sender, $subject, $templateName, array $variables = array()) {
+    protected function sendTemplateEmail(array $recipient, array $sender, $subject, $templateName, array $variables = array())
+    {
         /** @var \TYPO3\CMS\Fluid\View\StandaloneView $emailView */
         $emailView = $this->objectManager->get('TYPO3\\CMS\\Fluid\\View\\StandaloneView');
         /*For use of Localize value */

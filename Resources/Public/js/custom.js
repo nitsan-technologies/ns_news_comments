@@ -6,6 +6,15 @@ $(function() {
     replyComment();
     jQuery.support.placeholder = false;
     test = document.createElement('input');
+
+    if ($('.tx_nsnewscomments .approvedmessage, .tx_nsnewscomments .unapprovedmessage').length) {
+        $('html, body').stop().animate({
+            scrollTop: ($('.tx_nsnewscomments .unapprovedmessage, .tx_nsnewscomments .approvedmessage').offset().top)
+        }, 2000);
+        setTimeout(function() {
+            $('.tx_nsnewscomments .unapprovedmessage, .tx_nsnewscomments .approvedmessage').fadeOut("slow");
+        }, 7000);
+    }
     if('placeholder' in test) jQuery.support.placeholder = true;
 });
 

@@ -456,6 +456,11 @@
     background-color: #dff0d8;
     border-color: #d6e9c6;
 }
+.tx_nsnewscomments .ns-alert-error {
+    color: #a94442;
+    background-color: #f2dede;
+    border-color: #ebccd1;
+}
 .tx_nsnewscomments .ns-alert {
     padding: 15px;
     margin-bottom: 20px;

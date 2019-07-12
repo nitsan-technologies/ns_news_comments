@@ -137,6 +137,13 @@ class Comment extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @cascade remove
      */
     protected $childcomment = null;
+
+    /**
+     * terms
+     *
+     * @var bool
+     */
+    protected $terms = false;
      
     /**
      * @param int $_languageUid
@@ -501,6 +508,23 @@ class Comment extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     public function setChildcomment(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $childcomment)
     {
         $this->childcomment = $childcomment;
+    }
+
+    /**
+     * @return bool
+     */
+    public function getTerms()
+    {
+        return $this->terms;
+    }
+
+    /**
+     * @param bool $terms
+     * @return void
+     */
+    public function setTerms($terms)
+    {
+        $this->terms = $terms;
     }
 
 }

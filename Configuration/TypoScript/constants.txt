@@ -31,6 +31,12 @@ plugin.tx_nsnewscomments{
 		# cat=plugin.tx_nsnewscomments/170/10; type=boolean; label=LLL:EXT:ns_news_comments/Resources/Private/Language/locallang_db.xlf:approveComment
 		approveComment = 1
 
+		# cat=plugin.tx_nsnewscomments/170/10; type=boolean; label=LLL:EXT:ns_news_comments/Resources/Private/Language/locallang_db.xlf:termsRequired
+		termsRequired = 0
+
+		# cat=plugin.tx_nsnewscomments/170/10; type=boolean; label=LLL:EXT:ns_news_comments/Resources/Private/Language/locallang_db.xlf:termsTypolinkParameter
+		termsTypolinkParameter =
+
 		notification {
 			siteadmin {
 				# cat=plugin.tx_nsnewscomments/160/10; type=boolean; label=LLL:EXT:ns_news_comments/Resources/Private/Language/locallang_db.xlf:sendMailToAdmin

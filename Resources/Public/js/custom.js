@@ -171,6 +171,7 @@ function validateField() {
     var flag = 1;
     var elementObj;
     var captcha = document.getElementById("captcha");
+    var terms = document.getElementsByName('tx_nsnewscomments_newscomment[newComment][terms]').length;
 
     if (!$('.tx_nsnewscomments #name').val()) {
         $(".tx_nsnewscomments #name").parent().addClass('has-error');
@@ -226,6 +227,17 @@ function validateField() {
                 $(".tx_nsnewscomments #captcha").parent().addClass('has-error');
                 var flag = 0;
             }
+        }
+    }
+
+    if (terms) {
+        if ( !$('.tx_nsnewscomments input[name="tx_nsnewscomments_newscomment[newComment][terms]"]:checked').length ) {
+            $(".tx_nsnewscomments #terms").closest('.ns-form-group').addClass('has-error');
+            $(".tx_nsnewscomments #terms_error").show();
+            var flag = 0;
+        } else {
+            $(".tx_nsnewscomments #terms").closest('.ns-form-group').removeClass('has-error');
+            $(".tx_nsnewscomments #terms_error").hide();
         }
     }
 
@@ -314,6 +326,18 @@ function onFocusValidation() {
             $(".tx_nsnewscomments #captcha_error").show();
         }
     });
+
+    $('.tx_nsnewscomments input[name="tx_nsnewscomments_newscomment[newComment][terms]"]').on('change', function(){
+        if ( !$('.tx_nsnewscomments input[name="tx_nsnewscomments_newscomment[newComment][terms]"]:checked').length ) {
+            $(".tx_nsnewscomments #terms").closest('.ns-form-group').addClass('has-error');
+            $(".tx_nsnewscomments #terms_error").show();
+            var flag = 0;
+        } else {
+            $(".tx_nsnewscomments #terms").closest('.ns-form-group').removeClass('has-error');
+            $(".tx_nsnewscomments #terms_error").hide();
+        }
+    });
+
 }
 
 // Remove Default Validation in reply form

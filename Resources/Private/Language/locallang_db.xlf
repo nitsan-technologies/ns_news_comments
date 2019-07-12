@@ -21,6 +21,9 @@
 			<trans-unit id="tx_nsnewscomments_domain_model_comment.childcomment">
 				<source>Reply Comment</source>
 			</trans-unit>
+			<trans-unit id="tx_nsnewscomments_domain_model_comment.terms">
+				<source>Terms accepted</source>
+			</trans-unit>
 			<trans-unit id="tx_nsnewscomments_domain_model_comment.paramlink">
 				<source>Parameter Link to comments</source>
 			</trans-unit>
@@ -206,6 +209,12 @@
 			</trans-unit>
 			<trans-unit id="FEUserLoginPageId">
 				<source>FE-user login page Id: [This option only works when the first option of comment user settings has selected.]</source>
+			</trans-unit>
+			<trans-unit id="termsRequired">
+				<source>Terms required</source>
+			</trans-unit>
+			<trans-unit id="termsTypolinkParameter">
+				<source>Terms typolink parameter</source>
 			</trans-unit>
 		</body>
 	</file>

@@ -342,6 +342,16 @@
     font-size: 14px;
     color: inherit;
 }
+.tx_nsnewscomments .ns-form-group label.ns-form-checkbox {
+    font-weight: normal;
+}
+.tx_nsnewscomments .ns-form-group .ns-form-checkbox input {
+    border-bottom: 0;
+    box-shadow: none;
+    display: inline;
+    width: auto;
+    height: auto;
+}
 .tx_nsnewscomments textarea {
     min-height: 100px;
     padding: 10px;

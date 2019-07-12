@@ -67,6 +67,23 @@
     <f:form.hidden name="verification" value="{verification}" class="verification"/>
 </f:if>
 
+<f:if condition="{settings.termsRequired}">
+    <div class="ns-form-group-main">
+        <div class="ns-form-group">
+            <label>
+                <f:translate key="terms.label" /> *
+            </label>
+            <label for="terms" class="ns-form-checkbox">
+                <f:form.checkbox property="terms" id="terms" value="1" />
+                <f:variable name="termsTypolinkParamater" value="{f:uri.typolink(parameter:'{settings.termsTypolinkParameter}')}" />
+                {f:translate(key: 'terms.text', arguments: '{0: "{termsTypolinkParamater}"}') -> f:format.raw()}
+            </label>
+            <div class="error-msg" id="terms_error"><p><f:translate key="terms_required" /></p></div>
+            <div class="error-msg" id="terms_error_msg"><p><f:translate key="form.termsError" /></p></div>
+        </div>
+    </div>
+</f:if>
+
 <div class="ns-form-group-main">
     <div class="ns-form-group">
         <f:form.submit class="ns-btn ns-btn-send" id="submit" value="{f:translate(key:'form.submitButton')}" />

@@ -7,6 +7,8 @@ plugin.tx_nsnewscomments {
 	}
 	settings {
 		approveComment = {$plugin.tx_nsnewscomments.settings.approveComment}
+		termsRequired = {$plugin.tx_nsnewscomments.settings.termsRequired}
+		termsTypolinkParameter = {$plugin.tx_nsnewscomments.settings.termsTypolinkParameter}
 		notification {
 			siteadmin {
 				sendMailToAdmin = {$plugin.tx_nsnewscomments.settings.notification.siteadmin.sendMailToAdmin}

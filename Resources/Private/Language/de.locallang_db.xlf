@@ -21,6 +21,9 @@
 			<trans-unit id="tx_nsnewscomments_domain_model_comment.childcomment">
 				<target>Kommentar kommentieren</target>
 			</trans-unit>
+			<trans-unit id="tx_nsnewscomments_domain_model_comment.terms">
+				<target>Datenschutzbestimmungen akzeptiert</target>
+			</trans-unit>
 			<trans-unit id="tx_nsnewscomments_domain_model_comment.paramlink">
 				<target>Parameter Link zu Kommentaren</target>
 			</trans-unit>
@@ -206,6 +209,12 @@
 			</trans-unit>
 			<trans-unit id="FEUserLoginPageId">
 				<target>ID der FE-Benutzeranmeldeseite: [Diese Option funktioniert nur, wenn die erste Option der Benutzereinstellungen für Kommentare ausgewählt wurde.]</target>
+			</trans-unit>
+			<trans-unit id="termsRequired">
+				<source>Datenschutzbestimmungen erorderlich</source>
+			</trans-unit>
+			<trans-unit id="termsTypolinkParameter">
+				<source>Datenschutzbestimmungen Typolink Parameter</source>
 			</trans-unit>
 		</body>
 	</file>

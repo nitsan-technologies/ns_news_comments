@@ -163,7 +163,7 @@
 				<target>Datenschutzbestimmungen zu akzeptieren ist erforderlich!</target>
 			</trans-unit>
 			<trans-unit id="terms.label">
-				<target>Terms</target>
+				<target>Datenschutzbestimungen</target>
 			</trans-unit>
 			<trans-unit id="terms.text">
 				<target><![CDATA[Ich akzeptiere die <a href="%s" target="_blank">Datenschutzbestimmungen</a>.]]></target>

@@ -25,7 +25,6 @@ namespace Nitsan\NsNewsComments\Controller;
  *
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
-
 use TYPO3\CMS\Core\Resource\ResourceFactory;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
@@ -114,7 +113,6 @@ class CommentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
     /**
      * action list
      *
-     *
      * @return void
      */
     public function listAction()
@@ -139,19 +137,6 @@ class CommentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
                 $resourceFactory = GeneralUtility::makeInstance(ResourceFactory::class);
                 $fileReference = $resourceFactory->getFileReferenceObject($imageUid);
                 $Image = $fileReference->getProperties();
-            }
-        }
-
-        if ($_REQUEST['Accesstoken']) {
-            $comment = $this->commentRepository->getCommentsByAccesstoken($_REQUEST['Accesstoken']);
-            if (count($comment) > 0) {
-                $commentData = $comment[0];
-                $commentData->setAccesstoken('');
-                $commentData->setHidden(0);
-                $this->commentRepository->update($commentData);
-                $this->view->assign('updated', 1);
-            } else {
-                $this->view->assign('updated', 2);
             }
         }
 
@@ -207,6 +192,25 @@ class CommentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
     }
 
     /**
+     * action approveComment
+     *
+     * @return void
+     */
+    public function approveCommentAction()
+    {
+        if ($_REQUEST['Accesstoken']) {
+            $comment = $this->commentRepository->getCommentsByAccesstoken($_REQUEST['Accesstoken']);
+            if (count($comment) > 0) {
+                $commentData = $comment[0];
+                $commentData->setAccesstoken('');
+                $commentData->setHidden(0);
+                $this->commentRepository->update($commentData);
+                $this->view->assign('updated', 1);
+            }
+        }
+    }
+
+    /**
      * action create
      *
      * @param \Nitsan\NsNewsComments\Domain\Model\Comment $newComment
@@ -239,7 +243,7 @@ class CommentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
         }
 
         if (isset($this->settings['approveComment']) && $this->settings['approveComment'] == 1) {
-            // Access Tocken
+            // Access Token
             $token = bin2hex(random_bytes(11));
             $newComment->setAccesstoken($token);
             $accessTokenLink = $this->buildUriForAccesstoken($this->pageUid, $arguments = ['Accesstoken' => $token]);
@@ -271,16 +275,16 @@ class CommentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
         $newsTitle = $news->getTitle();
         $translateArguments = ['comments' => $newComment, 'newsTitle' => $news->getTitle(), 'accessTokenLink' => $accessTokenLink];
         $variables = array('UserData' => $translateArguments);
+
+        $replyTromEmail = $newComment->getUsermail();
+        $replyFromName = $newComment->getUsername();
+        if ($fromEmail == '') {
+            $fromEmail = 'NULL';
+        }
         if (isset($this->settings['notification']['siteadmin']['sendMailToAdmin']) && $adminEmail != '') {
             $emails = explode(',', $adminEmail);
-            if ($fromEmail == '') {
-                $fromEmail = $newComment->getUsermail();
-            }
-            if ($fromName == '') {
-                $fromName = $newComment->getUsername();
-            }
             foreach ($emails as $mail) {
-                $res = $this->sendTemplateEmail([$mail => $adminName], [$fromEmail => $fromName], $emailSubject, 'mailTemplate', $variables);
+                $res = $this->sendTemplateEmail([$mail => $adminName], [$fromEmail => $fromName], $emailSubject, 'mailTemplate', $variables, [$replyTromEmail => $replyFromName]);
             }
         }
         // Disable comment for approvement
@@ -333,8 +337,9 @@ class CommentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
      * @param string $subject subject of the email
      * @param string $templateName template name (UpperCamelCase)
      * @param array $variables variables to be passed to the Fluid view
+     * @param array $replyto replyto of the email in the format array('replyto@domain.tld' => 'Reply Name')
      */
-    protected function sendTemplateEmail(array $recipient, array $sender, $subject, $templateName, array $variables = array())
+    protected function sendTemplateEmail(array $recipient, array $sender, $subject, $templateName, array $variables = array(), array $replyto)
     {
         /** @var \TYPO3\CMS\Fluid\View\StandaloneView $emailView */
         $emailView = $this->objectManager->get('TYPO3\\CMS\\Fluid\\View\\StandaloneView');
@@ -351,7 +356,11 @@ class CommentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
         /** @var $message \TYPO3\CMS\Core\Mail\MailMessage */
         $message = $this->objectManager->get('TYPO3\\CMS\\Core\\Mail\\MailMessage');
         /*Mail to Admin*/
-        $message->setTo($recipient)->setFrom($sender)->setSubject($subject);
+        if (isset($sender['NULL'])) {
+            $message->setTo($recipient)->setReplyTo($replyto)->setSubject($subject);
+        } else {
+            $message->setTo($recipient)->setReplyTo($replyto)->setFrom($sender)->setSubject($subject);
+        }
         // HTML Email
         $message->setBody($emailBody, 'text/html');
         // $status = 0;

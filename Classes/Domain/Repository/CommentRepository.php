@@ -63,8 +63,8 @@ class CommentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
         );
 
         // Here you enable the hidden and deleted Records
-        $query->getQuerySettings()
-            ->setIgnoreEnableFields(true);
+        $query->getQuerySettings()->setIgnoreEnableFields(true);
+        $query->getQuerySettings()->setRespectStoragePage(false);
 
         $query->matching($query->logicalAnd($queryArr));
         $result = $query->execute();

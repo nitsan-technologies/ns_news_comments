@@ -4,8 +4,6 @@ $(function() {
     onFocusValidation();
     $parentCommentId = '';
     replyComment();
-    jQuery.support.placeholder = false;
-    test = document.createElement('input');
 
     if ($('.tx_nsnewscomments .approvedmessage').length) {
         $('html, body').stop().animate({
@@ -15,8 +13,31 @@ $(function() {
             $('.tx_nsnewscomments .approvedmessage').fadeOut("slow");
         }, 9000);
     }
-    if('placeholder' in test) jQuery.support.placeholder = true;
+
+    if ($('.approvecomment').length) {
+        showpopup();
+    }
+    $(".approvecomment #cancel_button").click(function(){
+        hidepopup();
+    });
+    $(".approvecomment #close_button").click(function(){
+        hidepopup();
+    });
 });
+
+// Show popup div
+function showpopup()
+{
+    $(".approvecomment #popup_box").fadeToggle();
+    $(".approvecomment #popup_box").css({"visibility":"visible","display":"block"});
+}
+
+// Hide popup div
+function hidepopup()
+{
+    $(".approvecomment #popup_box").fadeToggle();
+    $(".approvecomment #popup_box").css({"visibility":"hidden","display":"none"});
+}
 
 function replyComment() {
     $(document).on("click", '.comment-btn.reply', function(event) {
@@ -177,7 +198,16 @@ function validateField() {
         $('.tx_nsnewscomments #name_error').show();
         var flag = 0;
     } else {
-        $(".tx_nsnewscomments #name").parent().removeClass('has-error'); // remove it
+        if (!validateName($('.tx_nsnewscomments #name').val())) {
+            $(".tx_nsnewscomments #name_error_msg").show();
+            $(".tx_nsnewscomments #name_error").hide();
+            $(".tx_nsnewscomments #name").parent().addClass('has-error');
+            var flag = 0;
+        } else {
+            $(".tx_nsnewscomments #name").parent().removeClass('has-error');
+            $(".tx_nsnewscomments #name_error_msg").hide();
+            $(".tx_nsnewscomments #name_error").hide();
+        }
     }
 
     if (!$('.tx_nsnewscomments #email').val()) {
@@ -228,7 +258,6 @@ function validateField() {
             }
         }
     }
-
     if (flag == 1) {
         return true;
     }
@@ -362,7 +391,7 @@ function validateEmail($email) {
 
 // Validate Name field
 function validateName($name) {
-    var nameReg = /^[a-zA-Z-,]+(\s{0,1}[a-zA-Z-, ])*$/;
+    var nameReg = /[^0-9]/g;
     return nameReg.test($name);
 }
 

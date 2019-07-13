@@ -156,6 +156,9 @@
 			<trans-unit id="confirm3">
 				<target>um diesen Kommentar in den Nachrichten anzuzeigen.</target>
 			</trans-unit>
+			<trans-unit id="close">
+				<target>Schließen</target>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>

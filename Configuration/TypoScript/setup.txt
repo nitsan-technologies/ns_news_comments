@@ -46,8 +46,8 @@ page {
 	}
 }
 
-ajaxCall = PAGE
-ajaxCall{
+commentAjaxCall = PAGE
+commentAjaxCall {
 	typeNum = 99
 	config{
 		disableAllHeaderCode = 1
@@ -56,7 +56,20 @@ ajaxCall{
 		no_cache = 1
 		admPanel = 0
 	}
-	10 < tt_content.list.20.nsnewscomments_newscomment
+	315123 = USER
+	315123{
+		userFunc = TYPO3\CMS\Extbase\Core\Bootstrap->run
+		pluginName = Newscomment
+		extensionName = NsNewsComments
+		controller = Comment
+		vendorName = Nitsan
+		action = create
+		switchableControllerActions{
+			Comment{
+				1 = create
+			}
+		}
+	}
 }
 
 lib.tx_nsnewscomments.comments = USER
@@ -75,3 +88,21 @@ lib.tx_nsnewscomments.comments {
     	relatedComments = 1
     }
 }
+
+[globalVar = LIT:1 = {$plugin.tx_nsnewscomments.settings.approveComment}]
+	page.315125 >
+	page.315125 = USER
+	page.315125{
+	  	userFunc = TYPO3\CMS\Extbase\Core\Bootstrap->run
+	  	pluginName = Newscomment
+	  	extensionName = NsNewsComments
+	  	controller = Comment
+	  	vendorName = Nitsan
+	  	action = show
+	  	switchableControllerActions{
+	    	Comment{
+	      		1 = approveComment
+	    	}
+	  	}
+	}
+[global]

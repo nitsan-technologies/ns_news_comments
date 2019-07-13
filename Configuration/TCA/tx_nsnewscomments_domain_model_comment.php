@@ -27,7 +27,7 @@ return array(
         'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, newsuid, username, usermail, paramlink, description,childcomment, terms',
     ),
     'types' => array(
-        '1' => array('showitem' => 'feuserid, accesstoken, username, usermail, userimage, description, paramlink, childcomment, terms, --div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.access, sys_language_uid, l10n_parent, l10n_diffsource, hidden, starttime, endtime'),
+        '1' => array('showitem' => 'feuserid, accesstoken, username, usermail, userimage, description, terms, paramlink, childcomment, --div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.access, sys_language_uid, l10n_parent, l10n_diffsource, hidden, starttime, endtime'),
     ),
     'columns' => array(
 

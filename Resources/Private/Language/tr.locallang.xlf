@@ -156,6 +156,18 @@
 			<trans-unit id="confirm3">
 				<target>haberde bu yorumu görüntülemek için.</target>
 			</trans-unit>
+			<trans-unit id="form.termsError">
+				<target>Lütfen kabul et</target>
+			</trans-unit>
+			<trans-unit id="terms_required">
+				<target>Şartlar gerekli!</target>
+			</trans-unit>
+			<trans-unit id="terms.label">
+				<target>şartlar</target>
+			</trans-unit>
+			<trans-unit id="terms.text">
+				<target><![CDATA[Kabul ediyorum <a href="%s" target="_blank">terms</a>.]]></target>
+			</trans-unit>
 			<trans-unit id="close">
 				<target>Kapat</target>
 			</trans-unit>

@@ -167,6 +167,7 @@
 			</trans-unit>
 			<trans-unit id="terms.text">
 				<source><![CDATA[I accept the <a href="%s" target="_blank">terms</a>.]]></source>
+			</trans-unit>
 			<trans-unit id="close">
 				<source>Close</source>
 			</trans-unit>

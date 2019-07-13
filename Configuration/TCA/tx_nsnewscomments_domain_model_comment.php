@@ -24,10 +24,10 @@ return array(
         'iconfile' => 'EXT:ns_news_comments/Resources/Public/Icons/plug_comment.svg',
     ),
     'interface' => array(
-        'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, newsuid, username, usermail, paramlink, description,childcomment',
+        'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, newsuid, username, usermail, paramlink, description,childcomment, terms',
     ),
     'types' => array(
-        '1' => array('showitem' => 'feuserid, accesstoken, username, usermail, userimage, description, paramlink, childcomment, --div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.access, sys_language_uid, l10n_parent, l10n_diffsource, hidden, starttime, endtime'),
+        '1' => array('showitem' => 'feuserid, accesstoken, username, usermail, userimage, description, paramlink, childcomment, terms, --div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.access, sys_language_uid, l10n_parent, l10n_diffsource, hidden, starttime, endtime'),
     ),
     'columns' => array(
 
@@ -264,6 +264,14 @@ return array(
                         'delete' => false,
                     ),
                 ),
+            ),
+        ),
+        'terms' => array(
+            'exclude' => 0,
+            'label' => 'LLL:EXT:ns_news_comments/Resources/Private/Language/locallang_db.xlf:tx_nsnewscomments_domain_model_comment.terms',
+            'config' => array(
+                'type' => 'check',
+                'readOnly' => 1,
             ),
         ),
     ),

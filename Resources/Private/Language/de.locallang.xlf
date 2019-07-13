@@ -156,6 +156,17 @@
 			<trans-unit id="confirm3">
 				<target>um diesen Kommentar in den Nachrichten anzuzeigen.</target>
 			</trans-unit>
+			<trans-unit id="form.termsError">
+				<target>Bitte akzeptieren</target>
+			</trans-unit>
+			<trans-unit id="terms_required">
+				<target>Datenschutzbestimmungen zu akzeptieren ist erforderlich!</target>
+			</trans-unit>
+			<trans-unit id="terms.label">
+				<target>Datenschutzbestimungen</target>
+			</trans-unit>
+			<trans-unit id="terms.text">
+				<target><![CDATA[Ich akzeptiere die <a href="%s" target="_blank">Datenschutzbestimmungen</a>.]]></target>
 			<trans-unit id="close">
 				<target>Schließen</target>
 			</trans-unit>

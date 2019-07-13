@@ -7,12 +7,12 @@ if (!defined('TYPO3_MODE')) {
 	'Nitsan.ns_news_comments',
 	'Newscomment',
 	array(
-		'Comment' => 'list, new, create',
+		'Comment' => 'list, new, create, approveComment',
 		
 	),
 	// non-cacheable actions
 	array(
-		'Comment' => 'list, new, create',
+		'Comment' => 'list, new, create, approveComment',
 		
 	)
 );

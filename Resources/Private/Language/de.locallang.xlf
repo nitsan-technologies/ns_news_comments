@@ -167,6 +167,8 @@
 			</trans-unit>
 			<trans-unit id="terms.text">
 				<target><![CDATA[Ich akzeptiere die <a href="%s" target="_blank">Datenschutzbestimmungen</a>.]]></target>
+			<trans-unit id="close">
+				<target>Schließen</target>
 			</trans-unit>
 		</body>
 	</file>

@@ -6,6 +6,9 @@
 			<trans-unit id="tx_nsnewscomments_domain_model_comment">
 				<target>Yorum</target>
 			</trans-unit>
+			<trans-unit id="tx_nsnewscomments_domain_model_comment.newComments">
+				<target>Yorumlar</target>
+			</trans-unit>
 			<trans-unit id="tx_nsnewscomments_domain_model_comment.newsuid">
 				<target>Haber UID</target>
 			</trans-unit>

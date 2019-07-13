@@ -6,6 +6,9 @@
 			<trans-unit id="tx_nsnewscomments_domain_model_comment">
 				<target>Kommentar</target>
 			</trans-unit>
+			<trans-unit id="tx_nsnewscomments_domain_model_comment.newComments">
+				<target>Kommentar</target>
+			</trans-unit>
 			<trans-unit id="tx_nsnewscomments_domain_model_comment.newsuid">
 				<target>News UID</target>
 			</trans-unit>

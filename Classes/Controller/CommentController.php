@@ -1,6 +1,7 @@
 <?php
 namespace Nitsan\NsNewsComments\Controller;
 
+use TYPO3\CMS\Extbase\Utility\DebuggerUtility as debug;
 /***************************************************************
  *
  *  Copyright notice
@@ -263,13 +264,16 @@ class CommentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
             $childComment->addChildcomment($newComment);
             $this->commentRepository->update($childComment);
         }
+        
         // Add comment to repository
         $this->commentRepository->add($newComment);
         $this->persistenceManager->persistAll();
+        
         // Add paramlink to comments for scrolling to comment
         $paramlink = $this->buildUriByUid($this->pageUid, $arguments = array('commentid' => $newComment->getUid()));
         $newComment->setParamlink($paramlink);
         $this->commentRepository->update($newComment);
+        
         // Configuration for mail template
         $news = $this->newsRepository->findByUid($this->newsUid);
         $newsTitle = $news->getTitle();
@@ -281,7 +285,7 @@ class CommentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
         if ($fromEmail == '') {
             $fromEmail = 'NULL';
         }
-        if (isset($this->settings['notification']['siteadmin']['sendMailToAdmin']) && $adminEmail != '') {
+        if (isset($this->settings['notification']['siteadmin']['sendMailToAdmin']) && $this->settings['notification']['siteadmin']['sendMailToAdmin'] != 0 && $adminEmail != '') {
             $emails = explode(',', $adminEmail);
             foreach ($emails as $mail) {
                 $res = $this->sendTemplateEmail([$mail => $adminName], [$fromEmail => $fromName], $emailSubject, 'mailTemplate', $variables, [$replyTromEmail => $replyFromName]);

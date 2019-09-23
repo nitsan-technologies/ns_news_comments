@@ -40,7 +40,7 @@
 				<target>Email</target>
 			</trans-unit>
 			<trans-unit id="tx_nsnewscomments_domain_model_comment.approvedmessage">
-				<target>Kommentar erfolgreich genehmigt. Laden Sie die Seite neu, um den Kommentar zu sehen.</target>
+				<target>Kommentar erfolgreich genehmigt. Lade die Seite neu, um den Kommentar zu sehen.</target>
 			</trans-unit>
 			<trans-unit id="tx_nsnewscomments_domain_model_comment.unapprovedmessage">
 				<target>Entweder ist der Kommentar bereits genehmigt oder das Zugriffstoken ist ungültig.</target>
@@ -58,31 +58,31 @@
 				<target>Email</target>
 			</trans-unit>
 			<trans-unit id="email">
-				<target>Bitte geben Sie Ihre gültige E-Mail Adresse ein</target>
+				<target>Bitte gib deine gültige E-Mail Adresse ein</target>
 			</trans-unit>
 			<trans-unit id="email_required">
 				<target>Gültige E-Mail ist erforderlich!</target>
 			</trans-unit>
 			<trans-unit id="name">
-				<target>Bitte geben Sie Ihren Namen ein</target>
+				<target>Bitte gib Deinen Namen ein</target>
 			</trans-unit>
 			<trans-unit id="name_required">
 				<target>Name ist erforderlich!</target>
 			</trans-unit>
 			<trans-unit id="comment">
-				<target>Bitte geben Sie Ihren Kommentar ein</target>
+				<target>Bitte gib deinen Kommentar ein</target>
 			</trans-unit>
 			<trans-unit id="comment_required">
 				<target>Kommentar ist erforderlich!</target>
 			</trans-unit>
 			<trans-unit id="captcha">
-				<target>Geben Sie den obigen Code hier ein</target>
+				<target>Gib den obigen Code hier ein</target>
 			</trans-unit>
 			<trans-unit id="captcha_required">
 				<target>Captcha ist erforderlich!</target>
 			</trans-unit>
 			<trans-unit id="tx_nsnewscomments_domain_model_comment.captcha">
-				<target>Geben Sie den obigen Code hier ein</target>
+				<target>Gib den obigen Code hier ein</target>
 			</trans-unit>
 			<trans-unit id="tx_nsnewscomments_domain_model_comment.replylabel">
 				<target>Antworten</target>
@@ -130,7 +130,7 @@
 				<target>Danke für deinen Kommentar. Dein Kommentar wird nach der Überprüfung sichtbar.</target>
 			</trans-unit>
 			<trans-unit id="form.thankyouMessage">
-				<target>Danke für deinen Kommentar. Ihr Kommentar wurde erfolgreich hinzugefügt.</target>
+				<target>Danke für deinen Kommentar. Dein Kommentar wurde erfolgreich hinzugefügt.</target>
 			</trans-unit>
 			<trans-unit id="tx_nsnewscomments_domain_model_comment.errorMessage">
 				<target>Kein Nachrichteneintrag gefunden</target>
@@ -145,7 +145,7 @@
 				<target>anmelden und Kommentare hinzufügen.</target>
 			</trans-unit>
 			<trans-unit id="commentas">
-				<target>Kommentar wird als hinzugefügt</target>
+				<target>Kommentar wird hinzugefügt als</target>
 			</trans-unit>
 			<trans-unit id="confirm1">
 				<target>Derzeit wird dieser Kommentar nicht in den Nachrichten angezeigt.</target>

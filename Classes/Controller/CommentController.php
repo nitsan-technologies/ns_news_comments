@@ -166,6 +166,11 @@ class CommentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
             if ($userIDTest) {
                 if ($userIDTest->getName()) {
                     $name = $userIDTest->getName();
+                } elseif ($userIDTest->getFirstName() . $userIDTest->getLastName()) {
+                    $name  = $userIDTest->getFirstName() ? $userIDTest->getFirstName().' ' : '';
+                    $name .= $userIDTest->getMiddleName() ? $userIDTest->getMiddleName().' ' : '';
+                    $name .= $userIDTest->getLastName() ? $userIDTest->getLastName() : '';
+                    $name = trim($name);
                 } else {
                     $name = $userIDTest->getUsername();
                 }

@@ -36,50 +36,5 @@ plugin.tx_nsnewscomments{
 
 		# cat=plugin.tx_nsnewscomments/170/10; type=string; label=LLL:EXT:ns_news_comments/Resources/Private/Language/locallang_db.xlf:termsTypolinkParameter
 		termsTypolinkParameter = https://www.nitsan.in/
-
-		notification {
-			siteadmin {
-				# cat=plugin.tx_nsnewscomments/160/10; type=boolean; label=LLL:EXT:ns_news_comments/Resources/Private/Language/locallang_db.xlf:sendMailToAdmin
-				sendMailToAdmin = 0
-
-				# cat=plugin.tx_nsnewscomments/160/11; type=string; label=LLL:EXT:ns_news_comments/Resources/Private/Language/locallang_db.xlf:adminEmail
-				adminEmail = test@mail.com
-
-				# cat=plugin.tx_nsnewscomments/160/12; type=string; label=LLL:EXT:ns_news_comments/Resources/Private/Language/locallang_db.xlf:adminName
-				adminName = Admin
-
-				# cat=plugin.tx_nsnewscomments/160/13; type=string; label=LLL:EXT:ns_news_comments/Resources/Private/Language/locallang_db.xlf:fromEmail
-				fromEmail = 
-
-				# cat=plugin.tx_nsnewscomments/160/14; type=string; label=LLL:EXT:ns_news_comments/Resources/Private/Language/locallang_db.xlf:fromName
-				fromName = 
-
-				# cat=plugin.tx_nsnewscomments/160/15; type=string; label=LLL:EXT:ns_news_comments/Resources/Private/Language/locallang_db.xlf:adminMailSubject
-				adminMailSubject = New Comment has been added to news
-			}
-		}
-
-		mainConfiguration {
-			# cat=plugin.tx_nsnewscomments/200/10; type=string; label=LLL:EXT:ns_news_comments/Resources/Private/Language/locallang_db.xlf:recordStoragePage
-			recordStoragePage = 
-
-			# cat=plugin.tx_nsnewscomments/200/20; type=string; label=LLL:EXT:ns_news_comments/Resources/Private/Language/locallang_db.xlf:customDateFormat
-			customDateFormat = F j, Y
-
-			# cat=plugin.tx_nsnewscomments/200/30; type=string; label=LLL:EXT:ns_news_comments/Resources/Private/Language/locallang_db.xlf:customTimeFormat
-			customTimeFormat = g:i a
-
-			# cat=plugin.tx_nsnewscomments/200/40; type=boolean; label=LLL:EXT:ns_news_comments/Resources/Private/Language/locallang_db.xlf:disableCaptcha
-			disableCaptcha = 1
-
-			# cat=plugin.tx_nsnewscomments/200/50; type=string; label=LLL:EXT:ns_news_comments/Resources/Private/Language/locallang_db.xlf:userImage
-			userImage = typo3conf/ext/ns_news_comments/Resources/Public/Icons/team-image.png
-
-			# cat=plugin.tx_nsnewscomments/200/60; type=options[FE-user as well as the Anonymous user can comment on the news=anonymoususer ,Only FE-users can comment on news=feuserOnly]; label=LLL:EXT:ns_news_comments/Resources/Private/Language/locallang_db.xlf:commentUserSettings
-			commentUserSettings =FE-user as well as the Anonymous user can comment on the news
-
-			# cat=plugin.tx_nsnewscomments/200/70; type=string; label=LLL:EXT:ns_news_comments/Resources/Private/Language/locallang_db.xlf:FEUserLoginPageId
-			FEUserLoginPageId =
-		}
 	}
 }

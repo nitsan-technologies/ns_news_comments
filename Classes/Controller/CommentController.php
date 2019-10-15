@@ -161,35 +161,6 @@ class CommentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
             $this->view->assign('pid', $pid);
             $this->view->assign('settings', $setting);
 
-            // User Login or not
-            $userIDTest = $this->userRepository->findByUid($GLOBALS['TSFE']->fe_user->user['uid']);
-            if ($userIDTest) {
-                if ($userIDTest->getName()) {
-                    $name = $userIDTest->getName();
-                } elseif ($userIDTest->getFirstName() . $userIDTest->getLastName()) {
-                    $name  = $userIDTest->getFirstName() ? $userIDTest->getFirstName().' ' : '';
-                    $name .= $userIDTest->getMiddleName() ? $userIDTest->getMiddleName().' ' : '';
-                    $name .= $userIDTest->getLastName() ? $userIDTest->getLastName() : '';
-                    $name = trim($name);
-                } else {
-                    $name = $userIDTest->getUsername();
-                }
-
-                if ($userIDTest->getEmail()) {
-                    $email = $userIDTest->getEmail();
-                }
-
-                if ($userIDTest->getImage()) {
-                    if (!is_string($userIDTest->getImage())) {
-                        $userimages = $userIDTest->getImage();
-                    }
-                }
-
-                $this->view->assign('feuserlogin', 1);
-                $this->view->assign('name', $name);
-                $this->view->assign('email', $email);
-                $this->view->assign('feuserImages', $userimages);
-            }
         } else {
             $error = LocalizationUtility::translate('tx_nsnewscomments_domain_model_comment.errorMessage', 'NsNewsComments');
             $this->addFlashMessage($error, '', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
@@ -224,29 +195,6 @@ class CommentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
      */
     public function createAction(\Nitsan\NsNewsComments\Domain\Model\Comment $newComment)
     {
-        $userIDTest = $this->userRepository->findByUid($GLOBALS['TSFE']->fe_user->user['uid']);
-        if ($userIDTest) {
-            if ($userIDTest->getName()) {
-                $name = $userIDTest->getName();
-            } else {
-                $name = $userIDTest->getUsername();
-            }
-            $newComment->setUsername($name);
-
-            if ($userIDTest->getEmail()) {
-                $email = $userIDTest->getEmail();
-                $newComment->setUsermail($email);
-            }
-
-            if ($userIDTest->getImage()) {
-                if (is_string($userIDTest->getImage())) {
-                    $userimages = explode(',', $userIDTest->getImage());
-                    $newComment->setUserimage('uploads/pics/' . $userimages[0]);
-                }
-            }
-            $newComment->setFeuserid($userIDTest->getUid());
-        }
-
         if (isset($this->settings['approveComment']) && $this->settings['approveComment'] == 1) {
             // Access Token
             $token = bin2hex(random_bytes(11));
@@ -288,12 +236,6 @@ class CommentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
         $replyFromName = $newComment->getUsername();
         if ($fromEmail == '') {
             $fromEmail = 'NULL';
-        }
-        if (isset($this->settings['notification']['siteadmin']['sendMailToAdmin']) && $this->settings['notification']['siteadmin']['sendMailToAdmin'] != 0 && $adminEmail != '') {
-            $emails = explode(',', $adminEmail);
-            foreach ($emails as $mail) {
-                $res = $this->sendTemplateEmail([$mail => $adminName], [$fromEmail => $fromName], $emailSubject, 'mailTemplate', $variables, [$replyTromEmail => $replyFromName]);
-            }
         }
         // Disable comment for approvement
         if (isset($this->settings['approveComment']) && $this->settings['approveComment'] == 1) {
@@ -337,43 +279,5 @@ class CommentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
         $uri = $this->uriBuilder->reset()->setTargetPageUid($uid)->setAddQueryString(true)->setArgumentsToBeExcludedFromQueryString($excludeFromQueryString)->setArguments($arguments)->build();
         $uri = $this->addBaseUriIfNecessary($uri);
         return $uri;
-    }
-
-    /**
-     * @param array $recipient recipient of the email in the format array('recipient@domain.tld' => 'Recipient Name')
-     * @param array $sender sender of the email in the format array('sender@domain.tld' => 'Sender Name')
-     * @param string $subject subject of the email
-     * @param string $templateName template name (UpperCamelCase)
-     * @param array $variables variables to be passed to the Fluid view
-     * @param array $replyto replyto of the email in the format array('replyto@domain.tld' => 'Reply Name')
-     */
-    protected function sendTemplateEmail(array $recipient, array $sender, $subject, $templateName, array $variables = array(), array $replyto)
-    {
-        /** @var \TYPO3\CMS\Fluid\View\StandaloneView $emailView */
-        $emailView = $this->objectManager->get('TYPO3\\CMS\\Fluid\\View\\StandaloneView');
-        /*For use of Localize value */
-        $extensionName = $this->request->getControllerExtensionName();
-        $emailView->getRequest()->setControllerExtensionName($extensionName);
-        /*For use of Localize value */
-        $extbaseFrameworkConfiguration = $this->configurationManager->getConfiguration(\TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface::CONFIGURATION_TYPE_FRAMEWORK);
-        $templateRootPath = \TYPO3\CMS\Core\Utility\GeneralUtility::getFileAbsFileName($extbaseFrameworkConfiguration['view']['templateRootPaths']['0']);
-        $templatePathAndFilename = $templateRootPath . 'Email/' . $templateName . '.html';
-        $emailView->setTemplatePathAndFilename($templatePathAndFilename);
-        $emailView->assignMultiple($variables);
-        $emailBody = $emailView->render();
-        /** @var $message \TYPO3\CMS\Core\Mail\MailMessage */
-        $message = $this->objectManager->get('TYPO3\\CMS\\Core\\Mail\\MailMessage');
-        /*Mail to Admin*/
-        if (isset($sender['NULL'])) {
-            $message->setTo($recipient)->setReplyTo($replyto)->setSubject($subject);
-        } else {
-            $message->setTo($recipient)->setReplyTo($replyto)->setFrom($sender)->setSubject($subject);
-        }
-        // HTML Email
-        $message->setBody($emailBody, 'text/html');
-        // $status = 0;
-        $message->send();
-        $status = $message->isSent();
-        return $status;
     }
 }

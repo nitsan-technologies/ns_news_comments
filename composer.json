@@ -1,13 +1,13 @@
 {
   "name": "nitsan/ns-news-comments",
   "type": "typo3-cms-extension",
-  "description": "This extension allows user to post comment on particular news, reply to the comments. This extension is compatible only with News system Extension.",
+  "description": "Do you want to smoothly integrate comment features in your favourite News extension? This extension includes powerful features like post comment, reply to comment, multi-level comment thread, moderation etc., You can download PRO version for more-features & free-support at https://t3terminal.com/ns-news-comments-pro/",
   "homepage": "https://extensions.typo3.org/extension/ns_news_comments/",
   "license": "GPL-2.0+",
   "keywords": [
     "TYPO3 CMS",
     "News Comment",
-    "Nitsan",
+    "NITSAN",
     "Comments"
   ],
   "support": {
@@ -23,7 +23,6 @@
     }
   },
   "replace": {
-    "ns_news_comments": "self.version",
     "nitsan/ns-news-comments": "self.version"
   },
   "config": {

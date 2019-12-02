@@ -1,6 +1,8 @@
 paths:
-    - Configuration/TSconfig
-    - Configuration/TypoScript
+  - Configuration
+
+filePatterns:
+  - "*.ts"
 
 sniffs:
   - class: Indentation

@@ -39,13 +39,13 @@ class CommentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
     public function getCommentsByNews($newsId)
     {
         $query = $this->createQuery();
-        $queryArr = array();
-        $queryArr = array(
+        $queryArr = [];
+        $queryArr = [
             $query->equals('newsuid', $newsId),
             $query->equals('comment', 0),
-        );
+        ];
         $query->matching($query->logicalAnd($queryArr));
-        $query->setOrderings(array('crdate' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_DESCENDING));
+        $query->setOrderings(['crdate' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_DESCENDING]);
         $result = $query->execute();
         return $result;
     }
@@ -57,10 +57,10 @@ class CommentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
     public function getCommentsByAccesstoken($accesstoken)
     {
         $query = $this->createQuery();
-        $queryArr = array();
-        $queryArr = array(
+        $queryArr = [];
+        $queryArr = [
             $query->equals('accesstoken', $accesstoken),
-        );
+        ];
 
         // Here you enable the hidden and deleted Records
         $query->getQuerySettings()->setIgnoreEnableFields(true);
@@ -78,13 +78,13 @@ class CommentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
     public function getLastCommentOfNews($newsuid = null)
     {
         $query = $this->createQuery();
-        $queryArr = array();
-        $queryArr = array(
+        $queryArr = [];
+        $queryArr = [
             $query->equals('newsuid', $newsuid),
-        );
+        ];
         $query->getQuerySettings()->setRespectStoragePage(false);
         $query->matching($query->logicalAnd($queryArr));
-        $query->setOrderings(array('crdate' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_DESCENDING));
+        $query->setOrderings(['crdate' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_DESCENDING]);
         $result = $query->setLimit(1)->execute();
         return $result;
     }

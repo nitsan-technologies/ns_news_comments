@@ -96,6 +96,15 @@
 		                    </config>
 		                </TCEforms>
 					</settings.timeFormat>
+					<settings.captcha>
+						<TCEforms>
+							<label>LLL:EXT:ns_news_comments/Resources/Private/Language/locallang_db.xlf:flexform.captcha</label>
+		                    <config>
+		                        <type>check</type>
+		                        <default>1</default>
+		                    </config>
+		                 </TCEforms>
+					</settings.captcha>
 				</el>
 			</ROOT>
 		</sDEF>

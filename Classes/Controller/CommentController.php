@@ -39,7 +39,6 @@ class CommentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
      * commentRepository
      *
      * @var \Nitsan\NsNewsComments\Domain\Repository\CommentRepository
-     * @inject
      */
     protected $commentRepository = null;
 
@@ -50,7 +49,6 @@ class CommentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 
     /**
      * @var \TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager
-     * @inject
      */
     protected $persistenceManager;
 
@@ -58,7 +56,6 @@ class CommentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
      * User Repository
      *
      * @var \TYPO3\CMS\Extbase\Domain\Repository\FrontendUserRepository
-     * @inject
      */
     protected $userRepository;
 
@@ -71,6 +68,36 @@ class CommentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
     public function injectNewsRepository(\GeorgRinger\News\Domain\Repository\NewsRepository $newsRepository)
     {
         $this->newsRepository = $newsRepository;
+    }
+
+    /**
+    * Inject a news repository to enable DI
+    *
+    * @param \Nitsan\NsNewsComments\Domain\Repository\CommentRepository $commentRepository
+    */
+    public function injectCommentRepository(\Nitsan\NsNewsComments\Domain\Repository\CommentRepository $commentRepository)
+    {
+        $this->commentRepository = $commentRepository;
+    }
+
+    /**
+     * Inject a news repository to enable DI
+     *
+     * @param \TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager $persistenceManager
+     */
+    public function injectPersistenceManager(\TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager $persistenceManager)
+    {
+        $this->persistenceManager = $persistenceManager;
+    }
+
+    /**
+     * Inject a news repository to enable DI
+     *
+     * @param \TYPO3\CMS\Extbase\Domain\Repository\FrontendUserRepository $userRepository
+     */
+    public function injectUserRepository(\TYPO3\CMS\Extbase\Domain\Repository\FrontendUserRepository $userRepository)
+    {
+        $this->userRepository = $userRepository;
     }
 
     /**
@@ -91,7 +118,7 @@ class CommentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
             if ($this->settings['mainConfiguration']['recordStoragePage']) {
                 $currentPid['persistence']['storagePid'] = $_REQUEST['tx_nsnewscomments_newscomment']['comments-storage-pid'];
             } else {
-                $currentPid['persistence']['storagePid'] = GeneralUtility::_GP('id');
+                $currentPid['persistence']['storagePid'] = $GLOBALS['TSFE']->id;
             }
             $this->configurationManager->setConfiguration(array_merge($extbaseFrameworkConfiguration, $currentPid));
         } else {
@@ -102,7 +129,7 @@ class CommentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
                     if ($this->settings['relatedComments'] && $this->settings['mainConfiguration']['recordStoragePage']) {
                         $currentPid['persistence']['storagePid'] = $this->settings['mainConfiguration']['recordStoragePage'];
                     } else {
-                        $currentPid['persistence']['storagePid'] = GeneralUtility::_GP('id');
+                        $currentPid['persistence']['storagePid'] = $GLOBALS['TSFE']->id;
                     }
                 }
                 $this->configurationManager->setConfiguration(array_merge($extbaseFrameworkConfiguration, $currentPid));
@@ -140,17 +167,22 @@ class CommentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
             }
         }
 
-        $this->contentObj = $this->configurationManager->getContentObject();
-        $pid = $this->contentObj->data['pages'];
-        if (empty($pid)) {
-            $pid = GeneralUtility::_GP('id');
+        $extbaseFrameworkConfiguration = $this->configurationManager->getConfiguration(\TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface::CONFIGURATION_TYPE_FRAMEWORK);
+        if (empty($extbaseFrameworkConfiguration['persistence']['storagePid'])) {
+            $pid = $GLOBALS['TSFE']->id;
+        } else {
+            $pid = $extbaseFrameworkConfiguration['persistence']['storagePid'];
         }
-
         $setting = $this->settings;
         if ($this->newsUid) {
             $comments = $this->commentRepository->getCommentsByNews($newsId = $this->newsUid)->toArray();
-            $path = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::siteRelPath('ns_news_comments') . 'Resources/Private/PHP/captcha.php';
-            $verification = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::siteRelPath('ns_news_comments') . 'Resources/Private/PHP/verify.php';
+            if (version_compare(TYPO3_branch, '9.0', '>')) {
+                $path = \TYPO3\CMS\Core\Utility\PathUtility::stripPathSitePrefix(\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('ns_news_comments')) . 'Resources/Private/PHP/captcha.php';
+                $verification = \TYPO3\CMS\Core\Utility\PathUtility::stripPathSitePrefix(\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('ns_news_comments')) . 'Resources/Private/PHP/verify.php';
+            } else {
+                $path = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::siteRelPath('ns_news_comments') . 'Resources/Private/PHP/captcha.php';
+                $verification = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::siteRelPath('ns_news_comments') . 'Resources/Private/PHP/verify.php';
+            }
             $captcha_path = $path . '?' . rand();
             $this->view->assign('captcha_path', $captcha_path);
             $this->view->assign('verification', $verification);
@@ -160,7 +192,6 @@ class CommentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
             $this->view->assign('Image', $Image);
             $this->view->assign('pid', $pid);
             $this->view->assign('settings', $setting);
-
         } else {
             $error = LocalizationUtility::translate('tx_nsnewscomments_domain_model_comment.errorMessage', 'NsNewsComments');
             $this->addFlashMessage($error, '', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
@@ -222,7 +253,7 @@ class CommentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
         $this->persistenceManager->persistAll();
 
         // Add paramlink to comments for scrolling to comment
-        $paramlink = $this->buildUriByUid($this->pageUid, $arguments = array('commentid' => $newComment->getUid()));
+        $paramlink = $this->buildUriByUid($this->pageUid, $arguments = ['commentid' => $newComment->getUid()]);
         $newComment->setParamlink($paramlink);
         $this->commentRepository->update($newComment);
 
@@ -230,7 +261,7 @@ class CommentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
         $news = $this->newsRepository->findByUid($this->newsUid);
         $newsTitle = $news->getTitle();
         $translateArguments = ['comments' => $newComment, 'newsTitle' => $news->getTitle(), 'accessTokenLink' => $accessTokenLink];
-        $variables = array('UserData' => $translateArguments);
+        $variables = ['UserData' => $translateArguments];
 
         $replyTromEmail = $newComment->getUsermail();
         $replyFromName = $newComment->getUsername();
@@ -243,7 +274,7 @@ class CommentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
             return true;
         } else {
             $this->persistenceManager->persistAll();
-            $json[$newComment->getUid()] = array('parentId' => $parentId, 'comment' => 'comment');
+            $json[$newComment->getUid()] = ['parentId' => $parentId, 'comment' => 'comment'];
             return json_encode($json);
         }
     }
@@ -255,12 +286,12 @@ class CommentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
      * @param bool $arguments
      * @return string The link
      */
-    private function buildUriByUid($uid, $arguments = array())
+    private function buildUriByUid($uid, $arguments = [])
     {
         $newsUid = $this->newsUid;
         $commentid = $arguments['commentid'];
-        $excludeFromQueryString = array('tx_nsnewscomments_newscomment[action]', 'tx_nsnewscomments_newscomment[controller]', 'tx_nsnewscomments_newscomment', 'type');
-        $uri = $this->uriBuilder->reset()->setTargetPageUid($uid)->setAddQueryString(true)->setArgumentsToBeExcludedFromQueryString($excludeFromQueryString)->setSection("comments-" . $commentid)->build();
+        $excludeFromQueryString = ['tx_nsnewscomments_newscomment[action]', 'tx_nsnewscomments_newscomment[controller]', 'tx_nsnewscomments_newscomment', 'type'];
+        $uri = $this->uriBuilder->reset()->setTargetPageUid($uid)->setAddQueryString(true)->setArgumentsToBeExcludedFromQueryString($excludeFromQueryString)->setSection('comments-' . $commentid)->build();
         $uri = $this->addBaseUriIfNecessary($uri);
         return $uri;
     }
@@ -272,10 +303,10 @@ class CommentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
      * @param bool $arguments
      * @return string The link
      */
-    private function buildUriForAccesstoken($uid, $arguments = array())
+    private function buildUriForAccesstoken($uid, $arguments = [])
     {
         $newsUid = $this->newsUid;
-        $excludeFromQueryString = array('tx_nsnewscomments_newscomment[action]', 'tx_nsnewscomments_newscomment[controller]', 'tx_nsnewscomments_newscomment', 'type');
+        $excludeFromQueryString = ['tx_nsnewscomments_newscomment[action]', 'tx_nsnewscomments_newscomment[controller]', 'tx_nsnewscomments_newscomment', 'type'];
         $uri = $this->uriBuilder->reset()->setTargetPageUid($uid)->setAddQueryString(true)->setArgumentsToBeExcludedFromQueryString($excludeFromQueryString)->setArguments($arguments)->build();
         $uri = $this->addBaseUriIfNecessary($uri);
         return $uri;

@@ -11,9 +11,18 @@ class LastCommentViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractVie
      * commentRepository
      *
      * @var \Nitsan\NsNewsComments\Domain\Repository\CommentRepository
-     * @inject
      */
     protected $commentRepository = null;
+
+    /**
+     * Inject a news repository to enable DI
+     *
+     * @param \Nitsan\NsNewsComments\Domain\Repository\CommentRepository $commentRepository
+     */
+    public function injectCommentRepository(\Nitsan\NsNewsComments\Domain\Repository\CommentRepository $commentRepository)
+    {
+        $this->commentRepository = $commentRepository;
+    }
 
     /**
      * Initialize

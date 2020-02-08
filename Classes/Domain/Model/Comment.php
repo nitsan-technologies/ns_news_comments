@@ -1,7 +1,6 @@
 <?php
 namespace Nitsan\NsNewsComments\Domain\Model;
 
-
 /***************************************************************
  *
  *  Copyright notice
@@ -38,14 +37,14 @@ class Comment extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @var int
      */
     protected $_languageUid;
-    
+
     /**
      * crdate as unix timestamp
      *
      * @var int
      */
     protected $crdate = 0;
-    
+
     /**
      * hidden
      *
@@ -73,14 +72,14 @@ class Comment extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @var string
      */
     protected $userimage = '';
-    
+
     /**
      * usermail
      *
      * @var string
      */
     protected $usermail = '';
-    
+
     /**
      * captcha
      *
@@ -94,13 +93,6 @@ class Comment extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @var string
      */
     protected $paramlink = '';
-
-    /**
-     * uid
-     *
-     * @var int
-     */
-    protected $uid;
 
     /**
      * pageid
@@ -134,7 +126,7 @@ class Comment extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * childcomment
      *
      * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Nitsan\NsNewsComments\Domain\Model\Comment>
-     * @cascade remove
+     * @TYPO3\CMS\Extbase\Annotation\ORM\Cascade("remove")
      */
     protected $childcomment = null;
 
@@ -144,21 +136,23 @@ class Comment extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @var bool
      */
     protected $terms = false;
-     
+
     /**
      * @param int $_languageUid
      * @return void
      */
-    public function set_languageUid($_languageUid) {
+    public function set_languageUid($_languageUid)
+    {
         $this->_languageUid = $_languageUid;
     }
 
     /**
      * @return int
      */
-    public function get_languageUid() {
+    public function get_languageUid()
+    {
         return $this->_languageUid;
-    } 
+    }
 
     /**
      * Returns the newsuid
@@ -169,7 +163,7 @@ class Comment extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     {
         return $this->newsuid;
     }
-    
+
     /**
      * Sets the newsuid
      *
@@ -180,7 +174,7 @@ class Comment extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     {
         $this->newsuid = $newsuid;
     }
-    
+
     /**
      * Returns the accesstoken
      *
@@ -211,7 +205,7 @@ class Comment extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     {
         return $this->feuserid;
     }
-    
+
     /**
      * Sets the feuserid
      *
@@ -232,7 +226,7 @@ class Comment extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     {
         return $this->username;
     }
-    
+
     /**
      * Sets the username
      *
@@ -253,7 +247,7 @@ class Comment extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     {
         return $this->userimage;
     }
-    
+
     /**
      * Sets the userimage
      *
@@ -264,7 +258,7 @@ class Comment extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     {
         $this->userimage = $userimage;
     }
-    
+
     /**
      * Returns the usermail
      *
@@ -274,7 +268,7 @@ class Comment extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     {
         return $this->usermail;
     }
-    
+
     /**
      * Sets the usermail
      *
@@ -285,7 +279,7 @@ class Comment extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     {
         $this->usermail = $usermail;
     }
-    
+
     /**
      * Returns the captcha
      *
@@ -295,7 +289,7 @@ class Comment extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     {
         return $this->captcha;
     }
-    
+
     /**
      * Sets the captcha
      *
@@ -316,7 +310,7 @@ class Comment extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     {
         return $this->paramlink;
     }
-    
+
     /**
      * Sets the paramlink
      *
@@ -337,7 +331,7 @@ class Comment extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     {
         return $this->crdate;
     }
-    
+
     /**
      * Sets the crdate
      *
@@ -358,7 +352,7 @@ class Comment extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     {
         return $this->hidden;
     }
-    
+
     /**
      * Sets the hidden
      *
@@ -370,28 +364,6 @@ class Comment extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
         $this->hidden = $hidden;
     }
 
-
-    /**
-     * Returns the uid
-     *
-     * @return int $uid
-     */
-    public function getUid()
-    {
-        return $this->uid;
-    }
-    
-    /**
-     * Sets the uid
-     *
-     * @param int $uid
-     * @return void
-     */
-    public function setUid($uid)
-    {
-        $this->uid = $uid;
-    }
-
     /**
      * Returns the pageid
      *
@@ -401,7 +373,7 @@ class Comment extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     {
         return $this->pageid;
     }
-    
+
     /**
      * Sets the pageid
      *
@@ -412,7 +384,7 @@ class Comment extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     {
         $this->pageid = $pageid;
     }
-    
+
     /**
      * Returns the description
      *
@@ -422,7 +394,7 @@ class Comment extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     {
         return $this->description;
     }
-    
+
     /**
      * Sets the description
      *
@@ -442,7 +414,7 @@ class Comment extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
         // Decode html tags
         $description = htmlspecialchars($description);
         $description = preg_replace('/(((http(s)?\:\/\/)|(www\.))([^\s]+[^\.\s]+))/', '<a href="http$4://$5$6">$1</a>', $description);
-        
+
         $this->description = $description;
     }
     /**
@@ -453,7 +425,7 @@ class Comment extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
         //Do not remove the next line: It would break the functionality
         $this->initStorageObjects();
     }
-    
+
     /**
      * Initializes all ObjectStorage properties
      * Do not modify this method!
@@ -473,22 +445,22 @@ class Comment extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @param \Nitsan\NsNewsComments\Domain\Model\Comment $childcomment
      * @return void
      */
-    public function addChildcomment(\Nitsan\NsNewsComments\Domain\Model\Comment $childcomment)
+    public function addChildcomment(self $childcomment)
     {
         $this->childcomment->attach($childcomment);
     }
-    
+
     /**
      * Removes a Comment
      *
      * @param \Nitsan\NsNewsComments\Domain\Model\Comment $childcommentToRemove The Comment to be removed
      * @return void
      */
-    public function removeChildcomment(\Nitsan\NsNewsComments\Domain\Model\Comment $childcommentToRemove)
+    public function removeChildcomment(self $childcommentToRemove)
     {
         $this->childcomment->detach($childcommentToRemove);
     }
-    
+
     /**
      * Returns the childcomment
      *
@@ -498,7 +470,7 @@ class Comment extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     {
         return $this->childcomment;
     }
-    
+
     /**
      * Sets the childcomment
      *
@@ -526,5 +498,4 @@ class Comment extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     {
         $this->terms = $terms;
     }
-
 }

@@ -88,4 +88,22 @@ class CommentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
         $result = $query->setLimit(1)->execute();
         return $result;
     }
+
+    /**
+     *
+     * @param int $newsId
+     * @return int
+     */
+    public function getCountOfComments($newsId)
+    {
+        $query = $this->createQuery();
+        $query->getQuerySettings()->setRespectStoragePage(false);
+        $queryArr = [];
+        $queryArr = [
+            $query->equals('newsuid', $newsId),
+        ];
+        $query->matching($query->logicalAnd($queryArr));
+        $result = (int) $query->execute()->count();
+        return $result;
+    }
 }

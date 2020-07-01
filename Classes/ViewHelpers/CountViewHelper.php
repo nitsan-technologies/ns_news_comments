@@ -1,10 +1,11 @@
 <?php
 namespace Nitsan\NsNewsComments\ViewHelpers;
 
+use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 /**
  *  Get the counts of news comments
  */
-class CountViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper
+class CountViewHelper extends AbstractViewHelper
 {
 
     /**

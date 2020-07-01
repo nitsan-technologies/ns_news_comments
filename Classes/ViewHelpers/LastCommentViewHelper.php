@@ -1,10 +1,11 @@
 <?php
 namespace Nitsan\NsNewsComments\ViewHelpers;
 
+use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 /**
  *  Get last comment of news record
  */
-class LastCommentViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper
+class LastCommentViewHelper extends AbstractViewHelper
 {
 
     /**

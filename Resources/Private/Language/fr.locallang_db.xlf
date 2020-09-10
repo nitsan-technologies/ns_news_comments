@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" target-language="fr" datatype="plaintext" original="messages" date="2016-11-08T11:15:02Z" product-name="ns_news_comments">
+		<header/>
+		<body>
+			<trans-unit id="tx_nsnewscomments_domain_model_comment">
+				<source>Comment</source>
+			</trans-unit>
+			<trans-unit id="tx_nsnewscomments_domain_model_comment.newComments">
+				<source>Comments</source>
+			</trans-unit>
+			<trans-unit id="tx_nsnewscomments_domain_model_comment.newsuid">
+				<source>News UID</source>
+			</trans-unit>
+			<trans-unit id="tx_nsnewscomments_domain_model_comment.username">
+				<source>Name</source>
+			</trans-unit>
+			<trans-unit id="tx_nsnewscomments_domain_model_comment.usermail">
+				<source>Email</source>
+			</trans-unit>
+			<trans-unit id="tx_nsnewscomments_domain_model_comment.comment">
+				<source>Comment</source>
+			</trans-unit>
+			<trans-unit id="tx_nsnewscomments_domain_model_comment.childcomment">
+				<source>Reply Comment</source>
+			</trans-unit>
+			<trans-unit id="tx_nsnewscomments_domain_model_comment.terms">
+				<source>Terms accepted</source>
+			</trans-unit>
+			<trans-unit id="tx_nsnewscomments_domain_model_comment.paramlink">
+				<source>Parameter Link to comments</source>
+			</trans-unit>
+			<trans-unit id="tx_nsnewscomments_domain_model_comment.comments">
+				<source>Comments</source>
+			</trans-unit>
+			<trans-unit id="tx_nsnewscomments_domain_model_comment.image">
+				<source>Image</source>
+			</trans-unit>
+			<trans-unit id="tx_nsnewscomments_domain_model_comment.feuserid">
+				<source>Website User Id</source>
+			</trans-unit>
+			<trans-unit id="tx_nsnewscomments_domain_model_comment.accesstoken">
+				<source>Comment Access token</source>
+			</trans-unit>
+			<trans-unit id="tx_newscomment_domain_model_rating.crdate">
+				<source>Created Date</source>
+			</trans-unit>
+			<trans-unit id="TemplatePath">
+				<source>Template Path</source>
+			</trans-unit>
+			<trans-unit id="MailConfiguration">
+				<source>Mail Configuration</source>
+			</trans-unit>
+			<trans-unit id="CommentConfiguration">
+				<source>Comment Configuration</source>
+			</trans-unit>
+			<trans-unit id="CssJsIncludation">
+				<source>Css/Js Includation</source>
+			</trans-unit>
+			<trans-unit id="mainConfiguration">
+				<source>[Plugin] Main Configuration</source>
+			</trans-unit>
+			<trans-unit id="news_comment">
+				<source>News Comment</source>
+			</trans-unit>
+			<trans-unit id="news_comment.description">
+				<source>Post comments on particular news</source>
+			</trans-unit>
+			<trans-unit id="addbootstrapCss">
+				<source>Bootstarp Css</source>
+			</trans-unit>
+			<trans-unit id="addstyleCss">
+                <source>Default Style Css</source>
+            </trans-unit>
+            <trans-unit id="addfontAwesomeCss">
+                <source>Font Awesome Css</source>
+            </trans-unit>
+            <trans-unit id="addCustomJS">
+                <source>Custom JS</source>
+            </trans-unit>
+            <trans-unit id="addjqueryMinJS">
+                <source>Add Jquery Min JS</source>
+            </trans-unit>
+            <trans-unit id="addCommentUserImage">
+                <source>Add User Image</source>
+            </trans-unit>
+			<trans-unit id="senderEmail">
+				<source>Set sender email address</source>
+			</trans-unit>
+			<trans-unit id="senderName">
+				<source>Set sender name</source>
+			</trans-unit>
+			<trans-unit id="newsComment">
+				<source>New Comment has been added to news</source>
+			</trans-unit>
+			<trans-unit id="sendMailToNewsAuthor">
+				<source>Send mail notification to author of the news</source>
+			</trans-unit>
+			<trans-unit id="enableCommentByAdmin">
+				<source>Send Comment by Admin</source>
+			</trans-unit>
+			<trans-unit id="approveComment">
+				<source>Set Approval by admin</source>
+			</trans-unit>
+			<trans-unit id="dateFormat">
+				<source>Set Datetime format</source>
+			</trans-unit>
+			<trans-unit id="admin">
+				<source>Set Admin Email Address</source>
+			</trans-unit>
+			<trans-unit id="authorMailSubject">
+				<source>Set subject of mail sending to Author</source>
+			</trans-unit>
+			<trans-unit id="flexform.setting">
+				<source>Main Configuration</source>
+			</trans-unit>
+			<trans-unit id="flexform.setting_feuser">
+				<source>Comment User Configuration</source>
+			</trans-unit>
+			<trans-unit id="flexform.additional">
+				<source>Mail Configuration</source>
+			</trans-unit>
+			<trans-unit id="flexform.dateFormat">
+				<source>Date Format</source>
+			</trans-unit>
+			<trans-unit id="flexform.dateFormat.0">
+				<source>F j, Y (May 26, 2017)</source>
+			</trans-unit>
+			<trans-unit id="flexform.dateFormat.1">
+				<source>Y-m-d (2017-05-26)</source>
+			</trans-unit>
+			<trans-unit id="flexform.dateFormat.2">
+				<source>m/d/Y (05/26/2017)</source>
+			</trans-unit>
+			<trans-unit id="flexform.dateFormat.3">
+				<source>d/m/Y (26/05/2017)</source>
+			</trans-unit>
+			<trans-unit id="flexform.timeFormat.0">
+				<source>g:i a (11:36 am)</source>
+			</trans-unit>
+			<trans-unit id="flexform.timeFormat.1">
+				<source>g:i A (11:36 AM)</source>
+			</trans-unit>
+			<trans-unit id="flexform.timeFormat.2">
+				<source>H:i (11:36)</source>
+			</trans-unit>
+			<trans-unit id="flexform.timeFormat">
+				<source>Time Format</source>
+			</trans-unit>
+			<trans-unit id="flexform.custom">
+				<source>Custom Date Format</source>
+			</trans-unit>
+			<trans-unit id="flexform.customDateFormat">
+				<source>Custom Date Format (E.g: d-M-Y // D,m,Y // d/m/Y ...)</source>
+			</trans-unit>
+			<trans-unit id="flexform.customTimeFormat">
+				<source>Custom Time Format (E.g: h:i , h:i:s a , h:i:s p....)</source>
+			</trans-unit>
+			<trans-unit id="flexform.CommentUserImage">
+				<source>Default Comment User Image</source>
+			</trans-unit>
+			<trans-unit id="flexform.captcha">
+				<source>Disable Captcha</source>
+			</trans-unit>
+			<trans-unit id="flexform.fe_user">
+				<source>FE-user as well as the Anonymous user can comment on the news</source>
+			</trans-unit>
+			<trans-unit id="flexform.only_fe_user">
+				<source>Only FE-users can comment on news</source>
+			</trans-unit>
+			<trans-unit id="flexform.feUserloginpid">
+				<source>FE-user login page Id</source>
+			</trans-unit>
+			<trans-unit id="flexform.userSettings">
+				<source>Comment user settings</source>
+			</trans-unit>
+			<trans-unit id="sendMailToAdmin">
+				<source>Enable Mail: Enable Email to Admin</source>
+			</trans-unit>
+			<trans-unit id="adminEmail">
+				<source>[TO] E-Mail: Add Admin E-mail (Comma separated for multiple emails)</source>
+			</trans-unit>
+			<trans-unit id="adminName">
+				<source>[TO] Admin Name: Add Admin Name</source>
+			</trans-unit>
+			<trans-unit id="fromEmail">
+				<source>[FROM] E-Mail: Add E-mail</source>
+			</trans-unit>
+			<trans-unit id="fromName">
+				<source>[FROM] Name: Add Name</source>
+			</trans-unit>
+			<trans-unit id="adminMailSubject">
+				<source>Subject: Set subject of mail sending to Admin</source>
+			</trans-unit>
+			<trans-unit id="recordStoragePage">
+				<source>Record Storage Page</source>
+			</trans-unit>
+			<trans-unit id="customDateFormat">
+				<source>Custom Date Format: [E.g: F j, Y (May 26, 2017) // Y-m-d (2017-05-26) // m/d/Y (05/26/2017) // d/m/Y (26/05/2017)]</source>
+			</trans-unit>
+			<trans-unit id="customTimeFormat">
+				<source>Custom Time Format: [E.g: g:i a (11:36 am)  // g:i A (11:36 AM)  // H:i (11:36)</source>
+			</trans-unit>
+			<trans-unit id="disableCaptcha">
+				<source>Disable Captcha</source>
+			</trans-unit>
+			<trans-unit id="userImage">
+				<source>Add User Image</source>
+			</trans-unit>
+			<trans-unit id="commentUserSettings">
+				<source>Comment user settings</source>
+			</trans-unit>
+			<trans-unit id="FEUserLoginPageId">
+				<source>FE-user login page Id: [This option only works when the first option of comment user settings has selected.]</source>
+			</trans-unit>
+			<trans-unit id="termsRequired">
+				<source>Terms required</source>
+			</trans-unit>
+			<trans-unit id="termsTypolinkParameter">
+				<source>Terms typolink parameter</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

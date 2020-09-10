@@ -1,175 +1,228 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <xliff version="1.0">
 	<file source-language="en" target-language="fr" datatype="plaintext" original="messages" date="2016-11-08T11:15:02Z" product-name="ns_news_comments">
 		<header/>
 		<body>
 			<trans-unit id="pi1_title" xml:space="preserve">
 				<source>News Comment</source>
+				<target>Commentaire actualité</target>
 			</trans-unit>
 			<trans-unit id="backend.dateformate" xml:space="preserve">
 				<source>Date Formate</source>
+				<target>Format date</target>
 			</trans-unit>
 			<trans-unit id="backend.timeformate" xml:space="preserve">
 				<source>Time Formate</source>
+				<target>Format heure</target>
 			</trans-unit>
 			<trans-unit id="backend.Image" xml:space="preserve">
 				<source>Comment User Image</source>
+				<target>Image utilisateur</target>
 			</trans-unit>
 			<trans-unit id="backend.captcha" xml:space="preserve">
 				<source>Disable Captcha</source>
+				<target>Désactiver Captcha</target>
 			</trans-unit>
 			<trans-unit id="backend.userSettings.1" xml:space="preserve">
 				<source>FE-user as well as the Anonymous user can comment on the news</source>
+				<target>Utilisateur FE et anonyme peuvent commenter les actualités</target>
 			</trans-unit>
 			<trans-unit id="backend.userSettings.2" xml:space="preserve">
 				<source>Only FE-users can comment on news</source>
+				<target>Seuls les utilisateurs FE peuvent commenter les actualités</target>
 			</trans-unit>
 			<trans-unit id="backend.feUserloginpid" xml:space="preserve">
 				<source>FE-user login page Id</source>
+				<target>Page Id des utilisateur FE</target>
 			</trans-unit>
 			<trans-unit id="tx_nsnewscomments_domain_model_comment">
 				<source>Comment</source>
+				<target>Commentaire</target>
 			</trans-unit>
 			<trans-unit id="tx_nsnewscomments_domain_model_comment.newsuid">
 				<source>Newsuid</source>
 			</trans-unit>
 			<trans-unit id="tx_nsnewscomments_domain_model_comment.username">
 				<source>Name</source>
+				<target>Nom</target>
 			</trans-unit>
 			<trans-unit id="tx_nsnewscomments_domain_model_comment.usermail">
 				<source>Email</source>
 			</trans-unit>
 			<trans-unit id="tx_nsnewscomments_domain_model_comment.approvedmessage">
 				<source>Comment approved successfully. Reload the page to see the comment.</source>
+				<target>Commentaire approuvé. Recharger la page pour voir le commentaire.</target>
 			</trans-unit>
 			<trans-unit id="tx_nsnewscomments_domain_model_comment.unapprovedmessage">
 				<source>Either comment is already approved or invalid access token.</source>
+				<target>Commentaire déjà approuvé ou jeton d'accès invalide.</target>
 			</trans-unit>
 			<trans-unit id="tx_nsnewscomments_domain_model_comment.comment">
 				<source>Comment</source>
+				<target>Commentaire</target>
 			</trans-unit>
 			<trans-unit id="tx_nsnewscomments_domain_model_comment.lblcomments">
 				<source>Comments</source>
+				<target>Commentaires</target>
 			</trans-unit>
 			<trans-unit id="tx_nsnewscomments_domain_model_comment.name">
 				<source>Name</source>
+				<target>Nom</target>
 			</trans-unit>
 			<trans-unit id="tx_nsnewscomments_domain_model_comment.email">
 				<source>Email</source>
 			</trans-unit>
 			<trans-unit id="email">
 				<source>Please enter your valid email address</source>
+				<target>Veuillez introduire votre adresse email</target>
 			</trans-unit>
 			<trans-unit id="email_required">
 				<source>Valid email is required!</source>
+				<target>Adresse email valide requise!</target>
 			</trans-unit>
 			<trans-unit id="name">
 				<source>Please enter your name</source>
+				<target>Veuillez introduire votre nom</target>
 			</trans-unit>
 			<trans-unit id="name_required">
 				<source>Name is required!</source>
+				<target>Nom est requis!</target>
 			</trans-unit>
 			<trans-unit id="comment">
 				<source>Please enter your comment</source>
+				<target>Veuillez introduire votre commentaire</target>
 			</trans-unit>
 			<trans-unit id="comment_required">
 				<source>Comment is required!</source>
+				<target>Commentaire est requis!</target>
 			</trans-unit>
 			<trans-unit id="captcha">
 				<source>Enter the above code here</source>
+				<target>Introduire le code ci-dessus</target>
 			</trans-unit>
 			<trans-unit id="captcha_required">
 				<source>Captcha is required!</source>
+				<target>Captcha est requis!</target>
 			</trans-unit>
 			<trans-unit id="tx_nsnewscomments_domain_model_comment.captcha">
 				<source>Enter the above code here</source>
+				<target>Introduire le code ci-dessus</target>
 			</trans-unit>
 			<trans-unit id="tx_nsnewscomments_domain_model_comment.replylabel">
 				<source>Reply</source>
+				<target>Répondre</target>
 			</trans-unit>
 			<trans-unit id="tx_nsnewscomments_domain_model_comment.nocommentsfound">
 				<source>Be the First to Comment</source>
+				<target>Soyez le premier à commenter</target>
 			</trans-unit>
 			<trans-unit id="at">
 				<source>At</source>
+				<target>A</target>
 			</trans-unit>
 			<trans-unit id="tx_nsnewscomments_domain_model_comment.mailmessage">
 				<source>New Comment are added on news</source>
+				<target>Nouveau commentaire ajouté aux actualités</target>
 			</trans-unit>
 			<trans-unit id="form.submitButton">
 				<source>Post comment</source>
+				<target>Enregistrer le commentaire</target>
 			</trans-unit>
 			<trans-unit id="tx_nsnewscomments_domain_model_comment.newsTitle">
 				<source>News</source>
+				<target>Actualités</target>
 			</trans-unit>
 			<trans-unit id="mandatory">
 				<source>These fields are required.</source>
+				<target>Ces champs sont requis</target>
 			</trans-unit>
 			<trans-unit id="replytext">
 				<source>Reply to comment</source>
+				<target>Répondre au commentaire</target>
 			</trans-unit>
 			<trans-unit id="form.emailError">
 				<source>Enter valid email address</source>
+				<target>Indiquez une adresse email valide</target>
 			</trans-unit>
 			<trans-unit id="form.nameError">
 				<source>Enter valid name</source>
+				<target>Indiquez un nom valide</target>
 			</trans-unit>
 			<trans-unit id="form.captchaValidationError">
 				<source>Code does not match!</source>
+				<target>Le code ne correspond pas!</target>
 			</trans-unit>
 			<trans-unit id="tx_nsnewscomments_domain_model_comment.validationMessage">
 				<source>Code does not match</source>
+				<target>Le code ne correspond pas</target>
 			</trans-unit>
 			<trans-unit id="form.captchaRefresh">
 				<source>Can't read the image? </source>
+				<target>Image impossible à lire?</target>
 			</trans-unit>
 			<trans-unit id="form.captchaRefreshButton">
 				<source>Click here to refresh</source>
+				<target>Cliquer ici pour rafraichir</target>
 			</trans-unit>
 			<trans-unit id="form.approveMessage">
 				<source>Thank you for your comment. Your Comment Will Be Visible After Approval.</source>
+				<target>Merci pour votre commentaire qui sera visible après validation.</target>
 			</trans-unit>
 			<trans-unit id="form.thankyouMessage">
 				<source>Thank you for your comment. Your Comment Added Successfully.</source>
+				<target>Merci pour votre commentaire qui a bien été ajouté.</target>
 			</trans-unit>
 			<trans-unit id="tx_nsnewscomments_domain_model_comment.errorMessage">
 				<source>No News Entry Found</source>
+				<target>Aucune actualité trouvée</target>
 			</trans-unit>
 			<trans-unit id="CommentsandResponses">
 				<source>Comments and Responses</source>
+				<target>Commentaires et réponses</target>
 			</trans-unit>
 			<trans-unit id="newsfelogin">
 				<source>Click here</source>
+				<target>Cliquer ici</target>
 			</trans-unit>
 			<trans-unit id="newsfeloginmsg">
 				<source>to login and add your comments.</source>
+				<target>pour vous connecter et ajouter votre commentaire</target>
 			</trans-unit>
 			<trans-unit id="commentas">
 				<source>Comment will be added as</source>
+				<target>Commentaire ajouté en tant que</target>
 			</trans-unit>
 			<trans-unit id="confirm1">
 				<source>Currently, this comment is not displayed on the news.</source>
+				<target>Ce commentaire n'est actuellement pas affiché</target>
 			</trans-unit>
 			<trans-unit id="confirm2">
 				<source>Click Here</source>
+				<target>Cliquer ici</target>
 			</trans-unit>
 			<trans-unit id="confirm3">
 				<source>to display this comment on the news.</source>
+				<target>pour afficher les commentaire de cette actualités</target>
 			</trans-unit>
 			<trans-unit id="form.termsError">
 				<source>Please accept</source>
+				<target>Veuillez accepter les conditions</target>
 			</trans-unit>
 			<trans-unit id="terms_required">
 				<source>Terms is required!</source>
+				<target>Acceptation des conditions requis!</target>
 			</trans-unit>
 			<trans-unit id="terms.label">
 				<source>Terms</source>
+				<target>Conditions</target>
 			</trans-unit>
 			<trans-unit id="terms.text">
 				<source><![CDATA[I accept the <a href="%s" target="_blank">terms</a>.]]></source>
+				<target>J'accepte les &lt;a href="%s" target="_blank"&gt;conditions&lt;/a&gt;.</target>
 			</trans-unit>
 			<trans-unit id="close">
 				<source>Close</source>
+				<target>Fermer</target>
 			</trans-unit>
 		</body>
 	</file>

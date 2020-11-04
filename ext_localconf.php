@@ -12,7 +12,7 @@ if (!defined('TYPO3_MODE')) {
     ],
     // non-cacheable actions
     [
-        'Comment' => 'list, new, create, approveComment',
+        'Comment' => 'new, create, approveComment',
 
     ]
 );

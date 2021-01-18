@@ -95,19 +95,9 @@
     </div>
 </div>
 
-<f:if condition="feuserImages">
-    <f:for each="{feuserImages}" as="feuserimage" iteration="itr">
-        <f:if condition="{itr.cycle}==1">
-            <f:form.hidden property="userimage" value="{f:uri.image(src:feuserimage.uid, treatIdAsReference:1)}"/>            
-        </f:if>
-    </f:for>
-</f:if>
 
 <f:form.hidden property="newsuid" value="{newsID}"/>
 <f:form.hidden name="parentId" id="parentId" value=""/>
 <f:form.hidden property="pageid" id="pageid" value="{pageid}"/>
 <f:form.hidden name="approval" id="approval" value="{settings.approveComment}"/>
 <f:form.hidden name="dataType" id="dataType" value="{f:if(condition:settings.approveComment,then:'html',else:'json')}" />
-<f:if condition="{relatedComments}">
-    <f:form.hidden name="comments-storage-pid" id="comments-storage-pid" value="{settings.mainConfiguration.recordStoragePage}"/>
-</f:if>

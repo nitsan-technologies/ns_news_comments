@@ -114,27 +114,20 @@ class CommentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
         // Storage page configuration
         $this->pageUid = $GLOBALS['TSFE']->id;
         $extbaseFrameworkConfiguration = $this->configurationManager->getConfiguration(\TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface::CONFIGURATION_TYPE_FRAMEWORK);
-        if ($_REQUEST['tx_nsnewscomments_newscomment']['comments-storage-pid']) {
-            if ($this->settings['mainConfiguration']['recordStoragePage']) {
-                $currentPid['persistence']['storagePid'] = $_REQUEST['tx_nsnewscomments_newscomment']['comments-storage-pid'];
+       
+        if (empty($extbaseFrameworkConfiguration['persistence']['storagePid'])) {
+            if ($_REQUEST['tx_nsnewscomments_newscomment']) {
+                $currentPid['persistence']['storagePid'] = $_REQUEST['tx_nsnewscomments_newscomment']['Storagepid'];
             } else {
-                $currentPid['persistence']['storagePid'] = $GLOBALS['TSFE']->id;
+                if ($this->settings['relatedComments'] && $this->settings['mainConfiguration']['recordStoragePage']) {
+                    $currentPid['persistence']['storagePid'] = $this->settings['mainConfiguration']['recordStoragePage'];
+                } else {
+                    $currentPid['persistence']['storagePid'] = $GLOBALS['TSFE']->id;
+                }
             }
             $this->configurationManager->setConfiguration(array_merge($extbaseFrameworkConfiguration, $currentPid));
-        } else {
-            if (empty($extbaseFrameworkConfiguration['persistence']['storagePid'])) {
-                if ($_REQUEST['tx_nsnewscomments_newscomment']) {
-                    $currentPid['persistence']['storagePid'] = $_REQUEST['tx_nsnewscomments_newscomment']['Storagepid'];
-                } else {
-                    if ($this->settings['relatedComments'] && $this->settings['mainConfiguration']['recordStoragePage']) {
-                        $currentPid['persistence']['storagePid'] = $this->settings['mainConfiguration']['recordStoragePage'];
-                    } else {
-                        $currentPid['persistence']['storagePid'] = $GLOBALS['TSFE']->id;
-                    }
-                }
-                $this->configurationManager->setConfiguration(array_merge($extbaseFrameworkConfiguration, $currentPid));
-            }
         }
+        
     }
 
     /**
@@ -144,29 +137,6 @@ class CommentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
      */
     public function listAction()
     {
-        $relatedComments = $this->settings['relatedComments'];
-        if ($relatedComments) {
-            $this->settings['custom'] = false;
-            $this->settings['dateFormat'] = $this->settings['mainConfiguration']['customDateFormat'];
-            $this->settings['timeFormat'] = $this->settings['mainConfiguration']['customTimeFormat'];
-            $this->settings['captcha'] = $this->settings['mainConfiguration']['disableCaptcha'];
-            if ($this->settings['mainConfiguration']['commentUserSettings'] == 'feuserOnly') {
-                $this->settings['userSettings'] = $this->settings['mainConfiguration']['commentUserSettings'];
-                $this->settings['feUserloginpid'] = $this->settings['mainConfiguration']['FEUserLoginPageId'];
-            } else {
-                $this->settings['userSettings'] = $this->settings['mainConfiguration']['commentUserSettings'];
-            }
-            $Image = $this->settings['mainConfiguration']['userImage'];
-            $this->view->assign('relatedComments', true);
-        } else {
-            $imageUid = $this->settings['usrimage'];
-            if (!empty($imageUid)) {
-                $resourceFactory = GeneralUtility::makeInstance(ResourceFactory::class);
-                $fileReference = $resourceFactory->getFileReferenceObject($imageUid);
-                $Image = $fileReference->getProperties();
-            }
-        }
-
         $extbaseFrameworkConfiguration = $this->configurationManager->getConfiguration(\TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface::CONFIGURATION_TYPE_FRAMEWORK);
         if (empty($extbaseFrameworkConfiguration['persistence']['storagePid'])) {
             $pid = $GLOBALS['TSFE']->id;
@@ -188,8 +158,7 @@ class CommentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
             $this->view->assign('verification', $verification);
             $this->view->assign('comments', $comments);
             $this->view->assign('newsID', $this->newsUid);
-            $this->view->assign('pageid', $this->pageUid);
-            $this->view->assign('Image', $Image);
+            $this->view->assign('pageid', $this->pageUid);            
             $this->view->assign('pid', $pid);
             $this->view->assign('settings', $setting);
         } else {
@@ -234,11 +203,6 @@ class CommentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
         }
 
         $request = $this->request->getArguments();
-        $adminEmail = $this->settings['notification']['siteadmin']['adminEmail'];
-        $fromEmail = $this->settings['notification']['siteadmin']['fromEmail'];
-        $adminName = $this->settings['notification']['siteadmin']['adminName'];
-        $fromName = $this->settings['notification']['siteadmin']['fromName'];
-        $emailSubject = $this->settings['notification']['siteadmin']['adminMailSubject'];
         $newComment->setCrdate(time());
         $newComment->set_languageUid($GLOBALS['TSFE']->sys_language_uid);
         $parentId = $request['parentId'];
@@ -256,18 +220,7 @@ class CommentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
         $paramlink = $this->buildUriByUid($this->pageUid, $arguments = ['commentid' => $newComment->getUid()]);
         $newComment->setParamlink($paramlink);
         $this->commentRepository->update($newComment);
-
-        // Configuration for mail template
-        $news = $this->newsRepository->findByUid($this->newsUid);
-        $newsTitle = $news->getTitle();
-        $translateArguments = ['comments' => $newComment, 'newsTitle' => $news->getTitle(), 'accessTokenLink' => $accessTokenLink];
-        $variables = ['UserData' => $translateArguments];
-
-        $replyTromEmail = $newComment->getUsermail();
-        $replyFromName = $newComment->getUsername();
-        if ($fromEmail == '') {
-            $fromEmail = 'NULL';
-        }
+        
         // Disable comment for approvement
         if (isset($this->settings['approveComment']) && $this->settings['approveComment'] == 1) {
             $newComment->setHidden(1);

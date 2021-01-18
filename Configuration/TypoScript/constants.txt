@@ -3,10 +3,8 @@
 ### CUSTOM SUBCATEGORIES ###
 ###########################
 # customsubcategory=100=LLL:EXT:ns_news_comments/Resources/Private/Language/locallang_db.xlf:TemplatePath
-# customsubcategory=160=LLL:EXT:ns_news_comments/Resources/Private/Language/locallang_db.xlf:MailConfiguration
 # customsubcategory=170=LLL:EXT:ns_news_comments/Resources/Private/Language/locallang_db.xlf:CommentConfiguration
 # customsubcategory=180=LLL:EXT:ns_news_comments/Resources/Private/Language/locallang_db.xlf:CssJsIncludation
-# customsubcategory=200=LLL:EXT:ns_news_comments/Resources/Private/Language/locallang_db.xlf:mainConfiguration
 
 plugin.tx_nsnewscomments{
 	view {

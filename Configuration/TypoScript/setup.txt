@@ -9,25 +9,6 @@ plugin.tx_nsnewscomments {
 		approveComment = {$plugin.tx_nsnewscomments.settings.approveComment}
 		termsRequired = {$plugin.tx_nsnewscomments.settings.termsRequired}
 		termsTypolinkParameter = {$plugin.tx_nsnewscomments.settings.termsTypolinkParameter}
-		notification {
-			siteadmin {
-				sendMailToAdmin = {$plugin.tx_nsnewscomments.settings.notification.siteadmin.sendMailToAdmin}
-				adminEmail = {$plugin.tx_nsnewscomments.settings.notification.siteadmin.adminEmail}
-				adminName = {$plugin.tx_nsnewscomments.settings.notification.siteadmin.adminName}
-				fromEmail = {$plugin.tx_nsnewscomments.settings.notification.siteadmin.fromEmail}
-				fromName = {$plugin.tx_nsnewscomments.settings.notification.siteadmin.fromName}
-				adminMailSubject = {$plugin.tx_nsnewscomments.settings.notification.siteadmin.adminMailSubject}
-			}
-		}
-		mainConfiguration {
-			recordStoragePage = {$plugin.tx_nsnewscomments.settings.mainConfiguration.recordStoragePage}
-			customDateFormat = {$plugin.tx_nsnewscomments.settings.mainConfiguration.customDateFormat}
-			customTimeFormat = {$plugin.tx_nsnewscomments.settings.mainConfiguration.customTimeFormat}
-			disableCaptcha = {$plugin.tx_nsnewscomments.settings.mainConfiguration.disableCaptcha}
-			userImage = {$plugin.tx_nsnewscomments.settings.mainConfiguration.userImage}
-			commentUserSettings = {$plugin.tx_nsnewscomments.settings.mainConfiguration.commentUserSettings}
-			FEUserLoginPageId = {$plugin.tx_nsnewscomments.settings.mainConfiguration.FEUserLoginPageId}
-		}
 	}
 }
 
@@ -88,6 +69,8 @@ lib.tx_nsnewscomments.comments {
     settings < plugin.tx_nsnewscomments.settings
     settings{
     	relatedComments = 1
+    	dateFormat = F j, Y
+    	timeFormat = g:i a
     }
 }
 

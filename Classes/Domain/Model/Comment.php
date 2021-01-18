@@ -25,7 +25,7 @@ namespace Nitsan\NsNewsComments\Domain\Model;
  *
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
-use TYPO3\CMS\Extbase\Annotation as Extbase;
+
 /**
  * Comment
  */
@@ -63,7 +63,6 @@ class Comment extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * username
      *
      * @var string
-     * @Extbase\Validate("NotEmpty")
      */
     protected $username = '';
 
@@ -78,8 +77,6 @@ class Comment extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * usermail
      *
      * @var string
-     * @Extbase\Validate("NotEmpty")
-     * @Extbase\Validate("EmailAddress")
      */
     protected $usermail = '';
 
@@ -122,9 +119,8 @@ class Comment extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * description
      *
      * @var string
-     * @Extbase\Validate("NotEmpty")
      */
-     protected $description = '';
+    protected $description = '';
 
     /**
      * childcomment

@@ -9,6 +9,9 @@ plugin.tx_nsnewscomments {
 		approveComment = {$plugin.tx_nsnewscomments.settings.approveComment}
 		termsRequired = {$plugin.tx_nsnewscomments.settings.termsRequired}
 		termsTypolinkParameter = {$plugin.tx_nsnewscomments.settings.termsTypolinkParameter}
+		dateFormat = {$plugin.tx_nsnewscomments.settings.dateFormat}
+		timeFormat = {$plugin.tx_nsnewscomments.settings.timeFormat}
+		captcha = {$plugin.tx_nsnewscomments.settings.captcha}
 	}
 }
 
@@ -69,8 +72,6 @@ lib.tx_nsnewscomments.comments {
     settings < plugin.tx_nsnewscomments.settings
     settings{
     	relatedComments = 1
-    	dateFormat = F j, Y
-    	timeFormat = g:i a
     }
 }
 

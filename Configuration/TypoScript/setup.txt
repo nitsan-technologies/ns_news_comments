@@ -12,6 +12,7 @@ plugin.tx_nsnewscomments {
 		dateFormat = {$plugin.tx_nsnewscomments.settings.dateFormat}
 		timeFormat = {$plugin.tx_nsnewscomments.settings.timeFormat}
 		captcha = {$plugin.tx_nsnewscomments.settings.captcha}
+		storagePid = {$plugin.tx_nsnewscomments.settings.storagePid}
 	}
 }
 

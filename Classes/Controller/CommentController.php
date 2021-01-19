@@ -116,18 +116,18 @@ class CommentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
         $extbaseFrameworkConfiguration = $this->configurationManager->getConfiguration(\TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface::CONFIGURATION_TYPE_FRAMEWORK);
        
         if (empty($extbaseFrameworkConfiguration['persistence']['storagePid'])) {
+
             if ($_REQUEST['tx_nsnewscomments_newscomment']) {
                 $currentPid['persistence']['storagePid'] = $_REQUEST['tx_nsnewscomments_newscomment']['Storagepid'];
             } else {
-                if ($this->settings['relatedComments'] && $this->settings['mainConfiguration']['recordStoragePage']) {
-                    $currentPid['persistence']['storagePid'] = $this->settings['mainConfiguration']['recordStoragePage'];
-                } else {
-                    $currentPid['persistence']['storagePid'] = $GLOBALS['TSFE']->id;
-                }
+               if ($this->settings['storagePid']) {
+                    $currentPid['persistence']['storagePid'] = $this->settings['storagePid'];
+               } else {
+                    $currentPid['persistence']['storagePid'] = $GLOBALS['TSFE']->id;                   
+               }               
             }
-            $this->configurationManager->setConfiguration(array_merge($extbaseFrameworkConfiguration, $currentPid));
-        }
-        
+            $this->configurationManager->setConfiguration(array_merge($extbaseFrameworkConfiguration, $currentPid));            
+        }        
     }
 
     /**
@@ -138,6 +138,7 @@ class CommentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
     public function listAction()
     {
         $extbaseFrameworkConfiguration = $this->configurationManager->getConfiguration(\TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface::CONFIGURATION_TYPE_FRAMEWORK);
+
         if (empty($extbaseFrameworkConfiguration['persistence']['storagePid'])) {
             $pid = $GLOBALS['TSFE']->id;
         } else {

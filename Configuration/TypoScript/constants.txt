@@ -44,6 +44,9 @@ plugin.tx_nsnewscomments{
 		# cat=plugin.tx_nsnewscomments/170/10; type=boolean; label=LLL:EXT:ns_news_comments/Resources/Private/Language/locallang_db.xlf:flexform.captcha
 		captcha = 1
 
+		# cat=plugin.tx_nsnewscomments/170/10; type=int; label=Default storage page Id
+		storagePid = 
+
 
 	}
 }

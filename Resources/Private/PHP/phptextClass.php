@@ -51,26 +51,26 @@ class phptextClass
             $noiceColor = imagecolorallocate($im, $noiceColor['r'], $noiceColor['g'], $noiceColor['b']);
             for ($i=0; $i<$noiceLines; $i++) {
                 imageline(
-                $im,
-                mt_rand(0, $imgWidth),
-                mt_rand(0, $imgHeight),
-                mt_rand(0, $imgWidth),
-                mt_rand(0, $imgHeight),
-                $noiceColor
-            );
+                    $im,
+                    mt_rand(0, $imgWidth),
+                    mt_rand(0, $imgHeight),
+                    mt_rand(0, $imgWidth),
+                    mt_rand(0, $imgHeight),
+                    $noiceColor
+                );
             }
         }
 
         if ($noiceDots>0) {/* generating the dots randomly in background */
             for ($i=0; $i<$noiceDots; $i++) {
                 imagefilledellipse(
-                $im,
-                mt_rand(0, $imgWidth),
-                mt_rand(0, $imgHeight),
-                3,
-                3,
-                $textColor
-            );
+                    $im,
+                    mt_rand(0, $imgWidth),
+                    mt_rand(0, $imgHeight),
+                    3,
+                    3,
+                    $textColor
+                );
             }
         }
 

@@ -6,7 +6,6 @@ plugin.tx_nsnewscomments {
 		layoutRootPaths.0 = {$plugin.tx_nsnewscomments.view.layoutRootPath}
 	}
 	settings {
-		approveComment = {$plugin.tx_nsnewscomments.settings.approveComment}
 		termsRequired = {$plugin.tx_nsnewscomments.settings.termsRequired}
 		termsTypolinkParameter = {$plugin.tx_nsnewscomments.settings.termsTypolinkParameter}
 		dateFormat = {$plugin.tx_nsnewscomments.settings.dateFormat}
@@ -75,21 +74,3 @@ lib.tx_nsnewscomments.comments {
     	relatedComments = 1
     }
 }
-
-[globalVar = LIT:1 = {$plugin.tx_nsnewscomments.settings.approveComment}]
-	page.315125 >
-	page.315125 = USER
-	page.315125{
-	  	userFunc = TYPO3\CMS\Extbase\Core\Bootstrap->run
-	  	pluginName = Newscomment
-	  	extensionName = NsNewsComments
-	  	controller = Comment
-	  	vendorName = Nitsan
-	  	action = show
-	  	switchableControllerActions{
-	    	Comment{
-	      		1 = approveComment
-	    	}
-	  	}
-	}
-[global]

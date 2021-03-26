@@ -128,10 +128,6 @@
 				<source>Send Comment by Admin</source>
 				<target>Envoyer un commentaire par Admin</target>
 			</trans-unit>
-			<trans-unit id="approveComment">
-				<source>Set Approval by admin</source>
-				<target>Définir validation par admin</target>
-			</trans-unit>
 			<trans-unit id="dateFormat">
 				<source>Set Datetime format</source>
 				<target>Définir le format de la date</target>

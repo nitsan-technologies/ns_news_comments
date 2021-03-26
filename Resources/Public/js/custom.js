@@ -4,40 +4,7 @@ $(function() {
     onFocusValidation();
     $parentCommentId = '';
     replyComment();
-
-    if ($('.tx_nsnewscomments .approvedmessage').length) {
-        $('html, body').stop().animate({
-            scrollTop: ($('.tx_nsnewscomments .approvedmessage').offset().top)
-        }, 2000);
-        setTimeout(function() {
-            $('.tx_nsnewscomments .approvedmessage').fadeOut("slow");
-        }, 9000);
-    }
-
-    if ($('.approvecomment').length) {
-        showpopup();
-    }
-    $(".approvecomment #cancel_button").click(function(){
-        hidepopup();
-    });
-    $(".approvecomment #close_button").click(function(){
-        hidepopup();
-    });
 });
-
-// Show popup div
-function showpopup()
-{
-    $(".approvecomment #popup_box").fadeToggle();
-    $(".approvecomment #popup_box").css({"visibility":"visible","display":"block"});
-}
-
-// Hide popup div
-function hidepopup()
-{
-    $(".approvecomment #popup_box").fadeToggle();
-    $(".approvecomment #popup_box").css({"visibility":"hidden","display":"none"});
-}
 
 function replyComment() {
     $(document).on("click", '.comment-btn.reply', function(event) {
@@ -80,48 +47,37 @@ function submitComment() {
                         $('.tx_nsnewscomments #submit').css('cursor', 'default');
                     },
                     success: function(response) {
-                        if ($('.tx_nsnewscomments #approval').val() == 0) {
-                            // GET HTML for comment list
-                            $(".tx_nsnewscomments #comments-list").load(location.href + " .tx_nsnewscomments #comments-list>*", function(responseTxt, statusTxt, jqXHR) {
-                               if(statusTxt == "success"){
-                                    // Scroll to comment
-                                    $.each(response, function(key, val) {
-                                        if (val.parentId == '') {
-                                            $('.tx_nsnewscomments .thanksmsg').show();
-                                            $('html, body').stop().animate({
-                                                scrollTop: ($('.tx_nsnewscomments .thanksmsg').offset().top)
-                                            }, 2000);
-                                            setTimeout(function() {
-                                                $('.tx_nsnewscomments .thanksmsg').fadeOut("slow");
-                                            }, 7000);
-                                        } else {
+                        // GET HTML for comment list
+                        $(".tx_nsnewscomments #comments-list").load(location.href + " .tx_nsnewscomments #comments-list>*", function(responseTxt, statusTxt, jqXHR) {
+                           if(statusTxt == "success"){
+                                // Scroll to comment
+                                $.each(response, function(key, val) {
+                                    if (val.parentId == '') {
+                                        $('.tx_nsnewscomments .thanksmsg').show();
+                                        $('html, body').stop().animate({
+                                            scrollTop: ($('.tx_nsnewscomments .thanksmsg').offset().top)
+                                        }, 2000);
+                                        setTimeout(function() {
+                                            $('.tx_nsnewscomments .thanksmsg').fadeOut("slow");
+                                        }, 7000);
+                                    } else {
 
-                                            $('.tx_nsnewscomments .thanksmsg-' + val.parentId).show();
-                                            $('html, body').stop().animate({
-                                                scrollTop: ($('.tx_nsnewscomments .thanksmsg-' + val.parentId).offset().top)
-                                            }, 2000);
-                                            setTimeout(function() {
-                                                $('.tx_nsnewscomments .thanksmsg-' + val.parentId).fadeOut("slow");
-                                            }, 7000);
-                                            $('.tx_nsnewscomments #comments-' + val.parentId).fadeIn('slow');
-                                            $('.tx_nsnewscomments #parentId').val('');
-                                        }
-                                    });
-                                }
-                                if(statusTxt == "error"){
-                                    alert("Error: " + jqXHR.status + " " + jqXHR.statusText);
-                                }
-                            });
-                            
-                        } else {
-                            $('.tx_nsnewscomments .approve').show();
-                            $('html, body').stop().animate({
-                                scrollTop: ($('.tx_nsnewscomments .approve').offset().top)
-                            }, 2000);
-                            setTimeout(function() {
-                                $('.tx_nsnewscomments .approve').fadeOut("slow");
-                            }, 7000);
-                        }
+                                        $('.tx_nsnewscomments .thanksmsg-' + val.parentId).show();
+                                        $('html, body').stop().animate({
+                                            scrollTop: ($('.tx_nsnewscomments .thanksmsg-' + val.parentId).offset().top)
+                                        }, 2000);
+                                        setTimeout(function() {
+                                            $('.tx_nsnewscomments .thanksmsg-' + val.parentId).fadeOut("slow");
+                                        }, 7000);
+                                        $('.tx_nsnewscomments #comments-' + val.parentId).fadeIn('slow');
+                                        $('.tx_nsnewscomments #parentId').val('');
+                                    }
+                                });
+                            }
+                            if(statusTxt == "error"){
+                                alert("Error: " + jqXHR.status + " " + jqXHR.statusText);
+                            }
+                        });
                     },
                     error: function(jqXHR, textStatus, errorThrown) {
                         alert(textStatus + " " + errorThrown);

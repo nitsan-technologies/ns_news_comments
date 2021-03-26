@@ -96,9 +96,6 @@
 			<trans-unit id="enableCommentByAdmin">
 				<target>Admin Tarafından Yorum Gönder</target>
 			</trans-unit>
-			<trans-unit id="approveComment">
-				<target>Admin tarafından Onay ayarla</target>
-			</trans-unit>
 			<trans-unit id="dateFormat">
 				<target>Tarih saat formatını ayarla</target>
 			</trans-unit>

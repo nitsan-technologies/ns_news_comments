@@ -39,12 +39,6 @@
 			<trans-unit id="tx_nsnewscomments_domain_model_comment.usermail">
 				<target>E-Posta Adresi</target>
 			</trans-unit>
-			<trans-unit id="tx_nsnewscomments_domain_model_comment.approvedmessage">
-				<target>Yorum başarıyla onaylandı. Yorumu görmek için sayfayı tekrar yükleyin.</target>
-			</trans-unit>
-			<trans-unit id="tx_nsnewscomments_domain_model_comment.unapprovedmessage">
-				<target>Ya yorum zaten onaylanmış ya da geçersiz erişim belirteci.</target>
-			</trans-unit>
 			<trans-unit id="tx_nsnewscomments_domain_model_comment.comment">
 				<target>Yorum</target>
 			</trans-unit>
@@ -125,9 +119,6 @@
 			</trans-unit>
 			<trans-unit id="form.captchaRefreshButton">
 				<target>Yenilemek için buraya tıklayın</target>
-			</trans-unit>
-			<trans-unit id="form.approveMessage">
-				<target>Yorumunuz için teşekkür ederiz. Onaylandıktan sonra yorumunuz görüntülenecektir.</target>
 			</trans-unit>
 			<trans-unit id="form.thankyouMessage">
 				<target>Yorumunuz için teşekkür ederiz. Yorumunuz Başarıyla Eklendi.</target>

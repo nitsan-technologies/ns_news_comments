@@ -272,7 +272,7 @@
 .tx_nsnewscomments .media-body p {
     padding: 0px !important;
 }
-.thanksmsg, .approve {
+.thanksmsg {
     width: 70%;
 }
 .tx_nsnewscomments .error-msg {

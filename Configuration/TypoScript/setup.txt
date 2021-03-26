@@ -6,28 +6,12 @@ plugin.tx_nsnewscomments {
 		layoutRootPaths.0 = {$plugin.tx_nsnewscomments.view.layoutRootPath}
 	}
 	settings {
-		approveComment = {$plugin.tx_nsnewscomments.settings.approveComment}
 		termsRequired = {$plugin.tx_nsnewscomments.settings.termsRequired}
 		termsTypolinkParameter = {$plugin.tx_nsnewscomments.settings.termsTypolinkParameter}
-		notification {
-			siteadmin {
-				sendMailToAdmin = {$plugin.tx_nsnewscomments.settings.notification.siteadmin.sendMailToAdmin}
-				adminEmail = {$plugin.tx_nsnewscomments.settings.notification.siteadmin.adminEmail}
-				adminName = {$plugin.tx_nsnewscomments.settings.notification.siteadmin.adminName}
-				fromEmail = {$plugin.tx_nsnewscomments.settings.notification.siteadmin.fromEmail}
-				fromName = {$plugin.tx_nsnewscomments.settings.notification.siteadmin.fromName}
-				adminMailSubject = {$plugin.tx_nsnewscomments.settings.notification.siteadmin.adminMailSubject}
-			}
-		}
-		mainConfiguration {
-			recordStoragePage = {$plugin.tx_nsnewscomments.settings.mainConfiguration.recordStoragePage}
-			customDateFormat = {$plugin.tx_nsnewscomments.settings.mainConfiguration.customDateFormat}
-			customTimeFormat = {$plugin.tx_nsnewscomments.settings.mainConfiguration.customTimeFormat}
-			disableCaptcha = {$plugin.tx_nsnewscomments.settings.mainConfiguration.disableCaptcha}
-			userImage = {$plugin.tx_nsnewscomments.settings.mainConfiguration.userImage}
-			commentUserSettings = {$plugin.tx_nsnewscomments.settings.mainConfiguration.commentUserSettings}
-			FEUserLoginPageId = {$plugin.tx_nsnewscomments.settings.mainConfiguration.FEUserLoginPageId}
-		}
+		dateFormat = {$plugin.tx_nsnewscomments.settings.dateFormat}
+		timeFormat = {$plugin.tx_nsnewscomments.settings.timeFormat}
+		captcha = {$plugin.tx_nsnewscomments.settings.captcha}
+		storagePid = {$plugin.tx_nsnewscomments.settings.storagePid}
 	}
 }
 
@@ -90,21 +74,3 @@ lib.tx_nsnewscomments.comments {
     	relatedComments = 1
     }
 }
-
-[globalVar = LIT:1 = {$plugin.tx_nsnewscomments.settings.approveComment}]
-	page.315125 >
-	page.315125 = USER
-	page.315125{
-	  	userFunc = TYPO3\CMS\Extbase\Core\Bootstrap->run
-	  	pluginName = Newscomment
-	  	extensionName = NsNewsComments
-	  	controller = Comment
-	  	vendorName = Nitsan
-	  	action = show
-	  	switchableControllerActions{
-	    	Comment{
-	      		1 = approveComment
-	    	}
-	  	}
-	}
-[global]

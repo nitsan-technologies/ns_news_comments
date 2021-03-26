@@ -29,7 +29,6 @@ This extension allows user to post comment on particular news, reply to the comm
 - Responsive comments form and comment threads design.
 - Multi-level (nested) comment threads
 - Manage Comments from TYPO3 Backend
-- Comment Approval by site Admin.
 - Send notification to site admin by posting a new comment.
 - Compatibiltiy from TYPO3 6.x to 9.x
 

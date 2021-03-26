@@ -39,12 +39,6 @@
 			<trans-unit id="tx_nsnewscomments_domain_model_comment.usermail">
 				<source>Email</source>
 			</trans-unit>
-			<trans-unit id="tx_nsnewscomments_domain_model_comment.approvedmessage">
-				<source>Comment approved successfully. Reload the page to see the comment.</source>
-			</trans-unit>
-			<trans-unit id="tx_nsnewscomments_domain_model_comment.unapprovedmessage">
-				<source>Either comment is already approved or invalid access token.</source>
-			</trans-unit>
 			<trans-unit id="tx_nsnewscomments_domain_model_comment.comment">
 				<source>Comment</source>
 			</trans-unit>
@@ -125,9 +119,6 @@
 			</trans-unit>
 			<trans-unit id="form.captchaRefreshButton">
 				<source>Click here to refresh</source>
-			</trans-unit>
-			<trans-unit id="form.approveMessage">
-				<source>Thank you for your comment. Your Comment Will Be Visible After Approval.</source>
 			</trans-unit>
 			<trans-unit id="form.thankyouMessage">
 				<source>Thank you for your comment. Your Comment Added Successfully.</source>

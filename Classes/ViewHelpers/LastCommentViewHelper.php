@@ -2,6 +2,7 @@
 namespace Nitsan\NsNewsComments\ViewHelpers;
 
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
+
 /**
  *  Get last comment of news record
  */

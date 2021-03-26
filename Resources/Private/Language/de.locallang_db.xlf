@@ -99,9 +99,6 @@
 			<trans-unit id="enableCommentByAdmin">
 				<target>Kommentar senden durch Admin</target>
 			</trans-unit>
-			<trans-unit id="approveComment">
-				<target>Genehmigung durch Admin festlegen</target>
-			</trans-unit>
 			<trans-unit id="dateFormat">
 				<target>Legen Sie das Datetime-Format fest</target>
 			</trans-unit>

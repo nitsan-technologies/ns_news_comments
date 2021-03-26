@@ -99,9 +99,6 @@
 			<trans-unit id="enableCommentByAdmin">
 				<source>Send Comment by Admin</source>
 			</trans-unit>
-			<trans-unit id="approveComment">
-				<source>Set Approval by admin</source>
-			</trans-unit>
 			<trans-unit id="dateFormat">
 				<source>Set Datetime format</source>
 			</trans-unit>

@@ -39,12 +39,6 @@
 			<trans-unit id="tx_nsnewscomments_domain_model_comment.usermail">
 				<target>Email</target>
 			</trans-unit>
-			<trans-unit id="tx_nsnewscomments_domain_model_comment.approvedmessage">
-				<target>Kommentar erfolgreich genehmigt. Lade die Seite neu, um den Kommentar zu sehen.</target>
-			</trans-unit>
-			<trans-unit id="tx_nsnewscomments_domain_model_comment.unapprovedmessage">
-				<target>Entweder ist der Kommentar bereits genehmigt oder das Zugriffstoken ist ungültig.</target>
-			</trans-unit>
 			<trans-unit id="tx_nsnewscomments_domain_model_comment.comment">
 				<target>Kommentar</target>
 			</trans-unit>
@@ -125,9 +119,6 @@
 			</trans-unit>
 			<trans-unit id="form.captchaRefreshButton">
 				<target>Klicken Sie hier, um zu aktualisieren</target>
-			</trans-unit>
-			<trans-unit id="form.approveMessage">
-				<target>Danke für deinen Kommentar. Dein Kommentar wird nach der Überprüfung sichtbar.</target>
 			</trans-unit>
 			<trans-unit id="form.thankyouMessage">
 				<target>Danke für deinen Kommentar. Dein Kommentar wurde erfolgreich hinzugefügt.</target>

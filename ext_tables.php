@@ -7,5 +7,5 @@ if (!defined('TYPO3_MODE')) {
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::allowTableOnStandardPages('tx_nsnewscomments_domain_model_comment');
 
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPageTSConfig(
-    '<INCLUDE_TYPOSCRIPT: source="FILE:EXT:ns_news_comments/Configuration/TSconfig/ContentElementWizard.txt">'
+    '<INCLUDE_TYPOSCRIPT: source="FILE:EXT:ns_news_comments/Configuration/TSconfig/ContentElementWizard.tsconfig">'
 );

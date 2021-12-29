@@ -4,38 +4,11 @@
 */
 class phptextClass
 {
-    public function phptext($text, $textColor, $backgroundColor='', $fontSize, $imgWidth, $imgHeight, $dir, $fileName)
-    {
-        /* settings */
-        $font = './calibri.ttf';/*define font*/
-        $textColor=$this->hexToRGB($textColor);
-
-        $im = imagecreatetruecolor($imgWidth, $imgHeight);
-        $textColor = imagecolorallocate($im, $textColor['r'], $textColor['g'], $textColor['b']);
-
-        if ($backgroundColor=='') {/*select random color*/
-            $colorCode=['#56aad8', '#61c4a8', '#d3ab92'];
-            $backgroundColor = $this->hexToRGB($colorCode[rand(0, count($colorCode)-1)]);
-            $backgroundColor = imagecolorallocate($im, $backgroundColor['r'], $backgroundColor['g'], $backgroundColor['b']);
-        } else {/*select background color as provided*/
-            $backgroundColor = $this->hexToRGB($backgroundColor);
-            $backgroundColor = imagecolorallocate($im, $backgroundColor['r'], $backgroundColor['g'], $backgroundColor['b']);
-        }
-
-        imagefill($im, 0, 0, $backgroundColor);
-        list($x, $y) = $this->ImageTTFCenter($im, $text, $font, $fontSize);
-        imagettftext($im, $fontSize, 0, $x, $y, $textColor, $font, $text);
-        if (imagejpeg($im, $dir . $fileName, 90)) {/*save image as JPG*/
-            return json_encode(['status'=>true, 'image'=>$dir . $fileName]);
-            imagedestroy($im);
-        }
-    }
-
     public function phpcaptcha($textColor, $backgroundColor, $imgWidth, $imgHeight, $noiceLines=0, $noiceDots=0, $noiceColor='#162453')
     {
         /* Settings */
         $text=$this->random();
-        $font = '../../Public/fonts/monofont.ttf';/* font */
+        $font = $_SERVER['DOCUMENT_ROOT'] . "/typo3conf/ext/ns_news_comments/Resources/Public/fonts/monofont.ttf";/* font */
         $textColor=$this->hexToRGB($textColor);
         $fontSize = $imgHeight * 0.75;
 

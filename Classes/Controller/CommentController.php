@@ -28,7 +28,6 @@ namespace Nitsan\NsNewsComments\Controller;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
 
-session_start();
 /**
  * CommentController
  */
@@ -107,6 +106,8 @@ class CommentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
      */
     public function initializeAction()
     {
+        $sessionService = GeneralUtility::makeInstance(\TYPO3\CMS\Install\Service\SessionService::class);
+        $sessionService->startSession();
         $newsArr = GeneralUtility::_GP('tx_news_pi1');
         if (is_null($newsArr)) {
             if (isset($_SESSION['params']) && $_SESSION['params']['originalSettings']['singleNews']) {

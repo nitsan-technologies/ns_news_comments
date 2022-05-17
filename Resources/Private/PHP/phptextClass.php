@@ -8,7 +8,7 @@ class phptextClass
     {
         /* Settings */
         $text=$this->random();
-        $font = $_SERVER['DOCUMENT_ROOT'] . "/typo3conf/ext/ns_news_comments/Resources/Public/fonts/monofont.ttf";/* font */
+        $font = '../../Public/fonts/monofont.ttf';/* font */
         $textColor=$this->hexToRGB($textColor);
         $fontSize = $imgHeight * 0.75;
 

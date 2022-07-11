@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<xliff version="1.0">
+	<file source-language="en" target-language="es" datatype="plaintext" original="messages" date="2022-07-04T15:10:00Z" product-name="ns_news_comments">
+		<header/>
+		<body>
+			<trans-unit id="pi1_title" xml:space="preserve">
+				<source>News Comment</source>
+				<target>Comentarios de News</target>
+			</trans-unit>
+			<trans-unit id="backend.dateformate" xml:space="preserve">
+				<source>Date Formate</source>
+				<target>Formato de fecha</target>
+			</trans-unit>
+			<trans-unit id="backend.timeformate" xml:space="preserve">
+				<source>Time Formate</source>
+				<target>Formato de hora</target>
+			</trans-unit>
+			<trans-unit id="backend.Image" xml:space="preserve">
+				<source>Comment User Image</source>
+				<target>Imagen del usuario en los comentarios</target>
+			</trans-unit>
+			<trans-unit id="backend.captcha" xml:space="preserve">
+				<source>Disable Captcha</source>
+				<target>Desactivar el Captcha</target>
+			</trans-unit>
+			<trans-unit id="backend.userSettings.1" xml:space="preserve">
+				<source>FE-user as well as the Anonymous user can comment on the news</source>
+				<target>Tanto los usuarios frontend como los usuarios anónimos pueden comentar en las noticias</target>
+			</trans-unit>
+			<trans-unit id="backend.userSettings.2" xml:space="preserve">
+				<source>Only FE-users can comment on news</source>
+				<target>Solo los Usuarios Frontend pueden comentar en las noticias</target>
+			</trans-unit>
+			<trans-unit id="backend.feUserloginpid" xml:space="preserve">
+				<source>FE-user login page Id</source>
+				<target>ID de la página de login</target>
+			</trans-unit>
+			<trans-unit id="tx_nsnewscomments_domain_model_comment">
+				<source>Comment</source>
+				<target>Comentario</target>
+			</trans-unit>
+			<trans-unit id="tx_nsnewscomments_domain_model_comment.newsuid">
+				<source>Newsuid</source>
+			</trans-unit>
+			<trans-unit id="tx_nsnewscomments_domain_model_comment.username">
+				<source>Name</source>
+				<target>Nombre</target>
+			</trans-unit>
+			<trans-unit id="tx_nsnewscomments_domain_model_comment.usermail">
+				<source>Email</source>
+			</trans-unit>
+			<trans-unit id="tx_nsnewscomments_domain_model_comment.comment">
+				<source>Comment</source>
+				<target>Commentario</target>
+			</trans-unit>
+			<trans-unit id="tx_nsnewscomments_domain_model_comment.lblcomments">
+				<source>Comments</source>
+				<target>Commentarios</target>
+			</trans-unit>
+			<trans-unit id="tx_nsnewscomments_domain_model_comment.name">
+				<source>Name</source>
+				<target>Nombre</target>
+			</trans-unit>
+			<trans-unit id="tx_nsnewscomments_domain_model_comment.email">
+				<source>Email</source>
+			</trans-unit>
+			<trans-unit id="email">
+				<source>Please enter your valid email address</source>
+				<target>Introduce tu email</target>
+			</trans-unit>
+			<trans-unit id="email_required">
+				<source>Valid email is required!</source>
+				<target>El email es obligatorio</target>
+			</trans-unit>
+			<trans-unit id="name">
+				<source>Please enter your name</source>
+				<target>Introduce tu nombre</target>
+			</trans-unit>
+			<trans-unit id="name_required">
+				<source>Name is required!</source>
+				<target>El nombre es obligatorio</target>
+			</trans-unit>
+			<trans-unit id="comment">
+				<source>Please enter your comment</source>
+				<target>Escribe tu comentario</target>
+			</trans-unit>
+			<trans-unit id="comment_required">
+				<source>Comment is required!</source>
+				<target>El comentario es obligatorio</target>
+			</trans-unit>
+			<trans-unit id="captcha">
+				<source>Enter the above code here</source>
+				<target>Introduce el código aquí</target>
+			</trans-unit>
+			<trans-unit id="captcha_required">
+				<source>Captcha is required!</source>
+				<target>El Captcha es obligatorio</target>
+			</trans-unit>
+			<trans-unit id="tx_nsnewscomments_domain_model_comment.captcha">
+				<source>Enter the above code here</source>
+				<target>Introduce el código aquí</target>
+			</trans-unit>
+			<trans-unit id="tx_nsnewscomments_domain_model_comment.replylabel">
+				<source>Reply</source>
+				<target>Responder</target>
+			</trans-unit>
+			<trans-unit id="tx_nsnewscomments_domain_model_comment.nocommentsfound">
+				<source>Be the First to Comment</source>
+				<target>Se el primero en comentar</target>
+			</trans-unit>
+			<trans-unit id="at">
+				<source>At</source>
+				<target>A las </target>
+			</trans-unit>
+			<trans-unit id="tx_nsnewscomments_domain_model_comment.mailmessage">
+				<source>New Comment are added on news</source>
+				<target>Se ha añadido un nuevo comentario en la noticia</target>
+			</trans-unit>
+			<trans-unit id="form.submitButton">
+				<source>Post comment</source>
+				<target>Publicar comentario</target>
+			</trans-unit>
+			<trans-unit id="tx_nsnewscomments_domain_model_comment.newsTitle">
+				<source>News</source>
+				<target>Noticias</target>
+			</trans-unit>
+			<trans-unit id="mandatory">
+				<source>These fields are required.</source>
+				<target>Estos campos son obligatorios</target>
+			</trans-unit>
+			<trans-unit id="replytext">
+				<source>Reply to comment</source>
+				<target>Responder al comentario</target>
+			</trans-unit>
+			<trans-unit id="form.emailError">
+				<source>Enter valid email address</source>
+				<target>Introduce un email válido</target>
+			</trans-unit>
+			<trans-unit id="form.nameError">
+				<source>Enter valid name</source>
+				<target>Introduce un nombre válido</target>
+			</trans-unit>
+			<trans-unit id="form.captchaValidationError">
+				<source>Code does not match!</source>
+				<target>El código no coincide</target>
+			</trans-unit>
+			<trans-unit id="tx_nsnewscomments_domain_model_comment.validationMessage">
+				<source>Code does not match</source>
+				<target>El código no coincide</target>
+			</trans-unit>
+			<trans-unit id="form.captchaRefresh">
+				<source>Can't read the image? </source>
+				<target>¿No puedes leer la imagen?</target>
+			</trans-unit>
+			<trans-unit id="form.captchaRefreshButton">
+				<source>Click here to refresh</source>
+				<target>Haz click aquí para refrescar</target>
+			</trans-unit>
+			<trans-unit id="form.thankyouMessage">
+				<source>Thank you for your comment. Your Comment Added Successfully.</source>
+				<target>Gracias por tu comentario. Se ha añadido correctamente</target>
+			</trans-unit>
+			<trans-unit id="tx_nsnewscomments_domain_model_comment.errorMessage">
+				<source>No News Entry Found</source>
+				<target>No se han encontrado registros de News</target>
+			</trans-unit>
+			<trans-unit id="CommentsandResponses">
+				<source>Comments and Responses</source>
+				<target>Comentarios y respuestas</target>
+			</trans-unit>
+			<trans-unit id="newsfelogin">
+				<source>Click here</source>
+				<target>Haz click aquí</target>
+			</trans-unit>
+			<trans-unit id="newsfeloginmsg">
+				<source>to login and add your comments.</source>
+				<target>para iniciar sesión y añadir comentarios</target>
+			</trans-unit>
+			<trans-unit id="commentas">
+				<source>Comment will be added as</source>
+				<target>El comentario se añadirá como</target>
+			</trans-unit>
+			<trans-unit id="confirm1">
+				<source>Currently, this comment is not displayed on the news.</source>
+				<target>Ahora mismo este comentario no se está mostrando en la noticia</target>
+			</trans-unit>
+			<trans-unit id="confirm2">
+				<source>Click Here</source>
+				<target>Haz click aquí</target>
+			</trans-unit>
+			<trans-unit id="confirm3">
+				<source>to display this comment on the news.</source>
+				<target>para mostrar este comentario en la noticia</target>
+			</trans-unit>
+			<trans-unit id="form.termsError">
+				<source>Please accept</source>
+				<target>Tienes que aceptar los términos</target>
+			</trans-unit>
+			<trans-unit id="terms_required">
+				<source>Terms is required!</source>
+				<target>Los términos son obligatorios</target>
+			</trans-unit>
+			<trans-unit id="terms.label">
+				<source>Terms</source>
+				<target>Términos</target>
+			</trans-unit>
+			<trans-unit id="terms.text">
+				<source><![CDATA[I accept the <a href="%s" target="_blank">terms</a>.]]></source>
+				<target>Acepto los &lt;a href="%s" target="_blank"&gt;términos&lt;/a&gt;.</target>
+			</trans-unit>
+			<trans-unit id="close">
+				<source>Close</source>
+				<target>Cerrar</target>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

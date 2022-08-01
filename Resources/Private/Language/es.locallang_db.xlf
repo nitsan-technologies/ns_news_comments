@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<xliff version="1.0">
+	<file source-language="en" target-language="es" datatype="plaintext" original="messages" date="2022-07-04T15:10:00Z" product-name="ns_news_comments">
+		<header/>
+		<body>
+			<trans-unit id="tx_nsnewscomments_domain_model_comment">
+				<source>Comment</source>
+				<target>Comentario</target>
+			</trans-unit>
+			<trans-unit id="tx_nsnewscomments_domain_model_comment.newComments">
+				<source>Comments</source>
+				<target>Comentarios</target>
+			</trans-unit>
+			<trans-unit id="tx_nsnewscomments_domain_model_comment.newsuid">
+				<source>Uid de News</source>
+			</trans-unit>
+			<trans-unit id="tx_nsnewscomments_domain_model_comment.username">
+				<source>Name</source>
+				<target>Nombre</target>
+			</trans-unit>
+			<trans-unit id="tx_nsnewscomments_domain_model_comment.usermail">
+				<source>Email</source>
+			</trans-unit>
+			<trans-unit id="tx_nsnewscomments_domain_model_comment.comment">
+				<source>Comment</source>
+				<target>Comentario</target>
+			</trans-unit>
+			<trans-unit id="tx_nsnewscomments_domain_model_comment.childcomment">
+				<source>Reply Comment</source>
+				<target>Respuestas al comentario</target>
+			</trans-unit>
+			<trans-unit id="tx_nsnewscomments_domain_model_comment.terms">
+				<source>Terms accepted</source>
+				<target>Términos aceptados</target>
+			</trans-unit>
+			<trans-unit id="tx_nsnewscomments_domain_model_comment.paramlink">
+				<source>Parameter Link to comments</source>
+				<target>Parámetro del link para ver los comentarios</target>
+			</trans-unit>
+			<trans-unit id="tx_nsnewscomments_domain_model_comment.comments">
+				<source>Comments</source>
+				<target>Comentarios</target>
+			</trans-unit>
+			<trans-unit id="tx_nsnewscomments_domain_model_comment.image">
+				<source>Image</source>
+				<target>Imagen</target>
+			</trans-unit>
+			<trans-unit id="tx_nsnewscomments_domain_model_comment.feuserid">
+				<source>Website User Id</source>
+				<target>Id del usuario</target>
+			</trans-unit>
+			<trans-unit id="tx_nsnewscomments_domain_model_comment.accesstoken">
+				<source>Comment Access token</source>
+				<target>Token de acceso al comentario</target>
+			</trans-unit>
+			<trans-unit id="tx_newscomment_domain_model_rating.crdate">
+				<source>Created Date</source>
+				<target>Fecha de creación</target>
+			</trans-unit>
+			<trans-unit id="TemplatePath">
+				<source>Template Path</source>
+				<target>Ruta a la plantilla</target>
+			</trans-unit>
+			<trans-unit id="MailConfiguration">
+				<source>Mail Configuration</source>
+				<target>Configuración de mail</target>
+			</trans-unit>
+			<trans-unit id="CommentConfiguration">
+				<source>Comment Configuration</source>
+				<target>Configuración de comentarios</target>
+			</trans-unit>
+			<trans-unit id="CssJsIncludation">
+				<source>Css/Js Includation</source>
+				<target>Incluir CSS/JS</target>
+			</trans-unit>
+			<trans-unit id="mainConfiguration">
+				<source>[Plugin] Main Configuration</source>
+				<target>[Plugin] Configuración principal</target>
+			</trans-unit>
+			<trans-unit id="news_comment">
+				<source>News Comment</source>
+				<target>Comentarios de News</target>
+			</trans-unit>
+			<trans-unit id="news_comment.description">
+				<source>Post comments on particular news</source>
+				<target>Añadir comentarios a una noticia</target>
+			</trans-unit>
+			<trans-unit id="addbootstrapCss">
+				<source>Bootstarp Css</source>
+				<target>Bootstrap Css</target>
+			</trans-unit>
+			<trans-unit id="addstyleCss">
+                <source>Default Style Css</source>
+                <target>CSS por defecto</target>
+            </trans-unit>
+            <trans-unit id="addfontAwesomeCss">
+                <source>Font Awesome Css</source>
+            </trans-unit>
+            <trans-unit id="addCustomJS">
+                <source>Custom JS</source>
+                <target>JS personalizado</target>
+            </trans-unit>
+            <trans-unit id="addjqueryMinJS">
+                <source>Add Jquery Min JS</source>
+                <target>Añadir jQuery minimizado</target>
+            </trans-unit>
+            <trans-unit id="addCommentUserImage">
+                <source>Add User Image</source>
+                <target>Añadir imagen para el usuario</target>
+            </trans-unit>
+			<trans-unit id="senderEmail">
+				<source>Set sender email address</source>
+				<target>Configurar la dirección de email del remitente</target>
+			</trans-unit>
+			<trans-unit id="senderName">
+				<source>Set sender name</source>
+				<target>Configurar el nombre del remitente</target>
+			</trans-unit>
+			<trans-unit id="newsComment">
+				<source>New Comment has been added to news</source>
+				<target>Se ha añadido un nuevo comentario a la noticia</target>
+			</trans-unit>
+			<trans-unit id="sendMailToNewsAuthor">
+				<source>Send mail notification to author of the news</source>
+				<target>Notificar por email al autor de la noticia</target>
+			</trans-unit>
+			<trans-unit id="enableCommentByAdmin">
+				<source>Send Comment by Admin</source>
+				<target>Enviar un comentario como administrador</target>
+			</trans-unit>
+			<trans-unit id="dateFormat">
+				<source>Set Datetime format</source>
+				<target>Configurar el formato de la fecha y de la hora</target>
+			</trans-unit>
+			<trans-unit id="admin">
+				<source>Set Admin Email Address</source>
+				<target>Configurar la dirección de mail del administrador</target>
+			</trans-unit>
+			<trans-unit id="authorMailSubject">
+				<source>Set subject of mail sending to Author</source>
+				<target>Configurar el asunto del mail al autor del comentario</target>
+			</trans-unit>
+			<trans-unit id="flexform.setting">
+				<source>Main Configuration</source>
+				<target>Configuración principal</target>
+			</trans-unit>
+			<trans-unit id="flexform.setting_feuser">
+				<source>Comment User Configuration</source>
+				<target>Configuración de los comentarios para los usuarios</target>
+			</trans-unit>
+			<trans-unit id="flexform.additional">
+				<source>Mail Configuration</source>
+				<target>Configuración de email</target>
+			</trans-unit>
+			<trans-unit id="flexform.dateFormat">
+				<source>Date Format</source>
+				<target>Formato de fecha</target>
+			</trans-unit>
+			<trans-unit id="flexform.dateFormat.0">
+				<source>F j, Y (Mayo 26, 2017)</source>
+			</trans-unit>
+			<trans-unit id="flexform.dateFormat.1">
+				<source>Y-m-d (2017-05-26)</source>
+			</trans-unit>
+			<trans-unit id="flexform.dateFormat.2">
+				<source>m/d/Y (05/26/2017)</source>
+			</trans-unit>
+			<trans-unit id="flexform.dateFormat.3">
+				<source>d/m/Y (26/05/2017)</source>
+			</trans-unit>
+			<trans-unit id="flexform.timeFormat.0">
+				<source>g:i a (11:36 am)</source>
+			</trans-unit>
+			<trans-unit id="flexform.timeFormat.1">
+				<source>g:i A (11:36 AM)</source>
+			</trans-unit>
+			<trans-unit id="flexform.timeFormat.2">
+				<source>H:i (11:36)</source>
+			</trans-unit>
+			<trans-unit id="flexform.timeFormat">
+				<source>Time Format</source>
+				<target>Formato de hora</target>
+			</trans-unit>
+			<trans-unit id="flexform.custom">
+				<source>Custom Date Format</source>
+				<target>Formato de fecha personalizado</target>
+			</trans-unit>
+			<trans-unit id="flexform.customDateFormat">
+				<source>Custom Date Format (E.g: d-M-Y // D,m,Y // d/m/Y ...)</source>
+				<target>Formato de fecha personalizado (E.g: d-M-Y // D,m,Y // d/m/Y ...)</target>
+			</trans-unit>
+			<trans-unit id="flexform.customTimeFormat">
+				<source>Custom Time Format (E.g: h:i , h:i:s a , h:i:s p....)</source>
+				<target>Formato de hora personalizado (E.g: h:i , h:i:s a , h:i:s p....)</target>
+			</trans-unit>
+			<trans-unit id="flexform.CommentUserImage">
+				<source>Default Comment User Image</source>
+				<target>Imagen de usuario por defecto para los comentarios</target>
+			</trans-unit>
+			<trans-unit id="flexform.captcha">
+				<source>Disable Captcha</source>
+				<target>Dasactivar Captcha</target>
+			</trans-unit>
+			<trans-unit id="flexform.fe_user">
+				<source>FE-user as well as the Anonymous user can comment on the news</source>
+				<target>Tanto los Usuarios Frontend  como los usuarios anónimos pueden comentar en las noticias</target>
+			</trans-unit>
+			<trans-unit id="flexform.only_fe_user">
+				<source>Only FE-users can comment on news</source>
+				<target>Sólo los Usuarios Frontend pueden comentar en las noticias</target>
+			</trans-unit>
+			<trans-unit id="flexform.feUserloginpid">
+				<source>FE-user login page Id</source>
+				<target>ID de la página de inicio de sesión</target>
+			</trans-unit>
+			<trans-unit id="flexform.userSettings">
+				<source>Comment user settings</source>
+				<target>Configuración de los comentarios para los usuarios</target>
+			</trans-unit>
+			<trans-unit id="sendMailToAdmin">
+				<source>Enable Mail: Enable Email to Admin</source>
+				<target>Activar Email: activar email al administrador</target>
+			</trans-unit>
+			<trans-unit id="adminEmail">
+				<source>[TO] E-Mail: Add Admin E-mail (Comma separated for multiple emails)</source>
+				<target>[A] E-Mail: añadir email administrativo (separación con ,  para añadir múltiples direcciones)</target>
+			</trans-unit>
+			<trans-unit id="adminName">
+				<source>[TO] Admin Name: Add Admin Name</source>
+				<target>[A] Nombre del administrador: Añadir nombre del administrador</target>
+			</trans-unit>
+			<trans-unit id="fromEmail">
+				<source>[FROM] E-Mail: Add E-mail</source>
+				<target>[De] E-Mail: Añadir E-mail</target>
+			</trans-unit>
+			<trans-unit id="fromName">
+				<source>[FROM] Name: Add Name</source>
+				<target>[De] Nom: Añadir nombre</target>
+			</trans-unit>
+			<trans-unit id="adminMailSubject">
+				<source>Subject: Set subject of mail sending to Admin</source>
+				<target>Asunto: Configurar el asunto del email que llegará al administrador</target>
+			</trans-unit>
+			<trans-unit id="recordStoragePage">
+				<source>Record Storage Page</source>
+				<target>Página de almacenamiento de los registros</target>
+			</trans-unit>
+			<trans-unit id="customDateFormat">
+				<source>Custom Date Format: [E.g: F j, Y (May 26, 2017) // Y-m-d (2017-05-26) // m/d/Y (05/26/2017) // d/m/Y (26/05/2017)]</source>
+				<target>Formato de fecha personalizado: [Ej.: F j, Y (May 26, 2017) // Y-m-d (2017-05-26) // m/d/Y (05/26/2017) // d/m/Y (26/05/2017)]</target>
+			</trans-unit>
+			<trans-unit id="customTimeFormat">
+				<source>Custom Time Format: [E.g: g:i a (11:36 am)  // g:i A (11:36 AM)  // H:i (11:36)</source>
+				<target>Formato de hora personalizado: [Ej.: g:i a (11:36 am)  // g:i A (11:36 AM)  // H:i (11:36)</target>
+			</trans-unit>
+			<trans-unit id="disableCaptcha">
+				<source>Disable Captcha</source>
+				<target>Désactivar el Captcha</target>
+			</trans-unit>
+			<trans-unit id="userImage">
+				<source>Add User Image</source>
+				<target>Añadir una imagen para el usuario</target>
+			</trans-unit>
+			<trans-unit id="commentUserSettings">
+				<source>Comment user settings</source>
+				<target>Configuration de comentarios para los usuarios</target>
+			</trans-unit>
+			<trans-unit id="FEUserLoginPageId">
+				<source>FE-user login page Id: [This option only works when the first option of comment user settings has selected.]</source>
+				<target>Id de la página de login: [Esta opción sólo aplica si se ha seleccionado la primera opción en la configuración de los comentarios para los usuarios]</target>
+			</trans-unit>
+			<trans-unit id="termsRequired">
+				<source>Terms required</source>
+				<target>Los términos son obligatorios</target>
+			</trans-unit>
+			<trans-unit id="termsTypolinkParameter">
+				<source>Terms typolink parameter</source>
+				<target>Parámetro para el Typolink de los términos</target>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

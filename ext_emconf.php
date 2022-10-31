@@ -12,11 +12,11 @@ $EM_CONF['ns_news_comments'] = [
     'uploadfolder' => '0',
     'createDirs' => '',
     'clearCacheOnLoad' => 0,
-    'version' => '5.0.5',
+    'version' => '5.0.6',
     'constraints' => [
         'depends' => [
             'typo3' => '8.0.0-11.5.99',
-            'news' => '3.0.0-9.9.99',
+            'news' => '3.0.0-10.9.99',
         ],
         'conflicts' => [
         ],

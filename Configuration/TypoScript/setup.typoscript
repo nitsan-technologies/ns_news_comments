@@ -24,7 +24,6 @@ page {
 	}
 	includeJS{
 		nsnewscomment_Minjs = {$plugin.tx_nsnewscomments.settings.Minjs}
-		nsnewscomment_Minjs.if.isTrue = {$plugin.tx_nsnewscomments.settings.Minjs}
 	}
 	includeJSFooter{
 		nsnewscomment_CustomJS = {$plugin.tx_nsnewscomments.settings.CustomJS}

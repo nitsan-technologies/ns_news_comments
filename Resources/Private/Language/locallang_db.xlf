@@ -81,6 +81,12 @@
             <trans-unit id="addjqueryMinJS">
                 <source>Add Jquery Min JS</source>
             </trans-unit>
+			<trans-unit id="addjqueryMinJS.v2">
+                <source>v2.x</source>
+            </trans-unit>
+			<trans-unit id="addjqueryMinJS.v3">
+                <source>v3.x</source>
+            </trans-unit>
             <trans-unit id="addCommentUserImage">
                 <source>Add User Image</source>
             </trans-unit>

@@ -123,7 +123,7 @@ class CommentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
         $extbaseFrameworkConfiguration = $this->configurationManager->getConfiguration(\TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface::CONFIGURATION_TYPE_FRAMEWORK);
 
         if (empty($extbaseFrameworkConfiguration['persistence']['storagePid'])) {
-            if ($_REQUEST['tx_nsnewscomments_newscomment']) {
+            if (isset($_REQUEST['tx_nsnewscomments_newscomment']['Storagepid'])) {
                 $currentPid['persistence']['storagePid'] = $_REQUEST['tx_nsnewscomments_newscomment']['Storagepid'];
             } else {
                 if ($this->settings['storagePid']) {

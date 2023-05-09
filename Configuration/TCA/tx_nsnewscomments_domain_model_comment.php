@@ -11,7 +11,6 @@ return [
         'dividers2tabs' => true,
         'versioningWS' => true,
         'languageField' => 'sys_language_uid',
-        'transOrigPointerField' => 'l10n_parent',
         'transOrigDiffSourceField' => 'l10n_diffsource',
         'default_sortby' => 'ORDER BY uid DESC',
         'delete' => 'deleted',
@@ -22,12 +21,12 @@ return [
         ],
         'searchFields' => 'description,newsuid,username,usermail,childcomment',
         'iconfile' => 'EXT:ns_news_comments/Resources/Public/Icons/plug_comment.svg',
-    ],
-    'interface' => [
-        'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, newsuid, username, usermail, paramlink, description,childcomment, terms',
+        'security' => [
+            'ignorePageTypeRestriction' => true
+        ],
     ],
     'types' => [
-        '1' => ['showitem' => 'feuserid, accesstoken, username, usermail, userimage, description, terms, paramlink, childcomment, --div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.access, sys_language_uid, l10n_parent, l10n_diffsource, hidden, starttime, endtime'],
+        '1' => ['showitem' => 'feuserid, accesstoken, username, usermail, userimage, description, terms, paramlink, childcomment, --div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.access, sys_language_uid, l10n_diffsource, hidden, starttime, endtime'],
     ],
     'columns' => [
 
@@ -35,31 +34,7 @@ return [
             'exclude' => true,
             'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.language',
             'config' => [
-                'type' => 'select',
-                'renderType' => 'selectSingle',
-                'special' => 'languages',
-                'items' => [
-                    [
-                        'LLL:EXT:lang/locallang_general.xlf:LGL.allLanguages',
-                        -1,
-                        'flags-multiple',
-                    ],
-                ],
-                'default' => 0,
-            ],
-        ],
-        'l10n_parent' => [
-            'displayCond' => 'FIELD:sys_language_uid:>:0',
-            'exclude' => 1,
-            'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.l18n_parent',
-            'config' => [
-                'type' => 'select',
-                'renderType' => 'selectSingle',
-                'items' => [
-                    ['', 0],
-                ],
-                'foreign_table' => 'tx_nsnewscomments_domain_model_comment',
-                'foreign_table_where' => 'AND tx_nsnewscomments_domain_model_comment.pid=###CURRENT_PID### AND tx_nsnewscomments_domain_model_comment.sys_language_uid IN (-1,0)',
+                'type' => 'language',
             ],
         ],
         'l10n_diffsource' => [

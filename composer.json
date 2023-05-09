@@ -16,8 +16,8 @@
     "issues": "https://github.com/nitsan-technologies/ns_news_comments/issues"
   },
   "require": {
-    "typo3/cms-core": "^8.0  || ^9.0 || ^10.0  || ^11.0 ",
-    "georgringer/news": ">=3.0.0"
+    "typo3/cms-core": "^12.0 ",
+    "georgringer/news": ">=11.0.0"
   },
   "autoload": {
     "psr-4": {

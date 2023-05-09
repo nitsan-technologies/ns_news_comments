@@ -25,8 +25,12 @@ namespace Nitsan\NsNewsComments\Controller;
  *
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
+
+use Psr\Http\Message\ResponseInterface;
+use TYPO3\CMS\Core\Utility\PathUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
+use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 
 /**
  * CommentController
@@ -52,11 +56,19 @@ class CommentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
     protected $persistenceManager;
 
     /**
-     * User Repository
-     *
-     * @var \TYPO3\CMS\Extbase\Domain\Repository\FrontendUserRepository
+     * @var \TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager
      */
-    protected $userRepository;
+    protected $newsId;
+
+    /**
+     * @var \TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager
+     */
+    protected $newsUid;
+
+    /**
+     * @var \TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager
+     */
+    protected $pageUid;
 
     /*
      * Inject a news repository to enable DI
@@ -90,16 +102,6 @@ class CommentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
     }
 
     /**
-     * Inject a news repository to enable DI
-     *
-     * @param \TYPO3\CMS\Extbase\Domain\Repository\FrontendUserRepository $userRepository
-     */
-    public function injectUserRepository(\TYPO3\CMS\Extbase\Domain\Repository\FrontendUserRepository $userRepository)
-    {
-        $this->userRepository = $userRepository;
-    }
-
-    /**
      * action initialize
      *
      * @return void
@@ -108,13 +110,16 @@ class CommentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
     {
         $sessionService = GeneralUtility::makeInstance(\TYPO3\CMS\Install\Service\SessionService::class);
         $sessionService->startSession();
-        $newsArr = GeneralUtility::_GP('tx_news_pi1');
+        $getData = $this->request->getQueryParams();
+        $postData = $this->request->getParsedBody();
+        $requestData = array_merge((array)$getData,(array)$postData);
+        $newsArr = isset($requestData['tx_news_pi1']) ? $requestData['tx_news_pi1'] : [] ;
         if (is_null($newsArr)) {
             if (isset($_SESSION['params']) && $_SESSION['params']['originalSettings']['singleNews']) {
                 $newsUid = $_SESSION['params']['originalSettings']['singleNews'];
             }
         } else {
-            $newsUid = $newsArr['news'];
+            $newsUid = isset($newsArr['news']) ? $newsArr['news'] : null;
         }
         $this->newsUid = intval($newsUid);
 
@@ -123,7 +128,7 @@ class CommentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
         $extbaseFrameworkConfiguration = $this->configurationManager->getConfiguration(\TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface::CONFIGURATION_TYPE_FRAMEWORK);
 
         if (empty($extbaseFrameworkConfiguration['persistence']['storagePid'])) {
-            if ($_REQUEST['tx_nsnewscomments_newscomment']) {
+            if (isset($_REQUEST['tx_nsnewscomments_newscomment']['Storagepid'])) {
                 $currentPid['persistence']['storagePid'] = $_REQUEST['tx_nsnewscomments_newscomment']['Storagepid'];
             } else {
                 if ($this->settings['storagePid']) {
@@ -139,9 +144,9 @@ class CommentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
     /**
      * action list
      *
-     * @return void
+     * @return ResponseInterface
      */
-    public function listAction()
+    public function listAction(): ResponseInterface
     {
         $extbaseFrameworkConfiguration = $this->configurationManager->getConfiguration(\TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface::CONFIGURATION_TYPE_FRAMEWORK);
 
@@ -153,13 +158,8 @@ class CommentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
         $setting = $this->settings;
         if ($this->newsUid) {
             $comments = $this->commentRepository->getCommentsByNews($newsId = $this->newsUid)->toArray();
-            if (version_compare(TYPO3_branch, '9.0', '>')) {
-                $path = \TYPO3\CMS\Core\Utility\PathUtility::stripPathSitePrefix(\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('ns_news_comments')) . 'Resources/Private/PHP/captcha.php';
-                $verification = \TYPO3\CMS\Core\Utility\PathUtility::stripPathSitePrefix(\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('ns_news_comments')) . 'Resources/Private/PHP/verify.php';
-            } else {
-                $path = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::siteRelPath('ns_news_comments') . 'Resources/Private/PHP/captcha.php';
-                $verification = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::siteRelPath('ns_news_comments') . 'Resources/Private/PHP/verify.php';
-            }
+            $path = PathUtility::stripPathSitePrefix(ExtensionManagementUtility::extPath('ns_news_comments')) . 'Resources/Private/PHP/captcha.php';
+            $verification = PathUtility::stripPathSitePrefix(ExtensionManagementUtility::extPath('ns_news_comments')) . 'Resources/Private/PHP/verify.php';
             $captcha_path = $path . '?' . rand();
             $this->view->assign('captcha_path', $captcha_path);
             $this->view->assign('verification', $verification);
@@ -170,8 +170,9 @@ class CommentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
             $this->view->assign('settings', $setting);
         } else {
             $error = LocalizationUtility::translate('tx_nsnewscomments_domain_model_comment.errorMessage', 'NsNewsComments');
-            $this->addFlashMessage($error, '', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
+            $this->addFlashMessage($error, '',\TYPO3\CMS\Core\Type\ContextualFeedbackSeverity::ERROR);
         }
+        return $this->htmlResponse();
     }
 
     /**
@@ -179,13 +180,15 @@ class CommentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
      *
      * @param \Nitsan\NsNewsComments\Domain\Model\Comment $newComment
      *
-     * @return void
+     * @return ResponseInterface
      */
-    public function createAction(\Nitsan\NsNewsComments\Domain\Model\Comment $newComment)
+    public function createAction(\Nitsan\NsNewsComments\Domain\Model\Comment $newComment): ResponseInterface
     {
         $request = $this->request->getArguments();
         $newComment->setCrdate(time());
-        $newComment->set_languageUid($GLOBALS['TSFE']->sys_language_uid);
+        $languageAspect = GeneralUtility::makeInstance(\TYPO3\CMS\Core\Context\Context::class)->getAspect('language');
+        $language = $languageAspect->getId();
+        $newComment->set_languageUid($language);
         $parentId = $request['parentId'];
         if ($request['parentId'] > 0) {
             $childComment = $this->commentRepository->findByUid($parentId);
@@ -196,15 +199,15 @@ class CommentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
         // Add comment to repository
         $this->commentRepository->add($newComment);
         $this->persistenceManager->persistAll();
-
+        $news = $this->newsRepository->findByUid($newComment->getNewsuid());
         // Add paramlink to comments for scrolling to comment
-        $paramlink = $this->buildUriByUid($this->pageUid, $arguments = ['commentid' => $newComment->getUid()]);
+        $paramlink = $this->buildUriByUid($this->pageUid, $news,$arguments = ['commentid' => $newComment->getUid()]);
         $newComment->setParamlink($paramlink);
         $this->commentRepository->update($newComment);
 
         $this->persistenceManager->persistAll();
         $json[$newComment->getUid()] = ['parentId' => $parentId, 'comment' => 'comment'];
-        return json_encode($json);
+        return $this->jsonResponse(json_encode($json));
     }
 
     /**
@@ -214,12 +217,15 @@ class CommentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
      * @param bool $arguments
      * @return string The link
      */
-    private function buildUriByUid($uid, $arguments = [])
+    private function buildUriByUid($uid,$news, $arguments = [])
     {
-        $newsUid = $this->newsUid;
         $commentid = $arguments['commentid'];
         $excludeFromQueryString = ['tx_nsnewscomments_newscomment[action]', 'tx_nsnewscomments_newscomment[controller]', 'tx_nsnewscomments_newscomment', 'type'];
-        $uri = $this->uriBuilder->reset()->setTargetPageUid($uid)->setAddQueryString(true)->setArgumentsToBeExcludedFromQueryString($excludeFromQueryString)->setSection('comments-' . $commentid)->build();
+        $this->uriBuilder->reset()->setTargetPageUid($uid)->setAddQueryString(true)->setArgumentsToBeExcludedFromQueryString($excludeFromQueryString)->setSection('comments-' . $commentid);
+        if (array_key_exists('formail', $arguments)) {
+            $this->uriBuilder->setArguments(['frommail' => 1]);
+        }
+        $uri = $this->uriBuilder->uriFor('detail', ['news' => $news], 'News', 'News', 'Pi1');
         $uri = $this->addBaseUriIfNecessary($uri);
         return $uri;
     }

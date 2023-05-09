@@ -39,12 +39,12 @@ class CommentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
     public function getCommentsByNews($newsId)
     {
         $query = $this->createQuery();
-        $queryArr = [];
-        $queryArr = [
-            $query->equals('newsuid', $newsId),
-            $query->equals('comment', 0),
-        ];
-        $query->matching($query->logicalAnd($queryArr));
+        $query->matching(
+            $query->logicalAnd(
+                $query->equals('newsuid', $newsId),
+                $query->equals('comment', 0),
+            )
+        );
         $query->setOrderings(['crdate' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_DESCENDING]);
         $result = $query->execute();
         return $result;
@@ -57,16 +57,16 @@ class CommentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
     public function getCommentsByAccesstoken($accesstoken)
     {
         $query = $this->createQuery();
-        $queryArr = [];
-        $queryArr = [
-            $query->equals('accesstoken', $accesstoken),
-        ];
 
         // Here you enable the hidden and deleted Records
         $query->getQuerySettings()->setIgnoreEnableFields(true);
         $query->getQuerySettings()->setRespectStoragePage(false);
 
-        $query->matching($query->logicalAnd($queryArr));
+        $query->matching(
+            $query->logicalAnd(
+                $query->equals('accesstoken', $accesstoken),
+            )
+        );
         $result = $query->execute();
         return $result;
     }
@@ -78,12 +78,12 @@ class CommentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
     public function getLastCommentOfNews($newsuid = null)
     {
         $query = $this->createQuery();
-        $queryArr = [];
-        $queryArr = [
-            $query->equals('newsuid', $newsuid),
-        ];
         $query->getQuerySettings()->setRespectStoragePage(false);
-        $query->matching($query->logicalAnd($queryArr));
+        $query->matching(
+            $query->logicalAnd(
+                $query->equals('newsuid', $newsuid),
+            )
+        );
         $query->setOrderings(['crdate' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_DESCENDING]);
         $result = $query->setLimit(1)->execute();
         return $result;
@@ -98,11 +98,11 @@ class CommentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
     {
         $query = $this->createQuery();
         $query->getQuerySettings()->setRespectStoragePage(false);
-        $queryArr = [];
-        $queryArr = [
-            $query->equals('newsuid', $newsId),
-        ];
-        $query->matching($query->logicalAnd($queryArr));
+        $query->matching(
+            $query->logicalAnd(
+                $query->equals('newsuid', $newsId),
+            )
+        );
         $result = (int) $query->execute()->count();
         return $result;
     }

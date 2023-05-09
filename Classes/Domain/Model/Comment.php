@@ -36,7 +36,7 @@ class Comment extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * _languageUid
      * @var int
      */
-    protected $_languageUid;
+    protected int|null $_languageUid = null;
 
     /**
      * crdate as unix timestamp

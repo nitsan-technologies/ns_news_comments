@@ -58,6 +58,10 @@ class CommentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
      */
     protected $userRepository;
 
+    protected int $newsUid;
+    
+    protected int $pageUid;
+
     /*
      * Inject a news repository to enable DI
      *
@@ -116,14 +120,14 @@ class CommentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
         } else {
             $newsUid = $newsArr['news'];
         }
-        $this->newsUid = intval($newsUid);
+        $this->newsUid = (int) $newsUid;
 
         // Storage page configuration
         $this->pageUid = $GLOBALS['TSFE']->id;
         $extbaseFrameworkConfiguration = $this->configurationManager->getConfiguration(\TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface::CONFIGURATION_TYPE_FRAMEWORK);
 
         if (empty($extbaseFrameworkConfiguration['persistence']['storagePid'])) {
-            if ($_REQUEST['tx_nsnewscomments_newscomment']) {
+            if (isset($_REQUEST['tx_nsnewscomments_newscomment'])) {
                 $currentPid['persistence']['storagePid'] = $_REQUEST['tx_nsnewscomments_newscomment']['Storagepid'];
             } else {
                 if ($this->settings['storagePid']) {

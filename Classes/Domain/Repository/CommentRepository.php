@@ -1,4 +1,5 @@
 <?php
+
 namespace Nitsan\NsNewsComments\Domain\Repository;
 
 /***************************************************************
@@ -31,7 +32,6 @@ namespace Nitsan\NsNewsComments\Domain\Repository;
  */
 class CommentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 {
-
     /**
      *
      * @param $newsId

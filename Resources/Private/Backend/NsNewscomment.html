@@ -3,14 +3,14 @@
         <tr>
             <th colspan='2'>
                 <f:translate
-                    key="LLL:EXT:ns_comments/Resources/Private/Language/locallang_db.xl:tx_nsnewscomments_domain_model_comment" />
+                    key="LLL:EXT:ns_comments/Resources/Private/Language/locallang_db.xl:tx_nsnewscomments_domain_model_comment" extensionName="ns_news_comments" />
             </th>
         </tr>
     </thead>
     <f:for each="{pi_flexform_transformed.settings}" as="previewData" key="previewKey">
-        <f:if condition="{previewData} && {previewKey}!='custom'">
+        <f:if condition="{previewData} && {previewKey} !='custom'">
             <tr>
-                <th><f:translate key="LLL:EXT:ns_news_comments/Resources/Private/Language/locallang_db.xl:flexform.{previewKey}" /></th>
+                <th><f:translate key="LLL:EXT:ns_news_comments/Resources/Private/Language/locallang_db.xl:flexform.{previewKey}"  extensionName="ns_news_comments" /></th>
                 <td>{previewData}</td>
             </tr>
         </f:if>

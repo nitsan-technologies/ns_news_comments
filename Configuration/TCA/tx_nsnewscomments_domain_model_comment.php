@@ -1,4 +1,5 @@
 <?php
+
 return [
     'ctrl' => [
         'title' => 'LLL:EXT:ns_news_comments/Resources/Private/Language/locallang_db.xlf:tx_nsnewscomments_domain_model_comment',
@@ -116,7 +117,6 @@ return [
                 'size' => 30,
                 'readOnly' => 1,
                 'eval' => 'trim',
-                'readOnly' => 1,
             ],
         ],
 
@@ -128,7 +128,6 @@ return [
                 'size' => 30,
                 'readOnly' => 1,
                 'eval' => 'trim',
-                'readOnly' => 1,
             ],
         ],
 
@@ -229,7 +228,9 @@ return [
                 'appearance' => [
                     'collapseAll' => true,
                     'newRecordLinkPosition' => 'none',
-                    'levelLinksPosition' => 'none',
+                    'showAllLocalizationLink' => false,
+                    'showSynchronizationLink' => false,
+                    'showNewRecordLink' => false,
                     'useSortable' => false,
                     'enabledControls' => [
                         'new' => false,

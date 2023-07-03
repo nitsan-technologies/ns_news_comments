@@ -1,4 +1,5 @@
 <?php
+
 namespace Nitsan\NsNewsComments\ViewHelpers;
 
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
@@ -8,7 +9,6 @@ use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
  */
 class LastCommentViewHelper extends AbstractViewHelper
 {
-
     /**
      * commentRepository
      *

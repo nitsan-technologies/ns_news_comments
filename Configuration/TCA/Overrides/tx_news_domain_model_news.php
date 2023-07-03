@@ -1,5 +1,6 @@
 <?php
-defined('TYPO3_MODE') || die();
+
+defined('TYPO3') || die();
 
 $fields = [
     'comments' => [
@@ -29,7 +30,6 @@ $fields = [
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTCAcolumns(
     'tx_news_domain_model_news',
     $fields,
-    1
 );
 
 // add new field subtitle after title

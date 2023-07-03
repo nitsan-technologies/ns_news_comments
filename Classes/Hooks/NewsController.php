@@ -1,4 +1,5 @@
 <?php
+
 namespace Nitsan\NsNewsComments\Hooks;
 
 use TYPO3\CMS\Core\Utility\GeneralUtility;

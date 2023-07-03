@@ -222,6 +222,12 @@
 			<trans-unit id="termsTypolinkParameter">
 				<source>Terms typolink parameter</source>
 			</trans-unit>
+			<trans-unit id="flexform.customdate">
+				<source>Custom Date Format </source>
+			</trans-unit>
+			<trans-unit id="flexform.customtime">
+				<source>Custom Time Format </source>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>

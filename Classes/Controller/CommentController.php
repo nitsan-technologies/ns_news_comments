@@ -57,6 +57,8 @@ class CommentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
      * @var \TYPO3\CMS\Extbase\Domain\Repository\FrontendUserRepository
      */
     protected $userRepository;
+    protected $newsUid;
+    protected $pageUid;
 
     /*
      * Inject a news repository to enable DI
@@ -109,6 +111,7 @@ class CommentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
         $sessionService = GeneralUtility::makeInstance(\TYPO3\CMS\Install\Service\SessionService::class);
         $sessionService->startSession();
         $newsArr = GeneralUtility::_GP('tx_news_pi1');
+        $newsUid = '';
         if (is_null($newsArr)) {
             if (isset($_SESSION['params']) && $_SESSION['params']['originalSettings']['singleNews']) {
                 $newsUid = $_SESSION['params']['originalSettings']['singleNews'];

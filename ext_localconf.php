@@ -32,3 +32,5 @@ foreach ($icons as $identifier => $path) {
 //Hooks for the news controller
 $GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['Controller/NewsController.php']['overrideSettings']['ns_news_comments']
     = 'Nitsan\\NsNewsComments\\Hooks\\NewsController->modify';
+
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPageTSConfig('@import \'EXT:ns_news_comments/Configuration/page.tsconfig\'');

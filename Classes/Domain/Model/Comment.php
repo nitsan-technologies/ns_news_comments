@@ -2,11 +2,13 @@
 
 namespace Nitsan\NsNewsComments\Domain\Model;
 
+use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
+
 /***************************************************************
  *
  *  Copyright notice
  *
- *  (c) 2023
+ *  (c) 2024
  *
  *  All rights reserved
  *
@@ -33,12 +35,9 @@ namespace Nitsan\NsNewsComments\Domain\Model;
 class Comment extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 {
     /**
-     * @var int<-1, max>|null The uid of the language of the object. This is the id of the corresponding sing language.
-     *
-     * @internal
-     * @todo make private in 13.0 and expose value via getter
+     * @var int
      */
-    protected int|null $_languageUid = null;
+    protected int $sysLanguageUid = 0;
 
     /**
      * crdate as unix timestamp
@@ -127,7 +126,7 @@ class Comment extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * childcomment
      *
-     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<Comment>
+     * @var ObjectStorage<Comment>
      * @TYPO3\CMS\Extbase\Annotation\ORM\Cascade("remove")
      */
     protected $childcomment = null;
@@ -139,22 +138,6 @@ class Comment extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      */
     protected bool $terms = false;
 
-    /**
-     * @param int $_languageUid
-     * @return void
-     */
-    public function set_languageUid($_languageUid): void
-    {
-        $this->_languageUid = $_languageUid;
-    }
-
-    /**
-     * @return int
-     */
-    public function get_languageUid(): ?int
-    {
-        return $this->_languageUid;
-    }
 
     /**
      * Returns the newsuid
@@ -439,7 +422,7 @@ class Comment extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      */
     protected function initStorageObjects(): void
     {
-        $this->childcomment = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
+        $this->childcomment = new ObjectStorage();
     }
 
     /**
@@ -467,7 +450,7 @@ class Comment extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Returns the childcomment
      *
-     * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<Comment> $childcomment
+     * @return ObjectStorage<Comment> $childcomment
      */
     public function getChildcomment()
     {
@@ -477,10 +460,10 @@ class Comment extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Sets the childcomment
      *
-     * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<Comment> $childcomment
+     * @param ObjectStorage<Comment> $childcomment
      * @return void
      */
-    public function setChildcomment(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $childcomment): void
+    public function setChildcomment(ObjectStorage $childcomment): void
     {
         $this->childcomment = $childcomment;
     }
@@ -501,4 +484,26 @@ class Comment extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     {
         $this->terms = $terms;
     }
+
+    /**
+     * Set sys language
+     *
+     * @param int $sysLanguageUid
+     */
+    public function setSysLanguageUid($sysLanguageUid): void
+    {
+        $this->sysLanguageUid = $sysLanguageUid;
+        $this->_languageUid = $sysLanguageUid;
+    }
+
+    /**
+     * Get sys language
+     *
+     * @return int
+     */
+    public function getSysLanguageUid(): int
+    {
+        return $this->_languageUid;
+    }
+
 }

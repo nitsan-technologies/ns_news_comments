@@ -6,7 +6,7 @@ namespace Nitsan\NsNewsComments\Controller;
  *
  *  Copyright notice
  *
- *  (c) 2023
+ *  (c) 2024
  *
  *  All rights reserved
  *
@@ -28,14 +28,19 @@ namespace Nitsan\NsNewsComments\Controller;
  ***************************************************************/
 
 use GeorgRinger\News\Domain\Repository\NewsRepository;
+use Nitsan\NsNewsComments\Domain\Model\Comment;
 use Nitsan\NsNewsComments\Domain\Repository\CommentRepository;
 use Psr\Http\Message\ResponseInterface;
+use TYPO3\CMS\Core\Context\Context;
 use TYPO3\CMS\Core\Core\Environment;
 use TYPO3\CMS\Core\Utility\PathUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Core\Utility\VersionNumberUtility;
+use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
 use TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager;
 use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
+use TYPO3\CMS\Install\Service\SessionService;
 
 /**
  * CommentController
@@ -64,6 +69,12 @@ class CommentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 
     protected $pageUid;
 
+    /**
+     * @var array
+     */
+    protected array $typo3VersionArray = [];
+
+
     public function __construct(
         CommentRepository      $commentRepository,
         PersistenceManager     $persistenceManager,
@@ -80,8 +91,9 @@ class CommentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
      */
     public function initializeAction(): void
     {
-        $sessionService = GeneralUtility::makeInstance(\TYPO3\CMS\Install\Service\SessionService::class);
+        $sessionService = GeneralUtility::makeInstance(SessionService::class);
         $sessionService->startSession();
+        $this->typo3VersionArray = VersionNumberUtility::convertVersionStringToArray(VersionNumberUtility::getCurrentTypo3Version());
         $getData = $this->request->getQueryParams();
         $postData = $this->request->getParsedBody();
         $requestData = array_merge((array)$getData, (array)$postData);
@@ -98,7 +110,7 @@ class CommentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 
         // Storage page configuration
         $this->pageUid = $GLOBALS['TSFE']->id;
-        $extbaseFrameworkConfiguration = $this->configurationManager->getConfiguration(\TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface::CONFIGURATION_TYPE_FRAMEWORK);
+        $extbaseFrameworkConfiguration = $this->configurationManager->getConfiguration(ConfigurationManagerInterface::CONFIGURATION_TYPE_FRAMEWORK);
 
         if (empty($extbaseFrameworkConfiguration['persistence']['storagePid'])) {
             if (isset($_REQUEST['tx_nsnewscomments_newscomment']['Storagepid'])) {
@@ -121,7 +133,7 @@ class CommentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
      */
     public function listAction(): ResponseInterface
     {
-        $extbaseFrameworkConfiguration = $this->configurationManager->getConfiguration(\TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface::CONFIGURATION_TYPE_FRAMEWORK);
+        $extbaseFrameworkConfiguration = $this->configurationManager->getConfiguration(ConfigurationManagerInterface::CONFIGURATION_TYPE_FRAMEWORK);
 
         if (empty($extbaseFrameworkConfiguration['persistence']['storagePid'])) {
             $pid = $GLOBALS['TSFE']->id;
@@ -152,7 +164,11 @@ class CommentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 
         } else {
             $error = LocalizationUtility::translate('tx_nsnewscomments_domain_model_comment.errorMessage', 'NsNewsComments');
-            $this->addFlashMessage($error, '', \TYPO3\CMS\Core\Type\ContextualFeedbackSeverity::ERROR);
+            if (version_compare((string)$this->typo3VersionArray['version_main'], '11', '>')) {
+                $this->addFlashMessage($error, '', \TYPO3\CMS\Core\Type\ContextualFeedbackSeverity::ERROR);
+            } else {
+                $this->addFlashMessage($error, '', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
+            }
         }
         return $this->htmlResponse();
     }
@@ -160,16 +176,16 @@ class CommentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
     /**
      * action create
      *
-     * @param \Nitsan\NsNewsComments\Domain\Model\Comment $newComment
+     * @param Comment $newComment
      *
      * @return ResponseInterface
      */
-    public function createAction(\Nitsan\NsNewsComments\Domain\Model\Comment $newComment): ResponseInterface
+    public function createAction(Comment $newComment): ResponseInterface
     {
         $request = $this->request->getArguments();
         $newComment->setCrdate(time());
-        $language = GeneralUtility::makeInstance(\TYPO3\CMS\Core\Context\Context::class)->getPropertyFromAspect('language', 'id');
-        $newComment->set_languageUid($language);
+        $language = GeneralUtility::makeInstance(Context::class)->getPropertyFromAspect('language', 'id');
+        $newComment->setSysLanguageUid($language);
         $parentId = $request['parentId'];
         if ($request['parentId'] > 0) {
             $childComment = $this->commentRepository->findByUid($parentId);

@@ -6,6 +6,9 @@
 			<trans-unit id="tx_nsnewscomments_domain_model_comment">
 				<source>Comment</source>
 			</trans-unit>
+			<trans-unit id="tx_nsnewscomments_domain_model_comment.newsComment">
+				<source>News Comment</source>
+			</trans-unit>
 			<trans-unit id="tx_nsnewscomments_domain_model_comment.newComments">
 				<source>Comments</source>
 			</trans-unit>
@@ -44,7 +47,7 @@
 			</trans-unit>
 			<trans-unit id="tx_newscomment_domain_model_rating.crdate">
 				<source>Created Date</source>
-			</trans-unit>			
+			</trans-unit>
 			<trans-unit id="TemplatePath">
 				<source>Template Path</source>
 			</trans-unit>

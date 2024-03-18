@@ -2,29 +2,15 @@
 
 namespace Nitsan\NsNewsComments\ViewHelpers;
 
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
+use Nitsan\NsNewsComments\Domain\Repository\CommentRepository;
 
 /**
  *  Get the counts of news comments
  */
 class CountViewHelper extends AbstractViewHelper
 {
-    /**
-     * commentRepository
-     *
-     * @var \Nitsan\NsNewsComments\Domain\Repository\CommentRepository
-     */
-    protected $commentRepository = null;
-
-    /**
-     * Inject a news repository to enable DI
-     *
-     * @param \Nitsan\NsNewsComments\Domain\Repository\CommentRepository $commentRepository
-     */
-    public function injectCommentRepository(\Nitsan\NsNewsComments\Domain\Repository\CommentRepository $commentRepository)
-    {
-        $this->commentRepository = $commentRepository;
-    }
 
     /**
      * Initialize
@@ -41,13 +27,15 @@ class CountViewHelper extends AbstractViewHelper
      * Last Comment
      *
      */
-    public function render()
+    public function render() : int
     {
         $newsuid = (int) $this->arguments['newsuid'];
+        $commentCount = 0;
         if ($newsuid) {
+            $commentRepository = GeneralUtility::makeInstance(CommentRepository::class);
             // Get the counts of news comments
-            $commentCount = $this->commentRepository->getCountOfComments($newsuid);
-            return $commentCount;
+            $commentCount = $commentRepository->getCountOfComments((int)$newsuid);
         }
+        return $commentCount;
     }
 }

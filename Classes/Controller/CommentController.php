@@ -197,8 +197,10 @@ class CommentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
         $this->commentRepository->add($newComment);
         $this->persistenceManager->persistAll();
         $news = $this->newsRepository->findByUid($newComment->getNewsuid());
+      
+        
         // Add paramlink to comments for scrolling to comment
-        $paramlink = $this->buildUriByUid($this->pageUid, $news, $arguments = ['commentid' => $newComment->getUid()]);
+        $paramlink = $this->buildUriByUid((int)$this->pageUid, $news, $arguments = ['commentid' => $newComment->getUid()]);
         $newComment->setParamlink($paramlink);
         $this->commentRepository->update($newComment);
 
@@ -211,10 +213,11 @@ class CommentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
      * Returns a built URI by pageUid
      *
      * @param int $uid The uid to use for building link
+     * @param mixed $news
      * @param array $arguments
      * @return string The link
      */
-    private function buildUriByUid($uid, $news, $arguments = []): string
+    private function buildUriByUid(int $uid, $news, $arguments = []): string
     {
         $commentid = $arguments['commentid'];
         $excludeFromQueryString = ['tx_nsnewscomments_newscomment[action]', 'tx_nsnewscomments_newscomment[controller]', 'tx_nsnewscomments_newscomment', 'type'];
@@ -227,21 +230,6 @@ class CommentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
         return $uri;
     }
 
-    /**
-     * Returns a built URI by buildUriForAccesstoken
-     *
-     * @param int $uid The uid to use for building link
-     * @param array $arguments
-     * @return string The link
-     */
-    private function buildUriForAccesstoken($uid, $arguments = []): string
-    {
-        $newsUid = $this->newsUid;
-        $excludeFromQueryString = ['tx_nsnewscomments_newscomment[action]', 'tx_nsnewscomments_newscomment[controller]', 'tx_nsnewscomments_newscomment', 'type'];
-        $uri = $this->uriBuilder->reset()->setTargetPageUid($uid)->setAddQueryString(true)->setArgumentsToBeExcludedFromQueryString($excludeFromQueryString)->setArguments($arguments)->build();
-        $uri = $this->addBaseUriIfNecessary($uri);
-        return $uri;
-    }
 
     /**
      * getPath for composer based setup

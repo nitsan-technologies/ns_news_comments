@@ -3,6 +3,7 @@
 namespace Nitsan\NsNewsComments\Domain\Model;
 
 use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
+use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 
 /***************************************************************
  *
@@ -32,7 +33,7 @@ use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 /**
  * Comment
  */
-class Comment extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
+class Comment extends AbstractEntity
 {
     /**
      * @var int

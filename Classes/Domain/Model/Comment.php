@@ -111,13 +111,6 @@ class Comment extends AbstractEntity
     protected int $newsuid = 0;
 
     /**
-     * accesstoken
-     *
-     * @var string
-     */
-    protected string $accesstoken;
-
-    /**
      * description
      *
      * @var string
@@ -159,27 +152,6 @@ class Comment extends AbstractEntity
     public function setNewsuid($newsuid): void
     {
         $this->newsuid = $newsuid;
-    }
-
-    /**
-     * Returns the accesstoken
-     *
-     * @return string $accesstoken
-     */
-    public function getAccesstoken(): string
-    {
-        return $this->accesstoken;
-    }
-
-    /**
-     * Sets the accesstoken
-     *
-     * @param string $accesstoken
-     * @return void
-     */
-    public function setAccesstoken($accesstoken): void
-    {
-        $this->accesstoken = $accesstoken;
     }
 
     /**

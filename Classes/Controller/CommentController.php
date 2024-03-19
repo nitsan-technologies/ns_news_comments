@@ -27,20 +27,22 @@ namespace Nitsan\NsNewsComments\Controller;
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
 
-use GeorgRinger\News\Domain\Repository\NewsRepository;
-use Nitsan\NsNewsComments\Domain\Model\Comment;
-use Nitsan\NsNewsComments\Domain\Repository\CommentRepository;
-use Psr\Http\Message\ResponseInterface;
 use TYPO3\CMS\Core\Context\Context;
 use TYPO3\CMS\Core\Core\Environment;
+use Psr\Http\Message\ResponseInterface;
 use TYPO3\CMS\Core\Utility\PathUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Core\Utility\VersionNumberUtility;
-use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
-use TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager;
-use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
-use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
+use TYPO3\CMS\Core\Messaging\AbstractMessage;
 use TYPO3\CMS\Install\Service\SessionService;
+use Nitsan\NsNewsComments\Domain\Model\Comment;
+use TYPO3\CMS\Core\Utility\VersionNumberUtility;
+use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
+use TYPO3\CMS\Core\Type\ContextualFeedbackSeverity;
+use GeorgRinger\News\Domain\Repository\NewsRepository;
+use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
+use TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager;
+use Nitsan\NsNewsComments\Domain\Repository\CommentRepository;
+use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
 
 /**
  * CommentController
@@ -63,11 +65,11 @@ class CommentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
     protected $persistenceManager;
 
 
-    protected $newsId;
+    protected int $newsId;
 
-    protected $newsUid;
+    protected int $newsUid;
 
-    protected $pageUid;
+    protected int $pageUid;
 
     /**
      * @var array
@@ -106,7 +108,7 @@ class CommentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
         } else {
             $newsUid = $newsArr['news'] ?? null;
         }
-        $this->newsUid = intval($newsUid);
+        $this->newsUid = (int) $newsUid;
 
         // Storage page configuration
         $this->pageUid = $GLOBALS['TSFE']->id;
@@ -165,9 +167,9 @@ class CommentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
         } else {
             $error = LocalizationUtility::translate('tx_nsnewscomments_domain_model_comment.errorMessage', 'NsNewsComments');
             if (version_compare((string)$this->typo3VersionArray['version_main'], '11', '>')) {
-                $this->addFlashMessage($error, '', \TYPO3\CMS\Core\Type\ContextualFeedbackSeverity::ERROR);
+                $this->addFlashMessage($error, '', ContextualFeedbackSeverity::ERROR);
             } else {
-                $this->addFlashMessage($error, '', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
+                $this->addFlashMessage($error, '', AbstractMessage::ERROR);
             }
         }
         return $this->htmlResponse();
@@ -200,7 +202,11 @@ class CommentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
       
         
         // Add paramlink to comments for scrolling to comment
-        $paramlink = $this->buildUriByUid((int)$this->pageUid, $news, $arguments = ['commentid' => $newComment->getUid()]);
+        $paramlink = $this->buildUriByUid(
+            (int)$this->pageUid, 
+            $news, 
+            ['commentid' => $newComment->getUid()]
+        );
         $newComment->setParamlink($paramlink);
         $this->commentRepository->update($newComment);
 
@@ -221,7 +227,12 @@ class CommentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
     {
         $commentid = $arguments['commentid'];
         $excludeFromQueryString = ['tx_nsnewscomments_newscomment[action]', 'tx_nsnewscomments_newscomment[controller]', 'tx_nsnewscomments_newscomment', 'type'];
-        $this->uriBuilder->reset()->setTargetPageUid($uid)->setAddQueryString(true)->setArgumentsToBeExcludedFromQueryString($excludeFromQueryString)->setSection('comments-' . $commentid);
+        $this->uriBuilder
+            ->reset()
+            ->setTargetPageUid($uid)
+            ->setAddQueryString(true)
+            ->setArgumentsToBeExcludedFromQueryString($excludeFromQueryString)
+            ->setSection('comments-' . $commentid);
         if (array_key_exists('formail', $arguments)) {
             $this->uriBuilder->setArguments(['frommail' => 1]);
         }

@@ -28,7 +28,7 @@ return [
         ],
     ],
     'types' => [
-        '1' => ['showitem' => 'feuserid, accesstoken, username, usermail, userimage, description, terms, paramlink, childcomment, --div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.access, sys_language_uid, l10n_diffsource, hidden, starttime, endtime'],
+        '1' => ['showitem' => 'feuserid, username, usermail, userimage, description, terms, paramlink, childcomment, --div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.access, sys_language_uid, l10n_diffsource, hidden, starttime, endtime'],
     ],
     'columns' => [
 
@@ -138,17 +138,6 @@ return [
         'feuserid' => [
             'exclude' => 1,
             'label' => 'LLL:EXT:ns_news_comments/Resources/Private/Language/locallang_db.xlf:tx_nsnewscomments_domain_model_comment.feuserid',
-            'config' => [
-                'type' => 'input',
-                'size' => 30,
-                'readOnly' => 1,
-                'eval' => 'trim',
-            ],
-        ],
-
-        'accesstoken' => [
-            'exclude' => 1,
-            'label' => 'LLL:EXT:ns_news_comments/Resources/Private/Language/locallang_db.xlf:tx_nsnewscomments_domain_model_comment.accesstoken',
             'config' => [
                 'type' => 'input',
                 'size' => 30,

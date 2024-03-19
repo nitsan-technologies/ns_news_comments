@@ -7,7 +7,7 @@ use TYPO3\CMS\Install\Service\SessionService;
 
 class NewsController
 {
-    public function modify(array $params)
+    public function modify(array $params) : array
     {
         $sessionService = GeneralUtility::makeInstance(SessionService::class);
         $sessionService->startSession();

@@ -3,6 +3,7 @@
 namespace Nitsan\NsNewsComments\Domain\Model;
 
 use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
+use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 
 /***************************************************************
  *
@@ -32,7 +33,7 @@ use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 /**
  * Comment
  */
-class Comment extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
+class Comment extends AbstractEntity
 {
     /**
      * @var int
@@ -110,13 +111,6 @@ class Comment extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     protected int $newsuid = 0;
 
     /**
-     * accesstoken
-     *
-     * @var string
-     */
-    protected string $accesstoken;
-
-    /**
      * description
      *
      * @var string
@@ -158,27 +152,6 @@ class Comment extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     public function setNewsuid($newsuid): void
     {
         $this->newsuid = $newsuid;
-    }
-
-    /**
-     * Returns the accesstoken
-     *
-     * @return string $accesstoken
-     */
-    public function getAccesstoken(): string
-    {
-        return $this->accesstoken;
-    }
-
-    /**
-     * Sets the accesstoken
-     *
-     * @param string $accesstoken
-     * @return void
-     */
-    public function setAccesstoken($accesstoken): void
-    {
-        $this->accesstoken = $accesstoken;
     }
 
     /**

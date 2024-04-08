@@ -1,8 +1,8 @@
 {
   "name": "nitsan/ns-news-comments",
   "type": "typo3-cms-extension",
-  "description": "Do you want to smoothly integrate comment features in your favourite News extension? This extension includes powerful features like post comment, reply to comment, multi-level comment thread, moderation etc., Demo: https://demo.t3planet.com/t3t-extensions/news-comment/ You can download PRO version for more-features & free-support at https://t3planet.com/news-comment-typo3-extension/",
-  "homepage": "https://extensions.typo3.org/extension/ns_news_comments/",
+  "description": "All New TYPO3 News Comment Extension helps add comments to your news pages and articles. It comes with a variety of features for managing and customizing comments. It is designed to enhance user experience with a simple interface and is SEO-friendly. *** Live Demo: https://demo.t3planet.com/t3-extensions/seo/news-comments/ *** Premium Version, Documentation & Free Support: https://t3planet.com/typo3-news-comment-extension",
+  "homepage": "https://t3planet.com/typo3-news-comment-extension",
   "license": "GPL-2.0+",
   "keywords": [
     "TYPO3 CMS",
@@ -10,7 +10,8 @@
     "NITSAN",
     "Comments",
     "Blog",
-    "User"
+    "User",
+    "T3Planet"
   ],
   "support": {
     "issues": "https://github.com/nitsan-technologies/ns_news_comments/issues"

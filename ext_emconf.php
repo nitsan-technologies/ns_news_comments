@@ -1,12 +1,14 @@
 <?php
 
 $EM_CONF['ns_news_comments'] = [
-    'title' => '[NITSAN] Comment Plugin for EXT:news',
-    'description' => 'Do you want to smoothly integrate comment features in your favourite News extension? This extension includes powerful features like post comment, reply to comment, multi-level comment thread, moderation etc., Demo: https://demo.t3planet.com/t3t-extensions/news-comments/ You can download PRO version for more-features & free-support at https://t3planet.com/news-comment-typo3-extension/',
+    'title' => 'News Comment',
+    'description' => 'All New TYPO3 News Comment Extension helps add comments to your news pages and articles. It comes with a variety of features for managing and customizing comments. It is designed to enhance user experience with a simple interface and is SEO-friendly.
+
+    *** Live Demo: https://demo.t3planet.com/t3-extensions/seo/news-comments/ *** Premium Version, Documentation & Free Support: https://t3planet.com/typo3-news-comment-extension',
     'category' => 'plugin',
-    'author' => 'Team NITSAN',
+    'author' => 'T3: Himanshu Ramavat, T3: Divya Goklani, T3: Nilesh Malankiya, QA: Krishna Dhapa',
     'author_email' => 'sanjay@nitsan.in',
-    'author_company' => 'NITSAN Technologies Pvt Ltd',
+    'author_company' => 'T3Planet // NITSAN',
     'state' => 'stable',
     'internal' => '',
     'uploadfolder' => '0',

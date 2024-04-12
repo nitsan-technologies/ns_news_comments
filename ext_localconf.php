@@ -1,4 +1,5 @@
 <?php
+
 if (!defined('TYPO3_MODE')) {
     die('Access denied.');
 }
@@ -39,6 +40,3 @@ if (version_compare(TYPO3_branch, '7.0', '>')) {
 //Hooks for the news controller
 $GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['Controller/NewsController.php']['overrideSettings']['ns_news_comments']
     = 'Nitsan\\NsNewsComments\\Hooks\\NewsController->modify';
-
-$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['cms/layout/class.tx_cms_layout.php']['tt_content_drawItem']['ns_news_comments']
-        = \Nitsan\NsNewsComments\Hooks\PageLayoutView::class;

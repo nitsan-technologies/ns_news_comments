@@ -1,4 +1,5 @@
 <?php
+
 namespace Nitsan\NsNewsComments\Controller;
 
 /***************************************************************
@@ -25,39 +26,41 @@ namespace Nitsan\NsNewsComments\Controller;
  *
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
+
+use GeorgRinger\News\Domain\Repository\NewsRepository;
+use Nitsan\NsNewsComments\Domain\Model\Comment;
+use Nitsan\NsNewsComments\Domain\Repository\CommentRepository;
+use TYPO3\CMS\Core\Messaging\AbstractMessage;
+use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
+use TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager;
 use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
 
 /**
  * CommentController
  */
-class CommentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
+class CommentController extends ActionController
 {
-
     /**
      * commentRepository
      *
-     * @var \Nitsan\NsNewsComments\Domain\Repository\CommentRepository
+     * @var CommentRepository
      */
     protected $commentRepository = null;
 
     /**
-     * @var \GeorgRinger\News\Domain\Repository\NewsRepository
+     * @var NewsRepository
      */
     protected $newsRepository;
 
     /**
-     * @var \TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager
+     * @var PersistenceManager
      */
     protected $persistenceManager;
 
-    /**
-     * User Repository
-     *
-     * @var \TYPO3\CMS\Extbase\Domain\Repository\FrontendUserRepository
-     */
-    protected $userRepository;
     protected $newsUid;
+
     protected $pageUid;
 
     /*
@@ -66,7 +69,7 @@ class CommentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
      * @param \GeorgRinger\News\Domain\Repository\NewsRepository $newsRepository
      * @return void
      */
-    public function injectNewsRepository(\GeorgRinger\News\Domain\Repository\NewsRepository $newsRepository)
+    public function injectNewsRepository(NewsRepository $newsRepository)
     {
         $this->newsRepository = $newsRepository;
     }
@@ -74,9 +77,9 @@ class CommentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
     /**
     * Inject a news repository to enable DI
     *
-    * @param \Nitsan\NsNewsComments\Domain\Repository\CommentRepository $commentRepository
+    * @param CommentRepository $commentRepository
     */
-    public function injectCommentRepository(\Nitsan\NsNewsComments\Domain\Repository\CommentRepository $commentRepository)
+    public function injectCommentRepository(CommentRepository $commentRepository)
     {
         $this->commentRepository = $commentRepository;
     }
@@ -84,21 +87,11 @@ class CommentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
     /**
      * Inject a news repository to enable DI
      *
-     * @param \TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager $persistenceManager
+     * @param PersistenceManager $persistenceManager
      */
-    public function injectPersistenceManager(\TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager $persistenceManager)
+    public function injectPersistenceManager(PersistenceManager $persistenceManager)
     {
         $this->persistenceManager = $persistenceManager;
-    }
-
-    /**
-     * Inject a news repository to enable DI
-     *
-     * @param \TYPO3\CMS\Extbase\Domain\Repository\FrontendUserRepository $userRepository
-     */
-    public function injectUserRepository(\TYPO3\CMS\Extbase\Domain\Repository\FrontendUserRepository $userRepository)
-    {
-        $this->userRepository = $userRepository;
     }
 
     /**
@@ -156,16 +149,11 @@ class CommentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
         $setting = $this->settings;
         if ($this->newsUid) {
             $comments = $this->commentRepository->getCommentsByNews($newsId = $this->newsUid)->toArray();
-            if (version_compare(TYPO3_branch, '9.0', '>')) {
-                $path = \TYPO3\CMS\Core\Utility\PathUtility::stripPathSitePrefix(\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('ns_news_comments')) . 'Resources/Private/PHP/captcha.php';
-                $verification = \TYPO3\CMS\Core\Utility\PathUtility::stripPathSitePrefix(\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('ns_news_comments')) . 'Resources/Private/PHP/verify.php';
-            } else {
-                $path = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::siteRelPath('ns_news_comments') . 'Resources/Private/PHP/captcha.php';
-                $verification = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::siteRelPath('ns_news_comments') . 'Resources/Private/PHP/verify.php';
-            }
-            $captcha_path = $path . '?' . rand();
+            $paths = $this->captchaVerificationPath();
+
+            $captcha_path = $paths['captcha'] . '?' . rand();
             $this->view->assign('captcha_path', $captcha_path);
-            $this->view->assign('verification', $verification);
+            $this->view->assign('verification', $paths['verification']);
             $this->view->assign('comments', $comments);
             $this->view->assign('newsID', $this->newsUid);
             $this->view->assign('pageid', $this->pageUid);
@@ -173,18 +161,18 @@ class CommentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
             $this->view->assign('settings', $setting);
         } else {
             $error = LocalizationUtility::translate('tx_nsnewscomments_domain_model_comment.errorMessage', 'NsNewsComments');
-            $this->addFlashMessage($error, '', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
+            $this->addFlashMessage($error, '', AbstractMessage::ERROR);
         }
     }
 
     /**
      * action create
      *
-     * @param \Nitsan\NsNewsComments\Domain\Model\Comment $newComment
+     * @param Comment $newComment
      *
      * @return void
      */
-    public function createAction(\Nitsan\NsNewsComments\Domain\Model\Comment $newComment)
+    public function createAction(Comment $newComment)
     {
         $request = $this->request->getArguments();
         $newComment->setCrdate(time());
@@ -201,8 +189,8 @@ class CommentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
         $this->persistenceManager->persistAll();
 
         // Add paramlink to comments for scrolling to comment
-        $paramlink = $this->buildUriByUid($this->pageUid, $arguments = ['commentid' => $newComment->getUid()]);
-        $newComment->setParamlink($paramlink);
+        $paramLink = $this->buildUriByUid($this->pageUid, $arguments = ['commentid' => $newComment->getUid()]);
+        $newComment->setParamlink($paramLink);
         $this->commentRepository->update($newComment);
 
         $this->persistenceManager->persistAll();
@@ -214,32 +202,35 @@ class CommentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
      * Returns a built URI by pageUid
      *
      * @param int $uid The uid to use for building link
-     * @param bool $arguments
+     * @param array $arguments
      * @return string The link
      */
-    private function buildUriByUid($uid, $arguments = [])
+    private function buildUriByUid($uid, $arguments = []): string
     {
-        $newsUid = $this->newsUid;
-        $commentid = $arguments['commentid'];
-        $excludeFromQueryString = ['tx_nsnewscomments_newscomment[action]', 'tx_nsnewscomments_newscomment[controller]', 'tx_nsnewscomments_newscomment', 'type'];
-        $uri = $this->uriBuilder->reset()->setTargetPageUid($uid)->setAddQueryString(true)->setArgumentsToBeExcludedFromQueryString($excludeFromQueryString)->setSection('comments-' . $commentid)->build();
-        $uri = $this->addBaseUriIfNecessary($uri);
-        return $uri;
+        $commentId = $arguments['commentid'];
+        $excludeFromQueryString = [
+            'tx_nsnewscomments_newscomment[action]',
+            'tx_nsnewscomments_newscomment[controller]',
+            'tx_nsnewscomments_newscomment',
+            'type'
+        ];
+        $uri = $this->uriBuilder->reset()->setTargetPageUid($uid)->setAddQueryString(true)->setArgumentsToBeExcludedFromQueryString($excludeFromQueryString)->setSection('comments-' . $commentId)->build();
+        return $this->addBaseUriIfNecessary($uri);
     }
 
     /**
-     * Returns a built URI by buildUriForAccesstoken
-     *
-     * @param int $uid The uid to use for building link
-     * @param bool $arguments
-     * @return string The link
+     * @return array
      */
-    private function buildUriForAccesstoken($uid, $arguments = [])
+    private function captchaVerificationPath(): array
     {
-        $newsUid = $this->newsUid;
-        $excludeFromQueryString = ['tx_nsnewscomments_newscomment[action]', 'tx_nsnewscomments_newscomment[controller]', 'tx_nsnewscomments_newscomment', 'type'];
-        $uri = $this->uriBuilder->reset()->setTargetPageUid($uid)->setAddQueryString(true)->setArgumentsToBeExcludedFromQueryString($excludeFromQueryString)->setArguments($arguments)->build();
-        $uri = $this->addBaseUriIfNecessary($uri);
-        return $uri;
+        $paths = [];
+        if (version_compare(TYPO3_branch, '9.0', '>')) {
+            $paths['captcha'] = \TYPO3\CMS\Core\Utility\PathUtility::stripPathSitePrefix(ExtensionManagementUtility::extPath('ns_news_comments')) . 'Resources/Private/PHP/captcha.php';
+            $paths['verification'] = \TYPO3\CMS\Core\Utility\PathUtility::stripPathSitePrefix(ExtensionManagementUtility::extPath('ns_news_comments')) . 'Resources/Private/PHP/verify.php';
+        } else {
+            $paths['captcha'] = ExtensionManagementUtility::siteRelPath('ns_news_comments') . 'Resources/Private/PHP/captcha.php';
+            $paths['verification'] = ExtensionManagementUtility::siteRelPath('ns_news_comments') . 'Resources/Private/PHP/verify.php';
+        }
+        return $paths;
     }
 }

@@ -1,5 +1,9 @@
 <?php
+
 namespace Nitsan\NsNewsComments\Domain\Model;
+
+use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
+use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 
 /***************************************************************
  *
@@ -29,9 +33,8 @@ namespace Nitsan\NsNewsComments\Domain\Model;
 /**
  * Comment
  */
-class Comment extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
+class Comment extends AbstractEntity
 {
-
     /**
      * _languageUid
      * @var int
@@ -403,18 +406,6 @@ class Comment extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      */
     public function setDescription($description)
     {
-        $description = trim($description);
-
-        $threeNewLines = "\r\n\r\n\r\n";
-        $twoNewLines = "\r\n\r\n";
-        do {
-            $description = str_replace($threeNewLines, $twoNewLines, $description);
-        } while (strstr($description, $threeNewLines));
-
-        // Decode html tags
-        $description = htmlspecialchars($description);
-        $description = preg_replace('/(((http(s)?\:\/\/)|(www\.))([^\s]+[^\.\s]+))/', '<a href="http$4://$5$6">$1</a>', $description);
-
         $this->description = $description;
     }
     /**

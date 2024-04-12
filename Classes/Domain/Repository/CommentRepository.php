@@ -1,5 +1,9 @@
 <?php
+
 namespace Nitsan\NsNewsComments\Domain\Repository;
+
+use TYPO3\CMS\Extbase\Persistence\QueryInterface;
+use TYPO3\CMS\Extbase\Persistence\Repository;
 
 /***************************************************************
  *
@@ -29,9 +33,8 @@ namespace Nitsan\NsNewsComments\Domain\Repository;
 /**
  * The repository for Comments
  */
-class CommentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
+class CommentRepository extends Repository
 {
-
     /**
      *
      * @param $newsId
@@ -39,54 +42,29 @@ class CommentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
     public function getCommentsByNews($newsId)
     {
         $query = $this->createQuery();
-        $queryArr = [];
         $queryArr = [
             $query->equals('newsuid', $newsId),
             $query->equals('comment', 0),
         ];
         $query->matching($query->logicalAnd($queryArr));
-        $query->setOrderings(['crdate' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_DESCENDING]);
-        $result = $query->execute();
-        return $result;
+        $query->setOrderings(['crdate' => QueryInterface::ORDER_DESCENDING]);
+        return $query->execute();
     }
 
     /**
      *
-     * @param $newsId
+     * @param $newsUid
      */
-    public function getCommentsByAccesstoken($accesstoken)
+    public function getLastCommentOfNews($newsUid = null)
     {
         $query = $this->createQuery();
-        $queryArr = [];
         $queryArr = [
-            $query->equals('accesstoken', $accesstoken),
-        ];
-
-        // Here you enable the hidden and deleted Records
-        $query->getQuerySettings()->setIgnoreEnableFields(true);
-        $query->getQuerySettings()->setRespectStoragePage(false);
-
-        $query->matching($query->logicalAnd($queryArr));
-        $result = $query->execute();
-        return $result;
-    }
-
-    /**
-     *
-     * @param $newsId
-     */
-    public function getLastCommentOfNews($newsuid = null)
-    {
-        $query = $this->createQuery();
-        $queryArr = [];
-        $queryArr = [
-            $query->equals('newsuid', $newsuid),
+            $query->equals('newsuid', $newsUid),
         ];
         $query->getQuerySettings()->setRespectStoragePage(false);
         $query->matching($query->logicalAnd($queryArr));
-        $query->setOrderings(['crdate' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_DESCENDING]);
-        $result = $query->setLimit(1)->execute();
-        return $result;
+        $query->setOrderings(['crdate' => QueryInterface::ORDER_DESCENDING]);
+        return $query->setLimit(1)->execute();
     }
 
     /**
@@ -94,16 +72,14 @@ class CommentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
      * @param int $newsId
      * @return int
      */
-    public function getCountOfComments($newsId)
+    public function getCountOfComments($newsId): int
     {
         $query = $this->createQuery();
         $query->getQuerySettings()->setRespectStoragePage(false);
-        $queryArr = [];
         $queryArr = [
             $query->equals('newsuid', $newsId),
         ];
         $query->matching($query->logicalAnd($queryArr));
-        $result = (int) $query->execute()->count();
-        return $result;
+        return (int) $query->execute()->count();
     }
 }

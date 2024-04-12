@@ -3,6 +3,8 @@
 namespace Nitsan\NsNewsComments\Domain\Repository;
 
 use TYPO3\CMS\Extbase\Persistence\QueryInterface;
+use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
+use TYPO3\CMS\Extbase\Persistence\Repository;
 
 /***************************************************************
  *
@@ -32,13 +34,13 @@ use TYPO3\CMS\Extbase\Persistence\QueryInterface;
 /**
  * The repository for Comments
  */
-class CommentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
+class CommentRepository extends Repository
 {
     /**
      *
      * @param int $newsId
      */
-    public function getCommentsByNews(int $newsId)
+    public function getCommentsByNews(int $newsId): QueryResultInterface|array
     {
         $query = $this->createQuery();
         $query->matching(
@@ -48,8 +50,7 @@ class CommentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
             )
         );
         $query->setOrderings(['crdate' => QueryInterface::ORDER_DESCENDING]);
-        $result = $query->execute();
-        return $result;
+        return $query->execute();
     }
 
 
@@ -57,7 +58,7 @@ class CommentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
      *
      * @param int $newsuid
      */
-    public function getLastCommentOfNews(int $newsuid)
+    public function getLastCommentOfNews(int $newsuid): QueryResultInterface|array
     {
         $query = $this->createQuery();
         $query->getQuerySettings()->setRespectStoragePage(false);
@@ -67,8 +68,7 @@ class CommentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
             )
         );
         $query->setOrderings(['crdate' => QueryInterface::ORDER_DESCENDING]);
-        $result = $query->setLimit(1)->execute();
-        return $result;
+        return $query->setLimit(1)->execute();
     }
 
     /**
@@ -76,7 +76,7 @@ class CommentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
      * @param int $newsId
      * @return int
      */
-    public function getCountOfComments(int $newsId) : int
+    public function getCountOfComments(int $newsId): int
     {
         $query = $this->createQuery();
         $query->getQuerySettings()->setRespectStoragePage(false);

@@ -11,13 +11,12 @@ use Nitsan\NsNewsComments\Domain\Repository\CommentRepository;
  */
 class CountViewHelper extends AbstractViewHelper
 {
-
     /**
      * Initialize
      *
      * @return void
      */
-    public function initializeArguments()
+    public function initializeArguments(): void
     {
         parent::initializeArguments();
         $this->registerArgument('newsuid', 'int', 'news uid', true);
@@ -27,14 +26,14 @@ class CountViewHelper extends AbstractViewHelper
      * Last Comment
      *
      */
-    public function render() : int
+    public function render(): int
     {
-        $newsuid = (int) $this->arguments['newsuid'];
+        $newsUid = (int) $this->arguments['newsuid'];
         $commentCount = 0;
-        if ($newsuid) {
+        if ($newsUid) {
             $commentRepository = GeneralUtility::makeInstance(CommentRepository::class);
             // Get the counts of news comments
-            $commentCount = $commentRepository->getCountOfComments((int)$newsuid);
+            $commentCount = $commentRepository->getCountOfComments($newsUid);
         }
         return $commentCount;
     }

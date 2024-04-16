@@ -149,11 +149,14 @@ class CommentController extends ActionController
         $setting = $this->settings;
         if ($this->newsUid) {
             $comments = $this->commentRepository->getCommentsByNews($newsId = $this->newsUid)->toArray();
-            $paths = $this->captchaVerificationPath();
 
-            $captcha_path = $paths['captcha'] . '?' . rand();
-            $this->view->assign('captcha_path', $captcha_path);
-            $this->view->assign('verification', $paths['verification']);
+            if ($setting['captcha'] == '0') {
+                $paths = $this->captchaVerificationPath();
+                $captcha_path = $paths['captcha'] . '?' . rand();
+                $this->view->assign('captcha_path', $captcha_path);
+                $this->view->assign('verification', $paths['verification']);
+            }
+
             $this->view->assign('comments', $comments);
             $this->view->assign('newsID', $this->newsUid);
             $this->view->assign('pageid', $this->pageUid);

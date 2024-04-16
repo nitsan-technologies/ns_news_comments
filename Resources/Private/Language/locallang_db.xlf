@@ -204,6 +204,12 @@
 			<trans-unit id="customTimeFormat">
 				<source>Custom Time Format: [E.g: g:i a (11:36 am)  // g:i A (11:36 AM)  // H:i (11:36)</source>
 			</trans-unit>
+			<trans-unit id="flexform.customdate">
+				<source>Custom Date Format</source>
+			</trans-unit>
+			<trans-unit id="flexform.customtime">
+				<source>Custom Time Format</source>
+			</trans-unit>
 			<trans-unit id="disableCaptcha">
 				<source>Disable Captcha</source>
 			</trans-unit>

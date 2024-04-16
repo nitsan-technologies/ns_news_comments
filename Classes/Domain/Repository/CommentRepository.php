@@ -55,31 +55,25 @@ class CommentRepository extends Repository
      *
      * @param $newsUid
      */
-    public function getLastCommentOfNews($newsUid = null)
+    public function getLastCommentOfNews($newsUid)
     {
         $query = $this->createQuery();
-        $queryArr = [
-            $query->equals('newsuid', $newsUid),
-        ];
         $query->getQuerySettings()->setRespectStoragePage(false);
-        $query->matching($query->logicalAnd($queryArr));
+        $query->matching($query->equals('newsuid', $newsUid));
         $query->setOrderings(['crdate' => QueryInterface::ORDER_DESCENDING]);
         return $query->setLimit(1)->execute();
     }
 
     /**
      *
-     * @param int $newsId
+     * @param $newsId
      * @return int
      */
     public function getCountOfComments($newsId): int
     {
         $query = $this->createQuery();
         $query->getQuerySettings()->setRespectStoragePage(false);
-        $queryArr = [
-            $query->equals('newsuid', $newsId),
-        ];
-        $query->matching($query->logicalAnd($queryArr));
+        $query->matching($query->equals('newsuid', $newsId));
         return (int) $query->execute()->count();
     }
 }

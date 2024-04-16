@@ -45,8 +45,9 @@ class LastCommentViewHelper extends AbstractViewHelper
     public function render()
     {
         $newsUid = $this->arguments['newsuid'];
-
-        // Get last comment of news
-        return $this->commentRepository->getLastCommentOfNews($newsUid);
+        if ($newsUid) {
+            // Get last comment of news
+            return $this->commentRepository->getLastCommentOfNews($newsUid);
+        }
     }
 }

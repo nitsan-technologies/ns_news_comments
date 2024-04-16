@@ -56,25 +56,11 @@ class Comment extends AbstractEntity
     protected $hidden = 0;
 
     /**
-     * feuserid
-     *
-     * @var int
-     */
-    protected $feuserid = 0;
-
-    /**
      * username
      *
      * @var string
      */
     protected $username = '';
-
-    /**
-     * userimage
-     *
-     * @var string
-     */
-    protected $userimage = '';
 
     /**
      * usermail
@@ -110,13 +96,6 @@ class Comment extends AbstractEntity
      * @var int
      */
     protected $newsuid = 0;
-
-    /**
-     * accesstoken
-     *
-     * @var string
-     */
-    protected $accesstoken;
 
     /**
      * description
@@ -179,48 +158,6 @@ class Comment extends AbstractEntity
     }
 
     /**
-     * Returns the accesstoken
-     *
-     * @return string $accesstoken
-     */
-    public function getAccesstoken()
-    {
-        return $this->accesstoken;
-    }
-
-    /**
-     * Sets the accesstoken
-     *
-     * @param string $accesstoken
-     * @return void
-     */
-    public function setAccesstoken($accesstoken)
-    {
-        $this->accesstoken = $accesstoken;
-    }
-
-    /**
-     * Returns the feuserid
-     *
-     * @return string $feuserid
-     */
-    public function getFeuserid()
-    {
-        return $this->feuserid;
-    }
-
-    /**
-     * Sets the feuserid
-     *
-     * @param string $feuserid
-     * @return void
-     */
-    public function setFeuserid($feuserid)
-    {
-        $this->feuserid = $feuserid;
-    }
-
-    /**
      * Returns the username
      *
      * @return string $username
@@ -239,27 +176,6 @@ class Comment extends AbstractEntity
     public function setUsername($username)
     {
         $this->username = $username;
-    }
-
-    /**
-     * Returns the userimage
-     *
-     * @return string $userimage
-     */
-    public function getUserimage()
-    {
-        return $this->userimage;
-    }
-
-    /**
-     * Sets the userimage
-     *
-     * @param string $userimage
-     * @return void
-     */
-    public function setUserimage($userimage)
-    {
-        $this->userimage = $userimage;
     }
 
     /**

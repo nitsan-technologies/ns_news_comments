@@ -121,7 +121,7 @@ class CommentController extends ActionController
                 if ($this->settings['storagePid']) {
                     $currentPid['persistence']['storagePid'] = $this->settings['storagePid'];
                 } else {
-                    $currentPid['persistence']['storagePid'] = $GLOBALS['TSFE']->id;
+                    $currentPid['persistence']['storagePid'] = $this->pageUid;
                 }
             }
             $this->configurationManager->setConfiguration(array_merge($extbaseFrameworkConfiguration, $currentPid));
@@ -132,25 +132,31 @@ class CommentController extends ActionController
      * action list
      *
      * @return ResponseInterface
+     * @throws InvalidFileException
      */
     public function listAction(): ResponseInterface
     {
         $extbaseFrameworkConfiguration = $this->configurationManager->getConfiguration(ConfigurationManagerInterface::CONFIGURATION_TYPE_FRAMEWORK);
 
         if (empty($extbaseFrameworkConfiguration['persistence']['storagePid'])) {
-            $pid = $GLOBALS['TSFE']->id;
+            $pid = $this->pageUid;
         } else {
             $pid = $extbaseFrameworkConfiguration['persistence']['storagePid'];
         }
         $setting = $this->settings;
         if ($this->newsUid) {
             $comments = $this->commentRepository->getCommentsByNews($this->newsUid)->toArray();
-            $paths = $this->captchaVerificationPath();
 
-            $captcha_path = $paths['captcha'] . '?' . rand();
+            if ($this->settings['captcha'] == '0') {
+                $paths = $this->captchaVerificationPath();
+                $captcha_path = $paths['captcha'] . '?' . rand();
+                $this->view->assignMultiple([
+                    'captcha_path' => $captcha_path,
+                    'verification' => $paths['verification'],
+                ]);
+            }
+
             $this->view->assignMultiple([
-                'captcha_path' => $captcha_path,
-                'verification' => $paths['verification'],
                 'comments' => $comments,
                 'newsID' => $this->newsUid,
                 'pageid' => $this->pageUid,
@@ -160,6 +166,7 @@ class CommentController extends ActionController
 
         } else {
             $error = LocalizationUtility::translate('tx_nsnewscomments_domain_model_comment.errorMessage', 'NsNewsComments');
+            // @extensionScannerIgnoreLine
             if (version_compare((string)$this->typo3VersionArray['version_main'], '11', '>')) {
                 $this->addFlashMessage($error, '', ContextualFeedbackSeverity::ERROR);
             } else {

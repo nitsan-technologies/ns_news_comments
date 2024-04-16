@@ -55,25 +55,11 @@ class Comment extends AbstractEntity
     protected int $hidden = 0;
 
     /**
-     * feuserid
-     *
-     * @var int
-     */
-    protected int $feuserid = 0;
-
-    /**
      * username
      *
      * @var string
      */
     protected string $username = '';
-
-    /**
-     * userimage
-     *
-     * @var string
-     */
-    protected string $userimage = '';
 
     /**
      * usermail
@@ -155,27 +141,6 @@ class Comment extends AbstractEntity
     }
 
     /**
-     * Returns the feuserid
-     *
-     * @return int $feuserid
-     */
-    public function getFeuserid(): int
-    {
-        return $this->feuserid;
-    }
-
-    /**
-     * Sets the feuserid
-     *
-     * @param int $feuserid
-     * @return void
-     */
-    public function setFeuserid($feuserid): void
-    {
-        $this->feuserid = $feuserid;
-    }
-
-    /**
      * Returns the username
      *
      * @return string $username
@@ -194,27 +159,6 @@ class Comment extends AbstractEntity
     public function setUsername($username): void
     {
         $this->username = $username;
-    }
-
-    /**
-     * Returns the userimage
-     *
-     * @return string $userimage
-     */
-    public function getUserimage(): string
-    {
-        return $this->userimage;
-    }
-
-    /**
-     * Sets the userimage
-     *
-     * @param string $userimage
-     * @return void
-     */
-    public function setUserimage($userimage): void
-    {
-        $this->userimage = $userimage;
     }
 
     /**

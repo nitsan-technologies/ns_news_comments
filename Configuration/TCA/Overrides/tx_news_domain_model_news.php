@@ -16,6 +16,7 @@ $fields = [
             'appearance' => [
                 'collapseAll' => 1,
                 'levelLinksPosition' => 'top',
+                'showNewRecordLink' => false,
                 'showSynchronizationLink' => 1,
                 'showPossibleLocalizationRecords' => 1,
                 'useSortable' => 1,

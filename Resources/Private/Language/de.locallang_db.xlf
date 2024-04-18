@@ -44,7 +44,7 @@
 			</trans-unit>
 			<trans-unit id="tx_newscomment_domain_model_rating.crdate">
 				<target>Erstellungsdatum</target>
-			</trans-unit>			
+			</trans-unit>
 			<trans-unit id="TemplatePath">
 				<target>Template Path</target>
 			</trans-unit>
@@ -152,6 +152,12 @@
 			</trans-unit>
 			<trans-unit id="flexform.customTimeFormat">
 				<target>Benutzerdefiniertes Zeitformat (E.g: h:i , h:i:s a , h:i:s p....)</target>
+			</trans-unit>
+			<trans-unit id="flexform.customdate">
+				<source>Benutzerdefiniertes Datumsformat</source>
+			</trans-unit>
+			<trans-unit id="flexform.customtime">
+				<source>Benutzerdefiniertes Zeitformat</source>
 			</trans-unit>
 			<trans-unit id="flexform.CommentUserImage">
 				<target>Standardkommentar Benutzerbild</target>

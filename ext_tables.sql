@@ -6,15 +6,12 @@ CREATE TABLE tx_nsnewscomments_domain_model_comment (
 	uid int(11) NOT NULL auto_increment,
 	pid int(11) DEFAULT '0' NOT NULL,
 
-	comment int(11) unsigned DEFAULT '0' NOT NULL,	
+	comment int(11) unsigned DEFAULT '0' NOT NULL,
 	newsuid int(11) DEFAULT '0' NOT NULL,
-	feuserid int(11) DEFAULT '0' NOT NULL,
 	username varchar(255) DEFAULT '' NOT NULL,
-	userimage varchar(255) DEFAULT '' NOT NULL,
 	usermail varchar(255) DEFAULT '' NOT NULL,
 	paramlink varchar(255) DEFAULT '' NOT NULL,
 	description text,
-	accesstoken varchar(255) DEFAULT '' NOT NULL,
 	childcomment int(11) unsigned DEFAULT '0' NOT NULL,
 	terms int(11) unsigned DEFAULT '0' NOT NULL,
 

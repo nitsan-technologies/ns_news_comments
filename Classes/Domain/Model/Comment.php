@@ -1,5 +1,9 @@
 <?php
+
 namespace Nitsan\NsNewsComments\Domain\Model;
+
+use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
+use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 
 /***************************************************************
  *
@@ -29,9 +33,8 @@ namespace Nitsan\NsNewsComments\Domain\Model;
 /**
  * Comment
  */
-class Comment extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
+class Comment extends AbstractEntity
 {
-
     /**
      * _languageUid
      * @var int
@@ -53,25 +56,11 @@ class Comment extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     protected $hidden = 0;
 
     /**
-     * feuserid
-     *
-     * @var int
-     */
-    protected $feuserid = 0;
-
-    /**
      * username
      *
      * @var string
      */
     protected $username = '';
-
-    /**
-     * userimage
-     *
-     * @var string
-     */
-    protected $userimage = '';
 
     /**
      * usermail
@@ -107,13 +96,6 @@ class Comment extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @var int
      */
     protected $newsuid = 0;
-
-    /**
-     * accesstoken
-     *
-     * @var string
-     */
-    protected $accesstoken;
 
     /**
      * description
@@ -176,48 +158,6 @@ class Comment extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * Returns the accesstoken
-     *
-     * @return string $accesstoken
-     */
-    public function getAccesstoken()
-    {
-        return $this->accesstoken;
-    }
-
-    /**
-     * Sets the accesstoken
-     *
-     * @param string $accesstoken
-     * @return void
-     */
-    public function setAccesstoken($accesstoken)
-    {
-        $this->accesstoken = $accesstoken;
-    }
-
-    /**
-     * Returns the feuserid
-     *
-     * @return string $feuserid
-     */
-    public function getFeuserid()
-    {
-        return $this->feuserid;
-    }
-
-    /**
-     * Sets the feuserid
-     *
-     * @param string $feuserid
-     * @return void
-     */
-    public function setFeuserid($feuserid)
-    {
-        $this->feuserid = $feuserid;
-    }
-
-    /**
      * Returns the username
      *
      * @return string $username
@@ -236,27 +176,6 @@ class Comment extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     public function setUsername($username)
     {
         $this->username = $username;
-    }
-
-    /**
-     * Returns the userimage
-     *
-     * @return string $userimage
-     */
-    public function getUserimage()
-    {
-        return $this->userimage;
-    }
-
-    /**
-     * Sets the userimage
-     *
-     * @param string $userimage
-     * @return void
-     */
-    public function setUserimage($userimage)
-    {
-        $this->userimage = $userimage;
     }
 
     /**
@@ -403,18 +322,6 @@ class Comment extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      */
     public function setDescription($description)
     {
-        $description = trim($description);
-
-        $threeNewLines = "\r\n\r\n\r\n";
-        $twoNewLines = "\r\n\r\n";
-        do {
-            $description = str_replace($threeNewLines, $twoNewLines, $description);
-        } while (strstr($description, $threeNewLines));
-
-        // Decode html tags
-        $description = htmlspecialchars($description);
-        $description = preg_replace('/(((http(s)?\:\/\/)|(www\.))([^\s]+[^\.\s]+))/', '<a href="http$4://$5$6">$1</a>', $description);
-
         $this->description = $description;
     }
     /**

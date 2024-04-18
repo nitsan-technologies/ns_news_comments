@@ -11,13 +11,12 @@ use Nitsan\NsNewsComments\Domain\Repository\CommentRepository;
  */
 class LastCommentViewHelper extends AbstractViewHelper
 {
-
     /**
      * Initialize
      *
      * @return void
      */
-    public function initializeArguments()
+    public function initializeArguments(): void
     {
         parent::initializeArguments();
         $this->registerArgument('newsuid', 'int', 'news uid', true);
@@ -29,14 +28,14 @@ class LastCommentViewHelper extends AbstractViewHelper
      */
     public function render()
     {
-        $newsuid = $this->arguments['newsuid'];
-        $newscommentData = [];
-        if($newsuid){
+        $newsUid = $this->arguments['newsuid'];
+        $newsCommentData = [];
+        if($newsUid) {
             $commentRepository = GeneralUtility::makeInstance(CommentRepository::class);
             // Get last comment of news
-            $newscommentData = $commentRepository->getLastCommentOfNews((int) $newsuid);
+            $newsCommentData = $commentRepository->getLastCommentOfNews((int) $newsUid);
         }
-        return $newscommentData;
-       
+        return $newsCommentData;
+
     }
 }

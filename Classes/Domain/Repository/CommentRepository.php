@@ -3,6 +3,8 @@
 namespace Nitsan\NsNewsComments\Domain\Repository;
 
 use TYPO3\CMS\Extbase\Persistence\QueryInterface;
+use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
+use TYPO3\CMS\Extbase\Persistence\Repository;
 
 /***************************************************************
  *
@@ -32,13 +34,13 @@ use TYPO3\CMS\Extbase\Persistence\QueryInterface;
 /**
  * The repository for Comments
  */
-class CommentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
+class CommentRepository extends Repository
 {
     /**
      *
      * @param int $newsId
      */
-    public function getCommentsByNews(int $newsId)
+    public function getCommentsByNews(int $newsId): QueryResultInterface|array
     {
         $query = $this->createQuery();
         $query->matching(
@@ -48,27 +50,21 @@ class CommentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
             )
         );
         $query->setOrderings(['crdate' => QueryInterface::ORDER_DESCENDING]);
-        $result = $query->execute();
-        return $result;
+        return $query->execute();
     }
 
 
     /**
      *
-     * @param int $newsuid
+     * @param int $newsUid
      */
-    public function getLastCommentOfNews(int $newsuid)
+    public function getLastCommentOfNews(int $newsUid): QueryResultInterface|array
     {
         $query = $this->createQuery();
         $query->getQuerySettings()->setRespectStoragePage(false);
-        $query->matching(
-            $query->logicalAnd(
-                $query->equals('newsuid', $newsuid),
-            )
-        );
+        $query->matching($query->equals('newsuid', $newsUid));
         $query->setOrderings(['crdate' => QueryInterface::ORDER_DESCENDING]);
-        $result = $query->setLimit(1)->execute();
-        return $result;
+        return $query->setLimit(1)->execute();
     }
 
     /**
@@ -76,15 +72,11 @@ class CommentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
      * @param int $newsId
      * @return int
      */
-    public function getCountOfComments(int $newsId) : int
+    public function getCountOfComments(int $newsId): int
     {
         $query = $this->createQuery();
         $query->getQuerySettings()->setRespectStoragePage(false);
-        $query->matching(
-            $query->logicalAnd(
-                $query->equals('newsuid', $newsId),
-            )
-        );
-        return (int) $query->execute()->count();
+        $query->matching($query->equals('newsuid', $newsId));
+        return $query->execute()->count();
     }
 }

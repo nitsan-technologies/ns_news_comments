@@ -14,25 +14,7 @@
                 <h2><f:translate key="CommentsandResponses"/></h2>
             </div>
 
-            <!-- Feuser Settings -->
-            <f:if condition="{settings.userSettings}=='feuserOnly'">
-                <f:then>
-                    <f:if condition="{feuserlogin}">
-                        <f:then>
-                            <f:render section="CommentForm" arguments="{_all}"/>
-                        </f:then>
-                        <f:else>
-                        	<f:if condition="{settings.feUserloginpid}">
-                        		<f:link.page pageUid="{settings.feUserloginpid}" class="ns-btn-login ns-btn"><f:translate key="newsfelogin" />
-                        	</f:link.page> <f:translate key="newsfeloginmsg" />   
-                        	</f:if>
-                        </f:else>                       
-                    </f:if>                    
-                </f:then>
-                <f:else>
-                    <f:render section="CommentForm" arguments="{_all}"/>
-                </f:else>
-            </f:if>
+            <f:render section="CommentForm" arguments="{_all}"/>
 
             <!-- Comments Section Rendring -->
             <div class="comments-container">
@@ -56,7 +38,7 @@
                         </li>
                     </f:for>
                 </ul>
-            </div>	
+            </div>
         </div>
     </f:if>
 </f:section>

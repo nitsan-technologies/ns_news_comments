@@ -40,7 +40,7 @@ class CommentRepository extends Repository
      *
      * @param int $newsId
      */
-    public function getCommentsByNews(int $newsId): QueryResultInterface|array
+    public function getCommentsByNews(int $newsId)
     {
         $query = $this->createQuery();
         $query->matching(
@@ -58,7 +58,7 @@ class CommentRepository extends Repository
      *
      * @param int $newsUid
      */
-    public function getLastCommentOfNews(int $newsUid): QueryResultInterface|array
+    public function getLastCommentOfNews(int $newsUid)
     {
         $query = $this->createQuery();
         $query->getQuerySettings()->setRespectStoragePage(false);

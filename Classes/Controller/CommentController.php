@@ -111,6 +111,7 @@ class CommentController extends ActionController
         $this->newsUid = (int)$newsUid;
 
         // Storage page configuration
+        // @extensionScannerIgnoreLine
         $this->pageUid = $GLOBALS['TSFE']->id;
         $extbaseFrameworkConfiguration = $this->configurationManager->getConfiguration(ConfigurationManagerInterface::CONFIGURATION_TYPE_FRAMEWORK);
 
@@ -220,11 +221,11 @@ class CommentController extends ActionController
      * Returns a built URI by pageUid
      *
      * @param int $uid The uid to use for building link
-     * @param mixed $news
+     * @param $news
      * @param array $arguments
      * @return string The link
      */
-    private function buildUriByUid(int $uid, mixed $news, array $arguments = []): string
+    private function buildUriByUid(int $uid, $news, array $arguments = []): string
     {
         $commentId = $arguments['commentid'];
         $excludeFromQueryString = [
@@ -250,12 +251,12 @@ class CommentController extends ActionController
 
     /**
      * getPath for composer based setup
-     * @param mixed $path
-     * @param mixed $extName
+     * @param $path
+     * @param $extName
      * @return string
      * @throws InvalidFileException
      */
-    public function getPath(mixed $path, mixed $extName): string
+    public function getPath($path, $extName): string
     {
         $arguments = ['path' => $path, 'extensionName' => $extName];
         $path = $arguments['path'];

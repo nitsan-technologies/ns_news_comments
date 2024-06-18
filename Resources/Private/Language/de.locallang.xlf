@@ -150,6 +150,18 @@
 			<trans-unit id="close">
 				<target>Schließen</target>
 			</trans-unit>
+            <trans-unit id="form.termsError">
+                <target>Bitte akzeptieren Sie den Datenschutz</target>
+            </trans-unit>
+            <trans-unit id="terms_required">
+                <target>Zustimmung zum Datenschutz ist erforderlich!</target>
+            </trans-unit>
+            <trans-unit id="terms.label">
+                <target>Datenschutz</target>
+            </trans-unit>
+            <trans-unit id="terms.text">
+                <target><![CDATA[Ich akzeptiere den <a href="%s" target="_blank">Datenschutz</a>.]]></target>
+            </trans-unit>
 		</body>
 	</file>
 </xliff>

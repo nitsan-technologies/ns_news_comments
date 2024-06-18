@@ -277,6 +277,12 @@
 				<source>Terms typolink parameter</source>
 				<target>Paramètre typolink des conditions</target>
 			</trans-unit>
+            <trans-unit id="flexform.customdate">
+                <source>Özel Tarih Formatı</source>
+            </trans-unit>
+            <trans-unit id="flexform.customtime">
+                <source>Özel Saat Formatı</source>
+            </trans-unit>
 		</body>
 	</file>
 </xliff>

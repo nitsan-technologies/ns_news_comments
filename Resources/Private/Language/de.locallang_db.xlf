@@ -211,11 +211,17 @@
 				<target>ID der FE-Benutzeranmeldeseite: [Diese Option funktioniert nur, wenn die erste Option der Benutzereinstellungen für Kommentare ausgewählt wurde.]</target>
 			</trans-unit>
 			<trans-unit id="termsRequired">
-				<source>Datenschutzbestimmungen erorderlich</source>
+				<target>Datenschutzbestimmungen erorderlich</target>
 			</trans-unit>
 			<trans-unit id="termsTypolinkParameter">
-				<source>Datenschutzbestimmungen Typolink Parameter</source>
+				<target>Datenschutzbestimmungen Typolink Parameter</target>
 			</trans-unit>
+            <trans-unit id="flexform.customdate">
+                <target>Benutzerdefiniertes Datumsformat </target>
+            </trans-unit>
+            <trans-unit id="flexform.customtime">
+                <target>Benutzerdefiniertes Zeitformat </target>
+            </trans-unit>
 		</body>
 	</file>
 </xliff>

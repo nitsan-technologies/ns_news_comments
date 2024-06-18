@@ -277,6 +277,14 @@
 				<source>Terms typolink parameter</source>
 				<target>Parámetro para el Typolink de los términos</target>
 			</trans-unit>
+            <trans-unit id="flexform.customdate">
+                <source>Custom Date Format </source>
+                <target>Formato de fecha personalizado</target>
+            </trans-unit>
+            <trans-unit id="flexform.customtime">
+                <source>Custom Time Format </source>
+                <target>Formato de hora personalizado </target>
+            </trans-unit>
 		</body>
 	</file>
 </xliff>

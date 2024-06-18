@@ -207,6 +207,12 @@
 			<trans-unit id="FEUserLoginPageId">
 				<target>FE-user login page Id: [Bu seçenek yalnızca, yorum yapan kullanıcı ayarlarının ilk seçeneği seçildiğinde çalışır.]</target>
 			</trans-unit>
+            <trans-unit id="flexform.customdate">
+                <target> Özel Tarih Formatı</target>
+            </trans-unit>
+            <trans-unit id="flexform.customtime">
+                <target>Özel Saat Formatı </target>
+            </trans-unit>
 		</body>
 	</file>
 </xliff>

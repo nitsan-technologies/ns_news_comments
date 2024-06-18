@@ -212,6 +212,22 @@
 				<source>Close</source>
 				<target>Cerrar</target>
 			</trans-unit>
+            <trans-unit id="form.termsError">
+                <source>Please accept</source>
+                <target>Cerrar</target>
+            </trans-unit>
+            <trans-unit id="terms_required">
+                <source>Terms is required!</source>
+                <target>Por favor, acepte</target>
+            </trans-unit>
+            <trans-unit id="terms.label">
+                <source>Terms</source>
+                <target>Términos</target>
+            </trans-unit>
+            <trans-unit id="terms.text">
+                <source><![CDATA[I accept the <a href="%s" target="_blank">terms</a>.]]></source>
+                <target><![CDATA[Acepto la <a href="%s" target="_blank">términos</a>.]]></target>
+            </trans-unit>
 		</body>
 	</file>
 </xliff>

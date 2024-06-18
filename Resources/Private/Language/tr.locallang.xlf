@@ -162,6 +162,18 @@
 			<trans-unit id="close">
 				<target>Kapat</target>
 			</trans-unit>
+            <trans-unit id="form.termsError">
+                <target>Lütfen kabul edin</target>
+            </trans-unit>
+            <trans-unit id="terms_required">
+                <target>Şartlar gereklidir!</target>
+            </trans-unit>
+            <trans-unit id="terms.label">
+                <target>Şartlar</target>
+            </trans-unit>
+            <trans-unit id="terms.text">
+                <target><![CDATA[Kabul ediyorum. <a href="%s" target="_blank">şartlar</a>.]]></target>
+            </trans-unit>
 		</body>
 	</file>
 </xliff>

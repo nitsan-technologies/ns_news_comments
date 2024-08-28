@@ -40,7 +40,9 @@ CREATE TABLE tx_nsnewscomments_domain_model_comment (
 	PRIMARY KEY (uid),
 	KEY parent (pid),
 	KEY t3ver_oid (t3ver_oid,t3ver_wsid),
-    KEY language (l10n_parent,sys_language_uid)
+    KEY language (l10n_parent,sys_language_uid),
+
+    INDEX commentData (comment,deleted,hidden,t3ver_state,starttime,endtime)
 
 );
 

@@ -1,60 +1,59 @@
-
 plugin.tx_nsnewscomments {
-	view {
-		templateRootPaths.0 = {$plugin.tx_nsnewscomments.view.templateRootPath}
-		partialRootPaths.0 = {$plugin.tx_nsnewscomments.view.partialRootPath}
-		layoutRootPaths.0 = {$plugin.tx_nsnewscomments.view.layoutRootPath}
-	}
-	settings {
-		termsRequired = {$plugin.tx_nsnewscomments.settings.termsRequired}
-		termsTypolinkParameter = {$plugin.tx_nsnewscomments.settings.termsTypolinkParameter}
-		dateFormat = {$plugin.tx_nsnewscomments.settings.dateFormat}
-		timeFormat = {$plugin.tx_nsnewscomments.settings.timeFormat}
-		captcha = {$plugin.tx_nsnewscomments.settings.captcha}
-		storagePid = {$plugin.tx_nsnewscomments.settings.storagePid}
-	}
+    view {
+        templateRootPaths.0 = {$plugin.tx_nsnewscomments.view.templateRootPath}
+        partialRootPaths.0 = {$plugin.tx_nsnewscomments.view.partialRootPath}
+        layoutRootPaths.0 = {$plugin.tx_nsnewscomments.view.layoutRootPath}
+    }
+    settings {
+        termsRequired = {$plugin.tx_nsnewscomments.settings.termsRequired}
+        termsTypolinkParameter = {$plugin.tx_nsnewscomments.settings.termsTypolinkParameter}
+        dateFormat = {$plugin.tx_nsnewscomments.settings.dateFormat}
+        timeFormat = {$plugin.tx_nsnewscomments.settings.timeFormat}
+        captcha = {$plugin.tx_nsnewscomments.settings.captcha}
+        storagePid = {$plugin.tx_nsnewscomments.settings.storagePid}
+    }
 }
 
 page {
-	includeCSS {
-		nsnewscomment_StyleCss = {$plugin.tx_nsnewscomments.settings.StyleCss}
-		nsnewscomment_StyleCss.if.isTrue = {$plugin.tx_nsnewscomments.settings.StyleCss}
-		nsnewscomment_FontAwesomeCss = {$plugin.tx_nsnewscomments.settings.FontAwesomeCss}
-		nsnewscomment_FontAwesomeCss.if.isTrue = {$plugin.tx_nsnewscomments.settings.FontAwesomeCss}
-	}
-	includeJS{
-		nsnewscomment_Minjs = {$plugin.tx_nsnewscomments.settings.Minjs}
-	}
-	includeJSFooter{
-		nsnewscomment_CustomJS = {$plugin.tx_nsnewscomments.settings.CustomJS}
-		nsnewscomment_CustomJS.if.isTrue = {$plugin.tx_nsnewscomments.settings.CustomJS}
-	}
+    includeCSS {
+        nsnewscomment_StyleCss = {$plugin.tx_nsnewscomments.settings.StyleCss}
+        nsnewscomment_StyleCss.if.isTrue = {$plugin.tx_nsnewscomments.settings.StyleCss}
+        nsnewscomment_FontAwesomeCss = {$plugin.tx_nsnewscomments.settings.FontAwesomeCss}
+        nsnewscomment_FontAwesomeCss.if.isTrue = {$plugin.tx_nsnewscomments.settings.FontAwesomeCss}
+    }
+    includeJS {
+        nsnewscomment_Minjs = {$plugin.tx_nsnewscomments.settings.Minjs}
+    }
+    includeJSFooter {
+        nsnewscomment_CustomJS = {$plugin.tx_nsnewscomments.settings.CustomJS}
+        nsnewscomment_CustomJS.if.isTrue = {$plugin.tx_nsnewscomments.settings.CustomJS}
+    }
 }
 
 commentAjaxCall = PAGE
 commentAjaxCall {
-	typeNum = 99
-	config{
-		disableAllHeaderCode = 1
-		xhtml_cleaning = 0
-		debug = 0
-		no_cache = 1
-		admPanel = 0
-	}
-	315123 = USER
-	315123{
-		userFunc = TYPO3\CMS\Extbase\Core\Bootstrap->run
-		pluginName = Newscomment
-		extensionName = NsNewsComments
-		controller = Comment
-		vendorName = Nitsan
-		action = create
-		switchableControllerActions{
-			Comment{
-				1 = create
-			}
-		}
-	}
+    typeNum = 99
+    config {
+        disableAllHeaderCode = 1
+        xhtml_cleaning = 0
+        debug = 0
+        no_cache = 1
+        admPanel = 0
+    }
+    315123 = USER
+    315123 {
+        userFunc = TYPO3\CMS\Extbase\Core\Bootstrap->run
+        pluginName = Newscomment
+        extensionName = NsNewsComments
+        controller = Comment
+        vendorName = Nitsan
+        action = create
+        switchableControllerActions {
+            Comment {
+                1 = create
+            }
+        }
+    }
 }
 
 lib.tx_nsnewscomments.comments = USER
@@ -69,7 +68,7 @@ lib.tx_nsnewscomments.comments {
         }
     }
     settings < plugin.tx_nsnewscomments.settings
-    settings{
-    	relatedComments = 1
+    settings {
+        relatedComments = 1
     }
 }

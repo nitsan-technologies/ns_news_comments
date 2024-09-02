@@ -1,10 +1,14 @@
-$(function() {
-    submitComment();
-    hashValue();
-    onFocusValidation();
-    $parentCommentId = '';
-    replyComment();
-});
+if (typeof $ === 'undefined') {
+    alert('JQuery is not defined');
+} else {
+    $(function() {
+        submitComment();
+        hashValue();
+        onFocusValidation();
+        let $parentCommentId = '';
+        replyComment();
+    });
+}
 
 function replyComment() {
     $(document).on("click", '.comment-btn.reply', function(event) {

@@ -14,15 +14,16 @@ $EM_CONF['ns_news_comments'] = [
     'uploadfolder' => '0',
     'createDirs' => '',
     'clearCacheOnLoad' => 0,
-    'version' => '12.2.3',
+    'version' => '13.0.0',
     'constraints' => [
         'depends' => [
-            'typo3' => '11.0.0-12.4.99',
-            'news' => '11.0.0-11.9.99',
+            'typo3' => '11.0.0-13.9.99',
+            'news' => '*',
         ],
-        'conflicts' => [
-        ],
-        'suggests' => [
-        ],
+        'conflicts' => [],
+        'suggests' => [],
     ],
+    'autoload' => [
+        'classmap' => ['Classes/']
+    ]
 ];

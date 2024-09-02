@@ -167,10 +167,10 @@ class CommentController extends ActionController
 
         } else {
             $error = LocalizationUtility::translate('tx_nsnewscomments_domain_model_comment.errorMessage', 'NsNewsComments');
-            // @extensionScannerIgnoreLine
             if (version_compare((string)$this->typo3VersionArray['version_main'], '11', '>')) {
                 $this->addFlashMessage($error, '', ContextualFeedbackSeverity::ERROR);
             } else {
+                // @extensionScannerIgnoreLine
                 $this->addFlashMessage($error, '', AbstractMessage::ERROR);
             }
         }

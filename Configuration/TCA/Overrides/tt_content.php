@@ -13,7 +13,9 @@ $_EXTKEY = 'ns_news_comments';
 ExtensionUtility::registerPlugin(
     $_EXTKEY,
     'Newscomment',
-    'News Comment'
+    'News Comment',
+    'ext-ns-comment-icon',
+    'plugins'
 );
 
 /* Flexform setting  */

@@ -1,6 +1,6 @@
 mod.wizards.newContentElement.wizardItems.plugins {
     elements {
-        ns_news_comments {
+        nsnewscomments_newscomment {
             iconIdentifier = ext-ns-comment-icon
             title = LLL:EXT:ns_news_comments/Resources/Private/Language/locallang_db.xlf:news_comment
             description = LLL:EXT:ns_news_comments/Resources/Private/Language/locallang_db.xlf:news_comment.description

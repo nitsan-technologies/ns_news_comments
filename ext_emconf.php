@@ -18,7 +18,7 @@ $EM_CONF['ns_news_comments'] = [
     'constraints' => [
         'depends' => [
             'typo3' => '11.0.0-13.9.99',
-            'news' => '*',
+            'news' => '11.0.0-12.9.99',
         ],
         'conflicts' => [],
         'suggests' => [],

@@ -119,7 +119,7 @@ class CommentController extends ActionController
             if (isset($_REQUEST['tx_nsnewscomments_newscomment']['Storagepid'])) {
                 $currentPid['persistence']['storagePid'] = $_REQUEST['tx_nsnewscomments_newscomment']['Storagepid'];
             } else {
-                if ($this->settings['storagePid']) {
+                if (isset($this->settings['storagePid']) && !empty($this->settings['storagePid'])) {
                     $currentPid['persistence']['storagePid'] = $this->settings['storagePid'];
                 } else {
                     $currentPid['persistence']['storagePid'] = $this->pageUid;

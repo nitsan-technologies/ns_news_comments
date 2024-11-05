@@ -32,7 +32,7 @@ page {
 
 commentAjaxCall = PAGE
 commentAjaxCall {
-    typeNum = 99
+    typeNum = 1730800496
     config {
         disableAllHeaderCode = 1
         xhtml_cleaning = 0

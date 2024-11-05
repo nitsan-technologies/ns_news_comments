@@ -10,5 +10,5 @@ mod.wizards.newContentElement.wizardItems.plugins {
             }
         }
     }
-    web_layout.tt_content.preview.list.nsnewscomments_newscomment = EXT:ns_news_comments/Resources/Private/Backend/NsNewscomment.html
 }
+mod.web_layout.tt_content.preview.list.nsnewscomments_newscomment = EXT:ns_news_comments/Resources/Private/Backend/NsNewscomment.html

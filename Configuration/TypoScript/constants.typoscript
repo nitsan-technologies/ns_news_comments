@@ -7,44 +7,42 @@
 # customsubcategory=761=LLL:EXT:ns_news_comments/Resources/Private/Language/locallang_db.xlf:CommentConfiguration
 # customsubcategory=884=LLL:EXT:ns_news_comments/Resources/Private/Language/locallang_db.xlf:CssJsIncludation
 
-plugin.tx_nsnewscomments{
-	view {
-		# cat=plugin.tx_nsnewscomments/546/01; type=string; label=Path to template root (FE)
-		templateRootPath = EXT:ns_news_comments/Resources/Private/Templates/
-		# cat=plugin.tx_nsnewscomments/546/02; type=string; label=Path to template partials (FE)
-		partialRootPath = EXT:ns_news_comments/Resources/Private/Partials/
-		# cat=plugin.tx_nsnewscomments/546/03; type=string; label=Path to template layouts (FE)
-		layoutRootPath = EXT:ns_news_comments/Resources/Private/Layouts/
-	}
+plugin.tx_nsnewscomments {
+    view {
+        # cat=plugin.tx_nsnewscomments/546/01; type=string; label=Path to template root (FE)
+        templateRootPath = EXT:ns_news_comments/Resources/Private/Templates/
+        # cat=plugin.tx_nsnewscomments/546/02; type=string; label=Path to template partials (FE)
+        partialRootPath = EXT:ns_news_comments/Resources/Private/Partials/
+        # cat=plugin.tx_nsnewscomments/546/03; type=string; label=Path to template layouts (FE)
+        layoutRootPath = EXT:ns_news_comments/Resources/Private/Layouts/
+    }
 
-	settings {
-		# cat=plugin.tx_nsnewscomments/884/01; type=string; label=LLL:EXT:ns_news_comments/Resources/Private/Language/locallang_db.xlf:addstyleCss
-		StyleCss = EXT:ns_news_comments/Resources/Public/css/style.css
-		# cat=plugin.tx_nsnewscomments/884/02; type=string; label=LLL:EXT:ns_news_comments/Resources/Private/Language/locallang_db.xlf:addfontAwesomeCss
-		FontAwesomeCss = EXT:ns_news_comments/Resources/Public/css/font-awesome.min.css
-		# cat=plugin.tx_nsnewscomments/884/03; type=string; label=LLL:EXT:ns_news_comments/Resources/Private/Language/locallang_db.xlf:addCustomJS
-		CustomJS = EXT:ns_news_comments/Resources/Public/js/custom.js
-		# cat=plugin.tx_nsnewscomments/884/04; type=options[LLL:EXT:ns_news_comments/Resources/Private/Language/locallang_db.xlf:addjqueryMinJS.v3=EXT:ns_news_comments/Resources/Public/js/jquery-3.6.3.min.js,LLL:EXT:ns_news_comments/Resources/Private/Language/locallang_db.xlf:addjqueryMinJS.v2=EXT:ns_news_comments/Resources/Public/js/jquery-2.2.4.min.js]; label=LLL:EXT:ns_news_comments/Resources/Private/Language/locallang_db.xlf:addjqueryMinJS		
-		Minjs = 
+    settings {
+        # cat=plugin.tx_nsnewscomments/884/01; type=string; label=LLL:EXT:ns_news_comments/Resources/Private/Language/locallang_db.xlf:addstyleCss
+        StyleCss = EXT:ns_news_comments/Resources/Public/css/style.css
+        # cat=plugin.tx_nsnewscomments/884/02; type=string; label=LLL:EXT:ns_news_comments/Resources/Private/Language/locallang_db.xlf:addfontAwesomeCss
+        FontAwesomeCss = EXT:ns_news_comments/Resources/Public/css/font-awesome.min.css
+        # cat=plugin.tx_nsnewscomments/884/03; type=string; label=LLL:EXT:ns_news_comments/Resources/Private/Language/locallang_db.xlf:addCustomJS
+        CustomJS = EXT:ns_news_comments/Resources/Public/js/custom.js
+        # cat=plugin.tx_nsnewscomments/884/04; type=options[LLL:EXT:ns_news_comments/Resources/Private/Language/locallang_db.xlf:addjqueryMinJS.v3=EXT:ns_news_comments/Resources/Public/js/jquery-3.6.3.min.js,LLL:EXT:ns_news_comments/Resources/Private/Language/locallang_db.xlf:addjqueryMinJS.v2=EXT:ns_news_comments/Resources/Public/js/jquery-2.2.4.min.js]; label=LLL:EXT:ns_news_comments/Resources/Private/Language/locallang_db.xlf:addjqueryMinJS
+        Minjs = EXT:ns_news_comments/Resources/Public/js/jquery-3.6.3.min.js
 
-		# cat=plugin.tx_nsnewscomments/761/10; type=boolean; label=LLL:EXT:ns_news_comments/Resources/Private/Language/locallang_db.xlf:termsRequired
-		termsRequired = 0
+        # cat=plugin.tx_nsnewscomments/761/10; type=boolean; label=LLL:EXT:ns_news_comments/Resources/Private/Language/locallang_db.xlf:termsRequired
+        termsRequired = 0
 
-		# cat=plugin.tx_nsnewscomments/761/11; type=string; label=LLL:EXT:ns_news_comments/Resources/Private/Language/locallang_db.xlf:termsTypolinkParameter
-		termsTypolinkParameter = https://www.nitsan.in/
+        # cat=plugin.tx_nsnewscomments/761/11; type=string; label=LLL:EXT:ns_news_comments/Resources/Private/Language/locallang_db.xlf:termsTypolinkParameter
+        termsTypolinkParameter = https://t3planet.com/typo3-news-comment-extension
 
-		# cat=plugin.tx_nsnewscomments/761/12; type=options[F j Y,Y-m-d,m/d/Y,d/m/Y]; label=LLL:EXT:ns_news_comments/Resources/Private/Language/locallang_db.xlf:flexform.dateFormat
-		dateFormat = F j Y
+        # cat=plugin.tx_nsnewscomments/761/12; type=options[F j Y,Y-m-d,m/d/Y,d/m/Y]; label=LLL:EXT:ns_news_comments/Resources/Private/Language/locallang_db.xlf:flexform.dateFormat
+        dateFormat = F j Y
 
-		# cat=plugin.tx_nsnewscomments/761/13; type=options[g:i a,g:i A,H:i]; label=LLL:EXT:ns_news_comments/Resources/Private/Language/locallang_db.xlf:flexform.timeFormat
-		timeFormat = g:i a
+        # cat=plugin.tx_nsnewscomments/761/13; type=options[g:i a,g:i A,H:i]; label=LLL:EXT:ns_news_comments/Resources/Private/Language/locallang_db.xlf:flexform.timeFormat
+        timeFormat = g:i a
 
-		# cat=plugin.tx_nsnewscomments/761/14; type=boolean; label=LLL:EXT:ns_news_comments/Resources/Private/Language/locallang_db.xlf:flexform.captcha
-		captcha = 1
+        # cat=plugin.tx_nsnewscomments/761/14; type=boolean; label=LLL:EXT:ns_news_comments/Resources/Private/Language/locallang_db.xlf:flexform.captcha
+        captcha = 1
 
-		# cat=plugin.tx_nsnewscomments/761/15; type=int; label=Default storage page Id
-		storagePid =
-
-
-	}
+        # cat=plugin.tx_nsnewscomments/761/15; type=int+; label=Default storage page Id
+        storagePid =
+    }
 }

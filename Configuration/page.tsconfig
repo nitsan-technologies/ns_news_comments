@@ -1,15 +1,14 @@
 mod.wizards.newContentElement.wizardItems.plugins {
-	elements{
-		ns_news_comments{
-			icon = ../typo3conf/ext/ns_news_comments/Resources/Public/Icons/plug_comment.svg
-			iconIdentifier = ext-ns-comment-icon
-			title = LLL:EXT:ns_news_comments/Resources/Private/Language/locallang_db.xlf:news_comment
-			description = LLL:EXT:ns_news_comments/Resources/Private/Language/locallang_db.xlf:news_comment.description
-			tt_content_defValues{
-				CType = list
-				list_type = nsnewscomments_newscomment
-			}
-		}
-	}
+    elements {
+        nsnewscomments_newscomment {
+            iconIdentifier = ext-ns-comment-icon
+            title = LLL:EXT:ns_news_comments/Resources/Private/Language/locallang_db.xlf:news_comment
+            description = LLL:EXT:ns_news_comments/Resources/Private/Language/locallang_db.xlf:news_comment.description
+            tt_content_defValues {
+                CType = list
+                list_type = nsnewscomments_newscomment
+            }
+        }
+    }
 }
 mod.web_layout.tt_content.preview.list.nsnewscomments_newscomment = EXT:ns_news_comments/Resources/Private/Backend/NsNewscomment.html

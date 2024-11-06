@@ -2,6 +2,7 @@
 
 use Nitsan\NsNewsComments\Controller\CommentController;
 use TYPO3\CMS\Core\Imaging\IconRegistry;
+use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Utility\ExtensionUtility;
@@ -32,5 +33,9 @@ $iconRegistry->registerIcon(
 //Hooks for the news controller
 $GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['Controller/NewsController.php']['overrideSettings']['ns_news_comments']
     = 'Nitsan\\NsNewsComments\\Hooks\\NewsController->modify';
+if ((GeneralUtility::makeInstance(Typo3Version::class))->getMajorVersion() == 11) {
+    // @extensionScannerIgnoreLine
+    ExtensionManagementUtility::addPageTSConfig('@import \'EXT:ns_news_comments/Configuration/page.tsconfig\'');
+}
 
-ExtensionManagementUtility::addPageTSConfig('@import \'EXT:ns_news_comments/Configuration/page.tsconfig\'');
+

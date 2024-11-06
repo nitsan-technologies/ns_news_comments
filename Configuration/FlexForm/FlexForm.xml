@@ -10,42 +10,33 @@
 		-->
 		<sDEF>
 			<ROOT>
-				<TCEforms>
 					<sheetTitle>LLL:EXT:ns_news_comments/Resources/Private/Language/locallang_db.xlf:flexform.setting</sheetTitle>
-				</TCEforms>
 				<type>array</type>
 				<el>
 					<settings.custom>
-						<TCEforms>
 							<label>LLL:EXT:ns_news_comments/Resources/Private/Language/locallang_db.xlf:flexform.custom</label>
 		                    <onChange>reload</onChange>
 		                    <config>
 		                        <type>check</type>
 		                    </config>
-		                 </TCEforms>
 					</settings.custom>
 					<settings.customdate>
-						<TCEforms>
 							<label>LLL:EXT:ns_news_comments/Resources/Private/Language/locallang_db.xlf:flexform.customDateFormat</label>
 							<displayCond>FIELD:settings.custom:=:1</displayCond>
 		                    <config>
 		                        <type>input</type>
 		                        <eval>trim,required</eval>
 		                    </config>
-		                </TCEforms>
 					</settings.customdate>
 					<settings.customtime>
-						<TCEforms>
 							<label>LLL:EXT:ns_news_comments/Resources/Private/Language/locallang_db.xlf:flexform.customTimeFormat</label>
 							<displayCond>FIELD:settings.custom:=:1</displayCond>
 		                    <config>
 		                        <type>input</type>
 		                        <eval>trim,required</eval>
 		                    </config>
-		                </TCEforms>
 					</settings.customtime>
 					<settings.dateFormat>
-						<TCEforms>
 							<label>LLL:EXT:ns_news_comments/Resources/Private/Language/locallang_db.xlf:flexform.dateFormat</label>
 							<displayCond>FIELD:settings.custom:!=:1</displayCond>
 		                    <config>
@@ -70,10 +61,8 @@
 								</items>
 								<default>F j, Y</default>
 	                    	</config>
-	                    </TCEforms>
 					</settings.dateFormat>
 					<settings.timeFormat>
-						<TCEforms>
 							<label>LLL:EXT:ns_news_comments/Resources/Private/Language/locallang_db.xlf:flexform.timeFormat</label>
 							<displayCond>FIELD:settings.custom:!=:1</displayCond>
 		                    <config>
@@ -94,16 +83,13 @@
 								</items>
 								<default>g:i a</default>
 		                    </config>
-		                </TCEforms>
 					</settings.timeFormat>
 					<settings.captcha>
-						<TCEforms>
 							<label>LLL:EXT:ns_news_comments/Resources/Private/Language/locallang_db.xlf:flexform.captcha</label>
 		                    <config>
 		                        <type>check</type>
 		                        <default>1</default>
 		                    </config>
-		                 </TCEforms>
 					</settings.captcha>
 				</el>
 			</ROOT>

@@ -1,4 +1,5 @@
 <?php
+$corell = 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:';
 
 return [
     'ctrl' => [
@@ -28,31 +29,21 @@ return [
         ],
     ],
     'types' => [
-        '1' => ['showitem' => ' username, usermail, description, terms, paramlink, childcomment, --div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.access, sys_language_uid, l10n_diffsource, hidden, starttime, endtime'],
+        '1' => ['showitem' => ' username, usermail, description, terms, paramlink, childcomment, --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:tabs.access, sys_language_uid, l10n_diffsource, hidden, starttime, endtime'],
     ],
     'columns' => [
 
         'sys_language_uid' => [
             'exclude' => true,
-            'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.language',
+            'label' => $corell . 'LGL.language',
             'config' => [
-                'type' => 'select',
-                'renderType' => 'selectSingle',
-                'special' => 'languages',
-                'items' => [
-                    [
-                        'LLL:EXT:lang/locallang_general.xlf:LGL.allLanguages',
-                        -1,
-                        'flags-multiple',
-                    ],
-                ],
-                'default' => 0,
+                'type' => 'language',
             ],
         ],
         'l10n_parent' => [
             'displayCond' => 'FIELD:sys_language_uid:>:0',
             'exclude' => 1,
-            'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.l18n_parent',
+            'label' => $corell . 'LGL.l18n_parent',
             'config' => [
                 'type' => 'select',
                 'renderType' => 'selectSingle',
@@ -71,7 +62,7 @@ return [
         ],
 
         't3ver_label' => [
-            'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.versionLabel',
+            'label' => $corell . 'LGL.versionLabel',
             'config' => [
                 'type' => 'input',
                 'size' => 30,
@@ -81,7 +72,7 @@ return [
 
         'hidden' => [
             'exclude' => 1,
-            'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.hidden',
+            'label' => $corell . 'LGL.hidden',
             'config' => [
                 'type' => 'check',
             ],
@@ -89,7 +80,7 @@ return [
         'starttime' => [
             'exclude' => 1,
             'l10n_mode' => 'mergeIfNotBlank',
-            'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.starttime',
+            'label' => $corell . 'LGL.starttime',
             'config' => [
                 'type' => 'input',
                 'size' => 13,
@@ -105,7 +96,7 @@ return [
         'endtime' => [
             'exclude' => 1,
             'l10n_mode' => 'mergeIfNotBlank',
-            'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.endtime',
+            'label' => $corell . 'LGL.endtime',
             'config' => [
                 'type' => 'input',
                 'size' => 13,

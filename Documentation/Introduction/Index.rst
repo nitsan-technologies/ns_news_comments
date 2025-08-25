@@ -1,85 +1,58 @@
-﻿
-.. include:: ../Includes.txt
+﻿..  include:: /Includes.rst.txt
 
-===================
-General Information
-===================
+..  _introduction:
 
-[NITSAN] Comment Plugin for EXT:news
-====================================
+============
+Introduction
+============
 
-.. figure:: Images/TYPO3-EXTns_news_comments---Add-comment-module-for-EXTnews.jpg
-   :alt: TYPO3 EXT ns_news_comments Add-comment-module for EXTnews
-   :width: 1000px
+EXT:ns_news_comments is an extension that facilitates visitors to post comments on specific news items and answer to the comments. Comments are the ideal way to deal and stay in touch with your visitors and adherences. This extension is compatible only with the News system Extension (EXT:news).
 
-.. _What-does-it-do:
+..  figure:: ../Images/typo3-ext-news-news-comment.jpg
+    :alt: Extension news comment
 
 What does it do?
 ================
 
-This extension allows user to post comment on particular news, reply to the comments. This extension is compatible only with News system Extension (EXT:news).
+EXT:ns_news_comments provides a comprehensive commenting system for TYPO3 news extensions. It allows website visitors to engage with news content through comments and replies, creating an interactive community experience.
 
-**Features**
+Key Features
+============
 
-- Based on extbase & fluid.
-- Easy to use.
-- User can post comments on news.
-- Captcha Verification.
-- AJAX form submit.
-- Responsive comments form and comment threads design.
-- Multi-level (nested) comment threads
-- Manage Comments from TYPO3 Backend
-- Send notification to site admin by posting a new comment.
-- Compatibiltiy from TYPO3 6.x to 9.x
+*   **Comment System** - Allow visitors to post comments on news articles
+*   **Reply Functionality** - Multi-level comment threads with reply support
+*   **Comment Moderation** - Admin approval system for comment management
+*   **Email Notifications** - Automatic notifications for new comments
+*   **Captcha Protection** - Anti-spam protection with Google reCAPTCHA
+*   **Backend Module** - Complete comment management interface
+*   **Responsive Design** - Mobile-friendly comment forms and display
+*   **Developer Friendly** - ViewHelpers and APIs for custom implementations
 
-.. danger::
-   *A quote about EXT:ns_news_comments:* News comment extension going to be placed on detail page of the News. So, It is highly recommended to integrate News System Extension first. And configure this extension at News Detail page only.
+Benefits
+========
 
-.. _Screen-shots:
+**For Visitors:**
+- Easy comment posting with user-friendly forms
+- Reply to existing comments for discussions
+- Real-time interaction with news content
 
-Screen Shots
-================
+**For Administrators:**
+- Complete control over comment approval
+- Email notifications for new comments
+- Comprehensive backend management tools
+- Spam protection and moderation features
 
-1. News Comment Form
-*********************
+**For Developers:**
+- Extensive configuration options
+- Custom ViewHelpers for integration
+- API access for advanced implementations
 
-.. figure:: Images/TYPO3_ns_news_comments_Screenshot_1.png
-   	:alt: screenshot "News Comment Form"
-   	:class: with-shadow
-   	:width: 1100px
+Helpful Links
+=============
 
+..  note::
 
-2. News Comments Listing
-*************************
-
-.. figure:: Images/TYPO3_ns_news_comments_Screenshot_2.png
-   	:alt: screenshot "News Comments Listing"
-   	:class: with-shadow
-   	:width: 1200px
-
-
-3. News Comment Reply Form
-***************************
-
-.. figure:: Images/TYPO3_ns_news_comments_Screenshot_3123.png
-   	:alt: screenshot "News Comment Reply Form"
-   	:class: with-shadow
-   	:width: 1100px
-
-
-4. News Comment Listing At Backend
-***********************************
-
-.. figure:: Images/TYPO3_ns_news_comments_Screenshot_4.png
-   	:alt: screenshot "News Comment Listing At Backend"
-   	:class: with-shadow
-   	:width: 1200px
-
-
-5. News Comment Backend Plugin View
-***********************************
-
-.. figure:: Images/TYPO3_ns_news_comments_Screenshot_5.png
-   	:alt: screenshot "News Comment Backend Plugin View"
-   	:class: with-shadow
-   	:width: 1100px
+    - Product: https://t3planet.de/news-comment-typo3-extension
+    - TYPO3 Backend Live Demo: https://demo.t3planet.de/live-typo3/t3t-extensions/typo3/?TYPO3_AUTOLOGIN_USER=editor-news-comments
+    - Front End Demo: https://demo.t3planet.de/t3-extensions/seo/news-comments
+    - To make any domain-related changes or whitelist any development and staging domains, please reach our support center: https://t3planet.de/support

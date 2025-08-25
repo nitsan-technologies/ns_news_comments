@@ -1,6 +1,6 @@
 ..  include:: /Includes.rst.txt
 
-..  _support:
+..  _extension-support:
 
 ==============
 Help & Support

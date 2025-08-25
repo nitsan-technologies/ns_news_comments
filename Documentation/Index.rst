@@ -77,7 +77,7 @@ EXT:ns_news_comments is an extension that facilitates visitors to post comments 
         Developer documentation including ViewHelpers, API usage
         and integration examples for custom implementations.
 
-    ..  card:: :ref:`Support <support>`
+    ..  card:: :ref:`Support <extension-support>`
 
         Get help and support for the ns_news_comments extension through
         our support channels and community resources.

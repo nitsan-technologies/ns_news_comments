@@ -5,9 +5,9 @@ $EM_CONF['ns_news_comments'] = [
     'description' => 'Add a full-featured comment system to your TYPO3 News articles. This extension provides easy comment management, a clean frontend interface, and SEO-friendly functionality to improve user engagement on your news pages.',
 
     'category' => 'plugin',
-    'author' => 'Team T3Planet',
-    'author_email' => 'info@t3planet.de',
-    'author_company' => 'T3Planet',
+    'author' => 'Team NITSAN',
+    'author_email' => 'info@nitsantech.de',
+    'author_company' => 'NITSAN',
     'state' => 'stable',
     'internal' => '',
     'uploadfolder' => '0',

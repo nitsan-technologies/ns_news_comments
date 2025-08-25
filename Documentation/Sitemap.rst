@@ -1,6 +1,6 @@
 ..  include:: /Includes.rst.txt
 
-.. _sitemap:
+.. _documentation-sitemap:
 
 =======
 Sitemap

@@ -3,9 +3,9 @@
   <file source-language="en" datatype="plaintext" original="messages" date="2016-11-08T11:15:02Z" product-name="ns_news_comments" target-language="da">
     <header/>
     <body>
-      <trans-unit id="pi1_title" xml:space="preserve">
+      <trans-unit id="pi1_title" xml:space="preserve" approved="yes">
 				<source>News Comment</source>
-			<target state="needs-translation">News Comment</target></trans-unit>
+			<target state="final">Nyhedskommentar</target></trans-unit>
       <trans-unit id="backend.dateformate" xml:space="preserve">
 				<source>Date Formate</source>
 			<target state="needs-translation">Date Formate</target></trans-unit>

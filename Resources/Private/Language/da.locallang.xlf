@@ -6,12 +6,12 @@
       <trans-unit id="pi1_title" xml:space="preserve" approved="yes">
 				<source>News Comment</source>
 			<target state="final">Nyhedskommentar</target></trans-unit>
-      <trans-unit id="backend.dateformate" xml:space="preserve">
+      <trans-unit id="backend.dateformate" xml:space="preserve" approved="yes">
 				<source>Date Formate</source>
-			<target state="needs-translation">Date Formate</target></trans-unit>
-      <trans-unit id="backend.timeformate" xml:space="preserve">
+			<target state="final">Datoformat</target></trans-unit>
+      <trans-unit id="backend.timeformate" xml:space="preserve" approved="yes">
 				<source>Time Formate</source>
-			<target state="needs-translation">Time Formate</target></trans-unit>
+			<target state="final">Klokkeslætsformat</target></trans-unit>
       <trans-unit id="backend.Image" xml:space="preserve">
 				<source>Comment User Image</source>
 			<target state="needs-translation">Comment User Image</target></trans-unit>

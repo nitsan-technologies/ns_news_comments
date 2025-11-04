@@ -5,19 +5,19 @@
     <body>
       <trans-unit id="newsuid.description">
         <source>newsuid</source>
-        <target state="needs-translation">newsuid</target>
+        <target state="translated">Nachrichten-ID</target>
       </trans-unit>
       <trans-unit id="username.description">
         <source>username</source>
-        <target state="needs-translation">username</target>
+        <target state="translated">Benutzername</target>
       </trans-unit>
       <trans-unit id="usermail.description">
         <source>usermail</source>
-        <target state="needs-translation">usermail</target>
+        <target state="translated">Benutzer-E-Mail</target>
       </trans-unit>
       <trans-unit id="comment.description">
         <source>comment</source>
-        <target state="needs-translation">comment</target>
+        <target state="translated">Kommentar</target>
       </trans-unit>
     </body>
   </file>

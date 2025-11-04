@@ -1,311 +1,311 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <xliff version="1.0">
-  <file source-language="en" datatype="plaintext" original="messages" date="2016-11-08T11:15:02Z" product-name="ns_news_comments" target-language="de">
+  <file source-language="en" datatype="plaintext" original="messages" date="2016-11-08T11:15:02Z" product-name="ns_news_comments" target-language="pl">
     <header/>
     <body>
       <trans-unit id="tx_nsnewscomments_domain_model_comment">
         <source>Comment</source>
-        <target state="translated">Kommentar</target>
+        <target state="needs-translation">Comment</target>
       </trans-unit>
       <trans-unit id="tx_nsnewscomments_domain_model_comment.newsComment">
         <source>News Comment</source>
-        <target state="translated">Nachrichtenkommentar</target>
+        <target state="needs-translation">News Comment</target>
       </trans-unit>
       <trans-unit id="tx_nsnewscomments_domain_model_comment.newComments">
         <source>Comments</source>
-        <target state="translated">Kommentare</target>
+        <target state="needs-translation">Comments</target>
       </trans-unit>
       <trans-unit id="tx_nsnewscomments_domain_model_comment.newsuid">
         <source>News UID</source>
-        <target state="translated">Nachrichten UID</target>
+        <target state="needs-translation">News UID</target>
       </trans-unit>
       <trans-unit id="tx_nsnewscomments_domain_model_comment.username">
         <source>Name</source>
-        <target state="translated">Name</target>
+        <target state="needs-translation">Name</target>
       </trans-unit>
       <trans-unit id="tx_nsnewscomments_domain_model_comment.usermail">
         <source>Email</source>
-        <target state="translated">E-Mail</target>
+        <target state="needs-translation">Email</target>
       </trans-unit>
       <trans-unit id="tx_nsnewscomments_domain_model_comment.comment">
         <source>Comment</source>
-        <target state="translated">Kommentar</target>
+        <target state="needs-translation">Comment</target>
       </trans-unit>
       <trans-unit id="tx_nsnewscomments_domain_model_comment.childcomment">
         <source>Reply Comment</source>
-        <target state="translated">Antwort Kommentar</target>
+        <target state="needs-translation">Reply Comment</target>
       </trans-unit>
       <trans-unit id="tx_nsnewscomments_domain_model_comment.terms">
         <source>Terms accepted</source>
-        <target state="translated">Bedingungen akzeptiert</target>
+        <target state="needs-translation">Terms accepted</target>
       </trans-unit>
       <trans-unit id="tx_nsnewscomments_domain_model_comment.paramlink">
         <source>Parameter Link to comments</source>
-        <target state="translated">Parameter Link zu Kommentaren</target>
+        <target state="needs-translation">Parameter Link to comments</target>
       </trans-unit>
       <trans-unit id="tx_nsnewscomments_domain_model_comment.comments">
         <source>Comments</source>
-        <target state="translated">Kommentare</target>
+        <target state="needs-translation">Comments</target>
       </trans-unit>
       <trans-unit id="tx_nsnewscomments_domain_model_comment.image">
         <source>Image</source>
-        <target state="translated">Bild</target>
+        <target state="needs-translation">Image</target>
       </trans-unit>
       <trans-unit id="tx_nsnewscomments_domain_model_comment.feuserid">
         <source>Website User Id</source>
-        <target state="translated">Website-Benutzer-ID</target>
+        <target state="needs-translation">Website User Id</target>
       </trans-unit>
       <trans-unit id="tx_nsnewscomments_domain_model_comment.accesstoken">
         <source>Comment Access token</source>
-        <target state="translated">Kommentar Zugriffstoken</target>
+        <target state="needs-translation">Comment Access token</target>
       </trans-unit>
       <trans-unit id="tx_newscomment_domain_model_rating.crdate">
         <source>Created Date</source>
-        <target state="translated">Erstellungsdatum</target>
+        <target state="needs-translation">Created Date</target>
       </trans-unit>
       <trans-unit id="TemplatePath">
         <source>Template Path</source>
-        <target state="translated">Vorlagenpfad</target>
+        <target state="needs-translation">Template Path</target>
       </trans-unit>
       <trans-unit id="MailConfiguration">
         <source>Mail Configuration</source>
-        <target state="translated">E-Mail-Konfiguration</target>
+        <target state="needs-translation">Mail Configuration</target>
       </trans-unit>
       <trans-unit id="CommentConfiguration">
         <source>Comment Configuration</source>
-        <target state="translated">Kommentar-Konfiguration</target>
+        <target state="needs-translation">Comment Configuration</target>
       </trans-unit>
       <trans-unit id="CssJsIncludation">
         <source>Css/Js Includation</source>
-        <target state="translated">Einbindung von CSS/JS</target>
+        <target state="needs-translation">Css/Js Includation</target>
       </trans-unit>
       <trans-unit id="mainConfiguration">
         <source>[Plugin] Main Configuration</source>
-        <target state="translated">[Plugin] Hauptkonfiguration</target>
+        <target state="needs-translation">[Plugin] Main Configuration</target>
       </trans-unit>
       <trans-unit id="news_comment">
         <source>News Comment</source>
-        <target state="translated">Nachrichtenkommentar</target>
+        <target state="needs-translation">News Comment</target>
       </trans-unit>
       <trans-unit id="news_comment.description">
         <source>Post comments on particular news</source>
-        <target state="translated">Kommentare zu bestimmten Nachrichten posten</target>
+        <target state="needs-translation">Post comments on particular news</target>
       </trans-unit>
       <trans-unit id="addbootstrapCss">
         <source>Bootstarp Css</source>
-        <target state="translated">Bootstrap CSS</target>
+        <target state="needs-translation">Bootstarp Css</target>
       </trans-unit>
       <trans-unit id="addstyleCss">
         <source>Default Style Css</source>
-        <target state="translated">Standard-CSS-Stil</target>
+        <target state="needs-translation">Default Style Css</target>
       </trans-unit>
       <trans-unit id="addfontAwesomeCss">
         <source>Font Awesome Css</source>
-        <target state="translated">Font Awesome CSS</target>
+        <target state="needs-translation">Font Awesome Css</target>
       </trans-unit>
       <trans-unit id="addCustomJS">
         <source>Custom JS</source>
-        <target state="translated">Benutzerdefiniertes JS</target>
+        <target state="needs-translation">Custom JS</target>
       </trans-unit>
       <trans-unit id="addjqueryMinJS">
         <source>Add Jquery Min JS</source>
-        <target state="translated">Jquery Min JS hinzufügen</target>
+        <target state="needs-translation">Add Jquery Min JS</target>
       </trans-unit>
       <trans-unit id="addjqueryMinJS.v2">
         <source>v2.x</source>
-        <target state="translated">v2.x</target>
+        <target state="needs-translation">v2.x</target>
       </trans-unit>
       <trans-unit id="addjqueryMinJS.v3">
         <source>v3.x</source>
-        <target state="translated">v3.x</target>
+        <target state="needs-translation">v3.x</target>
       </trans-unit>
       <trans-unit id="addCommentUserImage">
         <source>Add User Image</source>
-        <target state="translated">Benutzerbild hinzufügen</target>
+        <target state="needs-translation">Add User Image</target>
       </trans-unit>
       <trans-unit id="senderEmail">
         <source>Set sender email address</source>
-        <target state="translated">Absender-E-Mail-Adresse festlegen</target>
+        <target state="needs-translation">Set sender email address</target>
       </trans-unit>
       <trans-unit id="senderName">
         <source>Set sender name</source>
-        <target state="translated">Absendernamen festlegen</target>
+        <target state="needs-translation">Set sender name</target>
       </trans-unit>
       <trans-unit id="newsComment">
         <source>New Comment has been added to news</source>
-        <target state="translated">Neuer Kommentar wurde zu den Nachrichten hinzugefügt</target>
+        <target state="needs-translation">New Comment has been added to news</target>
       </trans-unit>
       <trans-unit id="sendMailToNewsAuthor">
         <source>Send mail notification to author of the news</source>
-        <target state="translated">E-Mail-Benachrichtigung an den Autor der Nachricht senden</target>
+        <target state="needs-translation">Send mail notification to author of the news</target>
       </trans-unit>
       <trans-unit id="enableCommentByAdmin">
         <source>Send Comment by Admin</source>
-        <target state="translated">Kommentar vom Administrator senden</target>
+        <target state="needs-translation">Send Comment by Admin</target>
       </trans-unit>
       <trans-unit id="dateFormat">
         <source>Set Datetime format</source>
-        <target state="translated">Datums- und Uhrzeitformat festlegen</target>
+        <target state="needs-translation">Set Datetime format</target>
       </trans-unit>
       <trans-unit id="admin">
         <source>Set Admin Email Address</source>
-        <target state="translated">E-Mail-Adresse des Administrators festlegen</target>
+        <target state="needs-translation">Set Admin Email Address</target>
       </trans-unit>
       <trans-unit id="authorMailSubject">
         <source>Set subject of mail sending to Author</source>
-        <target state="translated">Betreff der E-Mail-Versendung auf „Autor” setzen</target>
+        <target state="needs-translation">Set subject of mail sending to Author</target>
       </trans-unit>
       <trans-unit id="flexform.setting">
         <source>Main Configuration</source>
-        <target state="translated">Hauptkonfiguration</target>
+        <target state="needs-translation">Main Configuration</target>
       </trans-unit>
       <trans-unit id="flexform.setting_feuser">
         <source>Comment User Configuration</source>
-        <target state="translated">Kommentar Benutzerkonfiguration</target>
+        <target state="needs-translation">Comment User Configuration</target>
       </trans-unit>
       <trans-unit id="flexform.additional">
         <source>Mail Configuration</source>
-        <target state="translated">E-Mail-Konfiguration</target>
+        <target state="needs-translation">Mail Configuration</target>
       </trans-unit>
       <trans-unit id="flexform.dateFormat">
         <source>Date Format</source>
-        <target state="translated">Datumsformat</target>
+        <target state="needs-translation">Date Format</target>
       </trans-unit>
       <trans-unit id="flexform.dateFormat.0">
         <source>F j, Y (May 26, 2017)</source>
-        <target state="translated">F j, Y (26. Mai 2017)</target>
+        <target state="needs-translation">F j, Y (May 26, 2017)</target>
       </trans-unit>
       <trans-unit id="flexform.dateFormat.1">
         <source>Y-m-d (2017-05-26)</source>
-        <target state="translated">Y-m-d (26.05.2017)</target>
+        <target state="needs-translation">Y-m-d (2017-05-26)</target>
       </trans-unit>
       <trans-unit id="flexform.dateFormat.2">
         <source>m/d/Y (05/26/2017)</source>
-        <target state="translated">m/d/Y (26.05.2017)</target>
+        <target state="needs-translation">m/d/Y (05/26/2017)</target>
       </trans-unit>
       <trans-unit id="flexform.dateFormat.3">
         <source>d/m/Y (26/05/2017)</source>
-        <target state="translated">T/M/J (26.05.2017)</target>
+        <target state="needs-translation">d/m/Y (26/05/2017)</target>
       </trans-unit>
       <trans-unit id="flexform.timeFormat.0">
         <source>g:i a (11:36 am)</source>
-        <target state="translated">g:i a (11:36 Uhr)</target>
+        <target state="needs-translation">g:i a (11:36 am)</target>
       </trans-unit>
       <trans-unit id="flexform.timeFormat.1">
         <source>g:i A (11:36 AM)</source>
-        <target state="translated">g:i A (11:36 Uhr)</target>
+        <target state="needs-translation">g:i A (11:36 AM)</target>
       </trans-unit>
       <trans-unit id="flexform.timeFormat.2">
         <source>H:i (11:36)</source>
-        <target state="translated">H:i (11:36)</target>
+        <target state="needs-translation">H:i (11:36)</target>
       </trans-unit>
       <trans-unit id="flexform.timeFormat">
         <source>Time Format</source>
-        <target state="translated">Zeitformat</target>
+        <target state="needs-translation">Time Format</target>
       </trans-unit>
       <trans-unit id="flexform.custom">
         <source>Custom Date Format</source>
-        <target state="translated">Datumsformat</target>
+        <target state="needs-translation">Custom Date Format</target>
       </trans-unit>
       <trans-unit id="flexform.customDateFormat">
         <source>Custom Date Format (E.g: d-M-Y // D,m,Y // d/m/Y ...)</source>
-        <target state="translated">Benutzerdefiniertes Datumsformat (z. B.: T-M-J // T,M,J // T/M/J ...)</target>
+        <target state="needs-translation">Custom Date Format (E.g: d-M-Y // D,m,Y // d/m/Y ...)</target>
       </trans-unit>
       <trans-unit id="flexform.customTimeFormat">
         <source>Custom Time Format (E.g: h:i , h:i:s a , h:i:s p....)</source>
-        <target state="translated">Benutzerdefiniertes Zeitformat (z. B.: h:i, h:i:s a, h:i:s p....)</target>
+        <target state="needs-translation">Custom Time Format (E.g: h:i , h:i:s a , h:i:s p....)</target>
       </trans-unit>
       <trans-unit id="flexform.CommentUserImage">
         <source>Default Comment User Image</source>
-        <target state="translated">Standardkommentar Benutzerbild</target>
+        <target state="needs-translation">Default Comment User Image</target>
       </trans-unit>
       <trans-unit id="flexform.captcha">
         <source>Disable Captcha</source>
-        <target state="translated">Captcha deaktivieren</target>
+        <target state="needs-translation">Disable Captcha</target>
       </trans-unit>
       <trans-unit id="flexform.fe_user">
         <source>FE-user as well as the Anonymous user can comment on the news</source>
-        <target state="translated">Sowohl FE-Benutzer als auch anonyme Benutzer können Kommentare zu den Nachrichten abgeben.</target>
+        <target state="needs-translation">FE-user as well as the Anonymous user can comment on the news</target>
       </trans-unit>
       <trans-unit id="flexform.only_fe_user">
         <source>Only FE-users can comment on news</source>
-        <target state="translated">Nur FE-Benutzer können Nachrichten kommentieren.</target>
+        <target state="needs-translation">Only FE-users can comment on news</target>
       </trans-unit>
       <trans-unit id="flexform.feUserloginpid">
         <source>FE-user login page Id</source>
-        <target state="translated">FE-Benutzer-Anmeldeseite Id</target>
+        <target state="needs-translation">FE-user login page Id</target>
       </trans-unit>
       <trans-unit id="flexform.userSettings">
         <source>Comment user settings</source>
-        <target state="translated">Benutzereinstellungen kommentieren</target>
+        <target state="needs-translation">Comment user settings</target>
       </trans-unit>
       <trans-unit id="sendMailToAdmin">
         <source>Enable Mail: Enable Email to Admin</source>
-        <target state="translated">E-Mail aktivieren: E-Mail an Administrator aktivieren</target>
+        <target state="needs-translation">Enable Mail: Enable Email to Admin</target>
       </trans-unit>
       <trans-unit id="adminEmail">
         <source>[TO] E-Mail: Add Admin E-mail (Comma separated for multiple emails)</source>
-        <target state="translated">[TO] E-Mail: E-Mail-Adresse des Administrators hinzufügen (bei mehreren E-Mail-Adressen durch Kommas getrennt)</target>
+        <target state="needs-translation">[TO] E-Mail: Add Admin E-mail (Comma separated for multiple emails)</target>
       </trans-unit>
       <trans-unit id="adminName">
         <source>[TO] Admin Name: Add Admin Name</source>
-        <target state="translated">[TO] Admin-Name: Admin-Name hinzufügen</target>
+        <target state="needs-translation">[TO] Admin Name: Add Admin Name</target>
       </trans-unit>
       <trans-unit id="fromEmail">
         <source>[FROM] E-Mail: Add E-mail</source>
-        <target state="translated">[VON] E-Mail: E-Mail hinzufügen</target>
+        <target state="needs-translation">[FROM] E-Mail: Add E-mail</target>
       </trans-unit>
       <trans-unit id="fromName">
         <source>[FROM] Name: Add Name</source>
-        <target state="translated">[VON] Name: Name hinzufügen</target>
+        <target state="needs-translation">[FROM] Name: Add Name</target>
       </trans-unit>
       <trans-unit id="adminMailSubject">
         <source>Subject: Set subject of mail sending to Admin</source>
-        <target state="translated">Betreff: Betreff der E-Mail an Admin senden</target>
+        <target state="needs-translation">Subject: Set subject of mail sending to Admin</target>
       </trans-unit>
       <trans-unit id="recordStoragePage">
         <source>Record Storage Page</source>
-        <target state="translated">Seite zur Speicherung von Datensätzen</target>
+        <target state="needs-translation">Record Storage Page</target>
       </trans-unit>
       <trans-unit id="customDateFormat">
         <source>Custom Date Format: [E.g: F j, Y (May 26, 2017) // Y-m-d (2017-05-26) // m/d/Y (05/26/2017) // d/m/Y (26/05/2017)]</source>
-        <target state="translated">Benutzerdefiniertes Datumsformat: [Beispiel: F j, Y (26. Mai 2017) // Y-m-d (2017-05-26) // m/d/Y (26.05.2017) // d/m/Y (26/05/2017)]</target>
+        <target state="needs-translation">Custom Date Format: [E.g: F j, Y (May 26, 2017) // Y-m-d (2017-05-26) // m/d/Y (05/26/2017) // d/m/Y (26/05/2017)]</target>
       </trans-unit>
       <trans-unit id="customTimeFormat">
         <source>Custom Time Format: [E.g: g:i a (11:36 am)  // g:i A (11:36 AM)  // H:i (11:36)</source>
-        <target state="translated">Benutzerdefiniertes Zeitformat: [Beispiel: g:i a (11:36 Uhr)  // g:i A (11:36 Uhr)  // H:i (11:36)</target>
+        <target state="needs-translation">Custom Time Format: [E.g: g:i a (11:36 am)  // g:i A (11:36 AM)  // H:i (11:36)</target>
       </trans-unit>
       <trans-unit id="disableCaptcha">
         <source>Disable Captcha</source>
-        <target state="translated">Captcha deaktivieren</target>
+        <target state="needs-translation">Disable Captcha</target>
       </trans-unit>
       <trans-unit id="userImage">
         <source>Add User Image</source>
-        <target state="translated">Benutzerbild hinzufügen</target>
+        <target state="needs-translation">Add User Image</target>
       </trans-unit>
       <trans-unit id="commentUserSettings">
         <source>Comment user settings</source>
-        <target state="translated">Benutzereinstellungen kommentieren</target>
+        <target state="needs-translation">Comment user settings</target>
       </trans-unit>
       <trans-unit id="FEUserLoginPageId">
         <source>FE-user login page Id: [This option only works when the first option of comment user settings has selected.]</source>
-        <target state="translated">FE-Benutzer-Anmeldeseite ID: [Diese Option funktioniert nur, wenn die erste Option der Benutzereinstellungen für Kommentare ausgewählt wurde.]</target>
+        <target state="needs-translation">FE-user login page Id: [This option only works when the first option of comment user settings has selected.]</target>
       </trans-unit>
       <trans-unit id="termsRequired">
         <source>Terms required</source>
-        <target state="translated">Erforderliche Begriffe</target>
+        <target state="needs-translation">Terms required</target>
       </trans-unit>
       <trans-unit id="termsTypolinkParameter">
         <source>Terms typolink parameter</source>
-        <target state="translated">Begriffe Typolink-Parameter</target>
+        <target state="needs-translation">Terms typolink parameter</target>
       </trans-unit>
       <trans-unit id="flexform.customdate">
         <source>Custom Date Format </source>
-        <target state="translated">Benutzerdefiniertes Datumsformat </target>
+        <target state="needs-translation">Custom Date Format </target>
       </trans-unit>
       <trans-unit id="flexform.customtime">
         <source>Custom Time Format </source>
-        <target state="translated">Benutzerdefiniertes Zeitformat </target>
+        <target state="needs-translation">Custom Time Format </target>
       </trans-unit>
     </body>
   </file>

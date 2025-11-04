@@ -5,207 +5,207 @@
     <body>
       <trans-unit id="pi1_title" xml:space="preserve">
 				<source>News Comment</source>
-			<target state="needs-translation">News Comment</target></trans-unit>
+			<target state="translated">Nachrichtenkommentar</target></trans-unit>
       <trans-unit id="backend.dateformate" xml:space="preserve">
 				<source>Date Formate</source>
-			<target state="needs-translation">Date Formate</target></trans-unit>
+			<target state="translated">Datumsformat</target></trans-unit>
       <trans-unit id="backend.timeformate" xml:space="preserve">
 				<source>Time Formate</source>
-			<target state="needs-translation">Time Formate</target></trans-unit>
+			<target state="translated">Zeitformat</target></trans-unit>
       <trans-unit id="backend.Image" xml:space="preserve">
 				<source>Comment User Image</source>
-			<target state="needs-translation">Comment User Image</target></trans-unit>
+			<target state="translated">Kommentar Benutzerbild</target></trans-unit>
       <trans-unit id="backend.captcha" xml:space="preserve">
 				<source>Disable Captcha</source>
-			<target state="needs-translation">Disable Captcha</target></trans-unit>
+			<target state="translated">Captcha deaktivieren</target></trans-unit>
       <trans-unit id="backend.userSettings.1" xml:space="preserve">
 				<source>FE-user as well as the Anonymous user can comment on the news</source>
-			<target state="needs-translation">FE-user as well as the Anonymous user can comment on the news</target></trans-unit>
+			<target state="translated">Sowohl FE-Benutzer als auch anonyme Benutzer können die Nachrichten kommentieren.</target></trans-unit>
       <trans-unit id="backend.userSettings.2" xml:space="preserve">
 				<source>Only FE-users can comment on news</source>
-			<target state="needs-translation">Only FE-users can comment on news</target></trans-unit>
+			<target state="translated">Nur FE-Benutzer können Nachrichten kommentieren.</target></trans-unit>
       <trans-unit id="backend.feUserloginpid" xml:space="preserve">
 				<source>FE-user login page Id</source>
-			<target state="needs-translation">FE-user login page Id</target></trans-unit>
+			<target state="translated">FE-Benutzer-Anmeldeseite ID</target></trans-unit>
       <trans-unit id="tx_nsnewscomments_domain_model_comment">
         <source>Comment</source>
-        <target state="needs-translation">Comment</target>
+        <target state="translated">Kommentar</target>
       </trans-unit>
       <trans-unit id="tx_nsnewscomments_domain_model_comment.newsuid">
         <source>Newsuid</source>
-        <target state="needs-translation">Newsuid</target>
+        <target state="translated">Newsuid</target>
       </trans-unit>
       <trans-unit id="tx_nsnewscomments_domain_model_comment.username">
         <source>Name</source>
-        <target state="needs-translation">Name</target>
+        <target state="translated">Name</target>
       </trans-unit>
       <trans-unit id="tx_nsnewscomments_domain_model_comment.usermail">
         <source>Email</source>
-        <target state="needs-translation">Email</target>
+        <target state="translated">E-Mail</target>
       </trans-unit>
       <trans-unit id="tx_nsnewscomments_domain_model_comment.comment">
         <source>Comment</source>
-        <target state="needs-translation">Comment</target>
+        <target state="translated">Kommentar</target>
       </trans-unit>
       <trans-unit id="tx_nsnewscomments_domain_model_comment.lblcomments">
         <source>Comments</source>
-        <target state="needs-translation">Comments</target>
+        <target state="translated">Kommentare</target>
       </trans-unit>
       <trans-unit id="tx_nsnewscomments_domain_model_comment.name">
         <source>Name</source>
-        <target state="needs-translation">Name</target>
+        <target state="translated">Name</target>
       </trans-unit>
       <trans-unit id="tx_nsnewscomments_domain_model_comment.email">
         <source>Email</source>
-        <target state="needs-translation">Email</target>
+        <target state="translated">E-Mail</target>
       </trans-unit>
       <trans-unit id="email">
         <source>Please enter your valid email address</source>
-        <target state="needs-translation">Please enter your valid email address</target>
+        <target state="translated">Bitte geben Sie Ihre gültige E-Mail-Adresse ein.</target>
       </trans-unit>
       <trans-unit id="email_required">
         <source>Valid email is required!</source>
-        <target state="needs-translation">Valid email is required!</target>
+        <target state="translated">Eine gültige E-Mail-Adresse ist erforderlich!</target>
       </trans-unit>
       <trans-unit id="name">
         <source>Please enter your name</source>
-        <target state="needs-translation">Please enter your name</target>
+        <target state="translated">Bitte geben Sie Ihren Namen ein.</target>
       </trans-unit>
       <trans-unit id="name_required">
         <source>Name is required!</source>
-        <target state="needs-translation">Name is required!</target>
+        <target state="translated">Name ist erforderlich!</target>
       </trans-unit>
       <trans-unit id="comment">
         <source>Please enter your comment</source>
-        <target state="needs-translation">Please enter your comment</target>
+        <target state="translated">Bitte geben Sie Ihren Kommentar ein.</target>
       </trans-unit>
       <trans-unit id="comment_required">
         <source>Comment is required!</source>
-        <target state="needs-translation">Comment is required!</target>
+        <target state="translated">Kommentar erforderlich!</target>
       </trans-unit>
       <trans-unit id="captcha">
         <source>Enter the above code here</source>
-        <target state="needs-translation">Enter the above code here</target>
+        <target state="translated">Geben Sie den obenstehenden Code hier ein.</target>
       </trans-unit>
       <trans-unit id="captcha_required">
         <source>Captcha is required!</source>
-        <target state="needs-translation">Captcha is required!</target>
+        <target state="translated">Captcha ist erforderlich!</target>
       </trans-unit>
       <trans-unit id="tx_nsnewscomments_domain_model_comment.captcha">
         <source>Enter the above code here</source>
-        <target state="needs-translation">Enter the above code here</target>
+        <target state="translated">Geben Sie den obenstehenden Code hier ein.</target>
       </trans-unit>
       <trans-unit id="tx_nsnewscomments_domain_model_comment.replylabel">
         <source>Reply</source>
-        <target state="needs-translation">Reply</target>
+        <target state="translated">Antworten</target>
       </trans-unit>
       <trans-unit id="tx_nsnewscomments_domain_model_comment.nocommentsfound">
         <source>Be the First to Comment</source>
-        <target state="needs-translation">Be the First to Comment</target>
+        <target state="translated">Seien Sie der Erste, der einen Kommentar abgibt</target>
       </trans-unit>
       <trans-unit id="at">
         <source>At</source>
-        <target state="needs-translation">At</target>
+        <target state="translated">Bei</target>
       </trans-unit>
       <trans-unit id="tx_nsnewscomments_domain_model_comment.mailmessage">
         <source>New Comment are added on news</source>
-        <target state="needs-translation">New Comment are added on news</target>
+        <target state="translated">Neue Kommentare werden zu Nachrichten hinzugefügt</target>
       </trans-unit>
       <trans-unit id="form.submitButton">
         <source>Post comment</source>
-        <target state="needs-translation">Post comment</target>
+        <target state="translated">Kommentar schreiben</target>
       </trans-unit>
       <trans-unit id="tx_nsnewscomments_domain_model_comment.newsTitle">
         <source>News</source>
-        <target state="needs-translation">News</target>
+        <target state="translated">Nachrichten</target>
       </trans-unit>
       <trans-unit id="mandatory">
         <source>These fields are required.</source>
-        <target state="needs-translation">These fields are required.</target>
+        <target state="translated">Diese Felder sind Pflichtfelder.</target>
       </trans-unit>
       <trans-unit id="replytext">
         <source>Reply to comment</source>
-        <target state="needs-translation">Reply to comment</target>
+        <target state="translated">Auf Kommentar antworten</target>
       </trans-unit>
       <trans-unit id="form.emailError">
         <source>Enter valid email address</source>
-        <target state="needs-translation">Enter valid email address</target>
+        <target state="translated">Geben Sie eine gültige E-Mail-Adresse ein.</target>
       </trans-unit>
       <trans-unit id="form.nameError">
         <source>Enter valid name</source>
-        <target state="needs-translation">Enter valid name</target>
+        <target state="translated">Geben Sie einen gültigen Namen ein.</target>
       </trans-unit>
       <trans-unit id="form.captchaValidationError">
         <source>Code does not match!</source>
-        <target state="needs-translation">Code does not match!</target>
+        <target state="translated">Der Code stimmt nicht überein!</target>
       </trans-unit>
       <trans-unit id="tx_nsnewscomments_domain_model_comment.validationMessage">
         <source>Code does not match</source>
-        <target state="needs-translation">Code does not match</target>
+        <target state="translated">Der Code stimmt nicht überein.</target>
       </trans-unit>
       <trans-unit id="form.captchaRefresh">
         <source>Can't read the image? </source>
-        <target state="needs-translation">Can't read the image? </target>
+        <target state="translated">Das Bild kann nicht gelesen werden?</target>
       </trans-unit>
       <trans-unit id="form.captchaRefreshButton">
         <source>Click here to refresh</source>
-        <target state="needs-translation">Click here to refresh</target>
+        <target state="translated">Klicken Sie hier, um die Seite zu aktualisieren.</target>
       </trans-unit>
       <trans-unit id="form.thankyouMessage">
         <source>Thank you for your comment. Your Comment Added Successfully.</source>
-        <target state="needs-translation">Thank you for your comment. Your Comment Added Successfully.</target>
+        <target state="translated">Vielen Dank für Ihren Kommentar. Ihr Kommentar wurde erfolgreich hinzugefügt.</target>
       </trans-unit>
       <trans-unit id="tx_nsnewscomments_domain_model_comment.errorMessage">
         <source>No News Entry Found</source>
-        <target state="needs-translation">No News Entry Found</target>
+        <target state="translated">Keine Nachrichten gefunden</target>
       </trans-unit>
       <trans-unit id="CommentsandResponses">
         <source>Comments and Responses</source>
-        <target state="needs-translation">Comments and Responses</target>
+        <target state="translated">Kommentare und Antworten</target>
       </trans-unit>
       <trans-unit id="newsfelogin">
         <source>Click here</source>
-        <target state="needs-translation">Click here</target>
+        <target state="translated">Hier klicken</target>
       </trans-unit>
       <trans-unit id="newsfeloginmsg">
         <source>to login and add your comments.</source>
-        <target state="needs-translation">to login and add your comments.</target>
+        <target state="translated">um sich anzumelden und Ihre Kommentare hinzuzufügen.</target>
       </trans-unit>
       <trans-unit id="commentas">
         <source>Comment will be added as</source>
-        <target state="needs-translation">Comment will be added as</target>
+        <target state="translated">Kommentar wird hinzugefügt als</target>
       </trans-unit>
       <trans-unit id="confirm1">
         <source>Currently, this comment is not displayed on the news.</source>
-        <target state="needs-translation">Currently, this comment is not displayed on the news.</target>
+        <target state="translated">Derzeit wird dieser Kommentar nicht in den Nachrichten angezeigt.</target>
       </trans-unit>
       <trans-unit id="confirm2">
         <source>Click Here</source>
-        <target state="needs-translation">Click Here</target>
+        <target state="translated">Hier klicken</target>
       </trans-unit>
       <trans-unit id="confirm3">
         <source>to display this comment on the news.</source>
-        <target state="needs-translation">to display this comment on the news.</target>
+        <target state="translated">diesen Kommentar in den Nachrichten anzeigen.</target>
       </trans-unit>
       <trans-unit id="form.termsError">
         <source>Please accept</source>
-        <target state="needs-translation">Please accept</target>
+        <target state="translated">Bitte akzeptieren Sie</target>
       </trans-unit>
       <trans-unit id="terms_required">
         <source>Terms is required!</source>
-        <target state="needs-translation">Terms is required!</target>
+        <target state="translated">Bedingungen sind erforderlich!</target>
       </trans-unit>
       <trans-unit id="terms.label">
         <source>Terms</source>
-        <target state="needs-translation">Terms</target>
+        <target state="translated">Begriffe</target>
       </trans-unit>
       <trans-unit id="terms.text">
         <source><![CDATA[I accept the <a href="%s" target="_blank">terms</a>.]]></source>
-        <target state="needs-translation"><![CDATA[I accept the <a href="%s" target="_blank">terms</a>.]]></target>
+        <target state="translated"><![CDATA[Ich akzeptiere die <a href="%s" target="_blank">Bedingungen</a>.]]></target>
       </trans-unit>
       <trans-unit id="close">
         <source>Close</source>
-        <target state="needs-translation">Close</target>
+        <target state="translated">Schließen</target>
       </trans-unit>
     </body>
   </file>

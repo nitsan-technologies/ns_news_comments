@@ -47,7 +47,7 @@
         <div class="error-msg" id="comment_error"><p><f:translate key="comment_required" /></p></div>
     </div>
 </div>
-<f:if condition="{settings.captcha}==0">
+<f:if condition="{settings.captcha}==0 || {settings.captcha}==''">
     <div class="ns-form-group-main">
         <div class="ns-form-group">
             <div class="ns-captch">

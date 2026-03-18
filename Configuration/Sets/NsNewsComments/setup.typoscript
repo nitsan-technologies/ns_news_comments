@@ -1,0 +1,76 @@
+@import 'EXT:ns_news_comments/Configuration/TypoScript/setup.typoscript'
+config.contentObjectExceptionHandler = 0
+plugin.tx_nsnewscomments {
+    view {
+        templateRootPaths.0 = {$nsNewsComments.view.templateRootPath}
+        partialRootPaths.0 = {$nsNewsComments.view.partialRootPath}
+        layoutRootPaths.0 = {$nsNewsComments.view.layoutRootPath}
+    }
+    settings {
+        termsRequired = {$nsNewsComments.settings.termsRequired}
+        termsTypolinkParameter = {$nsNewsComments.settings.termsTypolinkParameter}
+        dateFormat = {$nsNewsComments.settings.dateFormat}
+        timeFormat = {$nsNewsComments.settings.timeFormat}
+        captcha = {$nsNewsComments.settings.captcha}
+        storagePid = {$nsNewsComments.settings.storagePid}
+    }
+}
+
+page {
+    includeCSS {
+        nsnewscomment_StyleCss = {$nsNewsComments.settings.StyleCss}
+        nsnewscomment_StyleCss.if.isTrue = {$nsNewsComments.settings.StyleCss}
+        nsnewscomment_FontAwesomeCss = {$nsNewsComments.settings.FontAwesomeCss}
+        nsnewscomment_FontAwesomeCss.if.isTrue = {$nsNewsComments.settings.FontAwesomeCss}
+    }
+    includeJS {
+        nsnewscomment_Minjs = {$nsNewsComments.settings.Minjs}
+    }
+    includeJSFooter {
+        nsnewscomment_CustomJS = {$nsNewsComments.settings.CustomJS}
+        nsnewscomment_CustomJS.if.isTrue = {$nsNewsComments.settings.CustomJS}
+    }
+}
+
+commentAjaxCall = PAGE
+commentAjaxCall {
+    typeNum = 1730800496
+    config {
+        disableAllHeaderCode = 1
+        xhtml_cleaning = 0
+        debug = 0
+        no_cache = 1
+        admPanel = 0
+    }
+    315123 = USER
+    315123 {
+        userFunc = TYPO3\CMS\Extbase\Core\Bootstrap->run
+        pluginName = Newscomment
+        extensionName = NsNewsComments
+        controller = Comment
+        vendorName = Nitsan
+        action = create
+        switchableControllerActions {
+            Comment {
+                1 = create
+            }
+        }
+    }
+}
+
+lib.tx_nsnewscomments.comments = USER
+lib.tx_nsnewscomments.comments {
+    userFunc = TYPO3\CMS\Extbase\Core\Bootstrap->run
+    extensionName = NsNewsComments
+    pluginName = Newscomment
+    vendorName = Nitsan
+    switchableControllerActions {
+        Comment {
+            1 = list
+        }
+    }
+    settings < plugin.tx_nsnewscomments.settings
+    settings {
+        relatedComments = 1
+    }
+}

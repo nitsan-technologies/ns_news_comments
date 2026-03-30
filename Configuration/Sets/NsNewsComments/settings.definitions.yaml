@@ -1,6 +1,6 @@
 categories:
   nsNewsComments:
-    label: 'NS Google Map'
+    label: 'News Comments Configuration'
 
   nsNewsComments.view:
     label: 'View Settings'

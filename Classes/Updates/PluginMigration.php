@@ -95,17 +95,7 @@ class PluginMigration implements UpgradeWizardInterface
                 ->fetchAllAssociative();
         }
 
-        return $queryBuilder
-            ->select('uid', 'pid', 'CType')
-            ->from('tt_content')
-            ->where(
-                $queryBuilder->expr()->eq(
-                    'CType',
-                    $queryBuilder->createNamedParameter('list')
-                )
-            )
-            ->executeQuery()
-            ->fetchAllAssociative();
+        return [];
     }
 
     protected function getTotalMigrationCount(): int

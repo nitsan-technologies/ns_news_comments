@@ -114,7 +114,7 @@ class CommentController extends ActionController
         $versionNumber =  VersionNumberUtility::convertVersionStringToArray(VersionNumberUtility::getCurrentTypo3Version());
         if ($versionNumber['version_main'] <= '12') {
             // @extensionScannerIgnoreLine
-            $this->pageUid = $GLOBALS['TSFE']->page;
+            $this->pageUid = $GLOBALS['TSFE']->id;
         } else {
             $this->pageUid = $GLOBALS['TYPO3_REQUEST']->getAttribute('frontend.page.information')->getId();
         }

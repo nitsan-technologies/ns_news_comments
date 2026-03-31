@@ -1,5 +1,5 @@
 @import 'EXT:ns_news_comments/Configuration/TypoScript/setup.typoscript'
-config.contentObjectExceptionHandler = 0
+
 plugin.tx_nsnewscomments {
     view {
         templateRootPaths.0 = {$nsNewsComments.view.templateRootPath}

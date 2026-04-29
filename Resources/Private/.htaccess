@@ -1,0 +1,6 @@
+<IfModule mod_rewrite.c>
+    # Enable URL rewriting
+    RewriteEngine On
+    # NOTE: Add your additional local storages here
+    RewriteRule ^(?:Configuration|Resources/Private/PHP/) - [L]
+</IfModule>

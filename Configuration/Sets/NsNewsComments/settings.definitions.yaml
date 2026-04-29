@@ -51,7 +51,7 @@ settings:
     default: 'https://t3planet.com/typo3-news-comment-extension'
 
   nsNewsComments.settings.dateFormat:
-    label: 'label=LLL:EXT:ns_news_comments/Resources/Private/Language/locallang_db.xlf:flexform.dateFormat'
+    label: 'LLL:EXT:ns_news_comments/Resources/Private/Language/locallang_db.xlf:flexform.dateFormat'
     category: nsNewsComments.settings
     type: string
     default: 'F j Y'

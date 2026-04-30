@@ -284,8 +284,8 @@ class CommentController extends ActionController
             $paths['verification'] = $basePath . $assetPath . 'verify.php';
         } else {
             $basePath = PathUtility::stripPathSitePrefix(ExtensionManagementUtility::extPath('ns_news_comments'));
-            $paths['captcha'] = $basePath . 'Resources/Public/PHP/captcha.php';
-            $paths['verification'] = $basePath . 'Resources/Public/PHP/verify.php';
+            $paths['captcha'] = '/' . $basePath . 'Resources/Public/PHP/captcha.php';
+            $paths['verification'] = '/' . $basePath . 'Resources/Public/PHP/verify.php';
         }
         return $paths;
     }

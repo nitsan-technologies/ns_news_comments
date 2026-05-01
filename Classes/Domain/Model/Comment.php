@@ -410,5 +410,4 @@ class Comment extends AbstractEntity
     {
         return $this->_languageUid;
     }
-
 }

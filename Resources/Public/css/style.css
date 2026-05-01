@@ -303,6 +303,25 @@
     text-transform: capitalize;
     z-index: 999;
 }
+.tx_nsnewscomments #terms_error {
+    background: #ee0101 none repeat scroll 0 0;
+    border: 2px solid #ddd;
+    border-radius: 6px;
+    bottom: 60%;
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+    color: #fff !important;
+    font-size: 13px;
+    font-weight: normal;
+    line-height: normal;
+    margin: 0;
+    min-width: 120px;
+    padding: 4px 10px;
+    position: absolute;
+    right: 310px;
+    text-align: center;
+    text-transform: capitalize;
+    z-index: 999;
+}
 .tx_nsnewscomments .error-msg p {
     margin: 0;
 }

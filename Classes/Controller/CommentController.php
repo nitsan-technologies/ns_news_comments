@@ -111,8 +111,13 @@ class CommentController extends ActionController
         $this->newsUid = (int)$newsUid;
 
         // Storage page configuration
-        // @extensionScannerIgnoreLine
-        $this->pageUid = $GLOBALS['TSFE']->id;
+        $versionNumber =  VersionNumberUtility::convertVersionStringToArray(VersionNumberUtility::getCurrentTypo3Version());
+        if ($versionNumber['version_main'] <= '12') {
+            // @extensionScannerIgnoreLine
+            $this->pageUid = $GLOBALS['TSFE']->id;
+        } else {
+            $this->pageUid = $GLOBALS['TYPO3_REQUEST']->getAttribute('frontend.page.information')->getId();
+        }
         $extbaseFrameworkConfiguration = $this->configurationManager->getConfiguration(ConfigurationManagerInterface::CONFIGURATION_TYPE_FRAMEWORK);
 
         if (empty($extbaseFrameworkConfiguration['persistence']['storagePid'])) {
@@ -148,7 +153,7 @@ class CommentController extends ActionController
         if ($this->newsUid) {
             $comments = $this->commentRepository->getCommentsByNews($this->newsUid)->toArray();
 
-            if ($this->settings['captcha'] == '0') {
+            if ($this->settings['captcha'] == '0' || $this->settings['captcha'] == '') {
                 $paths = $this->captchaVerificationPath();
                 $captcha_path = $paths['captcha'] . '?' . rand();
                 $this->view->assignMultiple([
@@ -164,7 +169,6 @@ class CommentController extends ActionController
                 'pid' => $pid,
                 'settings' => $setting,
             ]);
-
         } else {
             $error = LocalizationUtility::translate('tx_nsnewscomments_domain_model_comment.errorMessage', 'NsNewsComments');
             if (version_compare((string)$this->typo3VersionArray['version_main'], '11', '>')) {
@@ -280,10 +284,9 @@ class CommentController extends ActionController
             $paths['verification'] = $basePath . $assetPath . 'verify.php';
         } else {
             $basePath = PathUtility::stripPathSitePrefix(ExtensionManagementUtility::extPath('ns_news_comments'));
-            $paths['captcha'] = $basePath . 'Resources/Public/PHP/captcha.php';
-            $paths['verification'] = $basePath . 'Resources/Public/PHP/verify.php';
+            $paths['captcha'] = '/' . $basePath . 'Resources/Public/PHP/captcha.php';
+            $paths['verification'] = '/' . $basePath . 'Resources/Public/PHP/verify.php';
         }
         return $paths;
     }
-
 }

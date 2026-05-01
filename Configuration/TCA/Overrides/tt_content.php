@@ -10,7 +10,7 @@ $_EXTKEY = 'ns_news_comments';
 /***************
  * Plugin
  */
-ExtensionUtility::registerPlugin(
+$ctypeKey = ExtensionUtility::registerPlugin(
     $_EXTKEY,
     'Newscomment',
     'News Comment',
@@ -18,8 +18,16 @@ ExtensionUtility::registerPlugin(
     'plugins'
 );
 
-/* Flexform setting  */
-$pluginSignature = str_replace('_', '', $_EXTKEY) . '_' . 'newscomment';
-$GLOBALS['TCA']['tt_content']['types']['list']['subtypes_excludelist'][$pluginSignature] = 'recursive,select_key';
-$GLOBALS['TCA']['tt_content']['types']['list']['subtypes_addlist'][$pluginSignature] = 'pi_flexform';
-ExtensionManagementUtility::addPiFlexFormValue($pluginSignature, 'FILE:EXT:' . $_EXTKEY . '/Configuration/FlexForm/FlexForm.xml');
+ExtensionManagementUtility::addToAllTCAtypes(
+    'tt_content',
+    '--div--;Configuration,pi_flexform,pages',
+    $ctypeKey,
+    'after:subheader',
+);
+
+// @extensionScannerIgnoreLine
+ExtensionManagementUtility::addPiFlexFormValue(
+    '*',
+    'FILE:EXT:' . $_EXTKEY . '/Configuration/FlexForm/FlexForm.xml',
+    $ctypeKey,
+);

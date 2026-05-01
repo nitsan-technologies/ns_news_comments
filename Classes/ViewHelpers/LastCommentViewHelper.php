@@ -30,12 +30,11 @@ class LastCommentViewHelper extends AbstractViewHelper
     {
         $newsUid = $this->arguments['newsuid'];
         $newsCommentData = [];
-        if($newsUid) {
+        if ($newsUid) {
             $commentRepository = GeneralUtility::makeInstance(CommentRepository::class);
             // Get last comment of news
             $newsCommentData = $commentRepository->getLastCommentOfNews((int) $newsUid);
         }
         return $newsCommentData;
-
     }
 }

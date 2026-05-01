@@ -1,0 +1,111 @@
+categories:
+  nsNewsComments:
+    label: 'News Comments Configuration'
+
+  nsNewsComments.view:
+    label: 'View Settings'
+    parent: nsNewsComments
+
+  nsNewsComments.settings:
+    label: 'Configuration Settings'
+    parent: nsNewsComments
+
+settings:
+
+  ##################################################
+  # View Settings
+  ##################################################
+
+  nsNewsComments.view.templateRootPath:
+    label: 'Path to template root (FE)'
+    category: nsNewsComments.view
+    type: string
+    default: 'EXT:ns_news_comments/Resources/Private/Templates/'
+
+  nsNewsComments.view.partialRootPath:
+    label: 'Path to template partials (FE)'
+    category: nsNewsComments.view
+    type: string
+    default: 'EXT:ns_news_comments/Resources/Private/Partials/'
+
+  nsNewsComments.view.layoutRootPath:
+    label: 'Path to template layouts (FE)'
+    category: nsNewsComments.view
+    type: string
+    default: 'EXT:ns_news_comments/Resources/Private/Layouts/'
+
+  ##################################################
+  # Main Configuration
+  ##################################################
+
+  nsNewsComments.settings.termsRequired:
+    label: 'LLL:EXT:ns_news_comments/Resources/Private/Language/locallang_db.xlf:termsRequired'
+    category: nsNewsComments.settings
+    type: bool
+    default: false
+
+  nsNewsComments.settings.termsTypolinkParameter:
+    label: 'LLL:EXT:ns_news_comments/Resources/Private/Language/locallang_db.xlf:termsTypolinkParameter'
+    category: nsNewsComments.settings
+    type: string
+    default: 'https://t3planet.com/typo3-news-comment-extension'
+
+  nsNewsComments.settings.dateFormat:
+    label: 'LLL:EXT:ns_news_comments/Resources/Private/Language/locallang_db.xlf:flexform.dateFormat'
+    category: nsNewsComments.settings
+    type: string
+    default: 'F j Y'
+    enum:
+      F j Y: F j Y,
+      Y-m-d: Y-m-d,
+      m/d/Y: m/d/Y,
+      d/m/Y: d/m/Y
+
+  nsNewsComments.settings.timeFormat:
+    label: 'LLL:EXT:ns_news_comments/Resources/Private/Language/locallang_db.xlf:flexform.timeFormat'
+    category: nsNewsComments.settings
+    type: string
+    default: 'g:i a'
+    enum:
+      g:i a: g:i a,
+      g:i A: g:i A,
+      H:i: H:i
+
+  nsNewsComments.settings.captcha:
+    label: 'LLL:EXT:ns_news_comments/Resources/Private/Language/locallang_db.xlf:flexform.captcha'
+    category: nsNewsComments.settings
+    type: bool
+    default: true
+
+  nsNewsComments.settings.storagePid:
+    label: 'Default storage page Id'
+    category: nsNewsComments.settings
+    type: int
+    default: 0
+
+  nsNewsComments.settings.StyleCss:
+    label: 'LLL:EXT:ns_news_comments/Resources/Private/Language/locallang_db.xlf:addstyleCss'
+    category: nsNewsComments.settings
+    type: string
+    default: 'EXT:ns_news_comments/Resources/Public/css/style.css'
+
+  nsNewsComments.settings.FontAwesomeCss:
+    label: 'LLL:EXT:ns_news_comments/Resources/Private/Language/locallang_db.xlf:addfontAwesomeCss'
+    category: nsNewsComments.settings
+    type: string
+    default: 'EXT:ns_news_comments/Resources/Public/css/font-awesome.min.css'
+
+  nsNewsComments.settings.CustomJS:
+    label: 'LLL:EXT:ns_news_comments/Resources/Private/Language/locallang_db.xlf:addCustomJS'
+    category: nsNewsComments.settings
+    type: string
+    default: 'EXT:ns_news_comments/Resources/Public/js/custom.js'
+
+  nsNewsComments.settings.Minjs:
+    label: 'LLL:EXT:ns_news_comments/Resources/Private/Language/locallang_db.xlf:addjqueryMinJS'
+    category: nsNewsComments.settings
+    type: string
+    default: 'EXT:ns_news_comments/Resources/Public/js/jquery-3.6.3.min.js'
+    enum:
+      EXT:ns_news_comments/Resources/Public/js/jquery-3.6.3.min.js: v3.x
+      EXT:ns_news_comments/Resources/Public/js/jquery-2.2.4.min.js: v2.x

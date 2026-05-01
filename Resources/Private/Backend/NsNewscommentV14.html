@@ -7,7 +7,7 @@
             </th>
         </tr>
     </thead>
-    <f:for each="{pi_flexform_transformed.settings}" as="previewData" key="previewKey">
+    <f:for each="{record.pi_flexform.sheets.sDEF.settings}" as="previewData" key="previewKey">
         <f:if condition="{previewData} && {previewKey} !='custom'">
             <tr>
                 <th><f:translate key="LLL:EXT:ns_news_comments/Resources/Private/Language/locallang_db.xlf:flexform.{previewKey}"  extensionName="ns_news_comments" /></th>

@@ -1,211 +1,211 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <xliff version="1.0">
-  <file source-language="en" datatype="plaintext" original="messages" date="2016-11-08T11:15:02Z" product-name="ns_news_comments" target-language="fr">
+  <file source-language="en" datatype="plaintext" original="messages" date="2016-11-08T11:15:02Z" product-name="ns_news_comments" target-language="hu">
     <header/>
     <body>
       <trans-unit id="pi1_title" xml:space="preserve">
 				<source>News Comment</source>
-			<target state="needs-translation">News Comment</target></trans-unit>
+			<target state="translated">Hírkomment</target></trans-unit>
       <trans-unit id="backend.dateformate" xml:space="preserve">
 				<source>Date Formate</source>
-			<target state="needs-translation">Date Formate</target></trans-unit>
+			<target state="translated">Dátumformátum</target></trans-unit>
       <trans-unit id="backend.timeformate" xml:space="preserve">
 				<source>Time Formate</source>
-			<target state="needs-translation">Time Formate</target></trans-unit>
+			<target state="translated">Időformátum</target></trans-unit>
       <trans-unit id="backend.Image" xml:space="preserve">
 				<source>Comment User Image</source>
-			<target state="needs-translation">Comment User Image</target></trans-unit>
+			<target state="translated">Komment felhasználói kép</target></trans-unit>
       <trans-unit id="backend.captcha" xml:space="preserve">
 				<source>Disable Captcha</source>
-			<target state="needs-translation">Disable Captcha</target></trans-unit>
+			<target state="translated">Captcha letiltása</target></trans-unit>
       <trans-unit id="backend.userSettings.1" xml:space="preserve">
 				<source>FE-user as well as the Anonymous user can comment on the news</source>
-			<target state="needs-translation">FE-user as well as the Anonymous user can comment on the news</target></trans-unit>
+			<target state="translated">FE-felhasználó és az anonim felhasználó is kommentelhet a hírekhez</target></trans-unit>
       <trans-unit id="backend.userSettings.2" xml:space="preserve">
 				<source>Only FE-users can comment on news</source>
-			<target state="needs-translation">Only FE-users can comment on news</target></trans-unit>
+			<target state="translated">Csak FE-felhasználók kommentelhetnek a hírekhez</target></trans-unit>
       <trans-unit id="backend.feUserloginpid" xml:space="preserve">
 				<source>FE-user login page Id</source>
-			<target state="needs-translation">FE-user login page Id</target></trans-unit>
+			<target state="translated">FE-felhasználó bejelentkezési oldalának azonosítója</target></trans-unit>
       <trans-unit id="tx_nsnewscomments_domain_model_comment">
         <source>Comment</source>
-        <target state="needs-translation">Comment</target>
+        <target state="translated">Komment</target>
       </trans-unit>
       <trans-unit id="tx_nsnewscomments_domain_model_comment.newsuid">
         <source>Newsuid</source>
-        <target state="needs-translation">Newsuid</target>
+        <target state="translated">Newsuid</target>
       </trans-unit>
       <trans-unit id="tx_nsnewscomments_domain_model_comment.username">
         <source>Name</source>
-        <target state="needs-translation">Name</target>
+        <target state="translated">Név</target>
       </trans-unit>
       <trans-unit id="tx_nsnewscomments_domain_model_comment.usermail">
         <source>Email</source>
-        <target state="needs-translation">Email</target>
+        <target state="translated">E-mail</target>
       </trans-unit>
       <trans-unit id="tx_nsnewscomments_domain_model_comment.comment">
         <source>Comment</source>
-        <target state="needs-translation">Comment</target>
+        <target state="translated">Komment</target>
       </trans-unit>
       <trans-unit id="tx_nsnewscomments_domain_model_comment.lblcomments">
         <source>Comments</source>
-        <target state="needs-translation">Comments</target>
+        <target state="translated">Kommentek</target>
       </trans-unit>
       <trans-unit id="tx_nsnewscomments_domain_model_comment.name">
         <source>Name</source>
-        <target state="needs-translation">Name</target>
+        <target state="translated">Név</target>
       </trans-unit>
       <trans-unit id="tx_nsnewscomments_domain_model_comment.email">
         <source>Email</source>
-        <target state="needs-translation">Email</target>
+        <target state="translated">E-mail</target>
       </trans-unit>
       <trans-unit id="email">
         <source>Please enter your valid email address</source>
-        <target state="needs-translation">Please enter your valid email address</target>
+        <target state="translated">Kérjük, adja meg érvényes e-mail címét</target>
       </trans-unit>
       <trans-unit id="email_required">
         <source>Valid email is required!</source>
-        <target state="needs-translation">Valid email is required!</target>
+        <target state="translated">Érvényes e-mail megadása kötelező!</target>
       </trans-unit>
       <trans-unit id="name">
         <source>Please enter your name</source>
-        <target state="needs-translation">Please enter your name</target>
+        <target state="translated">Kérjük, adja meg a nevét</target>
       </trans-unit>
       <trans-unit id="name_required">
         <source>Name is required!</source>
-        <target state="needs-translation">Name is required!</target>
+        <target state="translated">A név megadása kötelező!</target>
       </trans-unit>
       <trans-unit id="comment">
         <source>Please enter your comment</source>
-        <target state="needs-translation">Please enter your comment</target>
+        <target state="translated">Kérjük, írja be a kommentjét</target>
       </trans-unit>
       <trans-unit id="comment_required">
         <source>Comment is required!</source>
-        <target state="needs-translation">Comment is required!</target>
+        <target state="translated">A komment megadása kötelező!</target>
       </trans-unit>
       <trans-unit id="captcha">
         <source>Enter the above code here</source>
-        <target state="needs-translation">Enter the above code here</target>
+        <target state="translated">Írja be a fenti kódot ide</target>
       </trans-unit>
       <trans-unit id="captcha_required">
         <source>Captcha is required!</source>
-        <target state="needs-translation">Captcha is required!</target>
+        <target state="translated">A captcha megadása kötelező!</target>
       </trans-unit>
       <trans-unit id="tx_nsnewscomments_domain_model_comment.captcha">
         <source>Enter the above code here</source>
-        <target state="needs-translation">Enter the above code here</target>
+        <target state="translated">Írja be a fenti kódot ide</target>
       </trans-unit>
       <trans-unit id="tx_nsnewscomments_domain_model_comment.replylabel">
         <source>Reply</source>
-        <target state="needs-translation">Reply</target>
+        <target state="translated">Válasz</target>
       </trans-unit>
       <trans-unit id="tx_nsnewscomments_domain_model_comment.nocommentsfound">
         <source>Be the First to Comment</source>
-        <target state="needs-translation">Be the First to Comment</target>
+        <target state="translated">Legyen Ön az első kommentelő</target>
       </trans-unit>
       <trans-unit id="at">
         <source>At</source>
-        <target state="needs-translation">At</target>
+        <target state="translated">Időpont</target>
       </trans-unit>
       <trans-unit id="tx_nsnewscomments_domain_model_comment.mailmessage">
         <source>New Comment are added on news</source>
-        <target state="needs-translation">New Comment are added on news</target>
+        <target state="translated">Új komment érkezett a hírekhez</target>
       </trans-unit>
       <trans-unit id="form.submitButton">
         <source>Post comment</source>
-        <target state="needs-translation">Post comment</target>
+        <target state="translated">Komment elküldése</target>
       </trans-unit>
       <trans-unit id="tx_nsnewscomments_domain_model_comment.newsTitle">
         <source>News</source>
-        <target state="needs-translation">News</target>
+        <target state="translated">Hír</target>
       </trans-unit>
       <trans-unit id="mandatory">
         <source>These fields are required.</source>
-        <target state="needs-translation">These fields are required.</target>
+        <target state="translated">Ezek a mezők kötelezőek.</target>
       </trans-unit>
       <trans-unit id="replytext">
         <source>Reply to comment</source>
-        <target state="needs-translation">Reply to comment</target>
+        <target state="translated">Válasz a kommentre</target>
       </trans-unit>
       <trans-unit id="form.emailError">
         <source>Enter valid email address</source>
-        <target state="needs-translation">Enter valid email address</target>
+        <target state="translated">Adjon meg érvényes e-mail címet</target>
       </trans-unit>
       <trans-unit id="form.nameError">
         <source>Enter valid name</source>
-        <target state="needs-translation">Enter valid name</target>
+        <target state="translated">Adjon meg érvényes nevet</target>
       </trans-unit>
       <trans-unit id="form.captchaValidationError">
         <source>Code does not match!</source>
-        <target state="needs-translation">Code does not match!</target>
+        <target state="translated">A kód nem egyezik!</target>
       </trans-unit>
       <trans-unit id="tx_nsnewscomments_domain_model_comment.validationMessage">
         <source>Code does not match</source>
-        <target state="needs-translation">Code does not match</target>
+        <target state="translated">A kód nem egyezik</target>
       </trans-unit>
       <trans-unit id="form.captchaRefresh">
         <source>Can't read the image? </source>
-        <target state="needs-translation">Can't read the image? </target>
+        <target state="translated">Nem tudja elolvasni a képet? </target>
       </trans-unit>
       <trans-unit id="form.captchaRefreshButton">
         <source>Click here to refresh</source>
-        <target state="needs-translation">Click here to refresh</target>
+        <target state="translated">Kattintson ide a frissítéshez</target>
       </trans-unit>
       <trans-unit id="form.thankyouMessage">
         <source>Thank you for your comment. Your Comment Added Successfully.</source>
-        <target state="needs-translation">Thank you for your comment. Your Comment Added Successfully.</target>
+        <target state="translated">Köszönjük a kommentjét. Kommentje sikeresen hozzáadásra került.</target>
       </trans-unit>
       <trans-unit id="tx_nsnewscomments_domain_model_comment.errorMessage">
         <source>No News Entry Found</source>
-        <target state="needs-translation">No News Entry Found</target>
+        <target state="translated">Nem található hírbejegyzés</target>
       </trans-unit>
       <trans-unit id="CommentsandResponses">
         <source>Comments and Responses</source>
-        <target state="needs-translation">Comments and Responses</target>
+        <target state="translated">Kommentek és válaszok</target>
       </trans-unit>
       <trans-unit id="newsfelogin">
         <source>Click here</source>
-        <target state="needs-translation">Click here</target>
+        <target state="translated">Kattintson ide</target>
       </trans-unit>
       <trans-unit id="newsfeloginmsg">
         <source>to login and add your comments.</source>
-        <target state="needs-translation">to login and add your comments.</target>
+        <target state="translated">a bejelentkezéshez és kommentek hozzáadásához.</target>
       </trans-unit>
       <trans-unit id="commentas">
         <source>Comment will be added as</source>
-        <target state="needs-translation">Comment will be added as</target>
+        <target state="translated">A komment a következőként kerül hozzáadásra:</target>
       </trans-unit>
       <trans-unit id="confirm1">
         <source>Currently, this comment is not displayed on the news.</source>
-        <target state="needs-translation">Currently, this comment is not displayed on the news.</target>
+        <target state="translated">Ez a komment jelenleg nem jelenik meg a híren.</target>
       </trans-unit>
       <trans-unit id="confirm2">
         <source>Click Here</source>
-        <target state="needs-translation">Click Here</target>
+        <target state="translated">Kattintson ide</target>
       </trans-unit>
       <trans-unit id="confirm3">
         <source>to display this comment on the news.</source>
-        <target state="needs-translation">to display this comment on the news.</target>
+        <target state="translated">a komment híren történő megjelenítéséhez.</target>
       </trans-unit>
       <trans-unit id="form.termsError">
         <source>Please accept</source>
-        <target state="needs-translation">Please accept</target>
+        <target state="translated">Kérjük, fogadja el</target>
       </trans-unit>
       <trans-unit id="terms_required">
         <source>Terms is required!</source>
-        <target state="needs-translation">Terms is required!</target>
+        <target state="translated">A feltételek elfogadása kötelező!</target>
       </trans-unit>
       <trans-unit id="terms.label">
         <source>Terms</source>
-        <target state="needs-translation">Terms</target>
+        <target state="translated">Feltételek</target>
       </trans-unit>
       <trans-unit id="terms.text">
         <source><![CDATA[I accept the <a href="%s" target="_blank">terms</a>.]]></source>
-        <target state="needs-translation"><![CDATA[I accept the <a href="%s" target="_blank">terms</a>.]]></target>
+        <target state="translated"><![CDATA[Elfogadom a <a href="%s" target="_blank">feltételeket</a>.]]></target>
       </trans-unit>
       <trans-unit id="close">
         <source>Close</source>
-        <target state="needs-translation">Close</target>
+        <target state="translated">Bezárás</target>
       </trans-unit>
     </body>
   </file>

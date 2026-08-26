@@ -32,8 +32,8 @@ page {
     }
 }
 
-commentAjaxCall = PAGE
-commentAjaxCall {
+nsNewsCommentsAjaxCall = PAGE
+nsNewsCommentsAjaxCall {
     typeNum = 1730800496
     config {
         disableAllHeaderCode = 1

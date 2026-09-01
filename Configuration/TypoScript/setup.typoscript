@@ -16,17 +16,11 @@ plugin.tx_nsnewscomments {
 
 page {
     includeCSS {
-        nsnewscomment_StyleCss = {$plugin.tx_nsnewscomments.settings.StyleCss}
-        nsnewscomment_StyleCss.if.isTrue = {$plugin.tx_nsnewscomments.settings.StyleCss}
-        nsnewscomment_FontAwesomeCss = {$plugin.tx_nsnewscomments.settings.FontAwesomeCss}
-        nsnewscomment_FontAwesomeCss.if.isTrue = {$plugin.tx_nsnewscomments.settings.FontAwesomeCss}
-    }
-    includeJS {
-        nsnewscomment_Minjs = {$plugin.tx_nsnewscomments.settings.Minjs}
+        nsnewscomment_StyleCss = EXT:ns_news_comments/Resources/Public/css/style.css
+        nsnewscomment_FontAwesomeCss = EXT:ns_news_comments/Resources/Public/css/font-awesome.min.css
     }
     includeJSFooter {
-        nsnewscomment_CustomJS = {$plugin.tx_nsnewscomments.settings.CustomJS}
-        nsnewscomment_CustomJS.if.isTrue = {$plugin.tx_nsnewscomments.settings.CustomJS}
+        nsnewscomment_CustomJS = EXT:ns_news_comments/Resources/Public/js/custom.js
     }
 }
 

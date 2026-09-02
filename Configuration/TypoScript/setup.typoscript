@@ -20,6 +20,7 @@ page {
         nsnewscomment_FontAwesomeCss = EXT:ns_news_comments/Resources/Public/css/font-awesome.min.css
     }
     includeJSFooter {
+        nsnewscomment_Minjs = EXT:ns_news_comments/Resources/Public/js/jquery-3.6.3.min.js
         nsnewscomment_CustomJS = EXT:ns_news_comments/Resources/Public/js/custom.js
     }
 }

@@ -1,8 +1,12 @@
 (function initNsNewsComments() {
+    if (window.nsNewsCommentsInitialized) {
+        return;
+    }
     if (typeof jQuery === 'undefined') {
         window.setTimeout(initNsNewsComments, 50);
         return;
     }
+    window.nsNewsCommentsInitialized = true;
 
     jQuery(function($) {
         submitComment();
@@ -25,7 +29,8 @@ function nsNewsCommentsParseResponse(response) {
 }
 
 function replyComment() {
-    $(document).on("click", '.comment-btn.reply', function(event) {
+    $(document).off("click.nsNewsComments", '.tx_nsnewscomments .comment-btn.reply');
+    $(document).on("click.nsNewsComments", '.tx_nsnewscomments .comment-btn.reply', function(event) {
         var parentCommentId = $(this).parent().attr('id');
         $('#'+ parentCommentId + ' .comment-btn.reply').hide();
     });
@@ -47,7 +52,8 @@ function hashValue() {
 function submitComment() {
 
     // Submit comment
-    $(document).on('submit', '.tx_nsnewscomments #comment-form', function(event) {
+    $(document).off('submit.nsNewsComments', '.tx_nsnewscomments #comment-form');
+    $(document).on('submit.nsNewsComments', '.tx_nsnewscomments #comment-form', function(event) {
         event.preventDefault();
         var captcha = $('.tx_nsnewscomments #captcha').val();
         var ajaxURL = $(this).attr('action');
@@ -117,7 +123,8 @@ function submitComment() {
     });
 
     // Reply form
-    $(document).on("click", '.reply', function(event) {
+    $(document).off("click.nsNewsComments", '.tx_nsnewscomments .reply');
+    $(document).on("click.nsNewsComments", '.tx_nsnewscomments .reply', function(event) {
         var parentCommentId = $(this).parent().attr('id');
         var commentHTML = $('.active-comment-form').html();
         $('.active-comment-form .comment-form')[0].reset();
@@ -139,7 +146,8 @@ function submitComment() {
     });
 
     // Close form
-    $(document).on("click", ".tx_nsnewscomments #comment-form-close-btn", function(event) {
+    $(document).off("click.nsNewsComments", ".tx_nsnewscomments #comment-form-close-btn");
+    $(document).on("click.nsNewsComments", ".tx_nsnewscomments #comment-form-close-btn", function(event) {
         var parentCommentIdClose = $('#parentId').val();;
         $('#'+ parentCommentIdClose + ' .comment-btn.reply').show();
         addForm();

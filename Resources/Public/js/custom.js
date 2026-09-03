@@ -1,17 +1,36 @@
-if (typeof $ === 'undefined') {
-    alert('JQuery is not defined');
-} else {
-    $(function() {
+(function initNsNewsComments() {
+    if (window.nsNewsCommentsInitialized) {
+        return;
+    }
+    if (typeof jQuery === 'undefined') {
+        window.setTimeout(initNsNewsComments, 50);
+        return;
+    }
+    window.nsNewsCommentsInitialized = true;
+
+    jQuery(function($) {
         submitComment();
         hashValue();
         onFocusValidation();
         let $parentCommentId = '';
         replyComment();
     });
+})();
+
+function nsNewsCommentsParseResponse(response) {
+    if (typeof response === 'string') {
+        try {
+            return JSON.parse(response);
+        } catch (e) {
+            return {};
+        }
+    }
+    return response || {};
 }
 
 function replyComment() {
-    $(document).on("click", '.comment-btn.reply', function(event) {
+    $(document).off("click.nsNewsComments", '.tx_nsnewscomments .comment-btn.reply');
+    $(document).on("click.nsNewsComments", '.tx_nsnewscomments .comment-btn.reply', function(event) {
         var parentCommentId = $(this).parent().attr('id');
         $('#'+ parentCommentId + ' .comment-btn.reply').hide();
     });
@@ -33,29 +52,31 @@ function hashValue() {
 function submitComment() {
 
     // Submit comment
-    $(document).on('submit', '.tx_nsnewscomments #comment-form', function(event) {
+    $(document).off('submit.nsNewsComments', '.tx_nsnewscomments #comment-form');
+    $(document).on('submit.nsNewsComments', '.tx_nsnewscomments #comment-form', function(event) {
+        event.preventDefault();
         var captcha = $('.tx_nsnewscomments #captcha').val();
         var ajaxURL = $(this).attr('action');
         var datatype = $('.tx_nsnewscomments #dataType').val();
         var commentHTML = $('.active-comment-form').html();
-        if (!event.isDefaultPrevented()) {
-            if (validateField()) {
-                $.ajax({
-                    type: 'POST',
-                    url: ajaxURL,
-                    dataType: datatype,
-                    cache:true,
-                    data: $(this).serialize(),
-                    beforeSend: function() {
-                        $('.tx_nsnewscomments #submit').attr('disabled', true);
-                        $('.tx_nsnewscomments #submit').css('cursor', 'default');
-                    },
-                    success: function(response) {
-                        // GET HTML for comment list
-                        $(".tx_nsnewscomments #comments-list").load(location.href + " .tx_nsnewscomments #comments-list>*", function(responseTxt, statusTxt, jqXHR) {
-                           if(statusTxt == "success"){
-                                // Scroll to comment
-                                $.each(response, function(key, val) {
+        if (validateField()) {
+            $.ajax({
+                type: 'POST',
+                url: ajaxURL,
+                dataType: datatype,
+                cache:true,
+                data: $(this).serialize(),
+                beforeSend: function() {
+                    $('.tx_nsnewscomments #submit').attr('disabled', true);
+                    $('.tx_nsnewscomments #submit').css('cursor', 'default');
+                },
+                success: function(response) {
+                    var parsedResponse = nsNewsCommentsParseResponse(response);
+                    // GET HTML for comment list
+                    $(".tx_nsnewscomments #comments-list").load(location.href + " .tx_nsnewscomments #comments-list>*", function(responseTxt, statusTxt, jqXHR) {
+                       if(statusTxt == "success"){
+                            // Scroll to comment
+                            $.each(parsedResponse, function(key, val) {
                                     if (val.parentId == '') {
                                         $('.tx_nsnewscomments .thanksmsg').show();
                                         $('html, body').stop().animate({
@@ -97,15 +118,13 @@ function submitComment() {
                         addForm();
                     },
                 });
-                event.preventDefault();
-            } else {
-                return false;
-            }
         }
+        return false;
     });
 
     // Reply form
-    $(document).on("click", '.reply', function(event) {
+    $(document).off("click.nsNewsComments", '.tx_nsnewscomments .reply');
+    $(document).on("click.nsNewsComments", '.tx_nsnewscomments .reply', function(event) {
         var parentCommentId = $(this).parent().attr('id');
         var commentHTML = $('.active-comment-form').html();
         $('.active-comment-form .comment-form')[0].reset();
@@ -127,7 +146,8 @@ function submitComment() {
     });
 
     // Close form
-    $(document).on("click", ".tx_nsnewscomments #comment-form-close-btn", function(event) {
+    $(document).off("click.nsNewsComments", ".tx_nsnewscomments #comment-form-close-btn");
+    $(document).on("click.nsNewsComments", ".tx_nsnewscomments #comment-form-close-btn", function(event) {
         var parentCommentIdClose = $('#parentId').val();;
         $('#'+ parentCommentIdClose + ' .comment-btn.reply').show();
         addForm();

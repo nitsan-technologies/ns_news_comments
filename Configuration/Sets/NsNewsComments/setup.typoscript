@@ -18,22 +18,17 @@ plugin.tx_nsnewscomments {
 
 page {
     includeCSS {
-        nsnewscomment_StyleCss = {$nsNewsComments.settings.StyleCss}
-        nsnewscomment_StyleCss.if.isTrue = {$nsNewsComments.settings.StyleCss}
-        nsnewscomment_FontAwesomeCss = {$nsNewsComments.settings.FontAwesomeCss}
-        nsnewscomment_FontAwesomeCss.if.isTrue = {$nsNewsComments.settings.FontAwesomeCss}
-    }
-    includeJS {
-        nsnewscomment_Minjs = {$nsNewsComments.settings.Minjs}
+        nsnewscomment_StyleCss = EXT:ns_news_comments/Resources/Public/css/style.css
+        nsnewscomment_FontAwesomeCss = EXT:ns_news_comments/Resources/Public/css/font-awesome.min.css
     }
     includeJSFooter {
-        nsnewscomment_CustomJS = {$nsNewsComments.settings.CustomJS}
-        nsnewscomment_CustomJS.if.isTrue = {$nsNewsComments.settings.CustomJS}
+        nsnewscomment_Minjs = EXT:ns_news_comments/Resources/Public/js/jquery-3.6.3.min.js
+        nsnewscomment_CustomJS = EXT:ns_news_comments/Resources/Public/js/custom.js
     }
 }
 
-commentAjaxCall = PAGE
-commentAjaxCall {
+nsNewsCommentsAjaxCall = PAGE
+nsNewsCommentsAjaxCall {
     typeNum = 1730800496
     config {
         disableAllHeaderCode = 1

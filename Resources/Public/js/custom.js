@@ -15,7 +15,6 @@
         let $parentCommentId = '';
         replyComment();
     });
-})();
 
 function nsNewsCommentsParseResponse(response) {
     if (typeof response === 'string') {
@@ -405,3 +404,7 @@ function refreshCaptcha() {
     var img = document.images['captchaimg'];
     img.src = img.src.substring(0, img.src.lastIndexOf("?")) + "?rand=" + Math.random() * 1000;
 }
+
+    // Keep captcha refresh available for FormFields inline link
+    window.refreshCaptcha = refreshCaptcha;
+})();

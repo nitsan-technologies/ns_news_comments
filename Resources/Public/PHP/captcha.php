@@ -1,5 +1,6 @@
 <?php
 
+session_name('ns_news_comments_captcha');
 session_start();
 include('phptextClass.php');
 /*create class object*/

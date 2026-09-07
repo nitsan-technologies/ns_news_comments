@@ -51,14 +51,14 @@
     <div class="ns-form-group-main">
         <div class="ns-form-group">
             <div class="ns-captch">
-                <img src="{captcha_path}" id='captchaimg' alt="Captcha Code" /> <f:translate key="form.captchaRefresh" /> 
-                <a href='javascript: refreshCaptcha();' class="captchaLink"><f:translate key="form.captchaRefreshButton" /></a>
+                <img src="{captcha_path}" id="nsnewscomments-captchaimg" alt="Captcha Code" /> <f:translate key="form.captchaRefresh" />
+                <a href="#" class="captchaLink"><f:translate key="form.captchaRefreshButton" /></a>
             </div>
             <div class="ns-captch-input">
-                <label for="captcha"><f:translate key="tx_nsnewscomments_domain_model_comment.captcha" /> * </label>
-                <f:form.textfield name="captcha_code" class="validatethis" id="captcha" placeholder="{f:translate(key:'captcha')}"/>
-                <div class="error-msg" id="captcha_error"><p><f:translate key="captcha_required" /></p></div>
-                <div class="error-msg" id="captcha_valid_error"><p><f:translate key="form.captchaValidationError" /></p></div>
+                <label for="nsnewscomments-captcha"><f:translate key="tx_nsnewscomments_domain_model_comment.captcha" /> * </label>
+                <f:form.textfield name="captcha_code" class="validatethis" id="nsnewscomments-captcha" placeholder="{f:translate(key:'captcha')}"/>
+                <div class="error-msg" id="nsnewscomments-captcha_error"><p><f:translate key="captcha_required" /></p></div>
+                <div class="error-msg" id="nsnewscomments-captcha_valid_error"><p><f:translate key="form.captchaValidationError" /></p></div>
             </div>
         </div>
     </div>

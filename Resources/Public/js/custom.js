@@ -54,10 +54,9 @@ function submitComment() {
     $(document).off('submit.nsNewsComments', '.tx_nsnewscomments #comment-form');
     $(document).on('submit.nsNewsComments', '.tx_nsnewscomments #comment-form', function(event) {
         event.preventDefault();
-        var captcha = $('.tx_nsnewscomments #captcha').val();
+        var captcha = $('.tx_nsnewscomments #nsnewscomments-captcha').val();
         var ajaxURL = $(this).attr('action');
         var datatype = $('.tx_nsnewscomments #dataType').val();
-        var commentHTML = $('.active-comment-form').html();
         if (validateField()) {
             $.ajax({
                 type: 'POST',
@@ -71,50 +70,46 @@ function submitComment() {
                 },
                 success: function(response) {
                     var parsedResponse = nsNewsCommentsParseResponse(response);
-                    // GET HTML for comment list
-                    $(".tx_nsnewscomments #comments-list").load(location.href + " .tx_nsnewscomments #comments-list>*", function(responseTxt, statusTxt, jqXHR) {
-                       if(statusTxt == "success"){
-                            // Scroll to comment
-                            $.each(parsedResponse, function(key, val) {
-                                    if (val.parentId == '') {
-                                        $('.tx_nsnewscomments .thanksmsg').show();
-                                        $('html, body').stop().animate({
-                                            scrollTop: ($('.tx_nsnewscomments .thanksmsg').offset().top)
-                                        }, 2000);
-                                        setTimeout(function() {
-                                            $('.tx_nsnewscomments .thanksmsg').fadeOut("slow");
-                                        }, 7000);
-                                    } else {
-
-                                        $('.tx_nsnewscomments .thanksmsg-' + val.parentId).show();
-                                        $('html, body').stop().animate({
-                                            scrollTop: ($('.tx_nsnewscomments .thanksmsg-' + val.parentId).offset().top)
-                                        }, 2000);
-                                        setTimeout(function() {
-                                            $('.tx_nsnewscomments .thanksmsg-' + val.parentId).fadeOut("slow");
-                                        }, 7000);
-                                        $('.tx_nsnewscomments #comments-' + val.parentId).fadeIn('slow');
-                                        $('.tx_nsnewscomments #parentId').val('');
-                                    }
-                                });
-                            }
-                            if(statusTxt == "error"){
-                                alert("Error: " + jqXHR.status + " " + jqXHR.statusText);
+                    // GET HTML for comment list (strip captcha imgs so AJAX parse does not regenerate sessions)
+                    $.get(location.href, function (html) {
+                        html = String(html).replace(/(<img\b[^>]*\bsrc=["'])[^"']*captcha\.php[^"']*/gi, '$1');
+                        $(".tx_nsnewscomments #comments-list").html($('<div>').append($.parseHTML(html)).find('.tx_nsnewscomments #comments-list').children());
+                        $.each(parsedResponse, function(key, val) {
+                            if (val.parentId == '') {
+                                $('.tx_nsnewscomments .thanksmsg').show();
+                                $('html, body').stop().animate({
+                                    scrollTop: ($('.tx_nsnewscomments .thanksmsg').offset().top)
+                                }, 2000);
+                                setTimeout(function() {
+                                    $('.tx_nsnewscomments .thanksmsg').fadeOut("slow");
+                                }, 7000);
+                            } else {
+                                $('.tx_nsnewscomments .thanksmsg-' + val.parentId).show();
+                                $('html, body').stop().animate({
+                                    scrollTop: ($('.tx_nsnewscomments .thanksmsg-' + val.parentId).offset().top)
+                                }, 2000);
+                                setTimeout(function() {
+                                    $('.tx_nsnewscomments .thanksmsg-' + val.parentId).fadeOut("slow");
+                                }, 7000);
+                                $('.tx_nsnewscomments #comments-' + val.parentId).fadeIn('slow');
+                                $('.tx_nsnewscomments #parentId').val('');
                             }
                         });
+                    }).fail(function (jqXHR) {
+                        alert("Error: " + jqXHR.status + " " + jqXHR.statusText);
+                    });
                     },
                     error: function(jqXHR, textStatus, errorThrown) {
                         alert(textStatus + " " + errorThrown);
                     },
                     complete: function(response) {
                         $('.tx_nsnewscomments #comment-form')[0].reset();
-                        var captcha = document.getElementById("captcha");
-                        if(captcha){
-                            refreshCaptcha();
-                        }
                         $('.tx_nsnewscomments #submit').attr('disabled', false);
                         $('.tx_nsnewscomments #submit').css('cursor', 'pointer');
                         addForm();
+                        if ($('.tx_nsnewscomments #nsnewscomments-captchaimg').length) {
+                            refreshCaptcha();
+                        }
                     },
                 });
         }
@@ -125,10 +120,11 @@ function submitComment() {
     $(document).off("click.nsNewsComments", '.tx_nsnewscomments .reply');
     $(document).on("click.nsNewsComments", '.tx_nsnewscomments .reply', function(event) {
         var parentCommentId = $(this).parent().attr('id');
-        var commentHTML = $('.active-comment-form').html();
-        $('.active-comment-form .comment-form')[0].reset();
-        $('.active-comment-form').html('');
-        $('.active-comment-form').removeClass('active-comment-form');
+        var $active = $('.tx_nsnewscomments .active-comment-form');
+        var commentHTML = $active.html();
+        $active.find('.comment-form')[0].reset();
+        $active.html('');
+        $active.removeClass('active-comment-form');
         $(this).parent().parent().parent().parent().find('#reply-form-' + parentCommentId).append(commentHTML);
         $(this).parent().parent().parent().parent().find('#reply-form-' + parentCommentId).addClass('active-comment-form');
         $('#comment-form-close-btn').show();
@@ -147,7 +143,7 @@ function submitComment() {
     // Close form
     $(document).off("click.nsNewsComments", ".tx_nsnewscomments #comment-form-close-btn");
     $(document).on("click.nsNewsComments", ".tx_nsnewscomments #comment-form-close-btn", function(event) {
-        var parentCommentIdClose = $('#parentId').val();;
+        var parentCommentIdClose = $('.tx_nsnewscomments #parentId').val();
         $('#'+ parentCommentIdClose + ' .comment-btn.reply').show();
         addForm();
     });
@@ -155,9 +151,10 @@ function submitComment() {
 
 // Open form on close button click
 function addForm() {
-    var commentHTML = $('.active-comment-form').html();
-    $('.tx_nsnewscomments .active-comment-form').html('');
-    $('.tx_nsnewscomments .active-comment-form').removeClass('active-comment-form');
+    var $active = $('.tx_nsnewscomments .active-comment-form');
+    var commentHTML = $active.html();
+    $active.html('');
+    $active.removeClass('active-comment-form');
     $('.tx_nsnewscomments #form-comment-view').html(commentHTML);
     $('.tx_nsnewscomments #form-comment-view').addClass('active-comment-form');
     $('.tx_nsnewscomments #comment-form-close-btn').hide();
@@ -170,7 +167,7 @@ function addForm() {
 function validateField() {
     var flag = 1;
     var elementObj;
-    var captcha = document.getElementById("captcha");
+    var captcha = document.getElementById("nsnewscomments-captcha");
     var terms = document.getElementsByName('tx_nsnewscomments_newscomment[newComment][terms]').length;
 
     if (!$('.tx_nsnewscomments #name').val()) {
@@ -222,18 +219,18 @@ function validateField() {
     }
 
     if(captcha){
-        if (!$('.tx_nsnewscomments #captcha').val()) {
-            $(".tx_nsnewscomments #captcha").parent().addClass('has-error');
-            $(".tx_nsnewscomments #captcha_error").show();
-            $(".tx_nsnewscomments #captcha_valid_error").hide();
+        if (!$('.tx_nsnewscomments #nsnewscomments-captcha').val()) {
+            $(".tx_nsnewscomments #nsnewscomments-captcha").parent().addClass('has-error');
+            $(".tx_nsnewscomments #nsnewscomments-captcha_error").show();
+            $(".tx_nsnewscomments #nsnewscomments-captcha_valid_error").hide();
             var flag = 0;
         } else {
-            if (validateCaptcha($('.tx_nsnewscomments #captcha').val()) == 'true') {
-                $(".tx_nsnewscomments #captcha").parent().removeClass('has-error'); // remove it
+            if (validateCaptcha($('.tx_nsnewscomments #nsnewscomments-captcha').val()) == 'true') {
+                $(".tx_nsnewscomments #nsnewscomments-captcha").parent().removeClass('has-error'); // remove it
             } else {
-                $(".tx_nsnewscomments #captcha_valid_error").show();
-                $(".tx_nsnewscomments #captcha_error").hide();
-                $(".tx_nsnewscomments #captcha").parent().addClass('has-error');
+                $(".tx_nsnewscomments #nsnewscomments-captcha_valid_error").show();
+                $(".tx_nsnewscomments #nsnewscomments-captcha_error").hide();
+                $(".tx_nsnewscomments #nsnewscomments-captcha").parent().addClass('has-error');
                 var flag = 0;
             }
         }
@@ -317,22 +314,22 @@ function onFocusValidation() {
         }
     });
 
-    $(".tx_nsnewscomments #captcha").focusout(function() {
+    $(".tx_nsnewscomments #nsnewscomments-captcha").focusout(function() {
         elementObj = $(this);
         if (elementObj.val() != '') {
-            var length = $.trim($(".tx_nsnewscomments #captcha").val()).length;
+            var length = $.trim($(".tx_nsnewscomments #nsnewscomments-captcha").val()).length;
             if (length == 0) {
-                $(".tx_nsnewscomments #captcha_error").show();
-                $(".tx_nsnewscomments #captcha").parent().addClass('has-error');
+                $(".tx_nsnewscomments #nsnewscomments-captcha_error").show();
+                $(".tx_nsnewscomments #nsnewscomments-captcha").parent().addClass('has-error');
                 var flag = 0;
             } else {
-                $(".tx_nsnewscomments #captcha").parent().removeClass('has-error'); // remove it
-                $(".tx_nsnewscomments #captcha_error").hide();
-                $(".tx_nsnewscomments #captcha_valid_error").hide();
+                $(".tx_nsnewscomments #nsnewscomments-captcha").parent().removeClass('has-error'); // remove it
+                $(".tx_nsnewscomments #nsnewscomments-captcha_error").hide();
+                $(".tx_nsnewscomments #nsnewscomments-captcha_valid_error").hide();
             }
         } else {
-            $(".tx_nsnewscomments #captcha").parent().addClass('has-error');
-            $(".tx_nsnewscomments #captcha_error").show();
+            $(".tx_nsnewscomments #nsnewscomments-captcha").parent().addClass('has-error');
+            $(".tx_nsnewscomments #nsnewscomments-captcha_error").show();
         }
     });
 
@@ -362,16 +359,16 @@ function removeDefaultValidation() {
     $(".tx_nsnewscomments #comment").parent().removeClass('has-error');
     $(".tx_nsnewscomments #comment_error").hide();
 
-    $(".tx_nsnewscomments #captcha").parent().removeClass('has-error');
-    $(".tx_nsnewscomments #captcha_error").hide();
-    $(".tx_nsnewscomments #captcha_valid_error").hide();
+    $(".tx_nsnewscomments #nsnewscomments-captcha").parent().removeClass('has-error');
+    $(".tx_nsnewscomments #nsnewscomments-captcha_error").hide();
+    $(".tx_nsnewscomments #nsnewscomments-captcha_valid_error").hide();
 }
 
 // Validate Captcha field using ajax request
 function validateCaptcha(captcha) {
 
     var dataString = 'captcha=' + captcha;
-    var url = $('.verification').val();
+    var url = $('.tx_nsnewscomments .verification').val();
     var response = $.ajax({
         type: 'POST',
         async: false,
@@ -401,10 +398,15 @@ function validateName($name) {
 
 // Referech Captcha
 function refreshCaptcha() {
-    var img = document.images['captchaimg'];
-    img.src = img.src.substring(0, img.src.lastIndexOf("?")) + "?rand=" + Math.random() * 1000;
+    var img = document.getElementById('nsnewscomments-captchaimg');
+    if (img) {
+        img.src = img.src.substring(0, img.src.lastIndexOf("?")) + "?rand=" + Math.random() * 1000;
+    }
 }
 
-    // Keep captcha refresh available for FormFields inline link
-    window.refreshCaptcha = refreshCaptcha;
+    $(document).off('click.nsNewsCommentsCaptcha', '.tx_nsnewscomments .captchaLink');
+    $(document).on('click.nsNewsCommentsCaptcha', '.tx_nsnewscomments .captchaLink', function (event) {
+        event.preventDefault();
+        refreshCaptcha();
+    });
 })();

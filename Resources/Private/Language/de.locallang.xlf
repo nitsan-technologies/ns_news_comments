@@ -1,167 +1,212 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <xliff version="1.0">
-	<file source-language="en" target-language="de" datatype="plaintext" original="messages" date="2016-11-08T11:15:02Z" product-name="ns_news_comments">
-		<header/>
-		<body>
-			<trans-unit id="pi1_title" xml:space="preserve">
-				<target>News Kommentar</target>
-			</trans-unit>
-			<trans-unit id="backend.dateformate" xml:space="preserve">
-				<target>Datumsformat</target>
-			</trans-unit>
-			<trans-unit id="backend.timeformate" xml:space="preserve">
-				<target>Zeitformat</target>
-			</trans-unit>
-			<trans-unit id="backend.Image" xml:space="preserve">
-				<target>Kommentar Benutzerbild</target>
-			</trans-unit>
-			<trans-unit id="backend.captcha" xml:space="preserve">
-				<target>Deaktivieren Sie das Captcha</target>
-			</trans-unit>
-			<trans-unit id="backend.userSettings.1" xml:space="preserve">
-				<target>FE-Benutzer sowie der anonyme Benutzer können die Nachrichten kommentieren</target>
-			</trans-unit>
-			<trans-unit id="backend.userSettings.2" xml:space="preserve">
-				<target>Nur FE-Benutzer können Neuigkeiten kommentieren</target>
-			</trans-unit>
-			<trans-unit id="backend.feUserloginpid" xml:space="preserve">
-				<target>FE-Benutzer Anmeldeseite ID</target>
-			</trans-unit>
-			<trans-unit id="tx_nsnewscomments_domain_model_comment">
-				<target>Kommentar</target>
-			</trans-unit>
-			<trans-unit id="tx_nsnewscomments_domain_model_comment.newsuid">
-				<target>Newsuid</target>
-			</trans-unit>
-			<trans-unit id="tx_nsnewscomments_domain_model_comment.username">
-				<target>Name</target>
-			</trans-unit>
-			<trans-unit id="tx_nsnewscomments_domain_model_comment.usermail">
-				<target>Email</target>
-			</trans-unit>
-			<trans-unit id="tx_nsnewscomments_domain_model_comment.comment">
-				<target>Kommentar</target>
-			</trans-unit>
-			<trans-unit id="tx_nsnewscomments_domain_model_comment.lblcomments">
-				<target>Bemerkungen</target>
-			</trans-unit>
-			<trans-unit id="tx_nsnewscomments_domain_model_comment.name">
-				<target>Name</target>
-			</trans-unit>
-			<trans-unit id="tx_nsnewscomments_domain_model_comment.email">
-				<target>Email</target>
-			</trans-unit>
-			<trans-unit id="email">
-				<target>Bitte gib deine gültige E-Mail Adresse ein</target>
-			</trans-unit>
-			<trans-unit id="email_required">
-				<target>Gültige E-Mail ist erforderlich!</target>
-			</trans-unit>
-			<trans-unit id="name">
-				<target>Bitte gib Deinen Namen ein</target>
-			</trans-unit>
-			<trans-unit id="name_required">
-				<target>Name ist erforderlich!</target>
-			</trans-unit>
-			<trans-unit id="comment">
-				<target>Bitte gib deinen Kommentar ein</target>
-			</trans-unit>
-			<trans-unit id="comment_required">
-				<target>Kommentar ist erforderlich!</target>
-			</trans-unit>
-			<trans-unit id="captcha">
-				<target>Gib den obigen Code hier ein</target>
-			</trans-unit>
-			<trans-unit id="captcha_required">
-				<target>Captcha ist erforderlich!</target>
-			</trans-unit>
-			<trans-unit id="tx_nsnewscomments_domain_model_comment.captcha">
-				<target>Gib den obigen Code hier ein</target>
-			</trans-unit>
-			<trans-unit id="tx_nsnewscomments_domain_model_comment.replylabel">
-				<target>Antworten</target>
-			</trans-unit>
-			<trans-unit id="tx_nsnewscomments_domain_model_comment.nocommentsfound">
-				<target>Sei der erste der kommentiert</target>
-			</trans-unit>
-			<trans-unit id="at">
-				<target>um</target>
-			</trans-unit>
-			<trans-unit id="tx_nsnewscomments_domain_model_comment.mailmessage">
-				<target>Neuer Kommentar wird zu News hinzugefügt</target>
-			</trans-unit>
-			<trans-unit id="form.submitButton">
-				<target>Kommentar hinzufügen</target>
-			</trans-unit>
-			<trans-unit id="tx_nsnewscomments_domain_model_comment.newsTitle">
-				<target>News</target>
-			</trans-unit>
-			<trans-unit id="mandatory">
-				<target>Diese Felder sind erforderlich.</target>
-			</trans-unit>
-			<trans-unit id="replytext">
-				<target>Antworte auf Kommentar</target>
-			</trans-unit>
-			<trans-unit id="form.emailError">
-				<target>Gib eine gültige E-Mail Adresse ein</target>
-			</trans-unit>
-			<trans-unit id="form.nameError">
-				<target>Geben Sie einen gültigen Namen ein</target>
-			</trans-unit>
-			<trans-unit id="form.captchaValidationError">
-				<target>Code stimmt nicht überein!</target>
-			</trans-unit>
-			<trans-unit id="tx_nsnewscomments_domain_model_comment.validationMessage">
-				<target>Code stimmt nicht überein</target>
-			</trans-unit>
-			<trans-unit id="form.captchaRefresh">
-				<target>Kann das Bild nicht gelesen werden? </target>
-			</trans-unit>
-			<trans-unit id="form.captchaRefreshButton">
-				<target>Klicken Sie hier, um zu aktualisieren</target>
-			</trans-unit>
-			<trans-unit id="form.thankyouMessage">
-				<target>Danke für deinen Kommentar. Dein Kommentar wurde erfolgreich hinzugefügt.</target>
-			</trans-unit>
-			<trans-unit id="tx_nsnewscomments_domain_model_comment.errorMessage">
-				<target>Kein Nachrichteneintrag gefunden</target>
-			</trans-unit>
-			<trans-unit id="CommentsandResponses">
-				<target>Kommentare und Antworten</target>
-			</trans-unit>
-			<trans-unit id="newsfelogin">
-				<target>Klick hier</target>
-			</trans-unit>
-			<trans-unit id="newsfeloginmsg">
-				<target>anmelden und Kommentare hinzufügen.</target>
-			</trans-unit>
-			<trans-unit id="commentas">
-				<target>Kommentar wird hinzugefügt als</target>
-			</trans-unit>
-			<trans-unit id="confirm1">
-				<target>Derzeit wird dieser Kommentar nicht in den Nachrichten angezeigt.</target>
-			</trans-unit>
-			<trans-unit id="confirm2">
-				<target>Klick hier</target>
-			</trans-unit>
-			<trans-unit id="confirm3">
-				<target>um diesen Kommentar in den Nachrichten anzuzeigen.</target>
-			</trans-unit>
-			<trans-unit id="close">
-				<target>Schließen</target>
-			</trans-unit>
-            <trans-unit id="form.termsError">
-                <target>Bitte akzeptieren Sie den Datenschutz</target>
-            </trans-unit>
-            <trans-unit id="terms_required">
-                <target>Zustimmung zum Datenschutz ist erforderlich!</target>
-            </trans-unit>
-            <trans-unit id="terms.label">
-                <target>Datenschutz</target>
-            </trans-unit>
-            <trans-unit id="terms.text">
-                <target><![CDATA[Ich akzeptiere den <a href="%s" target="_blank">Datenschutz</a>.]]></target>
-            </trans-unit>
-		</body>
-	</file>
+  <file source-language="en" datatype="plaintext" original="messages" date="2016-11-08T11:15:02Z" product-name="ns_news_comments" target-language="de">
+    <header/>
+    <body>
+      <trans-unit id="pi1_title" xml:space="preserve" approved="yes">
+				<source>News Comment</source>
+			<target state="final">Nachrichtenkommentar</target></trans-unit>
+      <trans-unit id="backend.dateformate" xml:space="preserve" approved="yes">
+				<source>Date Formate</source>
+			<target state="final">Datumsformat</target></trans-unit>
+      <trans-unit id="backend.timeformate" xml:space="preserve" approved="yes">
+				<source>Time Formate</source>
+			<target state="final">Zeitformat</target></trans-unit>
+      <trans-unit id="backend.Image" xml:space="preserve" approved="yes">
+				<source>Comment User Image</source>
+			<target state="final">Kommentar Benutzerbild</target></trans-unit>
+      <trans-unit id="backend.captcha" xml:space="preserve" approved="yes">
+				<source>Disable Captcha</source>
+			<target state="final">Captcha deaktivieren</target></trans-unit>
+      <trans-unit id="backend.userSettings.1" xml:space="preserve" approved="yes">
+				<source>FE-user as well as the Anonymous user can comment on the news</source>
+			<target state="final">Sowohl FE-Benutzer als auch anonyme Benutzer können die Nachrichten kommentieren.</target></trans-unit>
+      <trans-unit id="backend.userSettings.2" xml:space="preserve" approved="yes">
+				<source>Only FE-users can comment on news</source>
+			<target state="final">Nur FE-Benutzer können Nachrichten kommentieren.</target></trans-unit>
+      <trans-unit id="backend.feUserloginpid" xml:space="preserve" approved="yes">
+				<source>FE-user login page Id</source>
+			<target state="final">FE-Benutzer-Anmeldeseite ID</target></trans-unit>
+      <trans-unit id="tx_nsnewscomments_domain_model_comment" approved="yes">
+        <source>Comment</source>
+        <target state="final">Kommentar</target>
+      </trans-unit>
+      <trans-unit id="tx_nsnewscomments_domain_model_comment.newsuid" approved="yes">
+        <source>Newsuid</source>
+        <target state="final">Newsuid</target>
+      </trans-unit>
+      <trans-unit id="tx_nsnewscomments_domain_model_comment.username" approved="yes">
+        <source>Name</source>
+        <target state="final">Name</target>
+      </trans-unit>
+      <trans-unit id="tx_nsnewscomments_domain_model_comment.usermail" approved="yes">
+        <source>Email</source>
+        <target state="final">E-Mail</target>
+      </trans-unit>
+      <trans-unit id="tx_nsnewscomments_domain_model_comment.comment" approved="yes">
+        <source>Comment</source>
+        <target state="final">Kommentar</target>
+      </trans-unit>
+      <trans-unit id="tx_nsnewscomments_domain_model_comment.lblcomments" approved="yes">
+        <source>Comments</source>
+        <target state="final">Kommentare</target>
+      </trans-unit>
+      <trans-unit id="tx_nsnewscomments_domain_model_comment.name" approved="yes">
+        <source>Name</source>
+        <target state="final">Name</target>
+      </trans-unit>
+      <trans-unit id="tx_nsnewscomments_domain_model_comment.email" approved="yes">
+        <source>Email</source>
+        <target state="final">E-Mail</target>
+      </trans-unit>
+      <trans-unit id="email" approved="yes">
+        <source>Please enter your valid email address</source>
+        <target state="final">Bitte geben Sie Ihre gültige E-Mail-Adresse ein.</target>
+      </trans-unit>
+      <trans-unit id="email_required" approved="yes">
+        <source>Valid email is required!</source>
+        <target state="final">Eine gültige E-Mail-Adresse ist erforderlich!</target>
+      </trans-unit>
+      <trans-unit id="name" approved="yes">
+        <source>Please enter your name</source>
+        <target state="final">Bitte geben Sie Ihren Namen ein.</target>
+      </trans-unit>
+      <trans-unit id="name_required" approved="yes">
+        <source>Name is required!</source>
+        <target state="final">Name ist erforderlich!</target>
+      </trans-unit>
+      <trans-unit id="comment" approved="yes">
+        <source>Please enter your comment</source>
+        <target state="final">Bitte geben Sie Ihren Kommentar ein.</target>
+      </trans-unit>
+      <trans-unit id="comment_required" approved="yes">
+        <source>Comment is required!</source>
+        <target state="final">Kommentar erforderlich!</target>
+      </trans-unit>
+      <trans-unit id="captcha" approved="yes">
+        <source>Enter the above code here</source>
+        <target state="final">Geben Sie den obenstehenden Code hier ein.</target>
+      </trans-unit>
+      <trans-unit id="captcha_required" approved="yes">
+        <source>Captcha is required!</source>
+        <target state="final">Captcha ist erforderlich!</target>
+      </trans-unit>
+      <trans-unit id="tx_nsnewscomments_domain_model_comment.captcha" approved="yes">
+        <source>Enter the above code here</source>
+        <target state="final">Geben Sie den obenstehenden Code hier ein.</target>
+      </trans-unit>
+      <trans-unit id="tx_nsnewscomments_domain_model_comment.replylabel" approved="yes">
+        <source>Reply</source>
+        <target state="final">Antworten</target>
+      </trans-unit>
+      <trans-unit id="tx_nsnewscomments_domain_model_comment.nocommentsfound" approved="yes">
+        <source>Be the First to Comment</source>
+        <target state="final">Seien Sie der Erste, der einen Kommentar abgibt</target>
+      </trans-unit>
+      <trans-unit id="at" approved="yes">
+        <source>At</source>
+        <target state="final">Bei</target>
+      </trans-unit>
+      <trans-unit id="tx_nsnewscomments_domain_model_comment.mailmessage" approved="yes">
+        <source>New Comment are added on news</source>
+        <target state="final">Neue Kommentare werden zu Nachrichten hinzugefügt</target>
+      </trans-unit>
+      <trans-unit id="form.submitButton" approved="yes">
+        <source>Post comment</source>
+        <target state="final">Kommentar schreiben</target>
+      </trans-unit>
+      <trans-unit id="tx_nsnewscomments_domain_model_comment.newsTitle" approved="yes">
+        <source>News</source>
+        <target state="final">Nachrichten</target>
+      </trans-unit>
+      <trans-unit id="mandatory" approved="yes">
+        <source>These fields are required.</source>
+        <target state="final">Diese Felder sind Pflichtfelder.</target>
+      </trans-unit>
+      <trans-unit id="replytext" approved="yes">
+        <source>Reply to comment</source>
+        <target state="final">Auf Kommentar antworten</target>
+      </trans-unit>
+      <trans-unit id="form.emailError" approved="yes">
+        <source>Enter valid email address</source>
+        <target state="final">Geben Sie eine gültige E-Mail-Adresse ein.</target>
+      </trans-unit>
+      <trans-unit id="form.nameError" approved="yes">
+        <source>Enter valid name</source>
+        <target state="final">Geben Sie einen gültigen Namen ein.</target>
+      </trans-unit>
+      <trans-unit id="form.captchaValidationError" approved="yes">
+        <source>Code does not match!</source>
+        <target state="final">Der Code stimmt nicht überein!</target>
+      </trans-unit>
+      <trans-unit id="tx_nsnewscomments_domain_model_comment.validationMessage" approved="yes">
+        <source>Code does not match</source>
+        <target state="final">Der Code stimmt nicht überein.</target>
+      </trans-unit>
+      <trans-unit id="form.captchaRefresh" approved="yes">
+        <source>Can't read the image? </source>
+        <target state="final">Das Bild kann nicht gelesen werden?</target>
+      </trans-unit>
+      <trans-unit id="form.captchaRefreshButton" approved="yes">
+        <source>Click here to refresh</source>
+        <target state="final">Klicken Sie hier, um die Seite zu aktualisieren.</target>
+      </trans-unit>
+      <trans-unit id="form.thankyouMessage" approved="yes">
+        <source>Thank you for your comment. Your Comment Added Successfully.</source>
+        <target state="final">Vielen Dank für Ihren Kommentar. Ihr Kommentar wurde erfolgreich hinzugefügt.</target>
+      </trans-unit>
+      <trans-unit id="tx_nsnewscomments_domain_model_comment.errorMessage" approved="yes">
+        <source>No News Entry Found</source>
+        <target state="final">Keine Nachrichten gefunden</target>
+      </trans-unit>
+      <trans-unit id="CommentsandResponses" approved="yes">
+        <source>Comments and Responses</source>
+        <target state="final">Kommentare und Antworten</target>
+      </trans-unit>
+      <trans-unit id="newsfelogin" approved="yes">
+        <source>Click here</source>
+        <target state="final">Hier klicken</target>
+      </trans-unit>
+      <trans-unit id="newsfeloginmsg" approved="yes">
+        <source>to login and add your comments.</source>
+        <target state="final">um sich anzumelden und Ihre Kommentare hinzuzufügen.</target>
+      </trans-unit>
+      <trans-unit id="commentas" approved="yes">
+        <source>Comment will be added as</source>
+        <target state="final">Kommentar wird hinzugefügt als</target>
+      </trans-unit>
+      <trans-unit id="confirm1" approved="yes">
+        <source>Currently, this comment is not displayed on the news.</source>
+        <target state="final">Derzeit wird dieser Kommentar nicht in den Nachrichten angezeigt.</target>
+      </trans-unit>
+      <trans-unit id="confirm2" approved="yes">
+        <source>Click Here</source>
+        <target state="final">Hier klicken</target>
+      </trans-unit>
+      <trans-unit id="confirm3" approved="yes">
+        <source>to display this comment on the news.</source>
+        <target state="final">diesen Kommentar in den Nachrichten anzeigen.</target>
+      </trans-unit>
+      <trans-unit id="form.termsError" approved="yes">
+        <source>Please accept</source>
+        <target state="final">Bitte akzeptieren Sie</target>
+      </trans-unit>
+      <trans-unit id="terms_required" approved="yes">
+        <source>Terms is required!</source>
+        <target state="final">Bedingungen sind erforderlich!</target>
+      </trans-unit>
+      <trans-unit id="terms.label" approved="yes">
+        <source>Terms</source>
+        <target state="final">Begriffe</target>
+      </trans-unit>
+      <trans-unit id="terms.text" approved="yes">
+        <source><![CDATA[I accept the <a href="%s" target="_blank">terms</a>.]]></source>
+        <target state="final"><![CDATA[Ich akzeptiere die <a href="%s" target="_blank">Bedingungen</a>.]]></target>
+      </trans-unit>
+      <trans-unit id="close" approved="yes">
+        <source>Close</source>
+        <target state="final">Schließen</target>
+      </trans-unit>
+    </body>
+  </file>
 </xliff>

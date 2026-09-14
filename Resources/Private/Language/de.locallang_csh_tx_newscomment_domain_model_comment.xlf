@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<xliff version="1.0">
+  <file source-language="en" datatype="plaintext" original="messages" date="2016-11-08T11:15:02Z" product-name="ns_news_comments" target-language="de">
+    <header/>
+    <body>
+      <trans-unit id="newsuid.description" approved="yes">
+        <source>newsuid</source>
+        <target state="final">Nachrichten-ID</target>
+      </trans-unit>
+      <trans-unit id="username.description" approved="yes">
+        <source>username</source>
+        <target state="final">Benutzername</target>
+      </trans-unit>
+      <trans-unit id="usermail.description" approved="yes">
+        <source>usermail</source>
+        <target state="final">Benutzer-E-Mail</target>
+      </trans-unit>
+      <trans-unit id="comment.description" approved="yes">
+        <source>comment</source>
+        <target state="final">Kommentar</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

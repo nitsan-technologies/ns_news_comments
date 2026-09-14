@@ -3,21 +3,21 @@
   <file source-language="en" datatype="plaintext" original="messages" date="2016-11-08T11:15:02Z" product-name="ns_news_comments" target-language="de">
     <header/>
     <body>
-      <trans-unit id="newsuid.description">
+      <trans-unit id="newsuid.description" approved="yes">
         <source>newsuid</source>
-        <target state="translated">Nachrichten-ID</target>
+        <target state="final">Nachrichten-ID</target>
       </trans-unit>
-      <trans-unit id="username.description">
+      <trans-unit id="username.description" approved="yes">
         <source>username</source>
-        <target state="translated">Benutzername</target>
+        <target state="final">Benutzername</target>
       </trans-unit>
-      <trans-unit id="usermail.description">
+      <trans-unit id="usermail.description" approved="yes">
         <source>usermail</source>
-        <target state="translated">Benutzer-E-Mail</target>
+        <target state="final">Benutzer-E-Mail</target>
       </trans-unit>
-      <trans-unit id="comment.description">
+      <trans-unit id="comment.description" approved="yes">
         <source>comment</source>
-        <target state="translated">Kommentar</target>
+        <target state="final">Kommentar</target>
       </trans-unit>
     </body>
   </file>

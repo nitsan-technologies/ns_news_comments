@@ -77,9 +77,9 @@ class CommentController extends ActionController
 
 
     public function __construct(
-        CommentRepository  $commentRepository,
+        CommentRepository $commentRepository,
         PersistenceManager $persistenceManager,
-        NewsRepository     $newsRepository
+        NewsRepository $newsRepository
     ) {
         $this->commentRepository = $commentRepository;
         $this->persistenceManager = $persistenceManager;
@@ -98,7 +98,7 @@ class CommentController extends ActionController
         $this->typo3VersionArray = VersionNumberUtility::convertVersionStringToArray(VersionNumberUtility::getCurrentTypo3Version());
         $getData = $this->request->getQueryParams();
         $postData = $this->request->getParsedBody();
-        $requestData = array_merge($getData, (array)$postData);
+        $requestData = array_merge($getData, (array) $postData);
         $newsArr = $requestData['tx_news_pi1'] ?? [];
         $newsUid = '';
         if (is_null($newsArr)) {
@@ -108,10 +108,10 @@ class CommentController extends ActionController
         } else {
             $newsUid = $newsArr['news'] ?? null;
         }
-        $this->newsUid = (int)$newsUid;
+        $this->newsUid = (int) $newsUid;
 
         // Storage page configuration
-        $versionNumber =  VersionNumberUtility::convertVersionStringToArray(VersionNumberUtility::getCurrentTypo3Version());
+        $versionNumber = VersionNumberUtility::convertVersionStringToArray(VersionNumberUtility::getCurrentTypo3Version());
         if ($versionNumber['version_main'] <= '12') {
             // @extensionScannerIgnoreLine
             $this->pageUid = $GLOBALS['TSFE']->id;
@@ -150,6 +150,7 @@ class CommentController extends ActionController
             $pid = $extbaseFrameworkConfiguration['persistence']['storagePid'];
         }
         $setting = $this->settings;
+
         if ($this->newsUid) {
             $comments = $this->commentRepository->getCommentsByNews($this->newsUid)->toArray();
 
@@ -162,6 +163,10 @@ class CommentController extends ActionController
                 ]);
             }
 
+            $resolvedFormats = $this->resolveDateAndTimeFormat($setting);
+            $setting['dateFormat'] = $resolvedFormats['dateFormat'];
+            $setting['timeFormat'] = $resolvedFormats['timeFormat'];
+
             $this->view->assignMultiple([
                 'comments' => $comments,
                 'newsID' => $this->newsUid,
@@ -170,8 +175,9 @@ class CommentController extends ActionController
                 'settings' => $setting,
             ]);
         } else {
+
             $error = LocalizationUtility::translate('tx_nsnewscomments_domain_model_comment.errorMessage', 'NsNewsComments');
-            if (version_compare((string)$this->typo3VersionArray['version_main'], '11', '>')) {
+            if (version_compare((string) $this->typo3VersionArray['version_main'], '11', '>')) {
                 $this->addFlashMessage($error, '', ContextualFeedbackSeverity::ERROR);
             } else {
                 // @extensionScannerIgnoreLine
@@ -179,6 +185,74 @@ class CommentController extends ActionController
             }
         }
         return $this->htmlResponse();
+    }
+
+    protected function resolveDateAndTimeFormat(array $setting): array
+    {
+        $site = $this->request->getAttribute('site');
+        $siteSettings = $site !== null ? $site->getSettings() : null;
+
+        $siteUseCustom = $siteSettings !== null
+            ? (string) $siteSettings->get('nsNewsComments.settings.useCustomDateTimeFormat', '0')
+            : (string) ($setting['useCustomDateTimeFormat'] ?? '0');
+
+        $siteDateFormat = $siteSettings !== null
+            ? (string) $siteSettings->get('nsNewsComments.settings.dateFormat', 'F j Y')
+            : (string) ($setting['dateFormat'] ?? 'F j Y');
+
+        $siteTimeFormat = $siteSettings !== null
+            ? (string) $siteSettings->get('nsNewsComments.settings.timeFormat', 'g:i a')
+            : (string) ($setting['timeFormat'] ?? 'g:i a');
+
+        $siteCustomDateFormat = $siteSettings !== null
+            ? (string) $siteSettings->get('nsNewsComments.settings.customDateFormat', 'F j Y')
+            : (string) ($setting['customDateFormat'] ?? 'F j Y');
+
+        $siteCustomTimeFormat = $siteSettings !== null
+            ? (string) $siteSettings->get('nsNewsComments.settings.customTimeFormat', 'g:i a')
+            : (string) ($setting['customTimeFormat'] ?? 'g:i a');
+
+        // Site's own effective format, honoring its own custom toggle
+        $resolvedSiteDateFormat = ($siteUseCustom === '1') ? $siteCustomDateFormat : $siteDateFormat;
+        $resolvedSiteTimeFormat = ($siteUseCustom === '1') ? $siteCustomTimeFormat : $siteTimeFormat;
+
+        // 'custom' key only ever exists when FlexForm was actually processed (plugin usage)
+        $usingFlexForm = array_key_exists('custom', $setting);
+
+        if ($usingFlexForm) {
+            // ---- PLUGIN: FlexForm always wins ----
+
+            // DATE (independent)
+            if (($setting['custom'] ?? '0') == '1') {
+                $dateFormat = !empty($setting['customdate']) ? $setting['customdate'] : $resolvedSiteDateFormat;
+            } elseif (($setting['dateFormat'] ?? '') === 'global') {
+                $dateFormat = $resolvedSiteDateFormat; // Case 1
+            } elseif (!empty($setting['dateFormat'])) {
+                $dateFormat = $setting['dateFormat']; // concrete FlexForm pick, untouched
+            } else {
+                $dateFormat = $resolvedSiteDateFormat;
+            }
+
+            // TIME (independent)
+            if (($setting['custom'] ?? '0') == '1') {
+                $timeFormat = !empty($setting['customtime']) ? $setting['customtime'] : $resolvedSiteTimeFormat;
+            } elseif (($setting['timeFormat'] ?? '') === 'global') {
+                $timeFormat = $resolvedSiteTimeFormat; // Case 1
+            } elseif (!empty($setting['timeFormat'])) {
+                $timeFormat = $setting['timeFormat']; // concrete FlexForm pick, untouched
+            } else {
+                $timeFormat = $resolvedSiteTimeFormat;
+            }
+        } else {
+            // ---- cObject: Site Settings always win (Case 2) ----
+            $dateFormat = $resolvedSiteDateFormat;
+            $timeFormat = $resolvedSiteTimeFormat;
+        }
+
+        return [
+            'dateFormat' => $dateFormat,
+            'timeFormat' => $timeFormat,
+        ];
     }
 
     /**
@@ -235,7 +309,8 @@ class CommentController extends ActionController
         $excludeFromQueryString = [
             'tx_nsnewscomments_newscomment[action]',
             'tx_nsnewscomments_newscomment[controller]',
-            'tx_nsnewscomments_newscomment', 'type'
+            'tx_nsnewscomments_newscomment',
+            'type'
         ];
         $this->uriBuilder
             ->reset()

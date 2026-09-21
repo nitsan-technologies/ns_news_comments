@@ -6,13 +6,16 @@ plugin.tx_nsnewscomments {
         partialRootPaths.0 = {$nsNewsComments.view.partialRootPath}
         layoutRootPaths.0 = {$nsNewsComments.view.layoutRootPath}
     }
-    settings {
-        termsRequired = {$nsNewsComments.settings.termsRequired}
-        termsTypolinkParameter = {$nsNewsComments.settings.termsTypolinkParameter}
-        dateFormat = {$nsNewsComments.settings.dateFormat}
-        timeFormat = {$nsNewsComments.settings.timeFormat}
-        captcha = {$nsNewsComments.settings.captcha}
-        storagePid = {$nsNewsComments.settings.storagePid}
+    settings { 
+        termsRequired = {$nsNewsComments.settings.termsRequired} 
+        termsTypolinkParameter = {$nsNewsComments.settings.termsTypolinkParameter} 
+        useCustomDateTimeFormat = {$nsNewsComments.settings.useCustomDateTimeFormat} 
+        dateFormat = {$nsNewsComments.settings.dateFormat} 
+        timeFormat = {$nsNewsComments.settings.timeFormat} 
+        customDateFormat = {$nsNewsComments.settings.customDateFormat} 
+        customTimeFormat = {$nsNewsComments.settings.customTimeFormat} 
+        captcha = {$nsNewsComments.settings.captcha} 
+        storagePid = {$nsNewsComments.settings.storagePid} 
     }
 }
 

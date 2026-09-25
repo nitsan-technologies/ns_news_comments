@@ -7,8 +7,11 @@ plugin.tx_nsnewscomments {
     settings {
         termsRequired = {$plugin.tx_nsnewscomments.settings.termsRequired}
         termsTypolinkParameter = {$plugin.tx_nsnewscomments.settings.termsTypolinkParameter}
-        dateFormat = {$plugin.tx_nsnewscomments.settings.dateFormat}
-        timeFormat = {$plugin.tx_nsnewscomments.settings.timeFormat}
+        globalDateFormat = {$plugin.tx_nsnewscomments.settings.globalDateFormat}
+        globalTimeFormat = {$plugin.tx_nsnewscomments.settings.globalTimeFormat}
+        useGlobalCustomDateTimeFormat = {$plugin.tx_nsnewscomments.settings.useGlobalCustomDateTimeFormat}
+        globalCustomDateFormat = {$plugin.tx_nsnewscomments.settings.globalCustomDateFormat}
+        globalCustomTimeFormat = {$plugin.tx_nsnewscomments.settings.globalCustomTimeFormat}
         captcha = {$plugin.tx_nsnewscomments.settings.captcha}
         storagePid = {$plugin.tx_nsnewscomments.settings.storagePid}
     }

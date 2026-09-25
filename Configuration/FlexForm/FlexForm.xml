@@ -58,6 +58,10 @@
 									  <numIndex index="0">LLL:EXT:ns_news_comments/Resources/Private/Language/locallang_db.xlf:flexform.dateFormat.3</numIndex>
 									  <numIndex index="1">d/m/Y</numIndex>
 									</numIndex>
+									<numIndex index="4">
+									  <numIndex index="0">LLL:EXT:ns_news_comments/Resources/Private/Language/locallang_db.xlf:flexform.dateFormat.4</numIndex>
+									  <numIndex index="1">global</numIndex>
+									</numIndex>
 								</items>
 								<default>F j, Y</default>
 	                    	</config>
@@ -79,6 +83,10 @@
 									<numIndex index="2">
 									  <numIndex index="0">LLL:EXT:ns_news_comments/Resources/Private/Language/locallang_db.xlf:flexform.timeFormat.2</numIndex>
 									  <numIndex index="1">H:i</numIndex>
+									</numIndex>
+									<numIndex index="4">
+									  <numIndex index="0">LLL:EXT:ns_news_comments/Resources/Private/Language/locallang_db.xlf:flexform.timeFormat.3</numIndex>
+									  <numIndex index="1">global</numIndex>
 									</numIndex>
 								</items>
 								<default>g:i a</default>

@@ -12,10 +12,13 @@ plugin.tx_nsnewscomments {
     settings {
         termsRequired = {$nsNewsComments.settings.termsRequired}
         termsTypolinkParameter = {$nsNewsComments.settings.termsTypolinkParameter}
-        dateFormat = {$nsNewsComments.settings.dateFormat}
-        timeFormat = {$nsNewsComments.settings.timeFormat}
         captcha = {$nsNewsComments.settings.captcha}
         storagePid = {$nsNewsComments.settings.storagePid}
+        globalDateFormat = {$nsNewsComments.settings.globalDateFormat}
+        globalTimeFormat = {$nsNewsComments.settings.globalTimeFormat}
+        useGlobalCustomDateTimeFormat = {$nsNewsComments.settings.useGlobalCustomDateTimeFormat}
+        globalCustomDateFormat = {$nsNewsComments.settings.globalCustomDateFormat}
+        globalCustomTimeFormat = {$nsNewsComments.settings.globalCustomTimeFormat}
     }
 }
 
@@ -73,8 +76,8 @@ lib.tx_nsnewscomments.comments {
         relatedComments = 1
         termsRequired = {$nsNewsComments.settings.termsRequired}
         termsTypolinkParameter = {$nsNewsComments.settings.termsTypolinkParameter}
-        dateFormat = {$nsNewsComments.settings.dateFormat}
-        timeFormat = {$nsNewsComments.settings.timeFormat}
+        globalDateFormat = {$nsNewsComments.settings.globalDateFormat}
+        globalTimeFormat = {$nsNewsComments.settings.globalTimeFormat}
         captcha = {$nsNewsComments.settings.captcha}
         storagePid = {$nsNewsComments.settings.storagePid}
     }

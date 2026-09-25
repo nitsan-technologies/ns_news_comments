@@ -154,7 +154,7 @@ class CommentController extends ActionController
         if ($this->newsUid) {
             $comments = $this->commentRepository->getCommentsByNews($this->newsUid)->toArray();
 
-            if ($this->settings['captcha'] == '0' || $this->settings['captcha'] == '') {
+            if (isset($this->settings['captcha']) && ($this->settings['captcha'] == '0' || $this->settings['captcha'] == '')) {
                 $paths = $this->captchaVerificationPath();
                 $captcha_path = $paths['captcha'] . '?' . rand();
                 $this->view->assignMultiple([
@@ -163,9 +163,10 @@ class CommentController extends ActionController
                 ]);
             }
 
-            $resolvedFormats = $this->resolveDateAndTimeFormat($setting);
-            $setting['dateFormat'] = $resolvedFormats['dateFormat'];
-            $setting['timeFormat'] = $resolvedFormats['timeFormat'];
+
+            $dateTime = $this->resolveDateTime($setting);
+            $setting['dateFormat'] = $dateTime['dateFormat'] ?? '';
+            $setting['timeFormat'] = $dateTime['timeFormat'] ?? '';
 
             $this->view->assignMultiple([
                 'comments' => $comments,
@@ -175,7 +176,6 @@ class CommentController extends ActionController
                 'settings' => $setting,
             ]);
         } else {
-
             $error = LocalizationUtility::translate('tx_nsnewscomments_domain_model_comment.errorMessage', 'NsNewsComments');
             if (version_compare((string) $this->typo3VersionArray['version_main'], '11', '>')) {
                 $this->addFlashMessage($error, '', ContextualFeedbackSeverity::ERROR);
@@ -187,74 +187,82 @@ class CommentController extends ActionController
         return $this->htmlResponse();
     }
 
-    protected function resolveDateAndTimeFormat(array $setting): array
+    protected function resolveDateTime(array $setting): array
     {
         $site = $this->request->getAttribute('site');
         $siteSettings = $site !== null ? $site->getSettings() : null;
 
         $siteUseCustom = $siteSettings !== null
             ? (string) $siteSettings->get('nsNewsComments.settings.useCustomDateTimeFormat', '0')
-            : (string) ($setting['useCustomDateTimeFormat'] ?? '0');
+            : '0';
 
-        $siteDateFormat = $siteSettings !== null
-            ? (string) $siteSettings->get('nsNewsComments.settings.dateFormat', 'F j Y')
-            : (string) ($setting['dateFormat'] ?? 'F j Y');
+        $mainDate = $setting['mainConfiguration']['dateFormat'] ?? 'global';
+        $mainTime = $setting['mainConfiguration']['timeFormat'] ?? 'global';
 
-        $siteTimeFormat = $siteSettings !== null
-            ? (string) $siteSettings->get('nsNewsComments.settings.timeFormat', 'g:i a')
-            : (string) ($setting['timeFormat'] ?? 'g:i a');
+        // ---- 'global' fallback chain: Site Settings -> mainConfiguration -> hardcoded default ----
 
-        $siteCustomDateFormat = $siteSettings !== null
-            ? (string) $siteSettings->get('nsNewsComments.settings.customDateFormat', 'F j Y')
-            : (string) ($setting['customDateFormat'] ?? 'F j Y');
-
-        $siteCustomTimeFormat = $siteSettings !== null
-            ? (string) $siteSettings->get('nsNewsComments.settings.customTimeFormat', 'g:i a')
-            : (string) ($setting['customTimeFormat'] ?? 'g:i a');
-
-        // Site's own effective format, honoring its own custom toggle
-        $resolvedSiteDateFormat = ($siteUseCustom === '1') ? $siteCustomDateFormat : $siteDateFormat;
-        $resolvedSiteTimeFormat = ($siteUseCustom === '1') ? $siteCustomTimeFormat : $siteTimeFormat;
-
-        // 'custom' key only ever exists when FlexForm was actually processed (plugin usage)
-        $usingFlexForm = array_key_exists('custom', $setting);
-
-        if ($usingFlexForm) {
-            // ---- PLUGIN: FlexForm always wins ----
-
-            // DATE (independent)
-            if (($setting['custom'] ?? '0') == '1') {
-                $dateFormat = !empty($setting['customdate']) ? $setting['customdate'] : $resolvedSiteDateFormat;
-            } elseif (($setting['dateFormat'] ?? '') === 'global') {
-                $dateFormat = $resolvedSiteDateFormat; // Case 1
-            } elseif (!empty($setting['dateFormat'])) {
-                $dateFormat = $setting['dateFormat']; // concrete FlexForm pick, untouched
-            } else {
-                $dateFormat = $resolvedSiteDateFormat;
+        $globalDateFormat = null;
+        if ($siteSettings !== null) {
+            $key = $siteUseCustom === '1' ? 'nsNewsComments.settings.customDateFormat' : 'nsNewsComments.settings.dateFormat';
+            $value = $siteSettings->get($key, null);
+            if (!empty($value)) {
+                $globalDateFormat = (string) $value;
             }
-
-            // TIME (independent)
-            if (($setting['custom'] ?? '0') == '1') {
-                $timeFormat = !empty($setting['customtime']) ? $setting['customtime'] : $resolvedSiteTimeFormat;
-            } elseif (($setting['timeFormat'] ?? '') === 'global') {
-                $timeFormat = $resolvedSiteTimeFormat; // Case 1
-            } elseif (!empty($setting['timeFormat'])) {
-                $timeFormat = $setting['timeFormat']; // concrete FlexForm pick, untouched
-            } else {
-                $timeFormat = $resolvedSiteTimeFormat;
-            }
-        } else {
-            // ---- cObject: Site Settings always win (Case 2) ----
-            $dateFormat = $resolvedSiteDateFormat;
-            $timeFormat = $resolvedSiteTimeFormat;
+        }
+        if ($globalDateFormat === null && $mainDate !== 'global' && !empty($mainDate)) {
+            $globalDateFormat = (string) $mainDate;
+        }
+        if ($globalDateFormat === null) {
+            $globalDateFormat = 'F j Y';
         }
 
+        $globalTimeFormat = null;
+        if ($siteSettings !== null) {
+            $key = $siteUseCustom === '1' ? 'nsNewsComments.settings.customTimeFormat' : 'nsNewsComments.settings.timeFormat';
+            $value = $siteSettings->get($key, null);
+            if (!empty($value)) {
+                $globalTimeFormat = (string) $value;
+            }
+        }
+        if ($globalTimeFormat === null && $mainTime !== 'global' && !empty($mainTime)) {
+            $globalTimeFormat = (string) $mainTime;
+        }
+        if ($globalTimeFormat === null) {
+            $globalTimeFormat = 'g:i a';
+        }
+
+        // ---- 1. FlexForm (plugin CE) — detected via 'custom' key existing at all ----
+        if (array_key_exists('custom', $setting)) {
+            if (($setting['custom'] ?? '0') == '1') {
+                $dateFormat = !empty($setting['customdate']) ? $setting['customdate'] : $globalDateFormat;
+                $timeFormat = !empty($setting['customtime']) ? $setting['customtime'] : $globalTimeFormat;
+            } else {
+                $dateFormat = (($setting['dateFormat'] ?? '') === 'global' || empty($setting['dateFormat']))
+                    ? $globalDateFormat
+                    : $setting['dateFormat'];
+
+                $timeFormat = (($setting['timeFormat'] ?? '') === 'global' || empty($setting['timeFormat']))
+                    ? $globalTimeFormat
+                    : $setting['timeFormat'];
+            }
+
+            return ['dateFormat' => $dateFormat, 'timeFormat' => $timeFormat];
+        }
+
+        // ---- 2. Raw TypoScript 'mainConfiguration' block, only if deliberately set (not 'global') ----
+        if ($mainDate !== 'global' || $mainTime !== 'global') {
+            return [
+                'dateFormat' => $mainDate !== 'global' ? $mainDate : $globalDateFormat,
+                'timeFormat' => $mainTime !== 'global' ? $mainTime : $globalTimeFormat,
+            ];
+        }
+
+        // ---- 3. Site Sets / cObject with no FlexForm, no mainConfiguration override ----
         return [
-            'dateFormat' => $dateFormat,
-            'timeFormat' => $timeFormat,
+            'dateFormat' => $globalDateFormat,
+            'timeFormat' => $globalTimeFormat,
         ];
     }
-
     /**
      * action create
      *

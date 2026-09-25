@@ -165,8 +165,8 @@ class CommentController extends ActionController
 
 
             $dateTime = $this->resolveDateTime($setting);
-            $setting['dateFormat'] = $dateTime['dateFormat'] ?? '';
-            $setting['timeFormat'] = $dateTime['timeFormat'] ?? '';
+            $setting['dateFormat'] = $dateTime['dateFormat'] != 'global' ? $dateTime['dateFormat'] : 'F j Y';
+            $setting['timeFormat'] = $dateTime['timeFormat'] != 'global' ? $dateTime['timeFormat'] : 'H:i';
 
             $this->view->assignMultiple([
                 'comments' => $comments,
@@ -188,82 +188,110 @@ class CommentController extends ActionController
     }
 
     protected function resolveDateTime(array $setting): array
-    {
-        $site = $this->request->getAttribute('site');
-        $siteSettings = $site !== null ? $site->getSettings() : null;
+{
+    $site = $this->request->getAttribute('site');
+    $siteSettings = $site !== null ? $site->getSettings() : null;
 
-        $siteUseCustom = $siteSettings !== null
-            ? (string) $siteSettings->get('nsNewsComments.settings.useCustomDateTimeFormat', '0')
-            : '0';
+    $dateFormat = $setting['dateFormat'] ?? 'global';
+    $timeFormat = $setting['timeFormat'] ?? 'global';
 
-        $mainDate = $setting['mainConfiguration']['dateFormat'] ?? 'global';
-        $mainTime = $setting['mainConfiguration']['timeFormat'] ?? 'global';
-
-        // ---- 'global' fallback chain: Site Settings -> mainConfiguration -> hardcoded default ----
-
-        $globalDateFormat = null;
+    /*
+     * Case 1:
+     * Plugin/FlexForm contains the "custom" key.
+     *
+     * Only resolve Site Settings when the plugin selected "global".
+     */
+    if (array_key_exists('custom', $setting)) {
         if ($siteSettings !== null) {
-            $key = $siteUseCustom === '1' ? 'nsNewsComments.settings.customDateFormat' : 'nsNewsComments.settings.dateFormat';
-            $value = $siteSettings->get($key, null);
-            if (!empty($value)) {
-                $globalDateFormat = (string) $value;
-            }
-        }
-        if ($globalDateFormat === null && $mainDate !== 'global' && !empty($mainDate)) {
-            $globalDateFormat = (string) $mainDate;
-        }
-        if ($globalDateFormat === null) {
-            $globalDateFormat = 'F j Y';
-        }
+            $useCustomDateTimeFormat = (string)$siteSettings->get(
+                'nsNewsComments.settings.useCustomDateTimeFormat',
+                '0'
+            );
 
-        $globalTimeFormat = null;
-        if ($siteSettings !== null) {
-            $key = $siteUseCustom === '1' ? 'nsNewsComments.settings.customTimeFormat' : 'nsNewsComments.settings.timeFormat';
-            $value = $siteSettings->get($key, null);
-            if (!empty($value)) {
-                $globalTimeFormat = (string) $value;
-            }
-        }
-        if ($globalTimeFormat === null && $mainTime !== 'global' && !empty($mainTime)) {
-            $globalTimeFormat = (string) $mainTime;
-        }
-        if ($globalTimeFormat === null) {
-            $globalTimeFormat = 'g:i a';
-        }
+            if ($dateFormat === 'global') {
+                $dateSettingKey = $useCustomDateTimeFormat === '1'
+                    ? 'nsNewsComments.settings.customDateFormat'
+                    : 'nsNewsComments.settings.dateFormat';
 
-        // ---- 1. FlexForm (plugin CE) — detected via 'custom' key existing at all ----
-        if (array_key_exists('custom', $setting)) {
-            if (($setting['custom'] ?? '0') == '1') {
-                $dateFormat = !empty($setting['customdate']) ? $setting['customdate'] : $globalDateFormat;
-                $timeFormat = !empty($setting['customtime']) ? $setting['customtime'] : $globalTimeFormat;
-            } else {
-                $dateFormat = (($setting['dateFormat'] ?? '') === 'global' || empty($setting['dateFormat']))
-                    ? $globalDateFormat
-                    : $setting['dateFormat'];
+                $siteDateFormat = $siteSettings->get(
+                    $dateSettingKey,
+                    null
+                );
 
-                $timeFormat = (($setting['timeFormat'] ?? '') === 'global' || empty($setting['timeFormat']))
-                    ? $globalTimeFormat
-                    : $setting['timeFormat'];
+                if (!empty($siteDateFormat)) {
+                    $dateFormat = (string)$siteDateFormat;
+                }
             }
 
-            return ['dateFormat' => $dateFormat, 'timeFormat' => $timeFormat];
+            if ($timeFormat === 'global') {
+                $timeSettingKey = $useCustomDateTimeFormat === '1'
+                    ? 'nsNewsComments.settings.customTimeFormat'
+                    : 'nsNewsComments.settings.timeFormat';
+
+                $siteTimeFormat = $siteSettings->get(
+                    $timeSettingKey,
+                    null
+                );
+
+                if (!empty($siteTimeFormat)) {
+                    $timeFormat = (string)$siteTimeFormat;
+                }
+            }
         }
 
-        // ---- 2. Raw TypoScript 'mainConfiguration' block, only if deliberately set (not 'global') ----
-        if ($mainDate !== 'global' || $mainTime !== 'global') {
-            return [
-                'dateFormat' => $mainDate !== 'global' ? $mainDate : $globalDateFormat,
-                'timeFormat' => $mainTime !== 'global' ? $mainTime : $globalTimeFormat,
-            ];
-        }
-
-        // ---- 3. Site Sets / cObject with no FlexForm, no mainConfiguration override ----
         return [
-            'dateFormat' => $globalDateFormat,
-            'timeFormat' => $globalTimeFormat,
+            'dateFormat' => $dateFormat,
+            'timeFormat' => $timeFormat,
         ];
     }
-    /**
+
+    /*
+     * Case 2:
+     * No "custom" key exists.
+     *
+     * This is the Site Sets / TypoScript configuration case.
+     *
+     * If useCustomDateTimeFormat = 1, use the custom formats.
+     * Otherwise use the normal formats.
+     */
+    if ($siteSettings !== null) {
+        $useCustomDateTimeFormat = (string)$siteSettings->get(
+            'nsNewsComments.settings.useCustomDateTimeFormat',
+            '0'
+        );
+
+        if ($useCustomDateTimeFormat === '1') {
+            $dateFormat = (string)$siteSettings->get(
+                'nsNewsComments.settings.customDateFormat',
+                'F j Y'
+            );
+
+            $timeFormat = (string)$siteSettings->get(
+                'nsNewsComments.settings.customTimeFormat',
+                'H:i'
+            );
+        } else {
+            $dateFormat = (string)$siteSettings->get(
+                'nsNewsComments.settings.dateFormat',
+                'F j Y'
+            );
+
+            $timeFormat = (string)$siteSettings->get(
+                'nsNewsComments.settings.timeFormat',
+                'H:i'
+            );
+        }
+    }
+
+    return [
+        'dateFormat' => $dateFormat,
+        'timeFormat' => $timeFormat,
+    ];
+}
+
+
+
+    /** 
      * action create
      *
      * @param Comment $newComment

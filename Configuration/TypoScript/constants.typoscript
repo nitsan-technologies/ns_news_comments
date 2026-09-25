@@ -34,14 +34,20 @@ plugin.tx_nsnewscomments {
         termsTypolinkParameter = https://t3planet.com/typo3-news-comment-extension
 
         # cat=plugin.tx_nsnewscomments/761/12; type=options[F j Y,Y-m-d,m/d/Y,d/m/Y]; label=LLL:EXT:ns_news_comments/Resources/Private/Language/locallang_db.xlf:flexform.dateFormat
-        dateFormat = F j Y
+        dateFormat = Y-m-d
 
         # cat=plugin.tx_nsnewscomments/761/13; type=options[g:i a,g:i A,H:i]; label=LLL:EXT:ns_news_comments/Resources/Private/Language/locallang_db.xlf:flexform.timeFormat
-        timeFormat = g:i a
+        timeFormat = g:i
 
         # cat=plugin.tx_nsnewscomments/761/14; type=boolean; label=LLL:EXT:ns_news_comments/Resources/Private/Language/locallang_db.xlf:flexform.captcha
         captcha = 1
 
+        useCustomDateTimeFormat = 0
+
+        customDateFormat = F j Y
+
+        customTimeFormat = g:i
+        
         # cat=plugin.tx_nsnewscomments/761/15; type=int+; label=Default storage page Id
         storagePid =
     }

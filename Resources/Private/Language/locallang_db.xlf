@@ -141,6 +141,9 @@
 			<trans-unit id="flexform.dateFormat.3">
 				<source>d/m/Y (26/05/2017)</source>
 			</trans-unit>
+			<trans-unit id="flexform.dateFormat.4">
+				<source>Global (Site setting)</source>
+			</trans-unit>
 			<trans-unit id="flexform.timeFormat.0">
 				<source>g:i a (11:36 am)</source>
 			</trans-unit>
@@ -149,6 +152,9 @@
 			</trans-unit>
 			<trans-unit id="flexform.timeFormat.2">
 				<source>H:i (11:36)</source>
+			</trans-unit>
+			<trans-unit id="flexform.timeFormat.3">
+				<source>Global (Site setting)</source>
 			</trans-unit>
 			<trans-unit id="flexform.timeFormat">
 				<source>Time Format</source>

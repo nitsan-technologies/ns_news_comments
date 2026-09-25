@@ -77,9 +77,9 @@ class CommentController extends ActionController
 
 
     public function __construct(
-        CommentRepository  $commentRepository,
+        CommentRepository $commentRepository,
         PersistenceManager $persistenceManager,
-        NewsRepository     $newsRepository
+        NewsRepository $newsRepository
     ) {
         $this->commentRepository = $commentRepository;
         $this->persistenceManager = $persistenceManager;
@@ -98,7 +98,7 @@ class CommentController extends ActionController
         $this->typo3VersionArray = VersionNumberUtility::convertVersionStringToArray(VersionNumberUtility::getCurrentTypo3Version());
         $getData = $this->request->getQueryParams();
         $postData = $this->request->getParsedBody();
-        $requestData = array_merge($getData, (array)$postData);
+        $requestData = array_merge($getData, (array) $postData);
         $newsArr = $requestData['tx_news_pi1'] ?? [];
         $newsUid = '';
         if (is_null($newsArr)) {
@@ -108,10 +108,10 @@ class CommentController extends ActionController
         } else {
             $newsUid = $newsArr['news'] ?? null;
         }
-        $this->newsUid = (int)$newsUid;
+        $this->newsUid = (int) $newsUid;
 
         // Storage page configuration
-        $versionNumber =  VersionNumberUtility::convertVersionStringToArray(VersionNumberUtility::getCurrentTypo3Version());
+        $versionNumber = VersionNumberUtility::convertVersionStringToArray(VersionNumberUtility::getCurrentTypo3Version());
         if ($versionNumber['version_main'] <= '12') {
             // @extensionScannerIgnoreLine
             $this->pageUid = $GLOBALS['TSFE']->id;
@@ -150,10 +150,11 @@ class CommentController extends ActionController
             $pid = $extbaseFrameworkConfiguration['persistence']['storagePid'];
         }
         $setting = $this->settings;
+
         if ($this->newsUid) {
             $comments = $this->commentRepository->getCommentsByNews($this->newsUid)->toArray();
 
-            if ($this->settings['captcha'] == '0' || $this->settings['captcha'] == '') {
+            if (isset($this->settings['captcha']) && ($this->settings['captcha'] == '0' || $this->settings['captcha'] == '')) {
                 $paths = $this->captchaVerificationPath();
                 $captcha_path = $paths['captcha'] . '?' . rand();
                 $this->view->assignMultiple([
@@ -161,6 +162,11 @@ class CommentController extends ActionController
                     'verification' => $paths['verification'],
                 ]);
             }
+
+
+            $dateTime = $this->resolveDateTime($setting);
+            $setting['dateFormat'] = $dateTime['dateFormat'] != 'global' ? $dateTime['dateFormat'] : 'F j Y';
+            $setting['timeFormat'] = $dateTime['timeFormat'] != 'global' ? $dateTime['timeFormat'] : 'H:i';
 
             $this->view->assignMultiple([
                 'comments' => $comments,
@@ -171,7 +177,7 @@ class CommentController extends ActionController
             ]);
         } else {
             $error = LocalizationUtility::translate('tx_nsnewscomments_domain_model_comment.errorMessage', 'NsNewsComments');
-            if (version_compare((string)$this->typo3VersionArray['version_main'], '11', '>')) {
+            if (version_compare((string) $this->typo3VersionArray['version_main'], '11', '>')) {
                 $this->addFlashMessage($error, '', ContextualFeedbackSeverity::ERROR);
             } else {
                 // @extensionScannerIgnoreLine
@@ -181,7 +187,111 @@ class CommentController extends ActionController
         return $this->htmlResponse();
     }
 
-    /**
+    protected function resolveDateTime(array $setting): array
+{
+    $site = $this->request->getAttribute('site');
+    $siteSettings = $site !== null ? $site->getSettings() : null;
+
+    $dateFormat = $setting['dateFormat'] ?? 'global';
+    $timeFormat = $setting['timeFormat'] ?? 'global';
+
+    /*
+     * Case 1:
+     * Plugin/FlexForm contains the "custom" key.
+     *
+     * Only resolve Site Settings when the plugin selected "global".
+     */
+    if (array_key_exists('custom', $setting)) {
+        if ($siteSettings !== null) {
+            $useCustomDateTimeFormat = (string)$siteSettings->get(
+                'nsNewsComments.settings.useCustomDateTimeFormat',
+                '0'
+            );
+
+            if ($dateFormat === 'global') {
+                $dateSettingKey = $useCustomDateTimeFormat === '1'
+                    ? 'nsNewsComments.settings.customDateFormat'
+                    : 'nsNewsComments.settings.dateFormat';
+
+                $siteDateFormat = $siteSettings->get(
+                    $dateSettingKey,
+                    null
+                );
+
+                if (!empty($siteDateFormat)) {
+                    $dateFormat = (string)$siteDateFormat;
+                }
+            }
+
+            if ($timeFormat === 'global') {
+                $timeSettingKey = $useCustomDateTimeFormat === '1'
+                    ? 'nsNewsComments.settings.customTimeFormat'
+                    : 'nsNewsComments.settings.timeFormat';
+
+                $siteTimeFormat = $siteSettings->get(
+                    $timeSettingKey,
+                    null
+                );
+
+                if (!empty($siteTimeFormat)) {
+                    $timeFormat = (string)$siteTimeFormat;
+                }
+            }
+        }
+
+        return [
+            'dateFormat' => $dateFormat,
+            'timeFormat' => $timeFormat,
+        ];
+    }
+
+    /*
+     * Case 2:
+     * No "custom" key exists.
+     *
+     * This is the Site Sets / TypoScript configuration case.
+     *
+     * If useCustomDateTimeFormat = 1, use the custom formats.
+     * Otherwise use the normal formats.
+     */
+    if ($siteSettings !== null) {
+        $useCustomDateTimeFormat = (string)$siteSettings->get(
+            'nsNewsComments.settings.useCustomDateTimeFormat',
+            '0'
+        );
+
+        if ($useCustomDateTimeFormat === '1') {
+            $dateFormat = (string)$siteSettings->get(
+                'nsNewsComments.settings.customDateFormat',
+                'F j Y'
+            );
+
+            $timeFormat = (string)$siteSettings->get(
+                'nsNewsComments.settings.customTimeFormat',
+                'H:i'
+            );
+        } else {
+            $dateFormat = (string)$siteSettings->get(
+                'nsNewsComments.settings.dateFormat',
+                'F j Y'
+            );
+
+            $timeFormat = (string)$siteSettings->get(
+                'nsNewsComments.settings.timeFormat',
+                'H:i'
+            );
+        }
+    }
+
+    return [
+        'dateFormat' => $dateFormat,
+        'timeFormat' => $timeFormat,
+    ];
+}
+
+
+
+    /** 
      * action create
      *
      * @param Comment $newComment
@@ -235,7 +345,8 @@ class CommentController extends ActionController
         $excludeFromQueryString = [
             'tx_nsnewscomments_newscomment[action]',
             'tx_nsnewscomments_newscomment[controller]',
-            'tx_nsnewscomments_newscomment', 'type'
+            'tx_nsnewscomments_newscomment',
+            'type'
         ];
         $this->uriBuilder
             ->reset()

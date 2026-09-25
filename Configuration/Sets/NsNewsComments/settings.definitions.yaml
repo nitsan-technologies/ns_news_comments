@@ -50,26 +50,52 @@ settings:
     type: string
     default: 'https://t3planet.com/typo3-news-comment-extension'
 
-  nsNewsComments.settings.dateFormat:
+  ##################################################
+  # Date & Time Configuration
+  ##################################################
+
+  nsNewsComments.settings.useGlobalCustomDateTimeFormat:
+    label: 'LLL:EXT:ns_news_comments/Resources/Private/Language/locallang_db.xlf:flexform.custom'
+    category: nsNewsComments.dateTime
+    type: bool
+    default: false
+
+  nsNewsComments.settings.globalDateFormat:
     label: 'LLL:EXT:ns_news_comments/Resources/Private/Language/locallang_db.xlf:flexform.dateFormat'
-    category: nsNewsComments.settings
+    category: nsNewsComments.dateTime
     type: string
     default: 'F j Y'
     enum:
-      F j Y: F j Y,
-      Y-m-d: Y-m-d,
-      m/d/Y: m/d/Y,
-      d/m/Y: d/m/Y
+      F j Y: 'F j Y'
+      Y-m-d: 'Y-m-d'
+      m/d/Y: 'm/d/Y'
+      d/m/Y: 'd/m/Y'
 
-  nsNewsComments.settings.timeFormat:
+  nsNewsComments.settings.globalTimeFormat:
     label: 'LLL:EXT:ns_news_comments/Resources/Private/Language/locallang_db.xlf:flexform.timeFormat'
-    category: nsNewsComments.settings
+    category: nsNewsComments.dateTime
     type: string
     default: 'g:i a'
     enum:
-      g:i a: g:i a,
-      g:i A: g:i A,
-      H:i: H:i
+      g:i a: 'g:i a'
+      g:i A: 'g:i A'
+      H:i: 'H:i'
+
+  nsNewsComments.settings.globalCustomDateFormat:
+    label: 'LLL:EXT:ns_news_comments/Resources/Private/Language/locallang_db.xlf:flexform.customDateFormat'
+    category: nsNewsComments.dateTime
+    type: string
+    default: 'F j Y'
+
+  nsNewsComments.settings.globalCustomTimeFormat:
+    label: 'LLL:EXT:ns_news_comments/Resources/Private/Language/locallang_db.xlf:flexform.customTimeFormat'
+    category: nsNewsComments.dateTime
+    type: string
+    default: 'g:i a'
+
+  ##################################################
+  # General Configuration
+  ##################################################
 
   nsNewsComments.settings.captcha:
     label: 'LLL:EXT:ns_news_comments/Resources/Private/Language/locallang_db.xlf:flexform.captcha'

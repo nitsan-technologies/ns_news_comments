@@ -27,6 +27,7 @@ namespace Nitsan\NsNewsComments\Controller;
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
 
+use TYPO3\CMS\Backend\Controller\EditDocumentController;
 use TYPO3\CMS\Core\Context\Context;
 use TYPO3\CMS\Core\Core\Environment;
 use Psr\Http\Message\ResponseInterface;
@@ -77,9 +78,9 @@ class CommentController extends ActionController
 
 
     public function __construct(
-        CommentRepository  $commentRepository,
+        CommentRepository $commentRepository,
         PersistenceManager $persistenceManager,
-        NewsRepository     $newsRepository
+        NewsRepository $newsRepository
     ) {
         $this->commentRepository = $commentRepository;
         $this->persistenceManager = $persistenceManager;
@@ -98,7 +99,7 @@ class CommentController extends ActionController
         $this->typo3VersionArray = VersionNumberUtility::convertVersionStringToArray(VersionNumberUtility::getCurrentTypo3Version());
         $getData = $this->request->getQueryParams();
         $postData = $this->request->getParsedBody();
-        $requestData = array_merge($getData, (array)$postData);
+        $requestData = array_merge($getData, (array) $postData);
         $newsArr = $requestData['tx_news_pi1'] ?? [];
         $newsUid = '';
         if (is_null($newsArr)) {
@@ -108,10 +109,10 @@ class CommentController extends ActionController
         } else {
             $newsUid = $newsArr['news'] ?? null;
         }
-        $this->newsUid = (int)$newsUid;
+        $this->newsUid = (int) $newsUid;
 
         // Storage page configuration
-        $versionNumber =  VersionNumberUtility::convertVersionStringToArray(VersionNumberUtility::getCurrentTypo3Version());
+        $versionNumber = VersionNumberUtility::convertVersionStringToArray(VersionNumberUtility::getCurrentTypo3Version());
         if ($versionNumber['version_main'] <= '12') {
             // @extensionScannerIgnoreLine
             $this->pageUid = $GLOBALS['TSFE']->id;
@@ -162,6 +163,24 @@ class CommentController extends ActionController
                 ]);
             }
 
+            if (isset($setting['dateFormat']) && isset($setting['timeFormat'])) {
+                if (($setting['dateFormat'] == 'global' || $setting['timeFormat'] == 'global')) {
+
+                    $setting['dateFormat'] = $setting['dateFormat'] == 'global' ? $setting['globalDateFormat'] : $setting['dateFormat'];
+                    $setting['timeFormat'] = $setting['timeFormat'] == 'global' ? $setting['globalTimeFormat'] : $setting['timeFormat'];
+                }
+                if ($setting['useGlobalCustomDateTimeFormat'] == 1) {
+                    $setting['globalDateFormat'] = $setting['globalCustomDateFormat'];
+                    $setting['globalTimeFormat'] = $setting['globalCustomTimeFormat'];
+                }
+
+            }
+
+            if (!isset($setting['custom']) && $setting['useGlobalCustomDateTimeFormat'] == 1) {
+                $setting['globalDateFormat'] = $setting['globalCustomDateFormat'];
+                $setting['globalTimeFormat'] = $setting['globalCustomTimeFormat'];
+            }
+
             $this->view->assignMultiple([
                 'comments' => $comments,
                 'newsID' => $this->newsUid,
@@ -171,7 +190,7 @@ class CommentController extends ActionController
             ]);
         } else {
             $error = LocalizationUtility::translate('tx_nsnewscomments_domain_model_comment.errorMessage', 'NsNewsComments');
-            if (version_compare((string)$this->typo3VersionArray['version_main'], '11', '>')) {
+            if (version_compare((string) $this->typo3VersionArray['version_main'], '11', '>')) {
                 $this->addFlashMessage($error, '', ContextualFeedbackSeverity::ERROR);
             } else {
                 // @extensionScannerIgnoreLine
@@ -235,7 +254,8 @@ class CommentController extends ActionController
         $excludeFromQueryString = [
             'tx_nsnewscomments_newscomment[action]',
             'tx_nsnewscomments_newscomment[controller]',
-            'tx_nsnewscomments_newscomment', 'type'
+            'tx_nsnewscomments_newscomment',
+            'type'
         ];
         $this->uriBuilder
             ->reset()

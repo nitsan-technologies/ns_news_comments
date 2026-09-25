@@ -6,24 +6,30 @@ plugin.tx_nsnewscomments {
         partialRootPaths.0 = {$nsNewsComments.view.partialRootPath}
         layoutRootPaths.0 = {$nsNewsComments.view.layoutRootPath}
     }
+    persistence {
+        storagePid = {$nsNewsComments.settings.storagePid}
+    }
     settings {
         termsRequired = {$nsNewsComments.settings.termsRequired}
         termsTypolinkParameter = {$nsNewsComments.settings.termsTypolinkParameter}
-        dateFormat = {$nsNewsComments.settings.dateFormat}
-        timeFormat = {$nsNewsComments.settings.timeFormat}
         captcha = {$nsNewsComments.settings.captcha}
         storagePid = {$nsNewsComments.settings.storagePid}
+        globalDateFormat = {$nsNewsComments.settings.globalDateFormat}
+        globalTimeFormat = {$nsNewsComments.settings.globalTimeFormat}
+        useGlobalCustomDateTimeFormat = {$nsNewsComments.settings.useGlobalCustomDateTimeFormat}
+        globalCustomDateFormat = {$nsNewsComments.settings.globalCustomDateFormat}
+        globalCustomTimeFormat = {$nsNewsComments.settings.globalCustomTimeFormat}
     }
 }
 
 page {
     includeCSS {
-        nsnewscomment_StyleCss = EXT:ns_news_comments/Resources/Public/css/style.css
-        nsnewscomment_FontAwesomeCss = EXT:ns_news_comments/Resources/Public/css/font-awesome.min.css
+        nsnewscomment_StyleCss = {$nsNewsComments.settings.StyleCss}
+        nsnewscomment_FontAwesomeCss = {$nsNewsComments.settings.FontAwesomeCss}
     }
     includeJSFooter {
-        nsnewscomment_Minjs = EXT:ns_news_comments/Resources/Public/js/jquery-3.6.3.min.js
-        nsnewscomment_CustomJS = EXT:ns_news_comments/Resources/Public/js/custom.js
+        nsnewscomment_Minjs = {$nsNewsComments.settings.Minjs}
+        nsnewscomment_CustomJS = {$nsNewsComments.settings.CustomJS}
     }
 }
 
@@ -50,6 +56,7 @@ nsNewsCommentsAjaxCall {
                 1 = create
             }
         }
+        settings < plugin.tx_nsnewscomments.settings
     }
 }
 
@@ -67,5 +74,11 @@ lib.tx_nsnewscomments.comments {
     settings < plugin.tx_nsnewscomments.settings
     settings {
         relatedComments = 1
+        termsRequired = {$nsNewsComments.settings.termsRequired}
+        termsTypolinkParameter = {$nsNewsComments.settings.termsTypolinkParameter}
+        globalDateFormat = {$nsNewsComments.settings.globalDateFormat}
+        globalTimeFormat = {$nsNewsComments.settings.globalTimeFormat}
+        captcha = {$nsNewsComments.settings.captcha}
+        storagePid = {$nsNewsComments.settings.storagePid}
     }
 }

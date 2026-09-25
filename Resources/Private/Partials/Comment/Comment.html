@@ -18,7 +18,7 @@
                             <f:format.date format="{settings.customdate}">{comment.crdate}</f:format.date> <f:translate key='at'/> <f:format.date format="{settings.customtime}">{comment.crdate}</f:format.date>
                         </f:then>
                         <f:else>
-                            <f:format.date format="{settings.dateFormat}">{comment.crdate}</f:format.date> <f:translate key='at'/> <f:format.date format="{settings.timeFormat}">{comment.crdate}</f:format.date>
+                            <f:format.date format="{settings.globalDateFormat}">{comment.crdate}</f:format.date> <f:translate key='at'/> <f:format.date format="{settings.globalTimeFormat}">{comment.crdate}</f:format.date>
                         </f:else>
                     </f:if>
                 </span>

@@ -18,12 +18,12 @@ plugin.tx_nsnewscomments {
 
 page {
     includeCSS {
-        nsnewscomment_StyleCss = EXT:ns_news_comments/Resources/Public/css/style.css
-        nsnewscomment_FontAwesomeCss = EXT:ns_news_comments/Resources/Public/css/font-awesome.min.css
+        nsnewscomment_StyleCss = {$nsNewsComments.settings.StyleCss}
+        nsnewscomment_FontAwesomeCss = {$nsNewsComments.settings.FontAwesomeCss}
     }
     includeJSFooter {
-        nsnewscomment_Minjs = EXT:ns_news_comments/Resources/Public/js/jquery-3.6.3.min.js
-        nsnewscomment_CustomJS = EXT:ns_news_comments/Resources/Public/js/custom.js
+        nsnewscomment_Minjs = {$nsNewsComments.settings.Minjs}
+        nsnewscomment_CustomJS = {$nsNewsComments.settings.CustomJS}
     }
 }
 

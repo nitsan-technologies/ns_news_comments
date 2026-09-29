@@ -132,7 +132,7 @@
 			<trans-unit id="flexform.dateFormat.3">
 				<target>d/m/Y (26/05/2017)</target>
 			</trans-unit>
-			<trans-unit id="flexform.dateFormat.4">
+			<trans-unit id="globalDateTimeFormat">
 				<source>Global (Site setting)</source>
 				<target>Global (Website-Einstellung)</target>
 			</trans-unit>

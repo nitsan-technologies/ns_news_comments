@@ -9,11 +9,8 @@ plugin.tx_nsnewscomments {
     settings { 
         termsRequired = {$nsNewsComments.settings.termsRequired} 
         termsTypolinkParameter = {$nsNewsComments.settings.termsTypolinkParameter} 
-        useCustomDateTimeFormat = {$nsNewsComments.settings.useCustomDateTimeFormat} 
         dateFormat = {$nsNewsComments.settings.dateFormat} 
         timeFormat = {$nsNewsComments.settings.timeFormat} 
-        customDateFormat = {$nsNewsComments.settings.customDateFormat} 
-        customTimeFormat = {$nsNewsComments.settings.customTimeFormat} 
         captcha = {$nsNewsComments.settings.captcha} 
         storagePid = {$nsNewsComments.settings.storagePid} 
     }

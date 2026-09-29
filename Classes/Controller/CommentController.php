@@ -163,10 +163,14 @@ class CommentController extends ActionController
                 ]);
             }
 
+            if(isset($setting['global']) && $setting['global'] == 1){
+                $site = $this->request->getAttribute('site');
+                $siteSettings = $site->getSettings();
+        
+                $setting['dateFormat'] = $siteSettings->get('nsNewsComments.settings.dateFormat') ?? 'F j, Y';
+                $setting['timeFormat'] = $siteSettings->get('nsNewsComments.settings.timeFormat') ?? 'g:i a';
+            }
 
-            $dateTime = $this->resolveDateTime($setting);
-            $setting['dateFormat'] = $dateTime['dateFormat'] != 'global' ? $dateTime['dateFormat'] : 'F j Y';
-            $setting['timeFormat'] = $dateTime['timeFormat'] != 'global' ? $dateTime['timeFormat'] : 'H:i';
 
             $this->view->assignMultiple([
                 'comments' => $comments,
@@ -186,110 +190,6 @@ class CommentController extends ActionController
         }
         return $this->htmlResponse();
     }
-
-    protected function resolveDateTime(array $setting): array
-{
-    $site = $this->request->getAttribute('site');
-    $siteSettings = $site !== null ? $site->getSettings() : null;
-
-    $dateFormat = $setting['dateFormat'] ?? 'global';
-    $timeFormat = $setting['timeFormat'] ?? 'global';
-
-    /*
-     * Case 1:
-     * Plugin/FlexForm contains the "custom" key.
-     *
-     * Only resolve Site Settings when the plugin selected "global".
-     */
-    if (array_key_exists('custom', $setting)) {
-        if ($siteSettings !== null) {
-            $useCustomDateTimeFormat = (string)$siteSettings->get(
-                'nsNewsComments.settings.useCustomDateTimeFormat',
-                '0'
-            );
-
-            if ($dateFormat === 'global') {
-                $dateSettingKey = $useCustomDateTimeFormat === '1'
-                    ? 'nsNewsComments.settings.customDateFormat'
-                    : 'nsNewsComments.settings.dateFormat';
-
-                $siteDateFormat = $siteSettings->get(
-                    $dateSettingKey,
-                    null
-                );
-
-                if (!empty($siteDateFormat)) {
-                    $dateFormat = (string)$siteDateFormat;
-                }
-            }
-
-            if ($timeFormat === 'global') {
-                $timeSettingKey = $useCustomDateTimeFormat === '1'
-                    ? 'nsNewsComments.settings.customTimeFormat'
-                    : 'nsNewsComments.settings.timeFormat';
-
-                $siteTimeFormat = $siteSettings->get(
-                    $timeSettingKey,
-                    null
-                );
-
-                if (!empty($siteTimeFormat)) {
-                    $timeFormat = (string)$siteTimeFormat;
-                }
-            }
-        }
-
-        return [
-            'dateFormat' => $dateFormat,
-            'timeFormat' => $timeFormat,
-        ];
-    }
-
-    /*
-     * Case 2:
-     * No "custom" key exists.
-     *
-     * This is the Site Sets / TypoScript configuration case.
-     *
-     * If useCustomDateTimeFormat = 1, use the custom formats.
-     * Otherwise use the normal formats.
-     */
-    if ($siteSettings !== null) {
-        $useCustomDateTimeFormat = (string)$siteSettings->get(
-            'nsNewsComments.settings.useCustomDateTimeFormat',
-            '0'
-        );
-
-        if ($useCustomDateTimeFormat === '1') {
-            $dateFormat = (string)$siteSettings->get(
-                'nsNewsComments.settings.customDateFormat',
-                'F j Y'
-            );
-
-            $timeFormat = (string)$siteSettings->get(
-                'nsNewsComments.settings.customTimeFormat',
-                'H:i'
-            );
-        } else {
-            $dateFormat = (string)$siteSettings->get(
-                'nsNewsComments.settings.dateFormat',
-                'F j Y'
-            );
-
-            $timeFormat = (string)$siteSettings->get(
-                'nsNewsComments.settings.timeFormat',
-                'H:i'
-            );
-        }
-    }
-
-    return [
-        'dateFormat' => $dateFormat,
-        'timeFormat' => $timeFormat,
-    ];
-}
-
-
 
     /** 
      * action create

@@ -164,14 +164,20 @@ class CommentController extends ActionController
             }
 
             if (isset($setting['dateFormat']) && isset($setting['timeFormat'])) {
+
                 if (($setting['dateFormat'] == 'global' || $setting['timeFormat'] == 'global')) {
 
-                    $setting['dateFormat'] = $setting['dateFormat'] == 'global' ? $setting['globalDateFormat'] : $setting['dateFormat'];
-                    $setting['timeFormat'] = $setting['timeFormat'] == 'global' ? $setting['globalTimeFormat'] : $setting['timeFormat'];
-                }
-                if ($setting['useGlobalCustomDateTimeFormat'] == 1) {
-                    $setting['globalDateFormat'] = $setting['globalCustomDateFormat'];
-                    $setting['globalTimeFormat'] = $setting['globalCustomTimeFormat'];
+                    if ($setting['useGlobalCustomDateTimeFormat'] == 1) {
+                        $setting['globalDateFormat'] = $setting['globalCustomDateFormat'];
+                        $setting['globalTimeFormat'] = $setting['globalCustomTimeFormat'];
+                    }
+
+                    $setting['globalDateFormat'] = $setting['dateFormat'] == 'global' ? $setting['globalDateFormat'] : $setting['dateFormat'];
+                    $setting['globalTimeFormat'] = $setting['timeFormat'] == 'global' ? $setting['globalTimeFormat'] : $setting['timeFormat'];
+                    
+                }else{
+                    $setting['globalDateFormat'] = $setting['dateFormat'];
+                    $setting['globalTimeFormat'] = $setting['timeFormat'];
                 }
 
             }

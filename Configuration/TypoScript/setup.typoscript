@@ -4,6 +4,7 @@ plugin.tx_nsnewscomments {
         partialRootPaths.0 = {$plugin.tx_nsnewscomments.view.partialRootPath}
         layoutRootPaths.0 = {$plugin.tx_nsnewscomments.view.layoutRootPath}
     }
+
     settings {
         termsRequired = {$plugin.tx_nsnewscomments.settings.termsRequired}
         termsTypolinkParameter = {$plugin.tx_nsnewscomments.settings.termsTypolinkParameter}

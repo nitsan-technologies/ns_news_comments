@@ -10,6 +10,10 @@ categories:
     label: 'Configuration Settings'
     parent: nsNewsComments
 
+  nsNewsComments.dateTime:
+    label: 'Date & Time Settings'
+    parent: nsNewsComments
+
 settings:
 
   ##################################################
@@ -50,26 +54,25 @@ settings:
     type: string
     default: 'https://t3planet.com/typo3-news-comment-extension'
 
+  ##################################################
+  # Date & Time Configuration
+  ##################################################
+
   nsNewsComments.settings.dateFormat:
     label: 'LLL:EXT:ns_news_comments/Resources/Private/Language/locallang_db.xlf:flexform.dateFormat'
-    category: nsNewsComments.settings
+    category: nsNewsComments.dateTime
     type: string
-    default: 'F j Y'
-    enum:
-      F j Y: F j Y,
-      Y-m-d: Y-m-d,
-      m/d/Y: m/d/Y,
-      d/m/Y: d/m/Y
+    default: 'F j, Y'
 
   nsNewsComments.settings.timeFormat:
     label: 'LLL:EXT:ns_news_comments/Resources/Private/Language/locallang_db.xlf:flexform.timeFormat'
-    category: nsNewsComments.settings
+    category: nsNewsComments.dateTime
     type: string
     default: 'g:i a'
-    enum:
-      g:i a: g:i a,
-      g:i A: g:i A,
-      H:i: H:i
+  
+  ##################################################
+  # General Configuration
+  ##################################################
 
   nsNewsComments.settings.captcha:
     label: 'LLL:EXT:ns_news_comments/Resources/Private/Language/locallang_db.xlf:flexform.captcha'

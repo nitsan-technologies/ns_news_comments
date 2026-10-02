@@ -168,6 +168,10 @@
 			<trans-unit id="flexform.dateFormat.3">
 				<source>d/m/Y (26/05/2017)</source>
 			</trans-unit>
+			<trans-unit id="globalDateTimeFormat">
+				<source>Global (Site setting)</source>
+				<target>Global (Paramètre du site)</target>
+			</trans-unit>
 			<trans-unit id="flexform.timeFormat.0">
 				<source>g:i a (11:36 am)</source>
 			</trans-unit>

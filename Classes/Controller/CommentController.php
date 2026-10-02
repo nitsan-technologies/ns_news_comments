@@ -29,6 +29,7 @@ namespace Nitsan\NsNewsComments\Controller;
 
 use TYPO3\CMS\Core\Context\Context;
 use TYPO3\CMS\Core\Core\Environment;
+use TYPO3\CMS\Core\Site\Entity\Site;
 use Psr\Http\Message\ResponseInterface;
 use TYPO3\CMS\Core\Utility\PathUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -163,14 +164,9 @@ class CommentController extends ActionController
                 ]);
             }
 
-            if(isset($setting['global']) && $setting['global'] == 1){
-                $site = $this->request->getAttribute('site');
-                $siteSettings = $site->getSettings();
-        
-                $setting['dateFormat'] = $siteSettings->get('nsNewsComments.settings.dateFormat') ?? 'F j, Y';
-                $setting['timeFormat'] = $siteSettings->get('nsNewsComments.settings.timeFormat') ?? 'g:i a';
+            if ((string)($setting['global'] ?? '') === '1') {
+                $setting = array_merge($setting, $this->getGlobalDateTimeFormats());
             }
-
 
             $this->view->assignMultiple([
                 'comments' => $comments,
@@ -229,6 +225,32 @@ class CommentController extends ActionController
         $this->persistenceManager->persistAll();
         $json[$newComment->getUid()] = ['parentId' => $parentId, 'comment' => 'comment'];
         return $this->jsonResponse(json_encode($json));
+    }
+
+    /**
+     * Site settings are used when the site defines them (Site Set or settings.yaml), otherwise
+     * TypoScript, e.g. on TYPO3 v12. TypoScript is read directly because FlexForm values
+     * override the plugin settings.
+     *
+     * @return array{dateFormat: string, timeFormat: string}
+     */
+    private function getGlobalDateTimeFormats(): array
+    {
+        $site = $this->request->getAttribute('site');
+        $siteSettings = $site instanceof Site ? $site->getSettings() : null;
+        $typoScript = $this->configurationManager->getConfiguration(ConfigurationManagerInterface::CONFIGURATION_TYPE_FULL_TYPOSCRIPT);
+        $typoScriptSettings = $typoScript['plugin.']['tx_nsnewscomments.']['settings.'] ?? [];
+
+        $formats = [];
+        foreach (['dateFormat' => 'F j, Y', 'timeFormat' => 'g:i a'] as $format => $default) {
+            $siteSetting = 'nsNewsComments.settings.' . $format;
+            $value = $siteSettings?->has($siteSetting)
+                ? $siteSettings->get($siteSetting)
+                : ($typoScriptSettings[$format] ?? '');
+            $formats[$format] = trim(is_scalar($value) ? (string)$value : '') ?: $default;
+        }
+
+        return $formats;
     }
 
     /**

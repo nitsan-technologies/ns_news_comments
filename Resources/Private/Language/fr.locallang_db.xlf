@@ -181,10 +181,6 @@
 			<trans-unit id="flexform.timeFormat.2">
 				<source>H:i (11:36)</source>
 			</trans-unit>
-			<trans-unit id="flexform.timeFormat.3">
-				<source>Global (Site setting)</source>
-				<target>Global (Paramètre du site)</target>
-			</trans-unit>
 			<trans-unit id="flexform.timeFormat">
 				<source>Time Format</source>
 				<target>Format heure</target>

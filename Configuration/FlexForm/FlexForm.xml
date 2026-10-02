@@ -17,7 +17,7 @@
                 <el>
 
                     <settings.global>
-                        <label>LLL:EXT:ns_news_comments/Resources/Private/Language/locallang_db.xlf:flexform.timeFormat.3</label>
+                        <label>LLL:EXT:ns_news_comments/Resources/Private/Language/locallang_db.xlf:globalDateTimeFormat</label>
                         <onChange>reload</onChange>
                         <config>
                             <type>check</type>

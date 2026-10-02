@@ -62,7 +62,7 @@ settings:
     label: 'LLL:EXT:ns_news_comments/Resources/Private/Language/locallang_db.xlf:flexform.dateFormat'
     category: nsNewsComments.dateTime
     type: string
-    default: 'F j Y'
+    default: 'F j, Y'
 
   nsNewsComments.settings.timeFormat:
     label: 'LLL:EXT:ns_news_comments/Resources/Private/Language/locallang_db.xlf:flexform.timeFormat'

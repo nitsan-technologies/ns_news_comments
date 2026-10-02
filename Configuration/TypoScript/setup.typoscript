@@ -1,8 +1,8 @@
 plugin.tx_nsnewscomments {
     view {
-        templateRootPaths.0 = {$nsNewsComments.view.templateRootPath}
-        partialRootPaths.0 = {$nsNewsComments.view.partialRootPath}
-        layoutRootPaths.0 = {$nsNewsComments.view.layoutRootPath}
+        templateRootPaths.0 = {$plugin.tx_nsnewscomments.view.templateRootPath}
+        partialRootPaths.0 = {$plugin.tx_nsnewscomments.view.partialRootPath}
+        layoutRootPaths.0 = {$plugin.tx_nsnewscomments.view.layoutRootPath}
     }
 
     settings {

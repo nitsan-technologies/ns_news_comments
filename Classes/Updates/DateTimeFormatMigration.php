@@ -13,7 +13,7 @@ use TYPO3\CMS\Install\Updates\DatabaseUpdatedPrerequisite;
 use TYPO3\CMS\Install\Updates\UpgradeWizardInterface;
 
 #[UpgradeWizard('txNsNewsCommentsDateTimeFormatMigration')]
-class DateTimeFormatMigration implements UpgradeWizardInterface
+final class DateTimeFormatMigration implements UpgradeWizardInterface
 {
     private const PLUGIN_SIGNATURE = 'nsnewscomments_newscomment';
 
@@ -33,6 +33,8 @@ class DateTimeFormatMigration implements UpgradeWizardInterface
 
     private const LEGACY_GLOBAL_VALUE = 'global';
 
+    private ?bool $hasListTypeColumn = null;
+
     public function __construct(
         private readonly ConnectionPool $connectionPool
     ) {}
@@ -46,8 +48,7 @@ class DateTimeFormatMigration implements UpgradeWizardInterface
     {
         return 'Keeps the date and time format selected in existing News Comment plugins. '
             . 'Formats from the removed "custom format" option are copied into the new date and time format fields, '
-            . 'and the obsolete FlexForm fields are removed. '
-            . 'Records to migrate: ' . count($this->getRecordsToMigrate());
+            . 'and the obsolete FlexForm fields are removed.';
     }
 
     public function getPrerequisites(): array
@@ -137,14 +138,21 @@ class DateTimeFormatMigration implements UpgradeWizardInterface
         return (string)$queryBuilder->expr()->or(...$constraints);
     }
 
+    /**
+     * listTableColumns() is deprecated in Doctrine DBAL 4.4, but its replacement
+     * does not exist in DBAL 3 used by TYPO3 v12.
+     */
     private function hasListTypeColumn(): bool
     {
-        $columns = $this->connectionPool
-            ->getConnectionForTable('tt_content')
-            ->createSchemaManager()
-            ->listTableColumns('tt_content');
+        if ($this->hasListTypeColumn === null) {
+            $columns = $this->connectionPool
+                ->getConnectionForTable('tt_content')
+                ->createSchemaManager()
+                ->listTableColumns('tt_content');
+            $this->hasListTypeColumn = isset($columns['list_type']);
+        }
 
-        return isset($columns['list_type']);
+        return $this->hasListTypeColumn;
     }
 
     private function needsMigration(array $fields): bool
@@ -179,15 +187,17 @@ class DateTimeFormatMigration implements UpgradeWizardInterface
             $fields['settings.timeFormat']['vDEF'] = $customTime;
         }
 
-        $useGlobal = false;
-        foreach (self::FORMAT_FIELDS as $formatField => $defaultFormat) {
-            if ($this->getValue($fields, $formatField) === self::LEGACY_GLOBAL_VALUE) {
-                $fields[$formatField]['vDEF'] = $defaultFormat;
-                $useGlobal = true;
-            }
+        $globalFields = array_filter(
+            array_keys(self::FORMAT_FIELDS),
+            fn(string $field): bool => $this->getValue($fields, $field) === self::LEGACY_GLOBAL_VALUE
+        );
+        foreach ($globalFields as $formatField) {
+            $fields[$formatField]['vDEF'] = self::FORMAT_FIELDS[$formatField];
         }
 
-        if ($useGlobal) {
+        // The new checkbox applies to date and time together, so an explicitly selected format is kept
+        // unless both formats used the site setting.
+        if (count($globalFields) === count(self::FORMAT_FIELDS)) {
             $fields['settings.global']['vDEF'] = '1';
         } elseif (!isset($fields['settings.global'])) {
             $fields['settings.global']['vDEF'] = '0';

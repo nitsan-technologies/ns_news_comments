@@ -18,7 +18,8 @@
   },
   "require": {
     "typo3/cms-core": "^12.4.37 || ^13 || ^14",
-    "georgringer/news": "^11 || ^12 || ^13 || ^14"
+    "georgringer/news": "^11 || ^12 || ^13 || ^14",
+    "nitsan/ns-license": "^14.5.4"
   },
   "autoload": {
     "psr-4": {

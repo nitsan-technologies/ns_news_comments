@@ -207,6 +207,18 @@
         <source>Close</source>
         <target state="final">Schließen</target>
       </trans-unit>
+      <trans-unit id="premium.strip.headline">
+        <source>You're using the free version of NS News Comments</source>
+        <target state="needs-translation">You're using the free version of NS News Comments</target>
+      </trans-unit>
+      <trans-unit id="premium.strip.description">
+        <source>Unlock premium features and get more out of NS News Comments.</source>
+        <target state="needs-translation">Unlock premium features and get more out of NS News Comments.</target>
+      </trans-unit>
+      <trans-unit id="premium.strip.trial">
+        <source>Start Free Trial</source>
+        <target state="needs-translation">Start Free Trial</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

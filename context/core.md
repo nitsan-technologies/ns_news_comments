@@ -39,6 +39,9 @@
 - No PHPUnit, PHPStan, CS fixer or package.json in the repo.
 - CI: `.github/workflows/ter-release.yml` (publishes tags to TER) and `t3planet-ai-bot.yml` (calls the
   shared T3Planet AI issue-resolver workflow).
+- `.gitattributes` export-ignores `.crowdin.yml`, `.github/`, `.gitignore`, `AGENTS.md`, `CLAUDE.md`, `context/`,
+  `tasks/` and itself, so they are not in the GitHub/Composer archive or the TER package (the TER release uploads
+  the GitHub tag archive).
 - Translations: Crowdin (`.crowdin.yml`), English sources `Resources/Private/Language/*.xlf`; de/es/fr/tr
   files are generated.
 - User docs: `Documentation/` (RST) plus the external T3Planet docs (see `docs-map.md`).

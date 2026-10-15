@@ -163,10 +163,10 @@
 				<source>Close</source>
 			</trans-unit>
 			<trans-unit id="premium.strip.headline">
-				<source>You are using the free version</source>
+				<source>You're using the free version of NS News Comments</source>
 			</trans-unit>
 			<trans-unit id="premium.strip.description">
-				<source>Upgrade to Premium for comment moderation, email notifications and spam protection.</source>
+				<source>Unlock premium features and get more out of NS News Comments.</source>
 			</trans-unit>
 			<trans-unit id="premium.strip.trial">
 				<source>Start Free Trial</source>

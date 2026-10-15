@@ -15,8 +15,10 @@ Without a news uid the list action shows the flash message `tx_nsnewscomments_do
 ## News uid resolution (`initializeAction()`)
 
 - From `tx_news_pi1[news]` in GET/POST.
-- If `tx_news_pi1` is missing, from `$_SESSION['params']['originalSettings']['singleNews']`, written by the
-  news `overrideSettings` hook (`Hooks/NewsController`), for news plugins configured with a fixed single news.
+- Intended fallback: `$_SESSION['params']['originalSettings']['singleNews']`, written by the news
+  `overrideSettings` hook (`Hooks/NewsController`), for news plugins configured with a fixed single news.
+  The fallback is dead code: `$requestData['tx_news_pi1'] ?? []` is never `null`, so the `is_null()` branch never
+  runs and a missing `tx_news_pi1` gives news uid 0 (code-read).
 
 ## Storage pid
 
@@ -30,11 +32,24 @@ Without a news uid the list action shows the flash message `tx_nsnewscomments_do
 `settings.custom` (use custom formats), `customdate`, `customtime`, `dateFormat`, `timeFormat`, `captcha`
 ("Disable Captcha"). The premium strip sits above these fields (see `premium-cta.md`).
 
+Code-read details (`Configuration/FlexForm/FlexForm.xml`):
+
+- `custom` (check, reloads the form) switches between the required text fields `customdate` / `customtime`
+  (shown only when ticked) and the radio fields `dateFormat` (`F j, Y`, `Y-m-d`, `m/d/Y`, `d/m/Y`; default
+  `F j, Y` with comma, unlike the TypoScript default `F j Y`) / `timeFormat` (`g:i a`, `g:i A`, `H:i`).
+  `Partials/Comment/Comment.html` uses the custom formats only if `custom`, `customdate` and `customtime` are set.
+- `captcha` (check) defaults to `1`, i.e. captcha disabled.
+
 ## TypoScript / site set settings
 
 `termsRequired`, `termsTypolinkParameter`, `dateFormat`, `timeFormat`, `captcha`, `storagePid`, asset paths
 (`StyleCss`, `FontAwesomeCss`, `CustomJS`, `Minjs`), view paths. Keep `Configuration/TypoScript/constants.typoscript`
 and `Configuration/Sets/NsNewsComments/settings.definitions.yaml` in sync.
+
+The asset path constants / site settings have no effect (code-read): both `setup.typoscript` files hard-code
+the paths in `page.includeCSS` / `includeJSFooter` (jQuery always 3.6.3), and `Layouts/Default.html` uses fixed
+paths too. The site set's `setup.typoscript` imports the static setup, then maps only the view paths and
+`termsRequired` … `storagePid` from `nsNewsComments.*`; the set has no dependencies.
 
 ## Comment flow
 

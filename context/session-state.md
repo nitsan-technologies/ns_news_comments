@@ -10,3 +10,16 @@
 - Created agent context (`AGENTS.md`, `CLAUDE.md`, `context/`, `tasks/`); no previous context existed.
 - Open: ns_license 14.5.4 not yet published; trial modal click-through only code-read; frontend comment flow
   only code-read.
+
+## 2026-10-14 — Banner redesign from review
+
+- Team-wide standard, same in every NITSAN strip except the name: "You're using the free version of NS News
+  Comments" / "Unlock premium features and get more out of NS News Comments.", two lines, "Start Free Trial →",
+  14px 18px padding, 6px radius, inset 16px inside the FlexForm panel (see `features/premium-cta.md`).
+  Version 14.0.2 → 14.1.0. Edit form and Page module verified live on 14.3.7 (element 59; temporary admin
+  removed). Uncommitted.
+
+## 2026-10-15 — Context audit
+
+- Code audit: session news-uid fallback is dead code; asset settings unused; FlexForm details, `new` without
+  action, preview template switch, `addPiFlexFormValue()` deprecation and duplicate set TSconfig documented.

@@ -8,7 +8,7 @@
 | Composer name | `nitsan/ns-news-comments` |
 | Title (ext_emconf) / product name | TYPO3 News Comments Extension / News Comment |
 | Namespace | `Nitsan\NsNewsComments\` → `Classes/` (note `Nitsan`, not `NITSAN`) |
-| Version (ext_emconf) | 14.0.2 |
+| Version (ext_emconf) | 14.1.0 (latest tag 14.0.2) |
 | Repository | https://github.com/nitsan-technologies/ns_news_comments (branch `master`) |
 | Licensing status (NITSAN Free/Freemium sheet) | **Freemium** — this repo is the free version |
 | Premium version (sheet) | https://t3planet.de/typo3-nachrichten-kommentar-erweiterung (€169/year) |
@@ -70,8 +70,9 @@ Security / data:
 
 Runtime:
 
-- `Hooks/NewsController::modify()` and `initializeAction()` start the Install tool `SessionService` and use
-  `$_SESSION` to pass the news uid when `tx_news_pi1[news]` is missing.
+- `Hooks/NewsController::modify()` and `initializeAction()` start the Install tool `SessionService` on every
+  news / comment request to pass the news uid via `$_SESSION`; the reading side is dead code
+  (`features/comments-plugin.md` → News uid resolution).
 - `getCommentsByNews()` respects the storage page; `CountViewHelper` / `LastCommentViewHelper` don't, so counts
   can include comments the list doesn't show.
 - Static TypoScript adds style.css, font-awesome, jQuery and custom.js to **every** page
@@ -82,6 +83,8 @@ Runtime:
 Housekeeping:
 
 - `Configuration/Services.yaml` doesn't exclude `Classes/Domain/Model/*` from autowiring.
+- `Configuration/TCA/Overrides/tt_content.php` uses `ExtensionManagementUtility::addPiFlexFormValue()`,
+  deprecated in TYPO3 14.0 (#107047, removed in v15): triggers `E_USER_DEPRECATED` on v14.
 - `ext_tables.sql` still has `cruser_id` and the full legacy `t3ver_*` column set; `ext_tables.php` has a
   TYPO3 v11-only branch that can't run (minimum is 12.4.37).
 - README badge says v13.0.1 / TYPO3 13; links use `t3planet.com` while the sheet uses `t3planet.de`.

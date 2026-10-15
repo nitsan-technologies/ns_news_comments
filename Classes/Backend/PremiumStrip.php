@@ -38,13 +38,16 @@ final class PremiumStrip
         $iconSize = enum_exists(IconSize::class) ? IconSize::SMALL : 'small';
         $icon = GeneralUtility::makeInstance(IconFactory::class)->getIcon('actions-rocket', $iconSize)->render();
 
-        return '<div class="ns-news-comments-premium-strip d-flex flex-wrap align-items-center justify-content-between gap-2">'
-            . '<div class="d-flex flex-wrap align-items-center gap-2">'
-            . $icon
-            . '<strong>' . $this->translate('premium.strip.headline') . '</strong>'
-            . '<span>' . $this->translate('premium.strip.description') . '</span>'
+        return '<div class="ns-news-comments-premium-strip d-flex flex-wrap align-items-center justify-content-between gap-3">'
+            . '<div class="d-flex align-items-center gap-3">'
+            . '<span class="ns-news-comments-premium-strip-icon">' . $icon . '</span>'
+            . '<div>'
+            . '<div class="ns-news-comments-premium-strip-headline">' . $this->translate('premium.strip.headline') . '</div>'
+            . '<div class="ns-news-comments-premium-strip-description">' . $this->translate('premium.strip.description') . '</div>'
             . '</div>'
-            . '<a href="' . htmlspecialchars($trialUrl) . '" class="btn btn-primary">' . $this->translate('premium.strip.trial') . '</a>'
+            . '</div>'
+            . '<a href="' . htmlspecialchars($trialUrl) . '" class="btn btn-primary">'
+            . $this->translate('premium.strip.trial') . ' <span aria-hidden="true">&rarr;</span></a>'
             . '</div>';
     }
 

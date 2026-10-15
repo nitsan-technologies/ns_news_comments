@@ -4,13 +4,13 @@
 
 | What | Where |
 |---|---|
-| Plugin `Newscomment` (CType `nsnewscomments_newscomment`), actions `list, new, create`, all uncached | `ext_localconf.php` |
+| Plugin `Newscomment` (CType `nsnewscomments_newscomment`), actions `list, new, create`, all uncached (`new` has no `newAction()` in the controller) | `ext_localconf.php` |
 | News hook `overrideSettings` → `Hooks\NewsController->modify` | `ext_localconf.php` |
 | FormEngine node resolver `1791957358` on `flexFormNoTabsContainer` (premium strip) | `ext_localconf.php` |
 | Content element, "Configuration" tab with `pi_flexform,pages`, FlexForm for the CType | `Configuration/TCA/Overrides/tt_content.php` |
 | Static template "News Comment" | `Configuration/TCA/Overrides/sys_template.php` |
 | Site set `nitsan/ns-news-comments` | `Configuration/Sets/NsNewsComments/` |
-| New content element wizard entry + Page module preview template | `Configuration/page.tsconfig` |
+| New content element wizard entry (group `plugins`) + Page module preview template | `Configuration/page.tsconfig` (auto-loaded globally; the set's `page.tsconfig` imports it again) |
 | Icon `ext-ns-comment-icon` | `Configuration/Icons.php` |
 | Upgrade wizard `txNsNewsCommentsPluginMigration` (`CType=list` + `list_type` → CType) | `Classes/Updates/PluginMigration.php` |
 
@@ -49,7 +49,7 @@ extra tab of the news record. This is the only backend UI for comments.
 | `Partials/Comment/Comment.html` | One comment, recursive for replies |
 | `Partials/Comment/FormFields.html` | Name, e-mail, text, captcha, terms, hidden `newsuid` / `parentId` / `pageid` |
 | `Layouts/Default.html` | Wraps in `.tx_nsnewscomments`, adds CSS/JS via `f:asset` |
-| `Backend/NsNewscomment.html` (v12/13), `Backend/NsNewscommentV14.html` (v14) | Page module preview: premium strip + FlexForm settings table |
+| `Backend/NsNewscomment.html` (v12/13), `Backend/NsNewscommentV14.html` (v14) | Page module preview: premium strip + FlexForm settings table. `mod.web_layout.tt_content.preview.nsnewscomments_newscomment` picks the V14 file under `[typo3.branch >= "14.0"]`; it reads `record.pi_flexform.sheets.sDEF.settings` (v14 only assigns `record`), the v12/13 file `pi_flexform_transformed.settings` (code-read) |
 | `Public/PHP/captcha.php`, `verify.php`, `phptextClass.php` | Image captcha + verification (own PHP session `ns_news_comments_captcha`) |
 | `Public/js/custom.js` | AJAX submit, reply form, client-side validation, captcha check |
 | `Public/css/style.css`, `font-awesome.min.css`, `backend-premium-strip.css` | Frontend / backend styles |

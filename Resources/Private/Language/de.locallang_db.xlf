@@ -171,6 +171,14 @@
         <source>Date Format</source>
         <target state="final">Datumsformat</target>
       </trans-unit>
+      <trans-unit id="flexform.dateFormat.description">
+        <source>PHP date() format, e.g. F j, Y or j. F Y</source>
+        <target state="needs-translation">PHP date() format, e.g. F j, Y or j. F Y</target>
+      </trans-unit>
+      <trans-unit id="flexform.dateFormat.constant">
+        <source>Date Format: PHP date() format, e.g. F j, Y or j. F Y</source>
+        <target state="needs-translation">Date Format: PHP date() format, e.g. F j, Y or j. F Y</target>
+      </trans-unit>
       <trans-unit id="flexform.dateFormat.0" approved="yes">
         <source>F j, Y (May 26, 2017)</source>
         <target state="final">F j, Y (26. Mai 2017)</target>
@@ -187,6 +195,10 @@
         <source>d/m/Y (26/05/2017)</source>
         <target state="final">T/M/J (26.05.2017)</target>
       </trans-unit>
+      <trans-unit id="globalDateTimeFormat">
+        <source>Use global date and time format (site settings or TypoScript)</source>
+        <target state="needs-translation">Use global date and time format (site settings or TypoScript)</target>
+      </trans-unit>
       <trans-unit id="flexform.timeFormat.0" approved="yes">
         <source>g:i a (11:36 am)</source>
         <target state="final">g:i a (11:36 Uhr)</target>
@@ -202,6 +214,14 @@
       <trans-unit id="flexform.timeFormat" approved="yes">
         <source>Time Format</source>
         <target state="final">Zeitformat</target>
+      </trans-unit>
+      <trans-unit id="flexform.timeFormat.description">
+        <source>PHP date() format, e.g. g:i a, g:i A or H:i</source>
+        <target state="needs-translation">PHP date() format, e.g. g:i a, g:i A or H:i</target>
+      </trans-unit>
+      <trans-unit id="flexform.timeFormat.constant">
+        <source>Time Format: PHP date() format, e.g. g:i a, g:i A or H:i</source>
+        <target state="needs-translation">Time Format: PHP date() format, e.g. g:i a, g:i A or H:i</target>
       </trans-unit>
       <trans-unit id="flexform.custom" approved="yes">
         <source>Custom Date Format</source>

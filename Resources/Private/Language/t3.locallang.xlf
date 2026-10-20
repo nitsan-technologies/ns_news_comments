@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<xliff version="1.0">
+  <file source-language="en" datatype="plaintext" original="messages" date="2016-11-08T11:15:02Z" product-name="ns_news_comments" target-language="t3">
+    <header/>
+    <body>
+      <trans-unit id="pi1_title" xml:space="preserve">
+				<source>News Comment</source>
+			<target>crwdns376290:0crwdne376290:0</target></trans-unit>
+      <trans-unit id="backend.dateformate" xml:space="preserve">
+				<source>Date Formate</source>
+			<target>crwdns376292:0crwdne376292:0</target></trans-unit>
+      <trans-unit id="backend.timeformate" xml:space="preserve">
+				<source>Time Formate</source>
+			<target>crwdns376294:0crwdne376294:0</target></trans-unit>
+      <trans-unit id="backend.Image" xml:space="preserve">
+				<source>Comment User Image</source>
+			<target>crwdns376296:0crwdne376296:0</target></trans-unit>
+      <trans-unit id="backend.captcha" xml:space="preserve">
+				<source>Disable Captcha</source>
+			<target>crwdns376298:0crwdne376298:0</target></trans-unit>
+      <trans-unit id="backend.userSettings.1" xml:space="preserve">
+				<source>FE-user as well as the Anonymous user can comment on the news</source>
+			<target>crwdns376300:0crwdne376300:0</target></trans-unit>
+      <trans-unit id="backend.userSettings.2" xml:space="preserve">
+				<source>Only FE-users can comment on news</source>
+			<target>crwdns376302:0crwdne376302:0</target></trans-unit>
+      <trans-unit id="backend.feUserloginpid" xml:space="preserve">
+				<source>FE-user login page Id</source>
+			<target>crwdns376304:0crwdne376304:0</target></trans-unit>
+      <trans-unit id="tx_nsnewscomments_domain_model_comment">
+        <source>Comment</source>
+        <target>crwdns376306:0crwdne376306:0</target>
+      </trans-unit>
+      <trans-unit id="tx_nsnewscomments_domain_model_comment.newsuid">
+        <source>Newsuid</source>
+        <target>crwdns376308:0crwdne376308:0</target>
+      </trans-unit>
+      <trans-unit id="tx_nsnewscomments_domain_model_comment.username">
+        <source>Name</source>
+        <target>crwdns376310:0crwdne376310:0</target>
+      </trans-unit>
+      <trans-unit id="tx_nsnewscomments_domain_model_comment.usermail">
+        <source>Email</source>
+        <target>crwdns376312:0crwdne376312:0</target>
+      </trans-unit>
+      <trans-unit id="tx_nsnewscomments_domain_model_comment.comment">
+        <source>Comment</source>
+        <target>crwdns376314:0crwdne376314:0</target>
+      </trans-unit>
+      <trans-unit id="tx_nsnewscomments_domain_model_comment.lblcomments">
+        <source>Comments</source>
+        <target>crwdns376316:0crwdne376316:0</target>
+      </trans-unit>
+      <trans-unit id="tx_nsnewscomments_domain_model_comment.name">
+        <source>Name</source>
+        <target>crwdns376318:0crwdne376318:0</target>
+      </trans-unit>
+      <trans-unit id="tx_nsnewscomments_domain_model_comment.email">
+        <source>Email</source>
+        <target>crwdns376320:0crwdne376320:0</target>
+      </trans-unit>
+      <trans-unit id="email">
+        <source>Please enter your valid email address</source>
+        <target>crwdns376322:0crwdne376322:0</target>
+      </trans-unit>
+      <trans-unit id="email_required">
+        <source>Valid email is required!</source>
+        <target>crwdns376324:0crwdne376324:0</target>
+      </trans-unit>
+      <trans-unit id="name">
+        <source>Please enter your name</source>
+        <target>crwdns376326:0crwdne376326:0</target>
+      </trans-unit>
+      <trans-unit id="name_required">
+        <source>Name is required!</source>
+        <target>crwdns376328:0crwdne376328:0</target>
+      </trans-unit>
+      <trans-unit id="comment">
+        <source>Please enter your comment</source>
+        <target>crwdns376330:0crwdne376330:0</target>
+      </trans-unit>
+      <trans-unit id="comment_required">
+        <source>Comment is required!</source>
+        <target>crwdns376332:0crwdne376332:0</target>
+      </trans-unit>
+      <trans-unit id="captcha">
+        <source>Enter the above code here</source>
+        <target>crwdns376334:0crwdne376334:0</target>
+      </trans-unit>
+      <trans-unit id="captcha_required">
+        <source>Captcha is required!</source>
+        <target>crwdns376336:0crwdne376336:0</target>
+      </trans-unit>
+      <trans-unit id="tx_nsnewscomments_domain_model_comment.captcha">
+        <source>Enter the above code here</source>
+        <target>crwdns376338:0crwdne376338:0</target>
+      </trans-unit>
+      <trans-unit id="tx_nsnewscomments_domain_model_comment.replylabel">
+        <source>Reply</source>
+        <target>crwdns376340:0crwdne376340:0</target>
+      </trans-unit>
+      <trans-unit id="tx_nsnewscomments_domain_model_comment.nocommentsfound">
+        <source>Be the First to Comment</source>
+        <target>crwdns376342:0crwdne376342:0</target>
+      </trans-unit>
+      <trans-unit id="at">
+        <source>At</source>
+        <target>crwdns376344:0crwdne376344:0</target>
+      </trans-unit>
+      <trans-unit id="tx_nsnewscomments_domain_model_comment.mailmessage">
+        <source>New Comment are added on news</source>
+        <target>crwdns376346:0crwdne376346:0</target>
+      </trans-unit>
+      <trans-unit id="form.submitButton">
+        <source>Post comment</source>
+        <target>crwdns376348:0crwdne376348:0</target>
+      </trans-unit>
+      <trans-unit id="tx_nsnewscomments_domain_model_comment.newsTitle">
+        <source>News</source>
+        <target>crwdns376350:0crwdne376350:0</target>
+      </trans-unit>
+      <trans-unit id="mandatory">
+        <source>These fields are required.</source>
+        <target>crwdns376352:0crwdne376352:0</target>
+      </trans-unit>
+      <trans-unit id="replytext">
+        <source>Reply to comment</source>
+        <target>crwdns376354:0crwdne376354:0</target>
+      </trans-unit>
+      <trans-unit id="form.emailError">
+        <source>Enter valid email address</source>
+        <target>crwdns376356:0crwdne376356:0</target>
+      </trans-unit>
+      <trans-unit id="form.nameError">
+        <source>Enter valid name</source>
+        <target>crwdns376358:0crwdne376358:0</target>
+      </trans-unit>
+      <trans-unit id="form.captchaValidationError">
+        <source>Code does not match!</source>
+        <target>crwdns376360:0crwdne376360:0</target>
+      </trans-unit>
+      <trans-unit id="tx_nsnewscomments_domain_model_comment.validationMessage">
+        <source>Code does not match</source>
+        <target>crwdns376362:0crwdne376362:0</target>
+      </trans-unit>
+      <trans-unit id="form.captchaRefresh">
+        <source>Can't read the image? </source>
+        <target>crwdns376364:0crwdne376364:0</target>
+      </trans-unit>
+      <trans-unit id="form.captchaRefreshButton">
+        <source>Click here to refresh</source>
+        <target>crwdns376366:0crwdne376366:0</target>
+      </trans-unit>
+      <trans-unit id="form.thankyouMessage">
+        <source>Thank you for your comment. Your Comment Added Successfully.</source>
+        <target>crwdns376368:0crwdne376368:0</target>
+      </trans-unit>
+      <trans-unit id="tx_nsnewscomments_domain_model_comment.errorMessage">
+        <source>No News Entry Found</source>
+        <target>crwdns376370:0crwdne376370:0</target>
+      </trans-unit>
+      <trans-unit id="CommentsandResponses">
+        <source>Comments and Responses</source>
+        <target>crwdns376372:0crwdne376372:0</target>
+      </trans-unit>
+      <trans-unit id="newsfelogin">
+        <source>Click here</source>
+        <target>crwdns376374:0crwdne376374:0</target>
+      </trans-unit>
+      <trans-unit id="newsfeloginmsg">
+        <source>to login and add your comments.</source>
+        <target>crwdns376376:0crwdne376376:0</target>
+      </trans-unit>
+      <trans-unit id="commentas">
+        <source>Comment will be added as</source>
+        <target>crwdns376378:0crwdne376378:0</target>
+      </trans-unit>
+      <trans-unit id="confirm1">
+        <source>Currently, this comment is not displayed on the news.</source>
+        <target>crwdns376380:0crwdne376380:0</target>
+      </trans-unit>
+      <trans-unit id="confirm2">
+        <source>Click Here</source>
+        <target>crwdns376382:0crwdne376382:0</target>
+      </trans-unit>
+      <trans-unit id="confirm3">
+        <source>to display this comment on the news.</source>
+        <target>crwdns376384:0crwdne376384:0</target>
+      </trans-unit>
+      <trans-unit id="form.termsError">
+        <source>Please accept</source>
+        <target>crwdns376386:0crwdne376386:0</target>
+      </trans-unit>
+      <trans-unit id="terms_required">
+        <source>Terms is required!</source>
+        <target>crwdns376388:0crwdne376388:0</target>
+      </trans-unit>
+      <trans-unit id="terms.label">
+        <source>Terms</source>
+        <target>crwdns376390:0crwdne376390:0</target>
+      </trans-unit>
+      <trans-unit id="terms.text">
+        <source><![CDATA[I accept the <a href="%s" target="_blank">terms</a>.]]></source>
+        <target><![CDATA[crwdns376392:0%scrwdne376392:0]]></target>
+      </trans-unit>
+      <trans-unit id="close">
+        <source>Close</source>
+        <target>crwdns376394:0crwdne376394:0</target>
+      </trans-unit>
+      <trans-unit id="premium.strip.headline">
+        <source>You're using the free version of NS News Comments</source>
+        <target>crwdns415245:0crwdne415245:0</target>
+      </trans-unit>
+      <trans-unit id="premium.strip.description">
+        <source>Unlock premium features and get more out of NS News Comments.</source>
+        <target>crwdns415247:0crwdne415247:0</target>
+      </trans-unit>
+      <trans-unit id="premium.strip.trial">
+        <source>Start Free Trial</source>
+        <target>crwdns415249:0crwdne415249:0</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

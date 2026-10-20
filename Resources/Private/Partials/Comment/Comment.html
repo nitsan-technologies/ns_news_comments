@@ -40,7 +40,7 @@
     <f:for each="{comment.childcomment}" as="prcomment">
         <ul class="comments-list reply-list" id="children-{prcomment.uid}">
             <li id="comments-{prcomment.uid}" class="comment">
-                <f:render partial="Comment/Comment" arguments="{comment:prcomment,Image:'{Image}',relatedComments: relatedComments}" />
+                <f:render partial="Comment/Comment" arguments="{comment: prcomment, Image: Image, relatedComments: relatedComments, settings: settings}" />
             </li>
         </ul>
     </f:for>

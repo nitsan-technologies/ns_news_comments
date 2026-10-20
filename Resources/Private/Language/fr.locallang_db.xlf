@@ -169,8 +169,8 @@
 				<source>d/m/Y (26/05/2017)</source>
 			</trans-unit>
 			<trans-unit id="globalDateTimeFormat">
-				<source>Global (Site setting)</source>
-				<target>Global (Paramètre du site)</target>
+				<source>Use global date and time format (site settings or TypoScript)</source>
+				<target>Utiliser le format global de date et d'heure (paramètres du site ou TypoScript)</target>
 			</trans-unit>
 			<trans-unit id="flexform.timeFormat.0">
 				<source>g:i a (11:36 am)</source>

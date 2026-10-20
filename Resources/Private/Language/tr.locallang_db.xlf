@@ -130,8 +130,8 @@
 				<target>g/a/Y (26/05/2017)</target>
 			</trans-unit>
 			<trans-unit id="globalDateTimeFormat">
-				<source>Global (Site setting)</source>
-				<target>Genel (Site ayarı)</target>
+				<source>Use global date and time format (site settings or TypoScript)</source>
+				<target>Genel tarih ve saat biçimini kullan (site ayarları veya TypoScript)</target>
 			</trans-unit>
 			<trans-unit id="flexform.timeFormat.0">
 				<target>g:i a (11:36 am)</target>

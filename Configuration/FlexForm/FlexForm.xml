@@ -27,20 +27,24 @@
 
                     <settings.dateFormat>
                         <label>LLL:EXT:ns_news_comments/Resources/Private/Language/locallang_db.xlf:flexform.dateFormat</label>
+                        <description>LLL:EXT:ns_news_comments/Resources/Private/Language/locallang_db.xlf:flexform.dateFormat.description</description>
                         <displayCond>FIELD:settings.global:!=:1</displayCond>
                         <config>
                             <type>input</type>
-                            <eval>trim,required</eval>
+                            <required>true</required>
+                            <eval>trim</eval>
                             <default>F j, Y</default>
                         </config>
                     </settings.dateFormat>
 
                     <settings.timeFormat>
                         <label>LLL:EXT:ns_news_comments/Resources/Private/Language/locallang_db.xlf:flexform.timeFormat</label>
+                        <description>LLL:EXT:ns_news_comments/Resources/Private/Language/locallang_db.xlf:flexform.timeFormat.description</description>
                         <displayCond>FIELD:settings.global:!=:1</displayCond>
                         <config>
                             <type>input</type>
-                            <eval>trim,required</eval>
+                            <required>true</required>
+                            <eval>trim</eval>
                             <default>g:i a</default>
                         </config>
                     </settings.timeFormat>

@@ -60,16 +60,18 @@ settings:
 
   nsNewsComments.settings.dateFormat:
     label: 'LLL:EXT:ns_news_comments/Resources/Private/Language/locallang_db.xlf:flexform.dateFormat'
+    description: 'LLL:EXT:ns_news_comments/Resources/Private/Language/locallang_db.xlf:flexform.dateFormat.description'
     category: nsNewsComments.dateTime
     type: string
     default: 'F j, Y'
 
   nsNewsComments.settings.timeFormat:
     label: 'LLL:EXT:ns_news_comments/Resources/Private/Language/locallang_db.xlf:flexform.timeFormat'
+    description: 'LLL:EXT:ns_news_comments/Resources/Private/Language/locallang_db.xlf:flexform.timeFormat.description'
     category: nsNewsComments.dateTime
     type: string
     default: 'g:i a'
-  
+
   ##################################################
   # General Configuration
   ##################################################

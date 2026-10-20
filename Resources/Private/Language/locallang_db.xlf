@@ -129,6 +129,12 @@
 			<trans-unit id="flexform.dateFormat">
 				<source>Date Format</source>
 			</trans-unit>
+			<trans-unit id="flexform.dateFormat.description">
+				<source>PHP date() format, e.g. F j, Y or j. F Y</source>
+			</trans-unit>
+			<trans-unit id="flexform.dateFormat.constant">
+				<source>Date Format: PHP date() format, e.g. F j, Y or j. F Y</source>
+			</trans-unit>
 			<trans-unit id="flexform.dateFormat.0">
 				<source>F j, Y (May 26, 2017)</source>
 			</trans-unit>
@@ -142,7 +148,7 @@
 				<source>d/m/Y (26/05/2017)</source>
 			</trans-unit>
 			<trans-unit id="globalDateTimeFormat">
-				<source>Global (Site setting)</source>
+				<source>Use global date and time format (site settings or TypoScript)</source>
 			</trans-unit>
 			<trans-unit id="flexform.timeFormat.0">
 				<source>g:i a (11:36 am)</source>
@@ -155,6 +161,12 @@
 			</trans-unit>
 			<trans-unit id="flexform.timeFormat">
 				<source>Time Format</source>
+			</trans-unit>
+			<trans-unit id="flexform.timeFormat.description">
+				<source>PHP date() format, e.g. g:i a, g:i A or H:i</source>
+			</trans-unit>
+			<trans-unit id="flexform.timeFormat.constant">
+				<source>Time Format: PHP date() format, e.g. g:i a, g:i A or H:i</source>
 			</trans-unit>
 			<trans-unit id="flexform.custom">
 				<source>Custom Date Format</source>

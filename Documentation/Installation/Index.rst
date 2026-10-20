@@ -52,3 +52,19 @@ Just install this extension the usual way like any other TYPO3 extension.
    .. figure:: Images/TYPO3_ns_news_comments_Extension_NITSAN_Backend_Install2_Extensions.png
        :alt: Include in script
        :width: 1300px
+
+
+3. Upgrade from 14.0.x
+======================
+
+   After updating to 14.1.0, run the upgrade wizard **EXT:ns_news_comments:
+   Migrate date and time format settings** in Admin Tools → Upgrade.
+
+   This copies FlexForm *Custom Date Format* values into the new date
+   and time fields and removes obsolete FlexForm keys. Skip this step
+   and content elements that used a custom format will fall back to
+   ``F j, Y`` / ``g:i a``.
+
+   Sites that only configure the format through site settings or
+   TypoScript (for example
+   ``lib.tx_nsnewscomments.comments``) do not need the wizard.

@@ -29,6 +29,7 @@ namespace Nitsan\NsNewsComments\Controller;
 
 use TYPO3\CMS\Core\Context\Context;
 use TYPO3\CMS\Core\Core\Environment;
+use TYPO3\CMS\Core\Site\Entity\Site;
 use Psr\Http\Message\ResponseInterface;
 use TYPO3\CMS\Core\Utility\PathUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -77,9 +78,9 @@ class CommentController extends ActionController
 
 
     public function __construct(
-        CommentRepository  $commentRepository,
+        CommentRepository $commentRepository,
         PersistenceManager $persistenceManager,
-        NewsRepository     $newsRepository
+        NewsRepository $newsRepository
     ) {
         $this->commentRepository = $commentRepository;
         $this->persistenceManager = $persistenceManager;
@@ -98,7 +99,7 @@ class CommentController extends ActionController
         $this->typo3VersionArray = VersionNumberUtility::convertVersionStringToArray(VersionNumberUtility::getCurrentTypo3Version());
         $getData = $this->request->getQueryParams();
         $postData = $this->request->getParsedBody();
-        $requestData = array_merge($getData, (array)$postData);
+        $requestData = array_merge($getData, (array) $postData);
         $newsArr = $requestData['tx_news_pi1'] ?? [];
         $newsUid = '';
         if (is_null($newsArr)) {
@@ -108,10 +109,10 @@ class CommentController extends ActionController
         } else {
             $newsUid = $newsArr['news'] ?? null;
         }
-        $this->newsUid = (int)$newsUid;
+        $this->newsUid = (int) $newsUid;
 
         // Storage page configuration
-        $versionNumber =  VersionNumberUtility::convertVersionStringToArray(VersionNumberUtility::getCurrentTypo3Version());
+        $versionNumber = VersionNumberUtility::convertVersionStringToArray(VersionNumberUtility::getCurrentTypo3Version());
         if ($versionNumber['version_main'] <= '12') {
             // @extensionScannerIgnoreLine
             $this->pageUid = $GLOBALS['TSFE']->id;
@@ -150,16 +151,21 @@ class CommentController extends ActionController
             $pid = $extbaseFrameworkConfiguration['persistence']['storagePid'];
         }
         $setting = $this->settings;
+
         if ($this->newsUid) {
             $comments = $this->commentRepository->getCommentsByNews($this->newsUid)->toArray();
 
-            if ($this->settings['captcha'] == '0' || $this->settings['captcha'] == '') {
+            if (isset($this->settings['captcha']) && ($this->settings['captcha'] == '0' || $this->settings['captcha'] == '')) {
                 $paths = $this->captchaVerificationPath();
                 $captcha_path = $paths['captcha'] . '?' . rand();
                 $this->view->assignMultiple([
                     'captcha_path' => $captcha_path,
                     'verification' => $paths['verification'],
                 ]);
+            }
+
+            if ((string)($setting['global'] ?? '') === '1') {
+                $setting = array_merge($setting, $this->getGlobalDateTimeFormats());
             }
 
             $this->view->assignMultiple([
@@ -171,7 +177,7 @@ class CommentController extends ActionController
             ]);
         } else {
             $error = LocalizationUtility::translate('tx_nsnewscomments_domain_model_comment.errorMessage', 'NsNewsComments');
-            if (version_compare((string)$this->typo3VersionArray['version_main'], '11', '>')) {
+            if (version_compare((string) $this->typo3VersionArray['version_main'], '11', '>')) {
                 $this->addFlashMessage($error, '', ContextualFeedbackSeverity::ERROR);
             } else {
                 // @extensionScannerIgnoreLine
@@ -181,7 +187,7 @@ class CommentController extends ActionController
         return $this->htmlResponse();
     }
 
-    /**
+    /** 
      * action create
      *
      * @param Comment $newComment
@@ -222,6 +228,32 @@ class CommentController extends ActionController
     }
 
     /**
+     * Site settings are used when the site defines them (Site Set or settings.yaml), otherwise
+     * TypoScript, e.g. on TYPO3 v12. TypoScript is read directly because FlexForm values
+     * override the plugin settings.
+     *
+     * @return array{dateFormat: string, timeFormat: string}
+     */
+    private function getGlobalDateTimeFormats(): array
+    {
+        $site = $this->request->getAttribute('site');
+        $siteSettings = $site instanceof Site ? $site->getSettings() : null;
+        $typoScript = $this->configurationManager->getConfiguration(ConfigurationManagerInterface::CONFIGURATION_TYPE_FULL_TYPOSCRIPT);
+        $typoScriptSettings = $typoScript['plugin.']['tx_nsnewscomments.']['settings.'] ?? [];
+
+        $formats = [];
+        foreach (['dateFormat' => 'F j, Y', 'timeFormat' => 'g:i a'] as $format => $default) {
+            $siteSetting = 'nsNewsComments.settings.' . $format;
+            $value = $siteSettings?->has($siteSetting)
+                ? $siteSettings->get($siteSetting)
+                : ($typoScriptSettings[$format] ?? '');
+            $formats[$format] = trim(is_scalar($value) ? (string)$value : '') ?: $default;
+        }
+
+        return $formats;
+    }
+
+    /**
      * Returns a built URI by pageUid
      *
      * @param int $uid The uid to use for building link
@@ -235,7 +267,8 @@ class CommentController extends ActionController
         $excludeFromQueryString = [
             'tx_nsnewscomments_newscomment[action]',
             'tx_nsnewscomments_newscomment[controller]',
-            'tx_nsnewscomments_newscomment', 'type'
+            'tx_nsnewscomments_newscomment',
+            'type'
         ];
         $this->uriBuilder
             ->reset()

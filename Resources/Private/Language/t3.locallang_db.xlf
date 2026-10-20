@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<xliff version="1.0">
+  <file source-language="en" datatype="plaintext" original="messages" date="2016-11-08T11:15:02Z" product-name="ns_news_comments" target-language="t3">
+    <header/>
+    <body>
+      <trans-unit id="tx_nsnewscomments_domain_model_comment">
+        <source>Comment</source>
+        <target>crwdns376404:0crwdne376404:0</target>
+      </trans-unit>
+      <trans-unit id="tx_nsnewscomments_domain_model_comment.newsComment">
+        <source>News Comment</source>
+        <target>crwdns376406:0crwdne376406:0</target>
+      </trans-unit>
+      <trans-unit id="tx_nsnewscomments_domain_model_comment.newComments">
+        <source>Comments</source>
+        <target>crwdns376408:0crwdne376408:0</target>
+      </trans-unit>
+      <trans-unit id="tx_nsnewscomments_domain_model_comment.newsuid">
+        <source>News UID</source>
+        <target>crwdns376410:0crwdne376410:0</target>
+      </trans-unit>
+      <trans-unit id="tx_nsnewscomments_domain_model_comment.username">
+        <source>Name</source>
+        <target>crwdns376412:0crwdne376412:0</target>
+      </trans-unit>
+      <trans-unit id="tx_nsnewscomments_domain_model_comment.usermail">
+        <source>Email</source>
+        <target>crwdns376414:0crwdne376414:0</target>
+      </trans-unit>
+      <trans-unit id="tx_nsnewscomments_domain_model_comment.comment">
+        <source>Comment</source>
+        <target>crwdns376416:0crwdne376416:0</target>
+      </trans-unit>
+      <trans-unit id="tx_nsnewscomments_domain_model_comment.childcomment">
+        <source>Reply Comment</source>
+        <target>crwdns376418:0crwdne376418:0</target>
+      </trans-unit>
+      <trans-unit id="tx_nsnewscomments_domain_model_comment.terms">
+        <source>Terms accepted</source>
+        <target>crwdns376420:0crwdne376420:0</target>
+      </trans-unit>
+      <trans-unit id="tx_nsnewscomments_domain_model_comment.paramlink">
+        <source>Parameter Link to comments</source>
+        <target>crwdns376422:0crwdne376422:0</target>
+      </trans-unit>
+      <trans-unit id="tx_nsnewscomments_domain_model_comment.comments">
+        <source>Comments</source>
+        <target>crwdns376424:0crwdne376424:0</target>
+      </trans-unit>
+      <trans-unit id="tx_nsnewscomments_domain_model_comment.image">
+        <source>Image</source>
+        <target>crwdns376426:0crwdne376426:0</target>
+      </trans-unit>
+      <trans-unit id="tx_nsnewscomments_domain_model_comment.feuserid">
+        <source>Website User Id</source>
+        <target>crwdns376428:0crwdne376428:0</target>
+      </trans-unit>
+      <trans-unit id="tx_nsnewscomments_domain_model_comment.accesstoken">
+        <source>Comment Access token</source>
+        <target>crwdns376430:0crwdne376430:0</target>
+      </trans-unit>
+      <trans-unit id="tx_newscomment_domain_model_rating.crdate">
+        <source>Created Date</source>
+        <target>crwdns376432:0crwdne376432:0</target>
+      </trans-unit>
+      <trans-unit id="TemplatePath">
+        <source>Template Path</source>
+        <target>crwdns376434:0crwdne376434:0</target>
+      </trans-unit>
+      <trans-unit id="MailConfiguration">
+        <source>Mail Configuration</source>
+        <target>crwdns376436:0crwdne376436:0</target>
+      </trans-unit>
+      <trans-unit id="CommentConfiguration">
+        <source>Comment Configuration</source>
+        <target>crwdns376438:0crwdne376438:0</target>
+      </trans-unit>
+      <trans-unit id="CssJsIncludation">
+        <source>Css/Js Includation</source>
+        <target>crwdns376440:0crwdne376440:0</target>
+      </trans-unit>
+      <trans-unit id="mainConfiguration">
+        <source>[Plugin] Main Configuration</source>
+        <target>crwdns376442:0crwdne376442:0</target>
+      </trans-unit>
+      <trans-unit id="news_comment">
+        <source>News Comment</source>
+        <target>crwdns376444:0crwdne376444:0</target>
+      </trans-unit>
+      <trans-unit id="news_comment.description">
+        <source>Post comments on particular news</source>
+        <target>crwdns376446:0crwdne376446:0</target>
+      </trans-unit>
+      <trans-unit id="addbootstrapCss">
+        <source>Bootstarp Css</source>
+        <target>crwdns376448:0crwdne376448:0</target>
+      </trans-unit>
+      <trans-unit id="addstyleCss">
+        <source>Default Style Css</source>
+        <target>crwdns376450:0crwdne376450:0</target>
+      </trans-unit>
+      <trans-unit id="addfontAwesomeCss">
+        <source>Font Awesome Css</source>
+        <target>crwdns376452:0crwdne376452:0</target>
+      </trans-unit>
+      <trans-unit id="addCustomJS">
+        <source>Custom JS</source>
+        <target>crwdns376454:0crwdne376454:0</target>
+      </trans-unit>
+      <trans-unit id="addjqueryMinJS">
+        <source>Add Jquery Min JS</source>
+        <target>crwdns376456:0crwdne376456:0</target>
+      </trans-unit>
+      <trans-unit id="addjqueryMinJS.v2">
+        <source>v2.x</source>
+        <target>crwdns376458:0crwdne376458:0</target>
+      </trans-unit>
+      <trans-unit id="addjqueryMinJS.v3">
+        <source>v3.x</source>
+        <target>crwdns376460:0crwdne376460:0</target>
+      </trans-unit>
+      <trans-unit id="addCommentUserImage">
+        <source>Add User Image</source>
+        <target>crwdns376462:0crwdne376462:0</target>
+      </trans-unit>
+      <trans-unit id="senderEmail">
+        <source>Set sender email address</source>
+        <target>crwdns376464:0crwdne376464:0</target>
+      </trans-unit>
+      <trans-unit id="senderName">
+        <source>Set sender name</source>
+        <target>crwdns376466:0crwdne376466:0</target>
+      </trans-unit>
+      <trans-unit id="newsComment">
+        <source>New Comment has been added to news</source>
+        <target>crwdns376468:0crwdne376468:0</target>
+      </trans-unit>
+      <trans-unit id="sendMailToNewsAuthor">
+        <source>Send mail notification to author of the news</source>
+        <target>crwdns376470:0crwdne376470:0</target>
+      </trans-unit>
+      <trans-unit id="enableCommentByAdmin">
+        <source>Send Comment by Admin</source>
+        <target>crwdns376472:0crwdne376472:0</target>
+      </trans-unit>
+      <trans-unit id="dateFormat">
+        <source>Set Datetime format</source>
+        <target>crwdns376474:0crwdne376474:0</target>
+      </trans-unit>
+      <trans-unit id="admin">
+        <source>Set Admin Email Address</source>
+        <target>crwdns376476:0crwdne376476:0</target>
+      </trans-unit>
+      <trans-unit id="authorMailSubject">
+        <source>Set subject of mail sending to Author</source>
+        <target>crwdns376478:0crwdne376478:0</target>
+      </trans-unit>
+      <trans-unit id="flexform.setting">
+        <source>Main Configuration</source>
+        <target>crwdns376480:0crwdne376480:0</target>
+      </trans-unit>
+      <trans-unit id="flexform.setting_feuser">
+        <source>Comment User Configuration</source>
+        <target>crwdns376482:0crwdne376482:0</target>
+      </trans-unit>
+      <trans-unit id="flexform.additional">
+        <source>Mail Configuration</source>
+        <target>crwdns376484:0crwdne376484:0</target>
+      </trans-unit>
+      <trans-unit id="flexform.dateFormat">
+        <source>Date Format</source>
+        <target>crwdns376486:0crwdne376486:0</target>
+      </trans-unit>
+      <trans-unit id="flexform.dateFormat.0">
+        <source>F j, Y (May 26, 2017)</source>
+        <target>crwdns376488:0crwdne376488:0</target>
+      </trans-unit>
+      <trans-unit id="flexform.dateFormat.1">
+        <source>Y-m-d (2017-05-26)</source>
+        <target>crwdns376490:0crwdne376490:0</target>
+      </trans-unit>
+      <trans-unit id="flexform.dateFormat.2">
+        <source>m/d/Y (05/26/2017)</source>
+        <target>crwdns376492:0crwdne376492:0</target>
+      </trans-unit>
+      <trans-unit id="flexform.dateFormat.3">
+        <source>d/m/Y (26/05/2017)</source>
+        <target>crwdns376494:0crwdne376494:0</target>
+      </trans-unit>
+      <trans-unit id="flexform.timeFormat.0">
+        <source>g:i a (11:36 am)</source>
+        <target>crwdns376496:0crwdne376496:0</target>
+      </trans-unit>
+      <trans-unit id="flexform.timeFormat.1">
+        <source>g:i A (11:36 AM)</source>
+        <target>crwdns376498:0crwdne376498:0</target>
+      </trans-unit>
+      <trans-unit id="flexform.timeFormat.2">
+        <source>H:i (11:36)</source>
+        <target>crwdns376500:0crwdne376500:0</target>
+      </trans-unit>
+      <trans-unit id="flexform.timeFormat">
+        <source>Time Format</source>
+        <target>crwdns376502:0crwdne376502:0</target>
+      </trans-unit>
+      <trans-unit id="flexform.custom">
+        <source>Custom Date Format</source>
+        <target>crwdns376504:0crwdne376504:0</target>
+      </trans-unit>
+      <trans-unit id="flexform.customDateFormat">
+        <source>Custom Date Format (E.g: d-M-Y // D,m,Y // d/m/Y ...)</source>
+        <target>crwdns376506:0crwdne376506:0</target>
+      </trans-unit>
+      <trans-unit id="flexform.customTimeFormat">
+        <source>Custom Time Format (E.g: h:i , h:i:s a , h:i:s p....)</source>
+        <target>crwdns376508:0crwdne376508:0</target>
+      </trans-unit>
+      <trans-unit id="flexform.CommentUserImage">
+        <source>Default Comment User Image</source>
+        <target>crwdns376510:0crwdne376510:0</target>
+      </trans-unit>
+      <trans-unit id="flexform.captcha">
+        <source>Disable Captcha</source>
+        <target>crwdns376512:0crwdne376512:0</target>
+      </trans-unit>
+      <trans-unit id="flexform.fe_user">
+        <source>FE-user as well as the Anonymous user can comment on the news</source>
+        <target>crwdns376514:0crwdne376514:0</target>
+      </trans-unit>
+      <trans-unit id="flexform.only_fe_user">
+        <source>Only FE-users can comment on news</source>
+        <target>crwdns376516:0crwdne376516:0</target>
+      </trans-unit>
+      <trans-unit id="flexform.feUserloginpid">
+        <source>FE-user login page Id</source>
+        <target>crwdns376518:0crwdne376518:0</target>
+      </trans-unit>
+      <trans-unit id="flexform.userSettings">
+        <source>Comment user settings</source>
+        <target>crwdns376520:0crwdne376520:0</target>
+      </trans-unit>
+      <trans-unit id="sendMailToAdmin">
+        <source>Enable Mail: Enable Email to Admin</source>
+        <target>crwdns376522:0crwdne376522:0</target>
+      </trans-unit>
+      <trans-unit id="adminEmail">
+        <source>[TO] E-Mail: Add Admin E-mail (Comma separated for multiple emails)</source>
+        <target>crwdns376524:0crwdne376524:0</target>
+      </trans-unit>
+      <trans-unit id="adminName">
+        <source>[TO] Admin Name: Add Admin Name</source>
+        <target>crwdns376526:0crwdne376526:0</target>
+      </trans-unit>
+      <trans-unit id="fromEmail">
+        <source>[FROM] E-Mail: Add E-mail</source>
+        <target>crwdns376528:0crwdne376528:0</target>
+      </trans-unit>
+      <trans-unit id="fromName">
+        <source>[FROM] Name: Add Name</source>
+        <target>crwdns376530:0crwdne376530:0</target>
+      </trans-unit>
+      <trans-unit id="adminMailSubject">
+        <source>Subject: Set subject of mail sending to Admin</source>
+        <target>crwdns376532:0crwdne376532:0</target>
+      </trans-unit>
+      <trans-unit id="recordStoragePage">
+        <source>Record Storage Page</source>
+        <target>crwdns376534:0crwdne376534:0</target>
+      </trans-unit>
+      <trans-unit id="customDateFormat">
+        <source>Custom Date Format: [E.g: F j, Y (May 26, 2017) // Y-m-d (2017-05-26) // m/d/Y (05/26/2017) // d/m/Y (26/05/2017)]</source>
+        <target>crwdns376536:0crwdne376536:0</target>
+      </trans-unit>
+      <trans-unit id="customTimeFormat">
+        <source>Custom Time Format: [E.g: g:i a (11:36 am)  // g:i A (11:36 AM)  // H:i (11:36)</source>
+        <target>crwdns376538:0crwdne376538:0</target>
+      </trans-unit>
+      <trans-unit id="disableCaptcha">
+        <source>Disable Captcha</source>
+        <target>crwdns376540:0crwdne376540:0</target>
+      </trans-unit>
+      <trans-unit id="userImage">
+        <source>Add User Image</source>
+        <target>crwdns376542:0crwdne376542:0</target>
+      </trans-unit>
+      <trans-unit id="commentUserSettings">
+        <source>Comment user settings</source>
+        <target>crwdns376544:0crwdne376544:0</target>
+      </trans-unit>
+      <trans-unit id="FEUserLoginPageId">
+        <source>FE-user login page Id: [This option only works when the first option of comment user settings has selected.]</source>
+        <target>crwdns376546:0crwdne376546:0</target>
+      </trans-unit>
+      <trans-unit id="termsRequired">
+        <source>Terms required</source>
+        <target>crwdns376548:0crwdne376548:0</target>
+      </trans-unit>
+      <trans-unit id="termsTypolinkParameter">
+        <source>Terms typolink parameter</source>
+        <target>crwdns376550:0crwdne376550:0</target>
+      </trans-unit>
+      <trans-unit id="flexform.customdate">
+        <source>Custom Date Format </source>
+        <target>crwdns376552:0crwdne376552:0</target>
+      </trans-unit>
+      <trans-unit id="flexform.customtime">
+        <source>Custom Time Format </source>
+        <target>crwdns376554:0crwdne376554:0</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

@@ -171,6 +171,14 @@
         <source>Date Format</source>
         <target>crwdns376486:0crwdne376486:0</target>
       </trans-unit>
+      <trans-unit id="flexform.dateFormat.description">
+        <source>PHP date() format, e.g. F j, Y or j. F Y</source>
+        <target>crwdns415959:0crwdne415959:0</target>
+      </trans-unit>
+      <trans-unit id="flexform.dateFormat.constant">
+        <source>Date Format: PHP date() format, e.g. F j, Y or j. F Y</source>
+        <target>crwdns415961:0crwdne415961:0</target>
+      </trans-unit>
       <trans-unit id="flexform.dateFormat.0">
         <source>F j, Y (May 26, 2017)</source>
         <target>crwdns376488:0crwdne376488:0</target>
@@ -187,6 +195,10 @@
         <source>d/m/Y (26/05/2017)</source>
         <target>crwdns376494:0crwdne376494:0</target>
       </trans-unit>
+      <trans-unit id="globalDateTimeFormat">
+        <source>Use global date and time format (site settings or TypoScript)</source>
+        <target>crwdns415963:0crwdne415963:0</target>
+      </trans-unit>
       <trans-unit id="flexform.timeFormat.0">
         <source>g:i a (11:36 am)</source>
         <target>crwdns376496:0crwdne376496:0</target>
@@ -202,6 +214,14 @@
       <trans-unit id="flexform.timeFormat">
         <source>Time Format</source>
         <target>crwdns376502:0crwdne376502:0</target>
+      </trans-unit>
+      <trans-unit id="flexform.timeFormat.description">
+        <source>PHP date() format, e.g. g:i a, g:i A or H:i</source>
+        <target>crwdns415965:0crwdne415965:0</target>
+      </trans-unit>
+      <trans-unit id="flexform.timeFormat.constant">
+        <source>Time Format: PHP date() format, e.g. g:i a, g:i A or H:i</source>
+        <target>crwdns415967:0crwdne415967:0</target>
       </trans-unit>
       <trans-unit id="flexform.custom">
         <source>Custom Date Format</source>

@@ -160,6 +160,10 @@
 				<source>Thank you for your comment. Your Comment Added Successfully.</source>
 				<target>Merci pour votre commentaire qui a bien été ajouté.</target>
 			</trans-unit>
+			<trans-unit id="form.approveMessage">
+				<source>Thank you for your comment. Your comment will be visible after approval.</source>
+				<target>Merci pour votre commentaire. Il sera visible après validation.</target>
+			</trans-unit>
 			<trans-unit id="tx_nsnewscomments_domain_model_comment.errorMessage">
 				<source>No News Entry Found</source>
 				<target>Aucune actualité trouvée</target>
@@ -228,7 +232,18 @@
                 <source><![CDATA[I accept the <a href="%s" target="_blank">terms</a>.]]></source>
                 <target><![CDATA[J'accepte la <a href="%s" target="_blank">termes</a>.]]></target>
             </trans-unit>
-
+			<trans-unit id="premium.strip.headline">
+				<source>You're using the free version of News Comments</source>
+				<target>Vous utilisez la version gratuite de News Comments</target>
+			</trans-unit>
+			<trans-unit id="premium.strip.description">
+				<source>Unlock premium features and get more out of News Comments.</source>
+				<target>Débloquez les fonctionnalités premium et tirez davantage de News Comments.</target>
+			</trans-unit>
+			<trans-unit id="premium.strip.trial">
+				<source>Start Free Trial</source>
+				<target>Démarrer l'essai gratuit</target>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>

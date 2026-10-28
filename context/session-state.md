@@ -1,5 +1,12 @@
 # ns_news_comments — Session state
 
+## 2026-10-28 — Translation keys in de/es/fr/tr
+
+- Review comment on 14zervyxj9p: new English labels had no targets in other languages.
+- Added every missing `locallang.xlf` / `locallang_db.xlf` id to de, es, fr and tr
+  (`form.approveMessage`, `premium.strip.*`, `flexform.approveComment`, date/time
+  descriptions, `newsComment`, jQuery v2/v3, and tr terms keys).
+
 ## 2026-10-28 — Optional approve-before-publish (14zervyx998)
 
 - ClickUp 14zervyx998 is free-only (`createAction` never set `hidden`). Premium already gates with

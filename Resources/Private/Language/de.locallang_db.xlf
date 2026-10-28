@@ -6,6 +6,9 @@
 			<trans-unit id="tx_nsnewscomments_domain_model_comment">
 				<target>Kommentar</target>
 			</trans-unit>
+			<trans-unit id="tx_nsnewscomments_domain_model_comment.newsComment">
+				<target>News Kommentar</target>
+			</trans-unit>
 			<trans-unit id="tx_nsnewscomments_domain_model_comment.newComments">
 				<target>Kommentar</target>
 			</trans-unit>
@@ -81,6 +84,12 @@
             <trans-unit id="addjqueryMinJS">
                 <target>Add Jquery Min JS</target>
             </trans-unit>
+			<trans-unit id="addjqueryMinJS.v2">
+				<target>v2.x</target>
+			</trans-unit>
+			<trans-unit id="addjqueryMinJS.v3">
+				<target>v3.x</target>
+			</trans-unit>
             <trans-unit id="addCommentUserImage">
                 <target>Benutzerbild hinzufügen</target>
             </trans-unit>
@@ -120,6 +129,12 @@
 			<trans-unit id="flexform.dateFormat">
 				<target>Datumsformat</target>
 			</trans-unit>
+			<trans-unit id="flexform.dateFormat.description">
+				<target>PHP date()-Format, z. B. F j, Y oder j. F Y</target>
+			</trans-unit>
+			<trans-unit id="flexform.dateFormat.constant">
+				<target>Datumsformat: PHP date()-Format, z. B. F j, Y oder j. F Y</target>
+			</trans-unit>
 			<trans-unit id="flexform.dateFormat.0">
 				<target>F j, Y (May 26, 2017)</target>
 			</trans-unit>
@@ -148,6 +163,12 @@
 			<trans-unit id="flexform.timeFormat">
 				<target>Zeitformat</target>
 			</trans-unit>
+			<trans-unit id="flexform.timeFormat.description">
+				<target>PHP date()-Format, z. B. g:i a, g:i A oder H:i</target>
+			</trans-unit>
+			<trans-unit id="flexform.timeFormat.constant">
+				<target>Zeitformat: PHP date()-Format, z. B. g:i a, g:i A oder H:i</target>
+			</trans-unit>
 			<trans-unit id="flexform.custom">
 				<target>Benutzerdefiniertes Datumsformat</target>
 			</trans-unit>
@@ -162,6 +183,9 @@
 			</trans-unit>
 			<trans-unit id="flexform.captcha">
 				<target>Captcha deaktivieren</target>
+			</trans-unit>
+			<trans-unit id="flexform.approveComment">
+				<target>Freigabe erforderlich, bevor Kommentare veröffentlicht werden</target>
 			</trans-unit>
 			<trans-unit id="flexform.fe_user">
 				<target>FE-Benutzer sowie der anonyme Benutzer können die Nachrichten kommentieren</target>

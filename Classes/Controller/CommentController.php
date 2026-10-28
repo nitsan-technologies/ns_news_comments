@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Nitsan\NsNewsComments\Controller;
 
 /***************************************************************
@@ -27,25 +29,24 @@ namespace Nitsan\NsNewsComments\Controller;
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
 
+use GeorgRinger\News\Domain\Repository\NewsRepository;
+use Nitsan\NsNewsComments\Domain\Model\Comment;
+use Nitsan\NsNewsComments\Domain\Repository\CommentRepository;
+use Psr\Http\Message\ResponseInterface;
 use TYPO3\CMS\Core\Context\Context;
 use TYPO3\CMS\Core\Core\Environment;
+use TYPO3\CMS\Core\Crypto\HashService;
+use TYPO3\CMS\Core\Http\NormalizedParams;
 use TYPO3\CMS\Core\Site\Entity\Site;
-use Psr\Http\Message\ResponseInterface;
-use TYPO3\CMS\Core\Utility\PathUtility;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Core\Messaging\AbstractMessage;
-use TYPO3\CMS\Install\Service\SessionService;
-use Nitsan\NsNewsComments\Domain\Model\Comment;
-use TYPO3\CMS\Core\Utility\VersionNumberUtility;
-use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
 use TYPO3\CMS\Core\Type\ContextualFeedbackSeverity;
-use GeorgRinger\News\Domain\Repository\NewsRepository;
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
-use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
-use TYPO3\CMS\Core\Resource\Exception\InvalidFileException;
-use TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager;
-use Nitsan\NsNewsComments\Domain\Repository\CommentRepository;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Core\Utility\PathUtility;
+use TYPO3\CMS\Core\Utility\VersionNumberUtility;
 use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
+use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
+use TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager;
+use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
 
 /**
  * CommentController
@@ -67,6 +68,8 @@ class CommentController extends ActionController
      */
     protected PersistenceManager $persistenceManager;
 
+    protected Context $context;
+
     protected int $newsUid;
 
     protected int $pageUid;
@@ -76,15 +79,24 @@ class CommentController extends ActionController
      */
     protected array $typo3VersionArray = [];
 
+    private const STORAGE_PID_HMAC_SECRET = 'ns_news_comments_storagePid';
+
+    private const APPROVAL_HMAC_SECRET = 'ns_news_comments_approveComment';
+
+    private const CAPTCHA_SESSION_NAME = 'ns_news_comments_captcha';
+
+    private const CAPTCHA_SESSION_KEY = 'ns_news_comments_captcha_code';
 
     public function __construct(
         CommentRepository $commentRepository,
         PersistenceManager $persistenceManager,
-        NewsRepository $newsRepository
+        NewsRepository $newsRepository,
+        Context $context
     ) {
         $this->commentRepository = $commentRepository;
         $this->persistenceManager = $persistenceManager;
         $this->newsRepository = $newsRepository;
+        $this->context = $context;
     }
 
     /**
@@ -94,44 +106,39 @@ class CommentController extends ActionController
      */
     public function initializeAction(): void
     {
-        $sessionService = GeneralUtility::makeInstance(SessionService::class);
-        $sessionService->startSession();
-        $this->typo3VersionArray = VersionNumberUtility::convertVersionStringToArray(VersionNumberUtility::getCurrentTypo3Version());
+        $this->typo3VersionArray = VersionNumberUtility::convertVersionStringToArray(
+            VersionNumberUtility::getCurrentTypo3Version()
+        );
         $getData = $this->request->getQueryParams();
         $postData = $this->request->getParsedBody();
-        $requestData = array_merge($getData, (array) $postData);
+        $requestData = array_merge($getData, (array)$postData);
         $newsArr = $requestData['tx_news_pi1'] ?? [];
-        $newsUid = '';
-        if (is_null($newsArr)) {
-            if (isset($_SESSION['params']) && $_SESSION['params']['originalSettings']['singleNews']) {
-                $newsUid = $_SESSION['params']['originalSettings']['singleNews'];
-            }
-        } else {
-            $newsUid = $newsArr['news'] ?? null;
-        }
-        $this->newsUid = (int) $newsUid;
+        $this->newsUid = (int)($newsArr['news'] ?? 0);
 
-        // Storage page configuration
-        $versionNumber = VersionNumberUtility::convertVersionStringToArray(VersionNumberUtility::getCurrentTypo3Version());
-        if ($versionNumber['version_main'] <= '12') {
+        if ($this->typo3VersionArray['version_main'] <= 12) {
             // @extensionScannerIgnoreLine
-            $this->pageUid = $GLOBALS['TSFE']->id;
+            $this->pageUid = (int)$GLOBALS['TSFE']->id;
         } else {
             $this->pageUid = $GLOBALS['TYPO3_REQUEST']->getAttribute('frontend.page.information')->getId();
         }
-        $extbaseFrameworkConfiguration = $this->configurationManager->getConfiguration(ConfigurationManagerInterface::CONFIGURATION_TYPE_FRAMEWORK);
+        $extbaseFrameworkConfiguration = $this->configurationManager->getConfiguration(
+            ConfigurationManagerInterface::CONFIGURATION_TYPE_FRAMEWORK
+        );
 
         if (empty($extbaseFrameworkConfiguration['persistence']['storagePid'])) {
-            if (isset($_REQUEST['tx_nsnewscomments_newscomment']['Storagepid'])) {
-                $currentPid['persistence']['storagePid'] = $_REQUEST['tx_nsnewscomments_newscomment']['Storagepid'];
+            $pluginArgs = $requestData['tx_nsnewscomments_newscomment'] ?? [];
+            $requestedPid = trim((string)($pluginArgs['Storagepid'] ?? ''));
+            $requestedHmac = (string)($pluginArgs['storagePidHmac'] ?? '');
+            if ($this->isTrustedStoragePid($requestedPid, $requestedHmac)) {
+                $currentPid['persistence']['storagePid'] = $requestedPid;
+            } elseif (!empty($this->settings['storagePid'])) {
+                $currentPid['persistence']['storagePid'] = $this->settings['storagePid'];
             } else {
-                if (isset($this->settings['storagePid']) && !empty($this->settings['storagePid'])) {
-                    $currentPid['persistence']['storagePid'] = $this->settings['storagePid'];
-                } else {
-                    $currentPid['persistence']['storagePid'] = $this->pageUid;
-                }
+                $currentPid['persistence']['storagePid'] = $this->pageUid;
             }
-            $this->configurationManager->setConfiguration(array_merge($extbaseFrameworkConfiguration, $currentPid));
+            $this->configurationManager->setConfiguration(
+                array_merge($extbaseFrameworkConfiguration, $currentPid)
+            );
         }
     }
 
@@ -139,11 +146,12 @@ class CommentController extends ActionController
      * action list
      *
      * @return ResponseInterface
-     * @throws InvalidFileException
      */
     public function listAction(): ResponseInterface
     {
-        $extbaseFrameworkConfiguration = $this->configurationManager->getConfiguration(ConfigurationManagerInterface::CONFIGURATION_TYPE_FRAMEWORK);
+        $extbaseFrameworkConfiguration = $this->configurationManager->getConfiguration(
+            ConfigurationManagerInterface::CONFIGURATION_TYPE_FRAMEWORK
+        );
 
         if (empty($extbaseFrameworkConfiguration['persistence']['storagePid'])) {
             $pid = $this->pageUid;
@@ -168,26 +176,25 @@ class CommentController extends ActionController
                 $setting = array_merge($setting, $this->getGlobalDateTimeFormats());
             }
 
+            $approvalFlag = $this->isCommentApprovalRequired() ? '1' : '0';
             $this->view->assignMultiple([
                 'comments' => $comments,
                 'newsID' => $this->newsUid,
                 'pageid' => $this->pageUid,
                 'pid' => $pid,
+                'pidHmac' => $this->hmacStoragePid((string)$pid),
+                'approvalFlag' => $approvalFlag,
+                'approvalHmac' => $this->hmacApprovalFlag($approvalFlag),
                 'settings' => $setting,
             ]);
         } else {
             $error = LocalizationUtility::translate('tx_nsnewscomments_domain_model_comment.errorMessage', 'NsNewsComments');
-            if (version_compare((string) $this->typo3VersionArray['version_main'], '11', '>')) {
-                $this->addFlashMessage($error, '', ContextualFeedbackSeverity::ERROR);
-            } else {
-                // @extensionScannerIgnoreLine
-                $this->addFlashMessage($error, '', AbstractMessage::ERROR);
-            }
+            $this->addFlashMessage($error, '', ContextualFeedbackSeverity::ERROR);
         }
         return $this->htmlResponse();
     }
 
-    /** 
+    /**
      * action create
      *
      * @param Comment $newComment
@@ -196,24 +203,67 @@ class CommentController extends ActionController
      */
     public function createAction(Comment $newComment): ResponseInterface
     {
-        $request = $this->request->getArguments();
-        $newComment->setCrdate(time());
-        $language = GeneralUtility::makeInstance(Context::class)->getPropertyFromAspect('language', 'id');
-        $newComment->setSysLanguageUid($language);
-        $parentId = $request['parentId'];
-        if ($request['parentId'] > 0) {
-            $childComment = $this->commentRepository->findByUid($parentId);
-            $childComment->addChildcomment($newComment);
-            $this->commentRepository->update($childComment);
+        $arguments = $this->request->getArguments();
+        $captchaCode = (string)($arguments['captcha_code'] ?? '');
+        if ($this->isCaptchaRequired() || $captchaCode !== '') {
+            if (!$this->isValidCaptcha($captchaCode)) {
+                return $this->jsonResponse(json_encode(['error' => 'captcha']))->withStatus(400);
+            }
         }
 
-        // Add comment to repository
+        $postedComment = $arguments['newComment'] ?? [];
+        $username = $this->trimCommentField((string)($postedComment['username'] ?? $newComment->getUsername()));
+        $usermail = $this->trimCommentField((string)($postedComment['usermail'] ?? $newComment->getUsermail()));
+        $description = $this->trimCommentField((string)($postedComment['description'] ?? $newComment->getDescription()));
+        $fields = [];
+        if ($username === '') {
+            $fields[] = 'username';
+        }
+        if ($usermail === '') {
+            $fields[] = 'usermail';
+        }
+        if ($this->isBlankCommentText($description)) {
+            $fields[] = 'description';
+        }
+        if ($fields !== []) {
+            return $this->jsonResponse(json_encode([
+                'error' => 'validation',
+                'fields' => $fields,
+            ]))->withStatus(400);
+        }
+        $newComment->setUsername($username);
+        $newComment->setUsermail($usermail);
+        $newComment->setDescription($description);
+
+        if ($this->newsUid < 1) {
+            return $this->jsonResponse(json_encode(['error' => 'news']))->withStatus(400);
+        }
+
+        $newComment->setNewsuid($this->newsUid);
+        $newComment->setPageid($this->pageUid);
+        $newComment->setCrdate(time());
+        $language = $this->context->getPropertyFromAspect('language', 'id');
+        $newComment->setSysLanguageUid($language);
+
+        $parentId = (int)($arguments['parentId'] ?? 0);
+        if ($parentId > 0) {
+            $parentComment = $this->commentRepository->findByUid($parentId);
+            if ($parentComment === null || $parentComment->getNewsuid() !== $this->newsUid) {
+                return $this->jsonResponse(json_encode(['error' => 'parent']))->withStatus(400);
+            }
+            $parentComment->addChildcomment($newComment);
+            $this->commentRepository->update($parentComment);
+        }
+
+        $needsApproval = $this->resolveCommentApprovalRequired($arguments);
+        if ($needsApproval) {
+            $newComment->setHidden(1);
+        }
+
         $this->commentRepository->add($newComment);
         $this->persistenceManager->persistAll();
         $news = $this->newsRepository->findByUid($newComment->getNewsuid());
 
-
-        // Add paramlink to comments for scrolling to comment
         $paramLink = $this->buildUriByUid(
             $this->pageUid,
             $news,
@@ -223,6 +273,10 @@ class CommentController extends ActionController
         $this->commentRepository->update($newComment);
 
         $this->persistenceManager->persistAll();
+        if ($needsApproval) {
+            return $this->jsonResponse(json_encode(['status' => 'pending']));
+        }
+
         $json[$newComment->getUid()] = ['parentId' => $parentId, 'comment' => 'comment'];
         return $this->jsonResponse(json_encode($json));
     }
@@ -285,41 +339,201 @@ class CommentController extends ActionController
         return $this->addBaseUriIfNecessary($uri);
     }
 
-
     /**
      * getPath for composer based setup
      * @param $path
      * @param $extName
      * @return string
-     * @throws InvalidFileException
      */
     public function getPath($path, $extName): string
     {
-        $arguments = ['path' => $path, 'extensionName' => $extName];
-        $path = $arguments['path'];
-        $publicPath = sprintf('EXT:%s/Resources/Public/%s', $arguments['extensionName'], ltrim($path, '/'));
-        $uri = PathUtility::getPublicResourceWebPath($publicPath);
-        return substr($uri, 1);
+        $publicPath = sprintf('EXT:%s/Resources/Public/%s', $extName, ltrim((string)$path, '/'));
+        $url = $this->publicResourceUrl($publicPath);
+        $pathPart = parse_url($url, PHP_URL_PATH);
+
+        return ltrim((string)($pathPart ?? $url), '/');
     }
 
-
     /**
-     * @return array
-     * @throws InvalidFileException
+     * @return array{captcha: string, verification: string}
      */
     private function captchaVerificationPath(): array
     {
-        $paths = [];
+        if (class_exists(\TYPO3\CMS\Core\SystemResource\SystemResourceFactory::class)) {
+            return [
+                'captcha' => $this->publicResourceUrl('EXT:ns_news_comments/Resources/Public/PHP/captcha.php'),
+                'verification' => $this->publicResourceUrl('EXT:ns_news_comments/Resources/Public/PHP/verify.php'),
+            ];
+        }
         if (Environment::isComposerMode()) {
             $assetPath = $this->getPath('PHP/', 'ns_news_comments');
-            $basePath = GeneralUtility::getIndpEnv('TYPO3_SITE_URL');
-            $paths['captcha'] = $basePath . $assetPath . 'captcha.php';
-            $paths['verification'] = $basePath . $assetPath . 'verify.php';
-        } else {
-            $basePath = PathUtility::stripPathSitePrefix(ExtensionManagementUtility::extPath('ns_news_comments'));
-            $paths['captcha'] = '/' . $basePath . 'Resources/Public/PHP/captcha.php';
-            $paths['verification'] = '/' . $basePath . 'Resources/Public/PHP/verify.php';
+            $normalizedParams = $this->request->getAttribute('normalizedParams');
+            $basePath = $normalizedParams instanceof NormalizedParams
+                ? $normalizedParams->getSiteUrl()
+                : '';
+            return [
+                'captcha' => $basePath . $assetPath . 'captcha.php',
+                'verification' => $basePath . $assetPath . 'verify.php',
+            ];
         }
-        return $paths;
+        $basePath = PathUtility::stripPathSitePrefix(ExtensionManagementUtility::extPath('ns_news_comments'));
+        return [
+            'captcha' => '/' . $basePath . 'Resources/Public/PHP/captcha.php',
+            'verification' => '/' . $basePath . 'Resources/Public/PHP/verify.php',
+        ];
+    }
+
+    private function publicResourceUrl(string $extPath): string
+    {
+        if (class_exists(\TYPO3\CMS\Core\SystemResource\SystemResourceFactory::class)) {
+            $factory = GeneralUtility::makeInstance(\TYPO3\CMS\Core\SystemResource\SystemResourceFactory::class);
+            $publisher = GeneralUtility::makeInstance(
+                \TYPO3\CMS\Core\SystemResource\Publishing\SystemResourcePublisherInterface::class
+            );
+            $resource = $factory->createPublicResource($extPath);
+            $options = new \TYPO3\CMS\Core\SystemResource\Publishing\UriGenerationOptions(
+                absoluteUri: true,
+                cacheBusting: false
+            );
+
+            return (string)$publisher->generateUri($resource, $this->request, $options);
+        }
+
+        // @extensionScannerIgnoreLine
+        return PathUtility::getPublicResourceWebPath($extPath);
+    }
+
+    private function isCaptchaRequired(): bool
+    {
+        $disableCaptcha = $this->settings['captcha'] ?? '1';
+
+        return $disableCaptcha === '0' || $disableCaptcha === '' || $disableCaptcha === 0 || $disableCaptcha === false;
+    }
+
+    private function isCommentApprovalRequired(): bool
+    {
+        $approveComment = $this->settings['approveComment'] ?? 0;
+
+        return $approveComment === 1 || $approveComment === '1' || $approveComment === true;
+    }
+
+    /**
+     * AJAX create runs as a PAGE USER, so FlexForm from the plugin is not in $this->settings.
+     * listAction signs the resolved flag; a matching hmac is the plugin value, otherwise TypoScript.
+     */
+    private function resolveCommentApprovalRequired(array $arguments): bool
+    {
+        $posted = ((string)($arguments['approval'] ?? '')) === '1' ? '1' : '0';
+        $hmac = (string)($arguments['approvalHmac'] ?? '');
+        if ($hmac === '') {
+            return $this->isCommentApprovalRequired();
+        }
+        if (!$this->isTrustedApprovalFlag($posted, $hmac)) {
+            return true;
+        }
+
+        return $posted === '1';
+    }
+
+    private function isValidCaptcha(string $submitted): bool
+    {
+        $submitted = trim($submitted);
+        if ($submitted === '') {
+            return false;
+        }
+
+        $expected = $this->withCaptchaSession(static function (array &$session): string {
+            return (string)($session[self::CAPTCHA_SESSION_KEY] ?? '');
+        });
+
+        if ($expected === '' || !hash_equals($expected, $submitted)) {
+            return false;
+        }
+
+        $this->withCaptchaSession(static function (array &$session): string {
+            unset($session[self::CAPTCHA_SESSION_KEY]);
+            return '';
+        });
+
+        return true;
+    }
+
+    /**
+     * @param callable(array<string, mixed>): string $callback
+     */
+    private function withCaptchaSession(callable $callback): string
+    {
+        $cookieId = (string)($this->request->getCookieParams()[self::CAPTCHA_SESSION_NAME] ?? '');
+        if ($cookieId === '') {
+            return '';
+        }
+
+        $previousName = session_name();
+        $previousId = session_id();
+        $wasActive = session_status() === PHP_SESSION_ACTIVE;
+        if ($wasActive) {
+            session_write_close();
+        }
+
+        session_name(self::CAPTCHA_SESSION_NAME);
+        session_id($cookieId);
+        session_start();
+        $result = $callback($_SESSION);
+        session_write_close();
+
+        session_name($previousName);
+        if ($wasActive && $previousId !== '') {
+            session_id($previousId);
+            session_start();
+        }
+
+        return $result;
+    }
+
+    private function trimCommentField(string $value): string
+    {
+        return preg_replace('/^\s+|\s+$/u', '', $value) ?? '';
+    }
+
+    private function isBlankCommentText(string $value): bool
+    {
+        $value = html_entity_decode($value, ENT_QUOTES | ENT_HTML5, 'UTF-8');
+        $value = preg_replace('/\s+/u', '', $value) ?? '';
+
+        return $value === '';
+    }
+
+    private function hmacStoragePid(string $pid): string
+    {
+        if ($pid === '') {
+            return '';
+        }
+        if (class_exists(HashService::class)) {
+            return GeneralUtility::makeInstance(HashService::class)->hmac($pid, self::STORAGE_PID_HMAC_SECRET);
+        }
+
+        // @extensionScannerIgnoreLine
+        return GeneralUtility::hmac($pid, self::STORAGE_PID_HMAC_SECRET);
+    }
+
+    private function hmacApprovalFlag(string $flag): string
+    {
+        $flag = $flag === '1' ? '1' : '0';
+        if (class_exists(HashService::class)) {
+            return GeneralUtility::makeInstance(HashService::class)->hmac($flag, self::APPROVAL_HMAC_SECRET);
+        }
+
+        // @extensionScannerIgnoreLine
+        return GeneralUtility::hmac($flag, self::APPROVAL_HMAC_SECRET);
+    }
+
+    private function isTrustedStoragePid(string $pid, string $hmac): bool
+    {
+        return $pid !== '' && $hmac !== '' && hash_equals($this->hmacStoragePid($pid), $hmac);
+    }
+
+    private function isTrustedApprovalFlag(string $flag, string $hmac): bool
+    {
+        return $hmac !== '' && hash_equals($this->hmacApprovalFlag($flag), $hmac);
     }
 }

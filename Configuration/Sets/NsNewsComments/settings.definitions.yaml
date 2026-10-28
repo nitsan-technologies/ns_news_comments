@@ -82,6 +82,12 @@ settings:
     type: bool
     default: true
 
+  nsNewsComments.settings.approveComment:
+    label: 'LLL:EXT:ns_news_comments/Resources/Private/Language/locallang_db.xlf:flexform.approveComment'
+    category: nsNewsComments.settings
+    type: bool
+    default: false
+
   nsNewsComments.settings.storagePid:
     label: 'Default storage page Id'
     category: nsNewsComments.settings

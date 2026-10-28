@@ -1,0 +1,23 @@
+# Registered from ext_localconf.php into default TypoScript (including Site Sets)
+# so this typeNum exists before the site-template include-tree cache is built.
+nsNewsCommentsAjaxCall = PAGE
+nsNewsCommentsAjaxCall {
+    typeNum = 1730800496
+    config {
+        disableAllHeaderCode = 1
+        xhtml_cleaning = 0
+        debug = 0
+        no_cache = 1
+        admPanel = 0
+    }
+    315123 = USER
+    315123 {
+        userFunc = TYPO3\CMS\Extbase\Core\Bootstrap->run
+        pluginName = Newscomment
+        extensionName = NsNewsComments
+        controller = Comment
+        vendorName = Nitsan
+        action = create
+        settings < plugin.tx_nsnewscomments.settings
+    }
+}

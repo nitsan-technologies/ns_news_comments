@@ -123,6 +123,9 @@
 			<trans-unit id="form.thankyouMessage">
 				<source>Thank you for your comment. Your Comment Added Successfully.</source>
 			</trans-unit>
+			<trans-unit id="form.approveMessage">
+				<source>Thank you for your comment. Your comment will be visible after approval.</source>
+			</trans-unit>
 			<trans-unit id="tx_nsnewscomments_domain_model_comment.errorMessage">
 				<source>No News Entry Found</source>
 			</trans-unit>
@@ -163,10 +166,10 @@
 				<source>Close</source>
 			</trans-unit>
 			<trans-unit id="premium.strip.headline">
-				<source>You're using the free version of NS News Comments</source>
+				<source>You're using the free version of News Comments</source>
 			</trans-unit>
 			<trans-unit id="premium.strip.description">
-				<source>Unlock premium features and get more out of NS News Comments.</source>
+				<source>Unlock premium features and get more out of News Comments.</source>
 			</trans-unit>
 			<trans-unit id="premium.strip.trial">
 				<source>Start Free Trial</source>

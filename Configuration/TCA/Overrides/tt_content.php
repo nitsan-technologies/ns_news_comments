@@ -1,6 +1,8 @@
 <?php
 
+use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Utility\ExtensionUtility;
 
 defined('TYPO3') or die();
@@ -25,9 +27,14 @@ ExtensionManagementUtility::addToAllTCAtypes(
     'after:subheader',
 );
 
-// @extensionScannerIgnoreLine
-ExtensionManagementUtility::addPiFlexFormValue(
-    '*',
-    'FILE:EXT:' . $_EXTKEY . '/Configuration/FlexForm/FlexForm.xml',
-    $ctypeKey,
-);
+$flexFormFile = 'FILE:EXT:' . $_EXTKEY . '/Configuration/FlexForm/FlexForm.xml';
+if (GeneralUtility::makeInstance(Typo3Version::class)->getMajorVersion() >= 14) {
+    $GLOBALS['TCA']['tt_content']['types'][$ctypeKey]['columnsOverrides']['pi_flexform']['config']['ds'] = $flexFormFile;
+} else {
+    // @extensionScannerIgnoreLine
+    ExtensionManagementUtility::addPiFlexFormValue(
+        '*',
+        $flexFormFile,
+        $ctypeKey,
+    );
+}

@@ -57,6 +57,14 @@
                         </config>
                     </settings.captcha>
 
+                    <settings.approveComment>
+                        <label>LLL:EXT:ns_news_comments/Resources/Private/Language/locallang_db.xlf:flexform.approveComment</label>
+                        <config>
+                            <type>check</type>
+                            <default>0</default>
+                        </config>
+                    </settings.approveComment>
+
                 </el>
             </ROOT>
         </sDEF>

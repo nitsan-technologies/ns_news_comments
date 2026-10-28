@@ -17,8 +17,8 @@
     "issues": "https://github.com/nitsan-technologies/ns_news_comments/issues"
   },
   "require": {
+    "php": ">=8.1 <8.6",
     "typo3/cms-core": "^12.4.37 || ^13 || ^14",
-    "typo3/cms-install": "^12.4.37 || ^13 || ^14",
     "georgringer/news": "^11 || ^12 || ^13 || ^14",
     "nitsan/ns-license": "^14.5.4"
   },
@@ -39,7 +39,10 @@
         "cms-package-dir": "{$vendor-dir}/typo3/cms",
         "web-dir": ".Build/public",
         "extension-key": "ns_news_comments",
-        "version": "14.1.0"
+        "version": "14.1.0",
+        "Package": {
+            "providesPackages": {}
+        }
     }
   }
 }

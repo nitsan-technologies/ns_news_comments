@@ -6,7 +6,6 @@ namespace Nitsan\NsNewsComments\ViewHelpers\Be;
 
 use Nitsan\NsNewsComments\Backend\PremiumStrip;
 use TYPO3\CMS\Core\Page\PageRenderer;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 
 /**
@@ -16,11 +15,16 @@ final class PremiumStripViewHelper extends AbstractViewHelper
 {
     protected $escapeOutput = false;
 
+    public function __construct(
+        private readonly PremiumStrip $premiumStrip,
+        private readonly PageRenderer $pageRenderer
+    ) {}
+
     public function render(): string
     {
-        $strip = GeneralUtility::makeInstance(PremiumStrip::class)->render();
+        $strip = $this->premiumStrip->render();
         if ($strip !== '') {
-            GeneralUtility::makeInstance(PageRenderer::class)->addCssFile(PremiumStrip::STYLESHEET);
+            $this->pageRenderer->addCssFile(PremiumStrip::STYLESHEET);
         }
 
         return $strip;

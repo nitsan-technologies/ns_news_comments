@@ -299,6 +299,10 @@ function showValidationErrors(fields) {
         $('.tx_nsnewscomments #comment').parent().addClass('has-error');
         $('.tx_nsnewscomments #comment_error').show();
     }
+    if (fields.indexOf('terms') !== -1) {
+        $('.tx_nsnewscomments #terms').closest('.ns-form-group').addClass('has-error');
+        $('.tx_nsnewscomments #terms_error').show();
+    }
 }
 
 // Custom validation for onfocus

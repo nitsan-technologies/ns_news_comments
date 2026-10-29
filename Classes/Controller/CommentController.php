@@ -113,7 +113,9 @@ class CommentController extends ActionController
         $postData = $this->request->getParsedBody();
         $requestData = array_merge($getData, (array)$postData);
         $newsArr = $requestData['tx_news_pi1'] ?? [];
-        $this->newsUid = (int)($newsArr['news'] ?? 0);
+        $pluginArgs = $requestData['tx_nsnewscomments_newscomment'] ?? [];
+        $postedComment = is_array($pluginArgs['newComment'] ?? null) ? $pluginArgs['newComment'] : [];
+        $this->newsUid = (int)($newsArr['news'] ?? $postedComment['newsuid'] ?? $pluginArgs['newsuid'] ?? 0);
 
         if ($this->typo3VersionArray['version_main'] <= 12) {
             // @extensionScannerIgnoreLine
@@ -211,6 +213,13 @@ class CommentController extends ActionController
             }
         }
 
+        if ($this->isTermsAcceptanceRequired() && !$newComment->getTerms()) {
+            return $this->jsonResponse(json_encode([
+                'error' => 'validation',
+                'fields' => ['terms'],
+            ]))->withStatus(400);
+        }
+
         $postedComment = $arguments['newComment'] ?? [];
         $username = $this->trimCommentField((string)($postedComment['username'] ?? $newComment->getUsername()));
         $usermail = $this->trimCommentField((string)($postedComment['usermail'] ?? $newComment->getUsermail()));
@@ -235,6 +244,9 @@ class CommentController extends ActionController
         $newComment->setUsermail($usermail);
         $newComment->setDescription($description);
 
+        if ($this->newsUid < 1) {
+            $this->newsUid = (int)$newComment->getNewsuid();
+        }
         if ($this->newsUid < 1) {
             return $this->jsonResponse(json_encode(['error' => 'news']))->withStatus(400);
         }
@@ -408,6 +420,13 @@ class CommentController extends ActionController
         $disableCaptcha = $this->settings['captcha'] ?? '1';
 
         return $disableCaptcha === '0' || $disableCaptcha === '' || $disableCaptcha === 0 || $disableCaptcha === false;
+    }
+
+    private function isTermsAcceptanceRequired(): bool
+    {
+        $termsRequired = $this->settings['termsRequired'] ?? 0;
+
+        return $termsRequired === 1 || $termsRequired === '1' || $termsRequired === true;
     }
 
     private function isCommentApprovalRequired(): bool

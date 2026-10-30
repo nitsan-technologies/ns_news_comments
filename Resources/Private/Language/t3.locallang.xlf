@@ -155,6 +155,10 @@
         <source>Thank you for your comment. Your Comment Added Successfully.</source>
         <target>crwdns376368:0crwdne376368:0</target>
       </trans-unit>
+      <trans-unit id="form.approveMessage">
+        <source>Thank you for your comment. Your comment will be visible after approval.</source>
+        <target>crwdns417925:0crwdne417925:0</target>
+      </trans-unit>
       <trans-unit id="tx_nsnewscomments_domain_model_comment.errorMessage">
         <source>No News Entry Found</source>
         <target>crwdns376370:0crwdne376370:0</target>
@@ -208,12 +212,12 @@
         <target>crwdns376394:0crwdne376394:0</target>
       </trans-unit>
       <trans-unit id="premium.strip.headline">
-        <source>You're using the free version of NS News Comments</source>
-        <target>crwdns415245:0crwdne415245:0</target>
+        <source>You're using the free version of News Comments</source>
+        <target>crwdns417927:0crwdne417927:0</target>
       </trans-unit>
       <trans-unit id="premium.strip.description">
-        <source>Unlock premium features and get more out of NS News Comments.</source>
-        <target>crwdns415247:0crwdne415247:0</target>
+        <source>Unlock premium features and get more out of News Comments.</source>
+        <target>crwdns417929:0crwdne417929:0</target>
       </trans-unit>
       <trans-unit id="premium.strip.trial">
         <source>Start Free Trial</source>

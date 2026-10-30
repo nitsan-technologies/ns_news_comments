@@ -7,6 +7,10 @@
 				<source>Comment</source>
 				<target>Comentario</target>
 			</trans-unit>
+			<trans-unit id="tx_nsnewscomments_domain_model_comment.newsComment">
+				<source>News Comment</source>
+				<target>Comentario de News</target>
+			</trans-unit>
 			<trans-unit id="tx_nsnewscomments_domain_model_comment.newComments">
 				<source>Comments</source>
 				<target>Comentarios</target>
@@ -104,6 +108,14 @@
                 <source>Add Jquery Min JS</source>
                 <target>Añadir jQuery minimizado</target>
             </trans-unit>
+			<trans-unit id="addjqueryMinJS.v2">
+				<source>v2.x</source>
+				<target>v2.x</target>
+			</trans-unit>
+			<trans-unit id="addjqueryMinJS.v3">
+				<source>v3.x</source>
+				<target>v3.x</target>
+			</trans-unit>
             <trans-unit id="addCommentUserImage">
                 <source>Add User Image</source>
                 <target>Añadir imagen para el usuario</target>
@@ -156,6 +168,14 @@
 				<source>Date Format</source>
 				<target>Formato de fecha</target>
 			</trans-unit>
+			<trans-unit id="flexform.dateFormat.description">
+				<source>PHP date() format, e.g. F j, Y or j. F Y</source>
+				<target>Formato de PHP date(), p. ej. F j, Y o j. F Y</target>
+			</trans-unit>
+			<trans-unit id="flexform.dateFormat.constant">
+				<source>Date Format: PHP date() format, e.g. F j, Y or j. F Y</source>
+				<target>Formato de fecha: formato de PHP date(), p. ej. F j, Y o j. F Y</target>
+			</trans-unit>
 			<trans-unit id="flexform.dateFormat.0">
 				<source>F j, Y (Mayo 26, 2017)</source>
 			</trans-unit>
@@ -185,6 +205,14 @@
 				<source>Time Format</source>
 				<target>Formato de hora</target>
 			</trans-unit>
+			<trans-unit id="flexform.timeFormat.description">
+				<source>PHP date() format, e.g. g:i a, g:i A or H:i</source>
+				<target>Formato de PHP date(), p. ej. g:i a, g:i A o H:i</target>
+			</trans-unit>
+			<trans-unit id="flexform.timeFormat.constant">
+				<source>Time Format: PHP date() format, e.g. g:i a, g:i A or H:i</source>
+				<target>Formato de hora: formato de PHP date(), p. ej. g:i a, g:i A o H:i</target>
+			</trans-unit>
 			<trans-unit id="flexform.custom">
 				<source>Custom Date Format</source>
 				<target>Formato de fecha personalizado</target>
@@ -204,6 +232,10 @@
 			<trans-unit id="flexform.captcha">
 				<source>Disable Captcha</source>
 				<target>Dasactivar Captcha</target>
+			</trans-unit>
+			<trans-unit id="flexform.approveComment">
+				<source>Require approval before comments are published</source>
+				<target>Requerir aprobación antes de publicar los comentarios</target>
 			</trans-unit>
 			<trans-unit id="flexform.fe_user">
 				<source>FE-user as well as the Anonymous user can comment on the news</source>

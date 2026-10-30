@@ -17,21 +17,21 @@
 
 | Source | TYPO3 | EXT:news | PHP |
 |---|---|---|---|
-| `ext_emconf.php` | `12.4.37-14.9.99` | `11.0.0-14.9.99` | not declared |
-| `composer.json` | `^12.4.37 \|\| ^13 \|\| ^14` | `^11 \|\| ^12 \|\| ^13 \|\| ^14` | not declared |
-| ns_license 14.5.4 (dependency) | `12.4.18-14.9.99` | — | — |
+| `ext_emconf.php` | `12.4.37-14.9.99` | `11.0.0-14.9.99` | `8.1.0-8.5.99` |
+| `composer.json` | `^12.4.37 \|\| ^13 \|\| ^14` | `^11 \|\| ^12 \|\| ^13 \|\| ^14` | `>=8.1 <8.6` |
+| ns_license 14.5.4 (dependency) | `12.4.18-14.9.99` | — | `>=8.1 <8.6` |
 
-- Code uses typed properties, `catch (X)` without variable and `enum_exists()` → PHP 8.1+ (TYPO3 12 minimum anyway).
-- Verified live only on TYPO3 14.3.7 (Classic mode, DDEV). v12 / v13 are code-read.
+- Effective range is **TYPO3 12.4.37** and **PHP 8.1–8.5**. Official TYPO3×PHP matrix: v12 = 8.1–8.4 (not 8.5); v13/v14 = 8.2–8.5. Captcha no longer calls `imagedestroy()` (deprecated in 8.5).
+- Syntax + captcha generation verified on PHP 8.1, 8.2, 8.3, 8.4 and 8.5 (no deprecations). TYPO3 APIs are version-switched (code-read).
+- User-verified working as expected in **Composer and Classic** (non-Composer) setups. Live TYPO3: 14.3.7 (Classic, DDEV); v12 / v13 not live-tested here.
 
 ## Dependencies
 
 | Package | Constraint | Why |
 |---|---|---|
 | `typo3/cms-core` | see above | core |
-| `georgringer/news` / `news` | see above | comments belong to news records; controller injects `NewsRepository`; hook on news `overrideSettings` |
+| `georgringer/news` / `news` | see above | comments belong to news records; controller injects `NewsRepository` |
 | `nitsan/ns-license` / `ns_license` | `^14.5.4` / `14.5.4-14.9.99` | TYPO3 Shop module + free-trial deep link (see `features/premium-cta.md`) |
-| `typo3/cms-install` | not declared | `CommentController` and `Hooks/NewsController` use `TYPO3\CMS\Install\Service\SessionService` |
 | jQuery | bundled | `custom.js` needs it; 3.6.3 (default) or 2.2.4 shipped in `Resources/Public/js/` |
 
 ## Tooling
@@ -61,35 +61,23 @@ Behaviour details: `features/comments-plugin.md`. All code-read unless marked ot
 
 Security / data:
 
-- Captcha is checked only in the browser (`custom.js` → `Resources/Public/PHP/verify.php`).
-  `createAction()` never validates it, so a direct POST to page type `1730800496` skips it.
 - Captcha is **off by default**: the setting is called `captcha` but means "Disable Captcha"
   (FlexForm label `flexform.captcha`); static constant `captcha = 1`, site set default `true`.
-- When no `persistence.storagePid` is configured, `initializeAction()` takes the storage pid from the request
-  (`tx_nsnewscomments_newscomment[Storagepid]`, sent by the form), so the client chooses where comments are stored.
-- `createAction()` loads `parentId` with `findByUid()` without a null check or news match: an invalid id
-  fatals, a foreign id attaches the reply to another news item's comment.
-- Comments go live immediately (`hidden` = 0); moderation is a premium feature.
+- Comments go live immediately unless `approveComment` is enabled (`hidden` = 1 until an editor unhides
+  the record on the news Comments tab). Dedicated approval module / e-mail approval remain premium.
 
 Runtime:
 
-- `Hooks/NewsController::modify()` and `initializeAction()` start the Install tool `SessionService` on every
-  news / comment request to pass the news uid via `$_SESSION`; the reading side is dead code
-  (`features/comments-plugin.md` → News uid resolution).
 - `getCommentsByNews()` respects the storage page; `CountViewHelper` / `LastCommentViewHelper` don't, so counts
   can include comments the list doesn't show.
 - Static TypoScript adds style.css, font-awesome, jQuery and custom.js to **every** page
   (`page.includeCSS` / `includeJSFooter`); `Layouts/Default.html` adds the same files again via `f:asset`
   on plugin pages.
-- TypoScript `switchableControllerActions` (AJAX page type, `lib.tx_nsnewscomments.comments`) is ignored since v12.
 
 Housekeeping:
 
 - `Configuration/Services.yaml` doesn't exclude `Classes/Domain/Model/*` from autowiring.
-- `Configuration/TCA/Overrides/tt_content.php` uses `ExtensionManagementUtility::addPiFlexFormValue()`,
-  deprecated in TYPO3 14.0 (#107047, removed in v15): triggers `E_USER_DEPRECATED` on v14.
-- `ext_tables.sql` still has `cruser_id` and the full legacy `t3ver_*` column set; `ext_tables.php` has a
-  TYPO3 v11-only branch that can't run (minimum is 12.4.37).
+- `ext_tables.sql` still has unused `cruser_id` and the full legacy `t3ver_*` column set.
 - README badge says v13.0.1 / TYPO3 13; links use `t3planet.com` while the sheet uses `t3planet.de`.
 - `Documentation/Introduction` claims TYPO3 6.x–9.x compatibility and admin e-mail notifications (not in the
   free code).

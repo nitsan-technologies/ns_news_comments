@@ -10,8 +10,6 @@ return [
         'tstamp' => 'tstamp',
         'crdate' => 'crdate',
         'hideTable' => true,
-        'cruser_id' => 'cruser_id',
-        'dividers2tabs' => true,
         'versioningWS' => true,
         'languageField' => 'sys_language_uid',
         'transOrigPointerField' => 'l10n_parent',
@@ -26,7 +24,7 @@ return [
         'searchFields' => 'description,newsuid,username,usermail,childcomment',
         'iconfile' => 'EXT:ns_news_comments/Resources/Public/Icons/plug_comment.svg',
         'security' => [
-            'ignorePageTypeRestriction' => true
+            'ignorePageTypeRestriction' => true,
         ],
     ],
     'types' => [
@@ -43,13 +41,13 @@ return [
         ],
         'l10n_parent' => [
             'displayCond' => 'FIELD:sys_language_uid:>:0',
-            'exclude' => 1,
+            'exclude' => true,
             'label' => $corell . 'LGL.l18n_parent',
             'config' => [
                 'type' => 'select',
                 'renderType' => 'selectSingle',
                 'items' => [
-                    ['', 0],
+                    ['label' => '', 'value' => 0],
                 ],
                 'foreign_table' => 'tx_nsnewscomments_domain_model_comment',
                 'foreign_table_where' => 'AND tx_nsnewscomments_domain_model_comment.pid=###CURRENT_PID### AND tx_nsnewscomments_domain_model_comment.sys_language_uid IN (-1,0)',
@@ -72,119 +70,79 @@ return [
         ],
 
         'hidden' => [
-            'exclude' => 1,
+            'exclude' => true,
             'label' => $corell . 'LGL.hidden',
             'config' => [
                 'type' => 'check',
             ],
         ],
         'starttime' => [
-            'exclude' => 1,
-            'l10n_mode' => 'mergeIfNotBlank',
+            'exclude' => true,
             'label' => $corell . 'LGL.starttime',
             'config' => [
-                'type' => 'input',
-                'size' => 13,
-                'max' => 20,
-                'eval' => 'datetime',
-                'checkbox' => 0,
+                'type' => 'datetime',
                 'default' => 0,
-                'range' => [
-                    'lower' => mktime(0, 0, 0, date('m'), date('d'), date('Y')),
-                ],
             ],
         ],
         'endtime' => [
-            'exclude' => 1,
-            'l10n_mode' => 'mergeIfNotBlank',
+            'exclude' => true,
             'label' => $corell . 'LGL.endtime',
             'config' => [
-                'type' => 'input',
-                'size' => 13,
-                'max' => 20,
-                'eval' => 'datetime',
-                'checkbox' => 0,
+                'type' => 'datetime',
                 'default' => 0,
-                'range' => [
-                    'lower' => mktime(0, 0, 0, date('m'), date('d'), date('Y')),
-                ],
             ],
         ],
 
         'newsuid' => [
-            'exclude' => 1,
+            'exclude' => true,
             'label' => 'LLL:EXT:ns_news_comments/Resources/Private/Language/locallang_db.xlf:tx_nsnewscomments_domain_model_comment.newsuid',
             'config' => [
                 'type' => 'select',
                 'renderType' => 'selectSingle',
-                'internal_type' => 'db',
                 'foreign_table' => 'tx_news_domain_model_news',
-                'allowed' => 'tx_news_domain_model_news',
                 'size' => 1,
                 'minitems' => 0,
                 'maxitems' => 1,
-                'readOnly' => 1,
+                'readOnly' => true,
             ],
         ],
 
         'username' => [
-            'exclude' => 1,
+            'exclude' => true,
             'label' => 'LLL:EXT:ns_news_comments/Resources/Private/Language/locallang_db.xlf:tx_nsnewscomments_domain_model_comment.username',
             'config' => [
                 'type' => 'input',
                 'size' => 30,
-                'readOnly' => 1,
+                'readOnly' => true,
                 'eval' => 'trim',
             ],
         ],
         'usermail' => [
-            'exclude' => 1,
+            'exclude' => true,
             'label' => 'LLL:EXT:ns_news_comments/Resources/Private/Language/locallang_db.xlf:tx_nsnewscomments_domain_model_comment.usermail',
             'config' => [
                 'type' => 'input',
-                'size' => '30',
-                'max' => '256',
+                'size' => 30,
+                'max' => 256,
                 'eval' => 'trim',
-                'wizards' => [
-                    'link' => [
-                        'type' => 'popup',
-                        'title' => 'LLL:EXT:ns_news_comments/Resources/Private/Language/locallang_db.xlf:tx_nsnewscomments_domain_model_comment.linkTitle',
-                        'icon' => 'link_popup.gif',
-                        'module' => [
-                            'name' => 'wizard_link',
-                        ],
-                        'JSopenParams' => 'height=800,width=600,status=0,menubar=0,scrollbars=1',
-                    ],
-                ],
-                'readOnly' => 1,
+                'readOnly' => true,
                 'softref' => 'typolink',
             ],
         ],
         'paramlink' => [
-            'exclude' => 1,
+            'exclude' => true,
             'label' => 'LLL:EXT:ns_news_comments/Resources/Private/Language/locallang_db.xlf:tx_nsnewscomments_domain_model_comment.paramlink',
             'config' => [
                 'type' => 'input',
-                'size' => '30',
-                'max' => '256',
+                'size' => 30,
+                'max' => 256,
                 'eval' => 'trim',
-                'wizards' => [
-                    'link' => [
-                        'type' => 'popup',
-                        'title' => 'LLL:EXT:ns_news_comments/Resources/Private/Language/locallang_db.xlf:tx_nsnewscomments_domain_model_comment.linkTitle',
-                        'icon' => 'link_popup.gif',
-                        'module' => [
-                            'name' => 'wizard_link',
-                        ],
-                        'JSopenParams' => 'height=800,width=600,status=0,menubar=0,scrollbars=1',
-                    ],
-                ],
-                'readOnly' => 1,
+                'readOnly' => true,
                 'softref' => 'typolink',
             ],
         ],
         'description' => [
-            'exclude' => 1,
+            'exclude' => true,
             'label' => 'LLL:EXT:ns_news_comments/Resources/Private/Language/locallang_db.xlf:tx_nsnewscomments_domain_model_comment.comment',
             'config' => [
                 'type' => 'text',
@@ -198,14 +156,15 @@ return [
         ],
 
         'crdate' => [
-            'exclude' => 0,
+            'exclude' => false,
             'label' => 'LLL:EXT:ns_news_comments/Resources/Private/Language/locallang_db.xlf:tx_nsnewscomments_domain_model_comment.crdate',
             'config' => [
-                'type' => 'input',
+                'type' => 'datetime',
+                'readOnly' => true,
             ],
         ],
         'childcomment' => [
-            'exclude' => 1,
+            'exclude' => true,
             'label' => 'LLL:EXT:ns_news_comments/Resources/Private/Language/locallang_db.xlf:tx_nsnewscomments_domain_model_comment.childcomment',
             'config' => [
                 'type' => 'inline',
@@ -230,11 +189,11 @@ return [
             ],
         ],
         'terms' => [
-            'exclude' => 0,
+            'exclude' => false,
             'label' => 'LLL:EXT:ns_news_comments/Resources/Private/Language/locallang_db.xlf:tx_nsnewscomments_domain_model_comment.terms',
             'config' => [
                 'type' => 'check',
-                'readOnly' => 1,
+                'readOnly' => true,
             ],
         ],
     ],

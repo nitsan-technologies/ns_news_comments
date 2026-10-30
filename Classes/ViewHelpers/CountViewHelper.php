@@ -1,16 +1,21 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Nitsan\NsNewsComments\ViewHelpers;
 
-use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 use Nitsan\NsNewsComments\Domain\Repository\CommentRepository;
+use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 
 /**
  *  Get the counts of news comments
  */
 class CountViewHelper extends AbstractViewHelper
 {
+    public function __construct(
+        private readonly CommentRepository $commentRepository
+    ) {}
+
     /**
      * Initialize
      *
@@ -28,12 +33,10 @@ class CountViewHelper extends AbstractViewHelper
      */
     public function render(): int
     {
-        $newsUid = (int) $this->arguments['newsuid'];
+        $newsUid = (int)$this->arguments['newsuid'];
         $commentCount = 0;
         if ($newsUid) {
-            $commentRepository = GeneralUtility::makeInstance(CommentRepository::class);
-            // Get the counts of news comments
-            $commentCount = $commentRepository->getCountOfComments($newsUid);
+            $commentCount = $this->commentRepository->getCountOfComments($newsUid);
         }
         return $commentCount;
     }

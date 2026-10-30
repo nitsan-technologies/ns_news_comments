@@ -24,6 +24,9 @@ final class PremiumStrip
 
     /**
      * Returns an empty string when ns_license (and with it the trial route) is not available.
+     *
+     * UriBuilder and IconFactory are resolved via makeInstance so FormEngine
+     * (v12 NodeFactory constructor) can instantiate this class without container injection.
      */
     public function render(): string
     {

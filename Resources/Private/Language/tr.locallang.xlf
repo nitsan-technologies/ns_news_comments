@@ -123,6 +123,9 @@
 			<trans-unit id="form.thankyouMessage">
 				<target>Yorumunuz için teşekkür ederiz. Yorumunuz Başarıyla Eklendi.</target>
 			</trans-unit>
+			<trans-unit id="form.approveMessage">
+				<target>Yorumunuz için teşekkür ederiz. Yorumunuz onaylandıktan sonra görünür olacaktır.</target>
+			</trans-unit>
 			<trans-unit id="tx_nsnewscomments_domain_model_comment.errorMessage">
 				<target>Hiçbir Haber Kaydı Bulunamadı</target>
 			</trans-unit>
@@ -174,6 +177,15 @@
             <trans-unit id="terms.text">
                 <target><![CDATA[Kabul ediyorum. <a href="%s" target="_blank">şartlar</a>.]]></target>
             </trans-unit>
+			<trans-unit id="premium.strip.headline">
+				<target>News Comments'in ücretsiz sürümünü kullanıyorsunuz</target>
+			</trans-unit>
+			<trans-unit id="premium.strip.description">
+				<target>Premium özellikleri açın ve News Comments'ten daha fazla yararlanın.</target>
+			</trans-unit>
+			<trans-unit id="premium.strip.trial">
+				<target>Ücretsiz denemeyi başlat</target>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>

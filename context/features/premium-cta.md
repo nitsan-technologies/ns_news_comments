@@ -26,8 +26,8 @@ Same implementation pattern as ns_revolution_slider (`Classes/Backend/PremiumStr
 - Wording and design are the team-wide standard from the 2026-10-14 review, identical in every NITSAN strip
   except for the extension name.
 - Labels in `locallang.xlf`:
-  - `premium.strip.headline`: "You're using the free version of NS News Comments"
-  - `premium.strip.description`: "Unlock premium features and get more out of NS News Comments."
+  - `premium.strip.headline`: "You're using the free version of News Comments"
+  - `premium.strip.description`: "Unlock premium features and get more out of News Comments."
   - `premium.strip.trial`: "Start Free Trial"
 - Styling: `.ns-news-comments-premium-strip` (+ `-icon`, `-headline`, `-description`) in
   `Resources/Public/css/backend-premium-strip.css` — light-blue card (`#e7f2fc`, border `#8eb6e8`, 4px `#2b6cb0`

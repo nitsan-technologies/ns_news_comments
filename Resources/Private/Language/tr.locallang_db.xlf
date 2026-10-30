@@ -6,6 +6,9 @@
 			<trans-unit id="tx_nsnewscomments_domain_model_comment">
 				<target>Yorum</target>
 			</trans-unit>
+			<trans-unit id="tx_nsnewscomments_domain_model_comment.newsComment">
+				<target>Haber Yorumu</target>
+			</trans-unit>
 			<trans-unit id="tx_nsnewscomments_domain_model_comment.newComments">
 				<target>Yorumlar</target>
 			</trans-unit>
@@ -23,6 +26,9 @@
 			</trans-unit>
 			<trans-unit id="tx_nsnewscomments_domain_model_comment.childcomment">
 				<target>Yanıt Yorumu</target>
+			</trans-unit>
+			<trans-unit id="tx_nsnewscomments_domain_model_comment.terms">
+				<target>Şartlar kabul edildi</target>
 			</trans-unit>
 			<trans-unit id="tx_nsnewscomments_domain_model_comment.paramlink">
 				<target>Yorumlara Parametre Bağlantısı</target>
@@ -78,6 +84,12 @@
             <trans-unit id="addjqueryMinJS">
                 <target>Jquery Min JS Ekle</target>
             </trans-unit>
+			<trans-unit id="addjqueryMinJS.v2">
+				<target>v2.x</target>
+			</trans-unit>
+			<trans-unit id="addjqueryMinJS.v3">
+				<target>v3.x</target>
+			</trans-unit>
             <trans-unit id="addCommentUserImage">
                 <target>Kullanıcı Resmi Ekle</target>
             </trans-unit>
@@ -117,6 +129,12 @@
 			<trans-unit id="flexform.dateFormat">
 				<target>Tarih Formatı</target>
 			</trans-unit>
+			<trans-unit id="flexform.dateFormat.description">
+				<target>PHP date() formatı, örn. F j, Y veya j. F Y</target>
+			</trans-unit>
+			<trans-unit id="flexform.dateFormat.constant">
+				<target>Tarih formatı: PHP date() formatı, örn. F j, Y veya j. F Y</target>
+			</trans-unit>
 			<trans-unit id="flexform.dateFormat.0">
 				<target>F j, Y (Mayıs 26, 2017)</target>
 			</trans-unit>
@@ -145,6 +163,12 @@
 			<trans-unit id="flexform.timeFormat">
 				<target>Saat Formatı</target>
 			</trans-unit>
+			<trans-unit id="flexform.timeFormat.description">
+				<target>PHP date() formatı, örn. g:i a, g:i A veya H:i</target>
+			</trans-unit>
+			<trans-unit id="flexform.timeFormat.constant">
+				<target>Saat formatı: PHP date() formatı, örn. g:i a, g:i A veya H:i</target>
+			</trans-unit>
 			<trans-unit id="flexform.custom">
 				<target>Özel Tarih Formatı</target>
 			</trans-unit>
@@ -159,6 +183,9 @@
 			</trans-unit>
 			<trans-unit id="flexform.captcha">
 				<target>Captcha'yı devre dışı bırak</target>
+			</trans-unit>
+			<trans-unit id="flexform.approveComment">
+				<target>Yorumlar yayınlanmadan önce onay iste</target>
 			</trans-unit>
 			<trans-unit id="flexform.fe_user">
 				<target>Hem kayıtlı kullanıcılar (FE-users) hem de kayıtlı olmayan kullanıcılar yapabilir</target>
@@ -217,6 +244,12 @@
             <trans-unit id="flexform.customtime">
                 <target>Özel Saat Formatı </target>
             </trans-unit>
+			<trans-unit id="termsRequired">
+				<target>Şartlar zorunlu</target>
+			</trans-unit>
+			<trans-unit id="termsTypolinkParameter">
+				<target>Şartlar typolink parametresi</target>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>

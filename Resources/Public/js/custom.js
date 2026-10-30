@@ -27,6 +27,20 @@ function nsNewsCommentsParseResponse(response) {
     return response || {};
 }
 
+function showPendingApprovalMessage() {
+    var $msg = $('.tx_nsnewscomments .approvemsg');
+    if (!$msg.length) {
+        return;
+    }
+    $msg.show();
+    $('html, body').stop().animate({
+        scrollTop: ($msg.offset().top)
+    }, 2000);
+    setTimeout(function() {
+        $msg.fadeOut('slow');
+    }, 7000);
+}
+
 function replyComment() {
     $(document).off("click.nsNewsComments", '.tx_nsnewscomments .comment-btn.reply');
     $(document).on("click.nsNewsComments", '.tx_nsnewscomments .comment-btn.reply', function(event) {
@@ -70,6 +84,14 @@ function submitComment() {
                 },
                 success: function(response) {
                     var parsedResponse = nsNewsCommentsParseResponse(response);
+                    if (parsedResponse.error === 'validation') {
+                        showValidationErrors(parsedResponse.fields);
+                        return;
+                    }
+                    if (parsedResponse.status === 'pending') {
+                        showPendingApprovalMessage();
+                        return;
+                    }
                     // GET HTML for comment list (strip captcha imgs so AJAX parse does not regenerate sessions)
                     $.get(location.href, function (html) {
                         html = String(html).replace(/(<img\b[^>]*\bsrc=["'])[^"']*captcha\.php[^"']*/gi, '$1');
@@ -100,12 +122,22 @@ function submitComment() {
                     });
                     },
                     error: function(jqXHR, textStatus, errorThrown) {
+                        var parsedResponse = nsNewsCommentsParseResponse(jqXHR.responseText);
+                        if (parsedResponse.error === 'validation') {
+                            showValidationErrors(parsedResponse.fields);
+                            return;
+                        }
                         alert(textStatus + " " + errorThrown);
                     },
-                    complete: function(response) {
-                        $('.tx_nsnewscomments #comment-form')[0].reset();
+                    complete: function(jqXHR) {
                         $('.tx_nsnewscomments #submit').attr('disabled', false);
                         $('.tx_nsnewscomments #submit').css('cursor', 'pointer');
+                        var parsedResponse = nsNewsCommentsParseResponse(jqXHR.responseText);
+                        if (parsedResponse.error === 'validation') {
+                            showValidationErrors(parsedResponse.fields);
+                            return;
+                        }
+                        $('.tx_nsnewscomments #comment-form')[0].reset();
                         addForm();
                         if ($('.tx_nsnewscomments #nsnewscomments-captchaimg').length) {
                             refreshCaptcha();
@@ -170,7 +202,7 @@ function validateField() {
     var captcha = document.getElementById("nsnewscomments-captcha");
     var terms = document.getElementsByName('tx_nsnewscomments_newscomment[newComment][terms]').length;
 
-    if (!$('.tx_nsnewscomments #name').val()) {
+    if (!$.trim($('.tx_nsnewscomments #name').val())) {
         $(".tx_nsnewscomments #name").parent().addClass('has-error');
         $('.tx_nsnewscomments #name_error').show();
         var flag = 0;
@@ -187,7 +219,7 @@ function validateField() {
         }
     }
 
-    if (!$('.tx_nsnewscomments #email').val()) {
+    if (!$.trim($('.tx_nsnewscomments #email').val())) {
         $(".tx_nsnewscomments #email").parent().addClass('has-error');
         $(".tx_nsnewscomments #email_error").show();
         $(".tx_nsnewscomments #email_error_msg").hide();
@@ -252,12 +284,33 @@ function validateField() {
     }
 }
 
+function showValidationErrors(fields) {
+    fields = fields && fields.length ? fields : ['username', 'usermail', 'description'];
+    if (fields.indexOf('username') !== -1) {
+        $('.tx_nsnewscomments #name').parent().addClass('has-error');
+        $('.tx_nsnewscomments #name_error').show();
+    }
+    if (fields.indexOf('usermail') !== -1) {
+        $('.tx_nsnewscomments #email').parent().addClass('has-error');
+        $('.tx_nsnewscomments #email_error').show();
+        $('.tx_nsnewscomments #email_error_msg').hide();
+    }
+    if (fields.indexOf('description') !== -1) {
+        $('.tx_nsnewscomments #comment').parent().addClass('has-error');
+        $('.tx_nsnewscomments #comment_error').show();
+    }
+    if (fields.indexOf('terms') !== -1) {
+        $('.tx_nsnewscomments #terms').closest('.ns-form-group').addClass('has-error');
+        $('.tx_nsnewscomments #terms_error').show();
+    }
+}
+
 // Custom validation for onfocus
 function onFocusValidation() {
 
     $(".tx_nsnewscomments #name").focusout(function() {
         elementObj = $(this);
-        if (elementObj.val() != '') {
+        if ($.trim(elementObj.val()) != '') {
             if (!validateName($('.tx_nsnewscomments #name').val())) {
                 $(".tx_nsnewscomments #name_error_msg").show();
                 $(".tx_nsnewscomments #name_error").hide();
@@ -277,7 +330,7 @@ function onFocusValidation() {
 
     $(".tx_nsnewscomments #email").focusout(function() {
         elementObj = $(this);
-        if (elementObj.val() != '') {
+        if ($.trim(elementObj.val()) != '') {
             if (!validateEmail($('.tx_nsnewscomments #email').val())) {
                 $(".tx_nsnewscomments #email_error_msg").show();
                 $(".tx_nsnewscomments #email_error").hide();

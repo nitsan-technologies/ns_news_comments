@@ -123,6 +123,9 @@
 			<trans-unit id="form.thankyouMessage">
 				<target>Danke für deinen Kommentar. Dein Kommentar wurde erfolgreich hinzugefügt.</target>
 			</trans-unit>
+			<trans-unit id="form.approveMessage">
+				<target>Vielen Dank für Ihren Kommentar. Ihr Kommentar wird nach der Freigabe sichtbar.</target>
+			</trans-unit>
 			<trans-unit id="tx_nsnewscomments_domain_model_comment.errorMessage">
 				<target>Kein Nachrichteneintrag gefunden</target>
 			</trans-unit>
@@ -162,6 +165,15 @@
             <trans-unit id="terms.text">
                 <target><![CDATA[Ich akzeptiere den <a href="%s" target="_blank">Datenschutz</a>.]]></target>
             </trans-unit>
+			<trans-unit id="premium.strip.headline">
+				<target>Sie verwenden die kostenlose Version von News Comments</target>
+			</trans-unit>
+			<trans-unit id="premium.strip.description">
+				<target>Schalten Sie Premium-Funktionen frei und holen Sie mehr aus News Comments heraus.</target>
+			</trans-unit>
+			<trans-unit id="premium.strip.trial">
+				<target>Kostenlose Testversion starten</target>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>

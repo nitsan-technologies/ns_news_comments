@@ -11,6 +11,7 @@ plugin.tx_nsnewscomments {
         dateFormat = {$plugin.tx_nsnewscomments.settings.dateFormat}
         timeFormat = {$plugin.tx_nsnewscomments.settings.timeFormat}
         captcha = {$plugin.tx_nsnewscomments.settings.captcha}
+        approveComment = {$plugin.tx_nsnewscomments.settings.approveComment}
         storagePid = {$plugin.tx_nsnewscomments.settings.storagePid}
     }
 }
@@ -44,11 +45,7 @@ nsNewsCommentsAjaxCall {
         controller = Comment
         vendorName = Nitsan
         action = create
-        switchableControllerActions {
-            Comment {
-                1 = create
-            }
-        }
+        settings < plugin.tx_nsnewscomments.settings
     }
 }
 
@@ -58,11 +55,8 @@ lib.tx_nsnewscomments.comments {
     extensionName = NsNewsComments
     pluginName = Newscomment
     vendorName = Nitsan
-    switchableControllerActions {
-        Comment {
-            1 = list
-        }
-    }
+    controller = Comment
+    action = list
     settings < plugin.tx_nsnewscomments.settings
     settings {
         relatedComments = 1

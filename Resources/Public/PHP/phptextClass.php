@@ -57,7 +57,6 @@ class phptextClass
 
         header('Content-Type: image/jpeg');/* defining the image type to be shown in browser widow */
         imagejpeg($im, null, 90);/* Showing image */
-        imagedestroy($im);/* Destroying image instance */
     }
 
     /*for random string*/

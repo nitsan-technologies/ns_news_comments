@@ -155,6 +155,10 @@
         <source>Thank you for your comment. Your Comment Added Successfully.</source>
         <target state="final">Vielen Dank für Ihren Kommentar. Ihr Kommentar wurde erfolgreich hinzugefügt.</target>
       </trans-unit>
+      <trans-unit id="form.approveMessage">
+        <source>Thank you for your comment. Your comment will be visible after approval.</source>
+        <target state="needs-translation">Thank you for your comment. Your comment will be visible after approval.</target>
+      </trans-unit>
       <trans-unit id="tx_nsnewscomments_domain_model_comment.errorMessage" approved="yes">
         <source>No News Entry Found</source>
         <target state="final">Keine Nachrichten gefunden</target>
@@ -208,12 +212,12 @@
         <target state="final">Schließen</target>
       </trans-unit>
       <trans-unit id="premium.strip.headline">
-        <source>You're using the free version of NS News Comments</source>
-        <target state="needs-translation">You're using the free version of NS News Comments</target>
+        <source>You're using the free version of News Comments</source>
+        <target state="needs-translation">You're using the free version of News Comments</target>
       </trans-unit>
       <trans-unit id="premium.strip.description">
-        <source>Unlock premium features and get more out of NS News Comments.</source>
-        <target state="needs-translation">Unlock premium features and get more out of NS News Comments.</target>
+        <source>Unlock premium features and get more out of News Comments.</source>
+        <target state="needs-translation">Unlock premium features and get more out of News Comments.</target>
       </trans-unit>
       <trans-unit id="premium.strip.trial">
         <source>Start Free Trial</source>

@@ -39,7 +39,7 @@
         "cms-package-dir": "{$vendor-dir}/typo3/cms",
         "web-dir": ".Build/public",
         "extension-key": "ns_news_comments",
-        "version": "14.1.0",
+        "version": "14.1.1",
         "Package": {
             "providesPackages": {}
         }

@@ -243,6 +243,10 @@
         <source>Disable Captcha</source>
         <target>crwdns376512:0crwdne376512:0</target>
       </trans-unit>
+      <trans-unit id="flexform.approveComment">
+        <source>Require approval before comments are published</source>
+        <target>crwdns417931:0crwdne417931:0</target>
+      </trans-unit>
       <trans-unit id="flexform.fe_user">
         <source>FE-user as well as the Anonymous user can comment on the news</source>
         <target>crwdns376514:0crwdne376514:0</target>

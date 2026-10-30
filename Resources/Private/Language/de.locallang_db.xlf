@@ -243,6 +243,10 @@
         <source>Disable Captcha</source>
         <target state="final">Captcha deaktivieren</target>
       </trans-unit>
+      <trans-unit id="flexform.approveComment">
+        <source>Require approval before comments are published</source>
+        <target state="needs-translation">Require approval before comments are published</target>
+      </trans-unit>
       <trans-unit id="flexform.fe_user" approved="yes">
         <source>FE-user as well as the Anonymous user can comment on the news</source>
         <target state="final">Sowohl FE-Benutzer als auch anonyme Benutzer können Kommentare zu den Nachrichten abgeben.</target>
